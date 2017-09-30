@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Domain
 {
@@ -11,8 +9,8 @@ namespace Core.Domain
         private Boolean state;
         private String description;
         private String estimatedHours;
-        private Datetime startDate;
-        private Datetime endDate;
+        private DateTime startDate;
+        private DateTime endDate;
 
         public Project()
         {
@@ -23,7 +21,7 @@ namespace Core.Domain
         public bool State { get => state; set => state = value; }
         public string Description { get => description; set => description = value; }
         private string EstimatedHours { get => estimatedHours; set => estimatedHours = value; }
-        private Datetime StartDate { get => startDate; set => startDate = value; }
-        private Datetime EndDate { get => endDate; set => endDate = value; }
+        private DateTime StartDate { get => startDate; set => startDate = value; }
+        private DateTime EndDate { get => endDate; set => endDate = value; }
     }
 }
