@@ -6,7 +6,6 @@ namespace Core.Data
 {
     public class ConnectionData
     {
-
         private String connectionString;
 
         public ConnectionData()
@@ -15,6 +14,5 @@ namespace Core.Data
         }
 
         public string ConnectionString { get => connectionString; }
-
     }
 }
