@@ -14,22 +14,19 @@ namespace Webapp.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Page.IsPostBack == false)
-            {
-                lbl_name.Text = "";
-                lbl_description.Text = "";
-            }
+            /*tb_name.Text = "";
+            tb_description.Text = "";*/
         }
 
 
         protected void btnCreateOnClick(object sender, EventArgs e)
         {
             Category category = new Category();
-            category.Name = lbl_name.Text;
-            category.Description = lbl_description.Text;
+            category.Name = tb_name.Text;
+            category.Description = tb_description.Text;
             CategoryBusiness categoryBusiness = new CategoryBusiness();
             category = categoryBusiness.AddCategory(category);
-            Response.Redirect("~/CrearCategoria.aspx");
+            Response.Redirect("~/WebForms/CrearCategoria.aspx");
         }
     }
 }
