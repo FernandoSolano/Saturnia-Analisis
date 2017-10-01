@@ -6,8 +6,11 @@ namespace Core.Data
 {
     public class ConnectionData
     {
+        private String connectionString;
+
 
         private String connectionString;
+
 
         public ConnectionData()
         {
