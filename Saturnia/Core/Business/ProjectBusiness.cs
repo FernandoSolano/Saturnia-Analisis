@@ -44,10 +44,5 @@ namespace Core.Business
             this.projectData.DeleteProject(project);
         }
 
-        public Project GetProject(int idProject)
-        {
-            return this.projectData.GetProject(idProject);
-        }
-
         }
 }
