@@ -116,13 +116,18 @@ namespace Core.Data
 
             if (reader.HasRows)
             {
-
+                reader.Read();
                 project.Name = reader.GetString(0);
                 project.State = reader.GetBoolean(1);
                 project.Description = reader.GetString(2);
-                project.EstimatedHours = reader.GetFloat(3).ToString();
+                project.EstimatedHours = reader.GetInt32(3);
                 project.StartDate = reader.GetDateTime(4);
-                project.EndDate = reader.GetDateTime(5);
+                
+                if (reader.IsDBNull(5) == false)
+                {
+                    project.EndDate = reader.GetDateTime(5);
+                }
+                
 
             } else
             {
@@ -130,7 +135,7 @@ namespace Core.Data
                 project.Name = "Error en conexión";
                 project.State = false;
                 project.Description = "Hubo un error en ProjectData";
-                project.EstimatedHours = "0";
+                project.EstimatedHours = 0;
                 project.StartDate = new DateTime(1995,8,8);
                 project.EndDate = new DateTime(2020, 8, 8);
 

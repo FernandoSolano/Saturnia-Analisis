@@ -8,7 +8,7 @@ using Core.Data;
 
 namespace Core.Business
 {
-    class ProjectBusiness
+    public class ProjectBusiness
     {
 
         private ProjectData projectData;
