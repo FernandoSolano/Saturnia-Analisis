@@ -143,6 +143,17 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\SearchProject.js" />
+    <Content Include="WebForms\SearchProject.aspx" />
+    <Content Include="WebForms\ShowProject.aspx" />
+    <Content Include="WebForms\CrearCategoria.aspx">
+      <BrowseToURL>~/WebForms/CrearCategoria.aspx</BrowseToURL>
+    </Content>
+    <Content Include="WebForms\CrearProyecto.aspx">
+      <BrowseToURL>~/WebForms/CrearProyecto.aspx</BrowseToURL>
+    </Content>
+    <Content Include="WebForms\EliminarCategoria.aspx" />
+    <Content Include="WebForms\EliminarProyecto.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -234,10 +245,37 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\SearchProject.aspx.cs">
+      <DependentUpon>SearchProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\SearchProject.aspx.designer.cs">
+      <DependentUpon>SearchProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\ShowProject.aspx.cs">
+      <DependentUpon>ShowProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\ShowProject.aspx.designer.cs">
+      <DependentUpon>ShowProject.aspx</DependentUpon>
+      </Compile>
+    <Compile Include="WebForms\CrearCategoria.aspx.cs">
+      <DependentUpon>CrearCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\CrearCategoria.aspx.designer.cs">
+      <DependentUpon>CrearCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\CrearProyecto.aspx.cs">
+      <DependentUpon>CrearProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\CrearProyecto.aspx.designer.cs">
+      <DependentUpon>CrearProyecto.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="WebForms\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -248,6 +286,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{c803b785-8953-4671-99e9-b73dd7ead857}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
