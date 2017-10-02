@@ -146,6 +146,7 @@
     <Content Include="Scripts\SearchProject.js" />
     <Content Include="WebForms\SearchCategory.aspx" />
     <Content Include="WebForms\SearchProject.aspx" />
+    <Content Include="WebForms\ShowCategory.aspx" />
     <Content Include="WebForms\ShowProject.aspx" />
     <Content Include="WebForms\CrearCategoria.aspx">
       <BrowseToURL>~/WebForms/CrearCategoria.aspx</BrowseToURL>
@@ -259,6 +260,13 @@
     </Compile>
     <Compile Include="WebForms\SearchProject.aspx.designer.cs">
       <DependentUpon>SearchProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\ShowCategory.aspx.cs">
+      <DependentUpon>ShowCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\ShowCategory.aspx.designer.cs">
+      <DependentUpon>ShowCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\ShowProject.aspx.cs">
       <DependentUpon>ShowProject.aspx</DependentUpon>

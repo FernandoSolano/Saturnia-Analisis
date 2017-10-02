@@ -46,10 +46,12 @@ namespace Webapp.WebForms
                     this.lblEndDateContent.Text = "Sin fecha de fin";
                 }
 
-                this.linkDelete.NavigateUrl = "./EliminarProyecto.aspx?id="+project.Id;
+                //**********************************KRISTELL**********************************//
+                //Compañera, aqui puede poner lo que necesite del LinkButton con id btnDelete
                 //this.linkUpdate.NavigateUrl = "./ActualizarProyecto.aspx?id=" + project.Id;
 
-            } else
+            }
+            else
             {
 
             }

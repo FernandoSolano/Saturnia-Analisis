@@ -56,10 +56,10 @@
         </tr>
         <tr>
             <td>
-                <asp:HyperLink ID="linkDelete" runat="server">Eliminar proyecto</asp:HyperLink>
+                <asp:LinkButton ID="btnDelete" runat="server">Eliminar</asp:LinkButton>
             </td>
             <td>
-                <asp:HyperLink ID="HyperLink1" runat="server">Actualizar proyecto</asp:HyperLink>
+                <asp:HyperLink ID="linkUpdate" runat="server">Actualizar proyecto</asp:HyperLink>
             </td>
         </tr>
     </table>

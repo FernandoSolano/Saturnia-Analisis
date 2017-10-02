@@ -30,5 +30,12 @@ namespace Core.Business
 
             return categories;
         }
+
+        public Category ShowCategory(Category category)
+        {
+            category = this.categoryData.ShowCategory(category);
+
+            return category;
+        }
     }
 }
