@@ -12,6 +12,14 @@ namespace Core.Data
     /// </summary>
     public class ProjectData
     {
+        private String connectionString;
+
+        public ProjectData()
+        {
+            ConnectionData connectionData = new ConnectionData();
+            connectionString = connectionData.ConnectionString;
+        }
+      
         /// <summary>
         /// Busqueda de proyectos con nombres similares al recibido.
         /// </summary>
@@ -20,9 +28,6 @@ namespace Core.Data
         public List <Project> SearchProject(Project project)
         {
             //Declaracion e inicializacion de variables e instancias.
-            ConnectionData connectionData = new ConnectionData();
-            String connectionString = connectionData.ConnectionString; //Asi se obtiene el connectionString
-
             SqlConnection connection = new SqlConnection(connectionString);
             
             //Nombre del SP
@@ -84,9 +89,6 @@ namespace Core.Data
         {
 
             //Declaracion e inicializacion de variables e instancias.
-            ConnectionData connectionData = new ConnectionData();
-            String connectionString = connectionData.ConnectionString; //Asi se obtiene el connectionString
-
             SqlConnection connection = new SqlConnection(connectionString);
 
             //Nombre del SP
@@ -146,7 +148,36 @@ namespace Core.Data
 
             //Retornamos la lista.
             return project;
+        }
 
+        public Project AddProject(Project project)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand("sp_project_create", connection);
+            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlParameter id = new SqlParameter("@id", System.Data.SqlDbType.Int);
+            id.Direction = System.Data.ParameterDirection.Output;
+            sqlCommand.Parameters.Add(id);
+            sqlCommand.Parameters.Add(new SqlParameter("@name", project.Name));
+            sqlCommand.Parameters.Add(new SqlParameter("@state", project.State));
+            sqlCommand.Parameters.Add(new SqlParameter("@description", project.Description));
+            sqlCommand.Parameters.Add(new SqlParameter("@estimated_hours", project.EstimatedHours));
+            sqlCommand.Parameters.Add(new SqlParameter("@start_date", project.StartDate));
+            try
+            {
+                connection.Open();
+                sqlCommand.ExecuteNonQuery();
+                project.Id = Int32.Parse(sqlCommand.Parameters["@id"].Value.ToString());
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            if (connection != null)
+            {
+                connection.Close();
+            }
+            return project;
         }
     }
 }

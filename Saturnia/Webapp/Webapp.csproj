@@ -146,6 +146,12 @@
     <Content Include="Scripts\SearchProject.js" />
     <Content Include="WebForms\SearchProject.aspx" />
     <Content Include="WebForms\ShowProject.aspx" />
+    <Content Include="WebForms\CrearCategoria.aspx">
+      <BrowseToURL>~/WebForms/CrearCategoria.aspx</BrowseToURL>
+    </Content>
+    <Content Include="WebForms\CrearProyecto.aspx">
+      <BrowseToURL>~/WebForms/CrearProyecto.aspx</BrowseToURL>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -250,6 +256,20 @@
     </Compile>
     <Compile Include="WebForms\ShowProject.aspx.designer.cs">
       <DependentUpon>ShowProject.aspx</DependentUpon>
+      </Compile>
+    <Compile Include="WebForms\CrearCategoria.aspx.cs">
+      <DependentUpon>CrearCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\CrearCategoria.aspx.designer.cs">
+      <DependentUpon>CrearCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\CrearProyecto.aspx.cs">
+      <DependentUpon>CrearProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\CrearProyecto.aspx.designer.cs">
+      <DependentUpon>CrearProyecto.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

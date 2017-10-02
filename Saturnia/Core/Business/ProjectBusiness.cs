@@ -1,16 +1,15 @@
-﻿using System;
+using Core.Data;
+using Core.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Domain;
-using Core.Data;
 
 namespace Core.Business
 {
     public class ProjectBusiness
     {
-
         private ProjectData projectData;
 
         public ProjectBusiness()
@@ -34,5 +33,11 @@ namespace Core.Business
             return projects;
         }
 
+        public Project AddProject(Project project)
+        {
+            project.StartDate = DateTime.Today;
+            project.State = true;
+            return projectData.AddProject(project);
+        }
     }
 }
