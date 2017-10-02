@@ -22,5 +22,15 @@ namespace Core.Business
             return categoryData.AddCategory(category);
         }
 
+        public void DeleteCategory(Category category)
+        {
+            this.categoryData.DeleteCategory(category);
+        }
+
+        public Category GetCategory(int idCategory)
+        {
+            return this.categoryData.GetCategory(idCategory);
+        }
+
     }
 }
