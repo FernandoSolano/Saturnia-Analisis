@@ -112,13 +112,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label lblEndDateContent;
         
         /// <summary>
-        /// Control btnDelete.
+        /// Control LinkButon_eliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDelete;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButon_eliminar;
         
         /// <summary>
         /// Control linkUpdate.

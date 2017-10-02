@@ -39,5 +39,15 @@ namespace Core.Business
             project.State = true;
             return projectData.AddProject(project);
         }
-    }
+        public void DeleteProject(Project project)
+        {
+            this.projectData.DeleteProject(project);
+        }
+
+        public Project GetProject(int idProject)
+        {
+            return this.projectData.GetProject(idProject);
+        }
+
+        }
 }

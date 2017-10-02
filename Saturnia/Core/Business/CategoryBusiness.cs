@@ -37,5 +37,10 @@ namespace Core.Business
 
             return category;
         }
+      
+        public void DeleteCategory(Category category)
+        {
+            this.categoryData.DeleteCategory(category);
+        }
     }
 }
