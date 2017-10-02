@@ -55,7 +55,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -129,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="ActualizarProyecto.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -142,6 +142,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\SearchProject.js" />
+    <Content Include="WebForms\SearchProject.aspx" />
+    <Content Include="WebForms\ShowProject.aspx" />
+    <Content Include="WebForms\CrearCategoria.aspx">
+      <BrowseToURL>~/WebForms/CrearCategoria.aspx</BrowseToURL>
+    </Content>
+    <Content Include="WebForms\CrearProyecto.aspx">
+      <BrowseToURL>~/WebForms/CrearProyecto.aspx</BrowseToURL>
     </Content>
     <Content Include="WebForms\EliminarCategoria.aspx" />
     <Content Include="WebForms\EliminarProyecto.aspx" />
@@ -181,6 +190,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActualizarProyecto.aspx.cs">
+      <DependentUpon>ActualizarProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActualizarProyecto.aspx.designer.cs">
+      <DependentUpon>ActualizarProyecto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -229,19 +245,33 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\EliminarCategoria.aspx.cs">
-      <DependentUpon>EliminarCategoria.aspx</DependentUpon>
+    <Compile Include="WebForms\SearchProject.aspx.cs">
+      <DependentUpon>SearchProject.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\EliminarCategoria.aspx.designer.cs">
-      <DependentUpon>EliminarCategoria.aspx</DependentUpon>
+    <Compile Include="WebForms\SearchProject.aspx.designer.cs">
+      <DependentUpon>SearchProject.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\EliminarProyecto.aspx.cs">
-      <DependentUpon>EliminarProyecto.aspx</DependentUpon>
+    <Compile Include="WebForms\ShowProject.aspx.cs">
+      <DependentUpon>ShowProject.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\EliminarProyecto.aspx.designer.cs">
-      <DependentUpon>EliminarProyecto.aspx</DependentUpon>
+    <Compile Include="WebForms\ShowProject.aspx.designer.cs">
+      <DependentUpon>ShowProject.aspx</DependentUpon>
+      </Compile>
+    <Compile Include="WebForms\CrearCategoria.aspx.cs">
+      <DependentUpon>CrearCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\CrearCategoria.aspx.designer.cs">
+      <DependentUpon>CrearCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\CrearProyecto.aspx.cs">
+      <DependentUpon>CrearProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\CrearProyecto.aspx.designer.cs">
+      <DependentUpon>CrearProyecto.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -256,9 +286,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
