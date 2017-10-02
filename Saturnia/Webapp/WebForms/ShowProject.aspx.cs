@@ -45,10 +45,8 @@ namespace Webapp.WebForms
                 {
                     this.lblEndDateContent.Text = "Sin fecha de fin";
                 }
-
-                //this.linkUpdate.NavigateUrl = "./ActualizarProyecto.aspx?id=" + project.Id;
-
-            } else
+            }
+            else
             {
 
             }

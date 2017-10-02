@@ -22,15 +22,25 @@ namespace Core.Business
             return categoryData.AddCategory(category);
         }
 
+        public List<Category> SearchCategory(Category category)
+        {
+            List<Category> categories;
+
+            categories = this.categoryData.SearchCategory(category);
+
+            return categories;
+        }
+
+        public Category ShowCategory(Category category)
+        {
+            category = this.categoryData.ShowCategory(category);
+
+            return category;
+        }
+      
         public void DeleteCategory(Category category)
         {
             this.categoryData.DeleteCategory(category);
         }
-
-        public Category GetCategory(int idCategory)
-        {
-            return this.categoryData.GetCategory(idCategory);
-        }
-
     }
 }
