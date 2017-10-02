@@ -1,6 +1,7 @@
 ﻿using Core.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -88,6 +89,72 @@ namespace Core.Data
             return category;
 
         }//GetCategory()
+
+        /// <summary>
+        /// Metodo que busca coincidencias de categorias según un nombre dado
+        /// </summary>
+        /// <param name="category">Nombre para buscar categorias.</param>
+        /// <returns>Lista de categorias con minimo 1 resultado.</returns>
+        public List<Category> SearchCategory(Category category)
+        {
+            //Declaracion e inicializacion de variables e instancias.
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            //Nombre del SP
+            string sqlStoredProcedure = "SP_CATEGORY_SEARCH";
+
+            //Variables para ejecutar el SP
+            SqlCommand sqlCommand;
+            SqlParameter parameter;
+            SqlDataReader reader;
+
+            //Lista de retorno.
+            List<Category> categories = new List<Category>();
+
+            //Objeto temporal para llenar la lista.
+            Category tempCategory;
+
+            sqlCommand = new SqlCommand(sqlStoredProcedure, connection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            //Parametro que contendra el nombre para la busqueda.
+            parameter = new SqlParameter("@NAME", category.Name);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Abrimos y ejecutamos el SP
+            sqlCommand.Connection.Open();
+            sqlCommand.ExecuteNonQuery();
+
+            //Ejecutamos el lector para recibir lo devuelto.
+            reader = sqlCommand.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                //Si hubiesen resultados, los añadimos uno a uno a la lista.
+                while (reader.Read())
+                {
+                    tempCategory = new Category();
+                    tempCategory.Id = reader.GetInt32(0);
+                    tempCategory.Name = reader.GetString(1);
+                    categories.Add(tempCategory);
+                }
+            }
+            else
+            {
+                //Si no hay resultados, agregamos un proyecto con id -1 y nombre que indique que no hubo resultados.
+                tempCategory = new Category();
+                tempCategory.Id = -1;
+                tempCategory.Name = "No se encontraron coincidencias";
+                categories.Add(tempCategory);
+            }
+
+            //Cerramos la conexion.
+            sqlCommand.Connection.Close();
+
+            //Retornamos la lista.
+            return categories;
+
+        }
 
     }//CategoryData
 

@@ -22,5 +22,13 @@ namespace Core.Business
             return categoryData.AddCategory(category);
         }
 
+        public List<Category> SearchCategory(Category category)
+        {
+            List<Category> categories;
+
+            categories = this.categoryData.SearchCategory(category);
+
+            return categories;
+        }
     }
 }

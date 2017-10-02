@@ -144,6 +144,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\SearchProject.js" />
+    <Content Include="WebForms\SearchCategory.aspx" />
     <Content Include="WebForms\SearchProject.aspx" />
     <Content Include="WebForms\ShowProject.aspx" />
     <Content Include="WebForms\CrearCategoria.aspx">
@@ -245,6 +246,13 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\SearchCategory.aspx.cs">
+      <DependentUpon>SearchCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\SearchCategory.aspx.designer.cs">
+      <DependentUpon>SearchCategory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\SearchProject.aspx.cs">
       <DependentUpon>SearchProject.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -258,7 +266,7 @@
     </Compile>
     <Compile Include="WebForms\ShowProject.aspx.designer.cs">
       <DependentUpon>ShowProject.aspx</DependentUpon>
-      </Compile>
+    </Compile>
     <Compile Include="WebForms\CrearCategoria.aspx.cs">
       <DependentUpon>CrearCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
