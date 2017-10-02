@@ -152,6 +152,8 @@
     <Content Include="WebForms\CrearProyecto.aspx">
       <BrowseToURL>~/WebForms/CrearProyecto.aspx</BrowseToURL>
     </Content>
+    <Content Include="WebForms\EliminarCategoria.aspx" />
+    <Content Include="WebForms\EliminarProyecto.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

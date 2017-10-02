@@ -12,6 +12,7 @@ namespace Core.Data
     /// </summary>
     public class ProjectData
     {
+
         private String connectionString;
 
         public ProjectData()
@@ -19,8 +20,86 @@ namespace Core.Data
             ConnectionData connectionData = new ConnectionData();
             connectionString = connectionData.ConnectionString;
         }
-      
-        /// <summary>
+
+        public void DeleteProject(Project project)
+        {
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            sqlConnection.Open();//abre la conexion
+            SqlCommand cmd;
+
+            cmd = new SqlCommand("sp_project_delete", sqlConnection);//agrego mi procedimiento almacenado para utilizarlo
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;//indico que voy a utilizar un procedimiento almacenado
+
+            // enviarle parametro al procedimiento
+            cmd.Parameters.AddWithValue("@id_project", project.Id);
+            
+            cmd.ExecuteNonQuery();//ejecuto el procedimiento almacenado
+
+            sqlConnection.Close();//cierra la conexion
+        }//DeleteProject
+
+        public Project GetProject(int idProject)
+        {
+
+            //paso 1
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            sqlConnection.Open();
+
+            SqlCommand cmd = new SqlCommand("sp_get_project", sqlConnection);//agrego mi procedimiento almacenado para utilizarlo
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;//indico que voy a utilizar un procedimiento almacenado
+                                                                      // enviarle parametro al procedimiento
+            cmd.Parameters.AddWithValue("@id_project", idProject);
+
+            SqlDataReader drProject = cmd.ExecuteReader();
+            Project project = null;
+            while (drProject.Read())
+            {
+
+                project = new Project();
+                project.Id = Int32.Parse(drProject["id"].ToString());
+                project.Name = drProject["name"].ToString();
+                project.State = bool.Parse(drProject["state"].ToString());
+                project.Description = drProject["description"].ToString();
+                project.EstimatedHours = Int32.Parse(drProject["estimated_hours"].ToString());
+                project.StartDate = Convert.ToDateTime(drProject["start_date"].ToString());
+            }//while
+            sqlConnection.Close();
+            return project;
+
+        }//GetProject()
+
+         
+
+        public Project AddProject(Project project)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand("sp_project_create", connection);
+            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlParameter id = new SqlParameter("@id", System.Data.SqlDbType.Int);
+            id.Direction = System.Data.ParameterDirection.Output;
+            sqlCommand.Parameters.Add(id);
+            sqlCommand.Parameters.Add(new SqlParameter("@name", project.Name));
+            sqlCommand.Parameters.Add(new SqlParameter("@state", project.State));
+            sqlCommand.Parameters.Add(new SqlParameter("@description", project.Description));
+            sqlCommand.Parameters.Add(new SqlParameter("@estimated_hours", project.EstimatedHours));
+            sqlCommand.Parameters.Add(new SqlParameter("@start_date", project.StartDate));
+            try
+            {
+                connection.Open();
+                sqlCommand.ExecuteNonQuery();
+                project.Id = Int32.Parse(sqlCommand.Parameters["@id"].Value.ToString());
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            if (connection != null)
+            {
+                connection.Close();
+            }
+            return project;
+        }
+    /// <summary>
         /// Busqueda de proyectos con nombres similares al recibido.
         /// </summary>
         /// <param name="project">El objeto que contiene el nombre a buscar.</param>
@@ -147,36 +226,6 @@ namespace Core.Data
             sqlCommand.Connection.Close();
 
             //Retornamos la lista.
-            return project;
-        }
-
-        public Project AddProject(Project project)
-        {
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand sqlCommand = new SqlCommand("sp_project_create", connection);
-            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            SqlParameter id = new SqlParameter("@id", System.Data.SqlDbType.Int);
-            id.Direction = System.Data.ParameterDirection.Output;
-            sqlCommand.Parameters.Add(id);
-            sqlCommand.Parameters.Add(new SqlParameter("@name", project.Name));
-            sqlCommand.Parameters.Add(new SqlParameter("@state", project.State));
-            sqlCommand.Parameters.Add(new SqlParameter("@description", project.Description));
-            sqlCommand.Parameters.Add(new SqlParameter("@estimated_hours", project.EstimatedHours));
-            sqlCommand.Parameters.Add(new SqlParameter("@start_date", project.StartDate));
-            try
-            {
-                connection.Open();
-                sqlCommand.ExecuteNonQuery();
-                project.Id = Int32.Parse(sqlCommand.Parameters["@id"].Value.ToString());
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            if (connection != null)
-            {
-                connection.Close();
-            }
             return project;
         }
     }
