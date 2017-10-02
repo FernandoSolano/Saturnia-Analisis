@@ -40,6 +40,15 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.TextBox tb_name;
         
         /// <summary>
+        /// validator_tb_name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validator_tb_name;
+        
+        /// <summary>
         /// lbl_description control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace Webapp.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_description;
+        
+        /// <summary>
+        /// validator_tb_description control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validator_tb_description;
         
         /// <summary>
         /// btn_create control.

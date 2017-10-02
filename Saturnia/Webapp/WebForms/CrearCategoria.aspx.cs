@@ -14,8 +14,6 @@ namespace Webapp.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*tb_name.Text = "";
-            tb_description.Text = "";*/
         }
 
 
