@@ -1,4 +1,4 @@
-﻿using Core.Data;
+using Core.Data;
 using Core.Domain;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,23 @@ namespace Core.Business
 
         public ProjectBusiness()
         {
-            projectData = new ProjectData();
+            this.projectData = new ProjectData();
+        }
+
+        public Project ShowProject(Project project)
+        {
+            project = this.projectData.ShowProject(project);
+
+            return project;
+        }
+
+        public List<Project> SearchProject(Project project)
+        {
+            List<Project> projects;
+
+            projects = this.projectData.SearchProject(project);
+
+            return projects;
         }
 
         public Project AddProject(Project project)
