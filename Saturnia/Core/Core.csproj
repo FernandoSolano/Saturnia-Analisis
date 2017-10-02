@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\CategoryBusiness.cs" />
+    <Compile Include="Business\ProjectBusiness.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Data\CategoryData.cs" />
     <Compile Include="Data\ConnectionData.cs" />
@@ -53,7 +55,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Business\" />
     <Folder Include="Services\Security\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

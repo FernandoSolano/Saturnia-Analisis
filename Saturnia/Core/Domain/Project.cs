@@ -8,7 +8,7 @@ namespace Core.Domain
         private String name;
         private Boolean state;
         private String description;
-        private String estimatedHours;
+        private int estimatedHours;
         private DateTime startDate;
         private DateTime endDate;
 
@@ -20,7 +20,7 @@ namespace Core.Domain
         public string Name { get => name; set => name = value; }
         public bool State { get => state; set => state = value; }
         public string Description { get => description; set => description = value; }
-        public string EstimatedHours { get => estimatedHours; set => estimatedHours = value; }
+        public int EstimatedHours { get => estimatedHours; set => estimatedHours = value; }
         public DateTime StartDate { get => startDate; set => startDate = value; }
         public DateTime EndDate { get => endDate; set => endDate = value; }
     }
