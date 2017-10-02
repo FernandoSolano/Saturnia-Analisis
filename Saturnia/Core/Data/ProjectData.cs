@@ -68,12 +68,7 @@ namespace Core.Data
 
         }//GetProject()
 
-            //Cerramos la conexion.
-            sqlCommand.Connection.Close();
-
-            //Retornamos la lista.
-            return project;
-        }
+         
 
         public Project AddProject(Project project)
         {
