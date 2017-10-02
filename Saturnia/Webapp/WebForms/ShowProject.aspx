@@ -56,7 +56,7 @@
         </tr>
         <tr>
             <td>
-                <asp:HyperLink ID="linkDelete" runat="server">Eliminar proyecto</asp:HyperLink>
+                <asp:LinkButton ID="LinkButon_eliminar" runat="server" OnClick="LinkButon_eliminar_Click" OnClientClick="return confirm('¿Esta seguro de eliminar el proyecto?');">Eliminar proyecto</asp:LinkButton>
             </td>
             <td>
                 <asp:HyperLink ID="HyperLink1" runat="server">Actualizar proyecto</asp:HyperLink>

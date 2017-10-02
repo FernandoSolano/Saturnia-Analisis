@@ -46,13 +46,30 @@ namespace Webapp.WebForms
                     this.lblEndDateContent.Text = "Sin fecha de fin";
                 }
 
-                this.linkDelete.NavigateUrl = "./EliminarProyecto.aspx?id="+project.Id;
                 //this.linkUpdate.NavigateUrl = "./ActualizarProyecto.aspx?id=" + project.Id;
 
             } else
             {
 
             }
+        }
+
+        protected void LinkButon_eliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProjectBusiness projectBusiness = new ProjectBusiness();
+                Project project = new Project();
+                project.Id = Int32.Parse(Request.QueryString["project"]);
+                project = projectBusiness.GetProject(project.Id);
+                projectBusiness.DeleteProject(project);
+                Response.Write("<script>alert('El projecto ha sido eliminado con éxito');window.location.href = 'SearchProject.aspx';</script>");
+                // Response.Redirect("SearchProject");
+            }//try
+            catch
+            {
+                Response.Write("<script>alert('Ocurrió un problema, el proyecto no se pudo eliminar');window.location.href = 'SearchProject.aspx';</script>");
+            }//catch
         }
     }
 }
