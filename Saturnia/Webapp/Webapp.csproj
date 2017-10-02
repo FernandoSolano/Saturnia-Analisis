@@ -143,6 +143,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\SearchProject.js" />
+    <Content Include="WebForms\SearchProject.aspx" />
+    <Content Include="WebForms\ShowProject.aspx" />
     <Content Include="WebForms\CrearCategoria.aspx">
       <BrowseToURL>~/WebForms/CrearCategoria.aspx</BrowseToURL>
     </Content>
@@ -240,6 +243,20 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\SearchProject.aspx.cs">
+      <DependentUpon>SearchProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\SearchProject.aspx.designer.cs">
+      <DependentUpon>SearchProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\ShowProject.aspx.cs">
+      <DependentUpon>ShowProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\ShowProject.aspx.designer.cs">
+      <DependentUpon>ShowProject.aspx</DependentUpon>
+      </Compile>
     <Compile Include="WebForms\CrearCategoria.aspx.cs">
       <DependentUpon>CrearCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
