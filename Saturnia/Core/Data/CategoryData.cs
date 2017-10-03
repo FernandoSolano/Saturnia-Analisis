@@ -1,6 +1,7 @@
 ﻿using Core.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -60,34 +61,124 @@ namespace Core.Data
 
             sqlConnection.Close();//cierra la conexion
         }//DeleteCategory
+        
+        /// <summary>
+        /// Metodo que busca coincidencias de categorias según un nombre dado
+        /// </summary>
+        /// <param name="category">Nombre para buscar categorias.</param>
+        /// <returns>Lista de categorias con minimo 1 resultado.</returns>
+        public List<Category> SearchCategory(Category category)
+        {
+            //Declaracion e inicializacion de variables e instancias.
+            SqlConnection connection = new SqlConnection(connectionString);
 
-        public Category GetCategory(int idCategory)
+            //Nombre del SP
+            string sqlStoredProcedure = "SP_CATEGORY_SEARCH";
+
+            //Variables para ejecutar el SP
+            SqlCommand sqlCommand;
+            SqlParameter parameter;
+            SqlDataReader reader;
+
+            //Lista de retorno.
+            List<Category> categories = new List<Category>();
+
+            //Objeto temporal para llenar la lista.
+            Category tempCategory;
+
+            sqlCommand = new SqlCommand(sqlStoredProcedure, connection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            //Parametro que contendra el nombre para la busqueda.
+            parameter = new SqlParameter("@NAME", category.Name);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Abrimos y ejecutamos el SP
+            sqlCommand.Connection.Open();
+            sqlCommand.ExecuteNonQuery();
+
+            //Ejecutamos el lector para recibir lo devuelto.
+            reader = sqlCommand.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                //Si hubiesen resultados, los añadimos uno a uno a la lista.
+                while (reader.Read())
+                {
+                    tempCategory = new Category();
+                    tempCategory.Id = reader.GetInt32(0);
+                    tempCategory.Name = reader.GetString(1);
+                    categories.Add(tempCategory);
+                }
+            }
+            else
+            {
+                //Si no hay resultados, agregamos un proyecto con id -1 y nombre que indique que no hubo resultados.
+                tempCategory = new Category();
+                tempCategory.Id = -1;
+                tempCategory.Name = "No se encontraron coincidencias";
+                categories.Add(tempCategory);
+            }
+
+            //Cerramos la conexion.
+            sqlCommand.Connection.Close();
+
+            //Retornamos la lista.
+            return categories;
+
+        } //SearchCategory
+
+        public Category ShowCategory(Category category)
         {
 
-            //paso 1
-            SqlConnection sqlConnection = new SqlConnection(connectionString);
-            sqlConnection.Open();
+            //Declaracion e inicializacion de variables e instancias.
+            SqlConnection connection = new SqlConnection(connectionString);
 
-            SqlCommand cmd = new SqlCommand("sp_get_category", sqlConnection);//agrego mi procedimiento almacenado para utilizarlo
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;//indico que voy a utilizar un procedimiento almacenado
+            //Nombre del SP
+            string sqlStoredProcedure = "SP_CATEGORY_SHOW";
 
-            // enviarle parametro al procedimiento
-            cmd.Parameters.AddWithValue("@id_category", idCategory);
+            //Variables para ejecutar el SP
+            SqlCommand sqlCommand;
+            SqlParameter parameter;
+            SqlDataReader reader;
 
-            SqlDataReader drCategory = cmd.ExecuteReader();
-            Category category = null;
-            while (drCategory.Read())
+            //Categoria de retorno.
+            Category categoryToShow = new Category();
+
+            sqlCommand = new SqlCommand(sqlStoredProcedure, connection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            //Parametro que contendra el nombre para la busqueda.
+            parameter = new SqlParameter("@ID", category.Id);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Abrimos y ejecutamos el SP
+            sqlCommand.Connection.Open();
+            sqlCommand.ExecuteNonQuery();
+
+            //Ejecutamos el lector para recibir lo devuelto.
+            reader = sqlCommand.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                reader.Read();
+                category.Name = reader.GetString(0);
+                category.Description = reader.GetString(1);
+                
+            }
+            else
             {
 
-                category = new Category();
-                category.Id = Int32.Parse(drCategory["id"].ToString());
-                category.Name = drCategory["name"].ToString();
-                category.Description = drCategory["description"].ToString();
-            }//while
-            sqlConnection.Close();
-            return category;
+                category.Name = "Error en conexión";
+                category.Description = "Hubo un error en CategoryData";
+            }
 
-        }//GetCategory()
+            //Cerramos la conexion.
+            sqlCommand.Connection.Close();
+
+            //Retornamos la lista.
+            return category;
+        } //Show Category
 
     }//CategoryData
 
