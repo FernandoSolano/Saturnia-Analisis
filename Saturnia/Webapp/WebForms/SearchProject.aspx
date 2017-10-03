@@ -11,10 +11,18 @@
                     <label>Nombre: </label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtName" runat="server" onkeyup="myFunction()"></asp:TextBox>
+                    <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                 </td>
                 <td>
                     <asp:Button ID="btnSearch" runat="server" Text="Buscar" OnClick="btnSearch_Click" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ¿O desea crear un proyecto?
+                </td>
+                <td>
+                    <asp:HyperLink ID="lkProject" NavigateUrl="./CrearProyecto.aspx" runat="server">Crear</asp:HyperLink>
                 </td>
             </tr>
         </table>
