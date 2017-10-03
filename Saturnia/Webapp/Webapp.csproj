@@ -147,6 +147,7 @@
     <Content Include="WebForms\IniciarSesion.aspx" />
     <Content Include="WebForms\AsignarUsuario.aspx" />
     <Content Include="WebForms\AsociarUsuario.aspx" />
+    <Content Include="WebForms\IniciarSesion2.aspx" />
     <Content Include="WebForms\SearchCategory.aspx" />
     <Content Include="WebForms\SearchProject.aspx" />
     <Content Include="WebForms\ShowCategory.aspx" />
@@ -256,7 +257,7 @@
     </Compile>
     <Compile Include="WebForms\IniciarSesion.aspx.designer.cs">
       <DependentUpon>IniciarSesion.aspx</DependentUpon>
-  </Compile>
+    </Compile>
     <Compile Include="WebForms\AsignarUsuario.aspx.cs">
       <DependentUpon>AsignarUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -270,6 +271,13 @@
     </Compile>
     <Compile Include="WebForms\AsociarUsuario.aspx.designer.cs">
       <DependentUpon>AsociarUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\IniciarSesion2.aspx.cs">
+      <DependentUpon>IniciarSesion2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\IniciarSesion2.aspx.designer.cs">
+      <DependentUpon>IniciarSesion2.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\SearchCategory.aspx.cs">
       <DependentUpon>SearchCategory.aspx</DependentUpon>

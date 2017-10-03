@@ -9,9 +9,8 @@ using System.Web.UI.WebControls;
 
 namespace Webapp.WebForms
 {
-    public partial class IniciarSesion : System.Web.UI.Page
+    public partial class IniciarSesion2 : System.Web.UI.Page
     {
-        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -35,11 +34,12 @@ namespace Webapp.WebForms
                 }
                 else if (user.Role.Id == 2)
                 {
-                    Response.Redirect("~Default.aspx");
+                    Response.Redirect("~/Default.aspx");
                 }
 
             }
-            else {
+            else
+            {
                 Response.Write("Error al iniciar sesión, nombre de usuario o contraseña incorrectos");
                 TxtPassword.Text = "";
             }

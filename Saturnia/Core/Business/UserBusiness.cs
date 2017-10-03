@@ -17,6 +17,11 @@ namespace Core.Business
             this.userData = new UserData();
         }
 
+        public User VerifyUser(User user)
+        {
+            return userData.VerifyUser(user);
+        }
+
         public List<User> SearchUser(User user)
         {
             List<User> users;
