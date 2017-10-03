@@ -9,7 +9,7 @@
     <br />
     <asp:Label ID="lbl_description" runat="server" Text="Descripción:"></asp:Label>
     <br />
-    <asp:TextBox ID="tb_description" runat="server" Height="71px" Width="216px"></asp:TextBox>
+    <asp:TextBox ID="tb_description" runat="server" Height="71px" Width="216px" TextMode="MultiLine"></asp:TextBox>
     <asp:RequiredFieldValidator ID="validator_tb_description" runat="server" ControlToValidate="tb_description" ErrorMessage="RequiredFieldValidator" ForeColor="Red">Este campo es necesario</asp:RequiredFieldValidator>
     <br />
     <asp:Button ID="btn_create" runat="server" Text="Crear" OnClick="btnCreateOnClick" />

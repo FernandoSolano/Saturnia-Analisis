@@ -23,6 +23,14 @@
                 <asp:HyperLink ID="HyperLink1" runat="server">Actualizar categoria</asp:HyperLink>
             </td>
         </tr>
+        <tr>
+            <td>
+                ¿O desea crear una categoria?
+            </td>
+            <td>
+                <asp:HyperLink ID="lkCategory" NavigateUrl="./CrearCategoria.aspx" runat="server">Crear</asp:HyperLink>
+            </td>
+        </tr>
     </table>
 
 </asp:Content>
