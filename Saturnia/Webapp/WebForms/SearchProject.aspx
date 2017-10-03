@@ -20,7 +20,14 @@
         </table>
 
         <asp:Table ID="resultTable" runat="server" Visible="false" BorderWidth="1">
-            
+            <asp:TableHeaderRow>
+                <asp:TableHeaderCell>
+                    Proyecto
+                </asp:TableHeaderCell>
+                <asp:TableHeaderCell>
+                    Accion.
+                </asp:TableHeaderCell>
+            </asp:TableHeaderRow>
         </asp:Table>
 
 </asp:Content>
