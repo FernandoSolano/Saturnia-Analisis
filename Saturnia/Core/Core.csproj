@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Business\CategoryBusiness.cs" />
     <Compile Include="Business\ProjectBusiness.cs" />
+    <Compile Include="Business\UserBusiness.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Data\CategoryData.cs" />
     <Compile Include="Data\ConnectionData.cs" />
     <Compile Include="Data\ProjectData.cs" />
