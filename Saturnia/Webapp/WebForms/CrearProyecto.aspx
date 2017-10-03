@@ -9,11 +9,11 @@
     <br />
     <asp:Label ID="lbl_description" runat="server" Text="Descripción:"></asp:Label>
     <br />
-    <asp:TextBox ID="tb_description" runat="server" Height="56px" Width="403px"></asp:TextBox>
+    <asp:TextBox ID="tb_description" runat="server" Height="56px" Width="403px" TextMode="MultiLine"></asp:TextBox>
     <asp:RequiredFieldValidator ID="validator_tb_description" runat="server" ControlToValidate="tb_description" ErrorMessage="RequiredFieldValidator" ForeColor="Red">Este campo es necesario</asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="lbl_estimated_hours" runat="server" Text="Cantidad de horas estimadas:"></asp:Label>
-    <asp:TextBox ID="tb_estimated_hours" runat="server"></asp:TextBox>
+    <asp:TextBox ID="tb_estimated_hours" runat="server" TextMode="Number"></asp:TextBox>
     <asp:RequiredFieldValidator ID="validator_tb_estimated_hours" runat="server" ControlToValidate="tb_estimated_hours" ErrorMessage="RequiredFieldValidator" ForeColor="Red">Este campo es necesario</asp:RequiredFieldValidator>
     <br />
     <asp:Button ID="btn_create" runat="server" OnClick="btnCreateOnClick" Text="Crear" />
