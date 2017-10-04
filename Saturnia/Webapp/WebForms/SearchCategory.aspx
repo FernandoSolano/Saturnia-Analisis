@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h1>
-            <label>Buscar Categoria.</label>
+            <label>Buscar Categoría</label>
         </h1>
 
         <table>
@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <td>
-                    ¿O desea crear una categoria?
+                    ¿O desea crear una categoría?
                 </td>
                 <td>
                     <asp:HyperLink ID="lkCategory" NavigateUrl="./CrearCategoria.aspx" runat="server">Crear</asp:HyperLink>
