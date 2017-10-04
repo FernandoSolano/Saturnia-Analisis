@@ -38,7 +38,7 @@ namespace Core.Business
             return user;
         }
         
-        public Boolean AssignCollaboratorToProject(User user, Project project, char leader)
+        public Boolean AssignCollaboratorToProject(User user, Project project, bool leader)
         {
             Boolean response = false;
 

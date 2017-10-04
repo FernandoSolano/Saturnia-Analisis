@@ -55,7 +55,30 @@ namespace Webapp.WebForms
 
         protected void btnAsign_Click(object sender, EventArgs e)
         {
-            Response.Write("<script>function myFunction() {var txt;if (confirm('Asociación exitosa. ¿Desea asociar otro usuario a otro proyecto?') == true) {window.location = './SearchProject.aspx';} else {txt = 'You pressed Cancel!';}}</script>");
+            Boolean leader = this.cbLeader.Checked, success;
+            Project project = new Project();
+            User user = new User();
+
+            project.Id = this.currentProject;
+            user.Id = this.currentUser;
+
+            success = this.userBusiness.AssignCollaboratorToProject(user, project, leader);
+
+            if (success)
+            {
+                this.lblResponse.Text = "Asignación completada con éxito.";
+                this.lblResponse.ForeColor = System.Drawing.Color.Green;
+            }
+            else {
+                this.lblResponse.Text = "Hubo un error en la asignación del usuario, quizá este ya estuviese asigando.";
+                this.lblResponse.ForeColor = System.Drawing.Color.Red;
+            }
+
+            this.lblResponse.Visible = true;
+            this.lblMessage.Visible = true;
+            this.btnAceptar.Visible = true;
+            this.btnReturn.Visible = true;
+
         }
 
         protected void btnSearchProject_Click(object sender, EventArgs e)
@@ -66,6 +89,16 @@ namespace Webapp.WebForms
         protected void btnSearchUser_Click(object sender, EventArgs e)
         {
             Response.Redirect("./AsignarUsuario.aspx?project=" + this.currentProject);
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./SearchCategory.aspx");
+        }
+
+        protected void btnReturn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./SearchProject.aspx");
         }
     }
 }

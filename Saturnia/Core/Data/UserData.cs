@@ -185,11 +185,12 @@ namespace Core.Data
 
         }
 
-        public Boolean AssignCollaboratorToProject(User user, Project project, char leader)
+        public Boolean AssignCollaboratorToProject(User user, Project project, Boolean leader)
         {
-
+            
             //Declaracion e inicializacion de variables e instancias.
             SqlConnection connection = new SqlConnection(this.connectionString);
+            SqlParameter projectId, userId, isLeader, rOutput;
             char response;
 
             //Nombre del SP
@@ -204,23 +205,35 @@ namespace Core.Data
             sqlCommand.CommandType = CommandType.StoredProcedure;
 
             //Parametro que contendra el id del usuario para asociar.
-            parameter = new SqlParameter("@ID_USER", user.Id);
-            sqlCommand.Parameters.Add(parameter);
-            parameter = null; //Se destruye el parametro luego de agregado para evitar datos viejos.
+            userId = new SqlParameter();
+            userId.ParameterName = "@ID_USER";
+            userId.SqlDbType = SqlDbType.Int;
+            userId.Direction = ParameterDirection.Input;
+            userId.Value = user.Id;
+            sqlCommand.Parameters.Add(userId);
 
             //Parametro que contendra el id del proyecto para asociar.
-            parameter = new SqlParameter("@ID_PROJECT", project.Id);
-            sqlCommand.Parameters.Add(parameter);
-            parameter = null;//Se destruye el parametro luego de agregado para evitar datos viejos.
+            projectId = new SqlParameter();
+            projectId.ParameterName = "@ID_PROJECT";
+            projectId.SqlDbType = SqlDbType.Int;
+            projectId.Direction = ParameterDirection.Input;
+            projectId.Value = project.Id;
+            sqlCommand.Parameters.Add(projectId);
 
             //Parametro que contendra el un atributo que determina si el colaborador será lider o no.
-            parameter = new SqlParameter("@IsLeader", leader);
-            sqlCommand.Parameters.Add(parameter);
-            parameter = null;//Se destruye el parametro luego de agregado para evitar datos viejos.
+            isLeader = new SqlParameter();
+            isLeader.ParameterName = "@ISLEADER";
+            isLeader.SqlDbType = SqlDbType.Bit;
+            isLeader.Direction = ParameterDirection.Input;
+            isLeader.Value = leader;
+            sqlCommand.Parameters.Add(isLeader);
 
-            parameter = new SqlParameter("@R", "");
-            parameter.Direction = ParameterDirection.Output;
-            sqlCommand.Parameters.Add(parameter);
+            rOutput = new SqlParameter();
+            rOutput.ParameterName = "@R";
+            rOutput.SqlDbType = SqlDbType.Char;
+            rOutput.Size = 1;
+            rOutput.Direction = ParameterDirection.Output;
+            sqlCommand.Parameters.Add(rOutput);
 
             //Abrimos y ejecutamos el SP
             sqlCommand.Connection.Open();
