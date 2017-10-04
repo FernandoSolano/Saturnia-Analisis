@@ -11,7 +11,7 @@ namespace Webapp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user"] == null)
+            if (Session["userId"] == null)
             {
                 Response.Redirect("~/WebForms/IniciarSesion2.aspx");
             }
