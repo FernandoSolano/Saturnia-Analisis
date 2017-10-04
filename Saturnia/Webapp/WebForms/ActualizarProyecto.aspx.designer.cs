@@ -10,132 +10,150 @@
 namespace Webapp.WebForms {
     
     
-    public partial class ShowProject {
+    public partial class ActualizarProyecto1 {
         
         /// <summary>
-        /// Control lblName.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblName;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Control lblState.
+        /// Control Label5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblState;
+        protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// Control lblStateDescription.
+        /// Control tbName.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStateDescription;
+        protected global::System.Web.UI.WebControls.TextBox tbName;
         
         /// <summary>
-        /// Control lblDescription.
+        /// Control Label4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDescription;
+        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// Control lblDescriptionContent.
+        /// Control tbDescription.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDescriptionContent;
+        protected global::System.Web.UI.WebControls.TextBox tbDescription;
         
         /// <summary>
-        /// Control lblEstimatedHours.
+        /// Control Label2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEstimatedHours;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Control lblEstimatedHoursContent.
+        /// Control tbEstimatedHours.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEstimatedHoursContent;
+        protected global::System.Web.UI.WebControls.TextBox tbEstimatedHours;
         
         /// <summary>
-        /// Control lblStartDate.
+        /// Control Label3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStartDate;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Control lblStartDateContent.
+        /// Control tbStartMonth.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStartDateContent;
+        protected global::System.Web.UI.WebControls.TextBox tbStartMonth;
         
         /// <summary>
-        /// Control lblEndDate.
+        /// Control tbStartDay.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEndDate;
+        protected global::System.Web.UI.WebControls.TextBox tbStartDay;
         
         /// <summary>
-        /// Control lblEndDateContent.
+        /// Control tbStartYear.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEndDateContent;
+        protected global::System.Web.UI.WebControls.TextBox tbStartYear;
         
         /// <summary>
-        /// Control LinkButon_eliminar.
+        /// Control Label6.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButon_eliminar;
+        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// Control LinkUpdateProject.
+        /// Control tbEndMonth.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink LinkUpdateProject;
+        protected global::System.Web.UI.WebControls.TextBox tbEndMonth;
         
         /// <summary>
-        /// Control linkButtonChangeStatus.
+        /// Control tbEndDay.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkButtonChangeStatus;
+        protected global::System.Web.UI.WebControls.TextBox tbEndDay;
+        
+        /// <summary>
+        /// Control tbEndYear.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbEndYear;
+        
+        /// <summary>
+        /// Control btnUpdateProject.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateProject;
     }
 }

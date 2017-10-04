@@ -26,6 +26,7 @@ namespace Webapp.WebForms
                 Project project = new Project();
                 project.Id = Int32.Parse(Request.QueryString["project"]);
                 project = this.projectBusiness.ShowProject(project);
+                this.LinkUpdateProject.NavigateUrl = "./ActualizarProyecto.aspx?id=" + project.Id;
 
                 this.lblName.Text = project.Name;
                 if (project.State) { 
