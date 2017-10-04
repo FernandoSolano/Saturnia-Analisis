@@ -18,6 +18,7 @@ namespace Webapp.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
             this.projectBusiness = new ProjectBusiness();
+
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -37,6 +38,13 @@ namespace Webapp.WebForms
                 tempCell.Text = "<a href=./ShowProject.aspx?project=" + listElement.Id + ">" + listElement.Name + "</a>";
 
                 tempRow.Cells.Add(tempCell);
+
+                tempCell = null;
+                tempCell = new TableCell();
+                tempCell.Text = "<a href=./AsignarUsuario.aspx?project=" + listElement.Id + "> Asignar Usuario </a>";
+
+                tempRow.Cells.Add(tempCell);
+
                 resultTable.Rows.Add(tempRow);
             }
 
