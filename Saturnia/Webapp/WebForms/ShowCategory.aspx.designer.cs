@@ -40,13 +40,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label lblDescriptionContent;
         
         /// <summary>
-        /// Control linkDelete.
+        /// Control LinkButon_Eliminar_Categoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linkDelete;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButon_Eliminar_Categoria;
         
         /// <summary>
         /// Control HyperLink1.

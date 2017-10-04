@@ -44,6 +44,25 @@
                 <asp:Button ID="btnCancel" runat="server" Text="Cancelar" OnClick="btnCancel_Click" />
             </td>
         </tr>
+        <tr>
+            <td colspan="3">
+                <asp:Label ID="lblResponse" runat="server" Visible="false" Text=""></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <asp:Label ID="lblMessage" runat="server" Visible="false" Text="Pulse aceptar para volver al inicio, o presione volver para agregar otro colaborador."></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Button ID="btnAceptar" runat="server" Visible="false" Text="Aceptar" OnClick="btnAceptar_Click" />
+            </td>
+            <td></td>
+            <td>
+                <asp:Button ID="btnReturn" runat="server" Visible="false" Text="Volver" OnClick="btnReturn_Click" />
+            </td>
+        </tr>
     </table>
 
 </asp:Content>
