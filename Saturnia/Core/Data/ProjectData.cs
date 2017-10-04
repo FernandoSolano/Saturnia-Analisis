@@ -37,7 +37,36 @@ namespace Core.Data
 
             sqlConnection.Close();//cierra la conexion
         }//DeleteProject
-        
+
+        public void UpdateProject(Project project)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand("sp_project_update", connection);
+            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@id", project.Id));
+            sqlCommand.Parameters.Add(new SqlParameter("@name", project.Name));
+            sqlCommand.Parameters.Add(new SqlParameter("@description", project.Description));
+            sqlCommand.Parameters.Add(new SqlParameter("@estimated_hours", project.EstimatedHours));
+            sqlCommand.Parameters.Add(new SqlParameter("@start_date", project.StartDate));
+
+            sqlCommand.Parameters.Add(new SqlParameter("@end_date", project.EndDate));
+
+            try
+            {
+                connection.Open();
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            if (connection != null)
+            {
+                connection.Close();
+            }
+        }
+
         public Project AddProject(Project project)
         {
             SqlConnection connection = new SqlConnection(connectionString);

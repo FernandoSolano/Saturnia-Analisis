@@ -42,5 +42,10 @@ namespace Core.Business
         {
             this.categoryData.DeleteCategory(category);
         }
+
+        public void UpdateCategory(Category category)
+        {
+            this.categoryData.UpdateCategory(category);
+        }
     }
 }
