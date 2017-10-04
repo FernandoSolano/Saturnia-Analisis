@@ -10,7 +10,7 @@
 namespace Webapp.WebForms {
     
     
-    public partial class IniciarSesion2 {
+    public partial class IniciarSesion {
         
         /// <summary>
         /// form1 control.
