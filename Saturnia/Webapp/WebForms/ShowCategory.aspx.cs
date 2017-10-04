@@ -31,9 +31,8 @@ namespace Webapp.WebForms
                 
                 this.lblDescriptionContent.Text = category.Description;
 
-                //***********************************LEANDRO//***********************************
-                //Estos son los 2 enlaces, si requieres cambiar el de eliminar por un botón hazlo sin miedo.
-                //this.linkUpdate.NavigateUrl = "./ActualizarCategoria.aspx?id=" + category.Id;
+                
+                this.LinkUpdateCategory.NavigateUrl = "./ActualizarCategoria.aspx?id=" + category.Id;
 
             }
             else

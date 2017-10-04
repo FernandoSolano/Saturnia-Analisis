@@ -20,7 +20,7 @@
                 <asp:LinkButton ID="LinkButon_Eliminar_Categoria" runat="server" OnClick="LinkButon_Eliminar_Categoria_Click" OnClientClick="return confirm('¿Esta seguro de eliminar la categoría?');">Eliminar categoría</asp:LinkButton>
             </td>
             <td>
-                <asp:HyperLink ID="HyperLink1" runat="server">Actualizar categoria</asp:HyperLink>
+                <asp:HyperLink ID="LinkUpdateCategory" runat="server">Actualizar categoria</asp:HyperLink>
             </td>
         </tr>
     </table>
