@@ -12,7 +12,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -55,16 +55,16 @@
                         <li><a runat="server" href="~/WebForms/SearchCategory">Gestión de Categorías</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                     <a runat="server" OnClick="BtnLogout_Click">Cerrar Sesión</a>
-                                </li>
-                            </ul>
+                        <li>
+                            <a runat="server" onclick="BtnLogout_Click">Cerrar Sesión</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
         <div class="container body-content col-md-6 col-md-offset-3">
-                <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
             <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - Saturnia</p>
