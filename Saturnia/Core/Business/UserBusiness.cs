@@ -38,5 +38,13 @@ namespace Core.Business
             return user;
         }
         
+        public Boolean AssignCollaboratorToProject(User user, Project project, char leader)
+        {
+            Boolean response = false;
+
+            response = this.userData.AssignCollaboratorToProject(user, project, leader);
+
+            return response;
+        }
     }
 }

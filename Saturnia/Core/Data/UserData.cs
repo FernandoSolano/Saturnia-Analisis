@@ -185,7 +185,7 @@ namespace Core.Data
 
         }
 
-        public Boolean AssignCollaboratorToProject(User user, Project project)
+        public Boolean AssignCollaboratorToProject(User user, Project project, char leader)
         {
 
             //Declaracion e inicializacion de variables e instancias.
@@ -210,6 +210,11 @@ namespace Core.Data
 
             //Parametro que contendra el id del proyecto para asociar.
             parameter = new SqlParameter("@ID_PROJECT", project.Id);
+            sqlCommand.Parameters.Add(parameter);
+            parameter = null;//Se destruye el parametro luego de agregado para evitar datos viejos.
+
+            //Parametro que contendra el un atributo que determina si el colaborador será lider o no.
+            parameter = new SqlParameter("@IsLeader", leader);
             sqlCommand.Parameters.Add(parameter);
             parameter = null;//Se destruye el parametro luego de agregado para evitar datos viejos.
 

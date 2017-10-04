@@ -17,6 +17,14 @@
                     <asp:Button ID="btnSearch" runat="server" Text="Buscar" OnClick="btnSearch_Click" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    ¿O desea crear una categoria?
+                </td>
+                <td>
+                    <asp:HyperLink ID="lkCategory" NavigateUrl="./CrearCategoria.aspx" runat="server">Crear</asp:HyperLink>
+                </td>
+            </tr>
         </table>
 
         <asp:Table ID="resultTable" runat="server" Visible="false" BorderWidth="1">

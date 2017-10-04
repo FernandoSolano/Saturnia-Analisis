@@ -19,9 +19,12 @@ namespace Webapp.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Request.QueryString["user"] != null && Request.QueryString["project"] != null)
+            if( ( Request.QueryString["user"] != null ) && ( Request.QueryString["project"] != null ) )
             {
                 //Si alguien ingresara a mano texto en las variables, el try catch redireccionará a buscar proyecto.
+                this.userBusiness = new UserBusiness();
+                this.projectBusiness = new ProjectBusiness();
+
                 try {
                     this.currentProject = Int32.Parse(Request.QueryString["project"]);
                     this.currentUser = Int32.Parse(Request.QueryString["user"]);
@@ -40,7 +43,7 @@ namespace Webapp.WebForms
 
                 } catch
                 {
-                    Response.Redirect("./SearchProject.aspx");
+                    Response.Redirect("./SearchCategory.aspx");
                 }
             }
         }
@@ -57,12 +60,12 @@ namespace Webapp.WebForms
 
         protected void btnSearchProject_Click(object sender, EventArgs e)
         {
-            Response.Redirect("./SearchProject.aspx?project=" + this.txtProjectName.Text);
+            Response.Redirect("./SearchProject.aspx");
         }
 
         protected void btnSearchUser_Click(object sender, EventArgs e)
         {
-            Response.Redirect("./SearchProject.aspx?project=" + this.currentProject + "&user=");
+            Response.Redirect("./AsignarUsuario.aspx?project=" + this.currentProject);
         }
     }
 }

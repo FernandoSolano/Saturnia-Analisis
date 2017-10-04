@@ -19,12 +19,6 @@ namespace Webapp.WebForms
         {
             this.projectBusiness = new ProjectBusiness();
 
-            if (Request.QueryString["project"] != null)
-            {
-                this.txtName.Text = Request.QueryString["project"].ToString();
-                btnSearch_Click(this, new EventArgs());
-            }
-
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
