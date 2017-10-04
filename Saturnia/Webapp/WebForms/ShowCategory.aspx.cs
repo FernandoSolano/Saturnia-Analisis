@@ -33,7 +33,6 @@ namespace Webapp.WebForms
 
                 //***********************************LEANDRO//***********************************
                 //Estos son los 2 enlaces, si requieres cambiar el de eliminar por un botón hazlo sin miedo.
-                this.linkDelete.NavigateUrl = "./EliminarCategoria.aspx?id=" + category.Id;
                 //this.linkUpdate.NavigateUrl = "./ActualizarCategoria.aspx?id=" + category.Id;
 
             }
@@ -41,6 +40,24 @@ namespace Webapp.WebForms
             {
 
             }
+        }
+
+        protected void LinkButon_Eliminar_Categoria_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CategoryBusiness projectBusiness = new CategoryBusiness();
+                Category category = new Category();
+                category.Id = Int32.Parse(Request.QueryString["category"]);
+                category = projectBusiness.ShowCategory(category);
+                projectBusiness.DeleteCategory(category);
+                Response.Write("<script>alert('La categoría ha sido eliminada con éxito');window.location.href = 'SearchCategory.aspx';</script>");
+
+            }//try
+            catch
+            {
+                Response.Write("<script>alert('Ocurrió un problema, la categoría no se pudo eliminar');window.location.href = 'SearchCategory.aspx';</script>");
+            }//catch
         }
     }
 }
