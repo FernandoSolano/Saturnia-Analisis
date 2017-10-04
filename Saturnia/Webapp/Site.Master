@@ -56,7 +56,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                     <a runat="server" OnClick="BtnLogout_Click">Cerrar Sesión</a>
+                                      <asp:LinkButton ID="BtnLogout" runat="server"  Text="Cerrar sesion" Width="150px" OnClick="BtnLogout_Click" />
                                 </li>
                             </ul>
                 </div>
