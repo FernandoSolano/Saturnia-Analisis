@@ -1,7 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="IniciarSesion.aspx.cs" Inherits="Webapp.WebForms.IniciarSesion" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    
-    <div class="pannel">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="IniciarSesion.aspx.cs" Inherits="Webapp.WebForms.IniciarSesion2" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="pannel">
     <br />
     <asp:Label ID="Label1" runat="server" Text="Iniciar sesión:"></asp:Label>
     <br />
@@ -12,10 +20,12 @@
     <br />
     <asp:Label ID="LblPassword" runat="server" Text="Contraseña:"></asp:Label>
 
-    <asp:TextBox ID="TxtPassword" runat="server"  style="margin-left: 151px" Width="230px"></asp:TextBox>
+    <asp:TextBox ID="TxtPassword" runat="server"  style="margin-left: 151px" Width="230px" TextMode="Password"></asp:TextBox>
     <br />
    
     <asp:Button ID="BtnLogin" runat="server"  Text="Inciar sesion" Width="111px" OnClick="BtnLogin_Click" />
     <br />
     </div>
-</asp:Content>
+    </form>
+</body>
+</html>
