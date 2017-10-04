@@ -43,6 +43,9 @@ namespace Core.Business
         {
             this.projectData.DeleteProject(project);
         }
-
+        public Boolean ChangeProjectStatus(Project project)
+        {
+            return this.projectData.ChangeProjectStatus(project);
         }
+    }
 }
