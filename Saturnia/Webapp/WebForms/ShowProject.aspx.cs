@@ -40,7 +40,7 @@ namespace Webapp.WebForms
                 this.lblDescriptionContent.Text = project.Description;
                 this.lblEstimatedHoursContent.Text = (project.EstimatedHours).ToString();
                 this.lblStartDateContent.Text = project.StartDate.ToString();
-                if (project.EndDate.ToString() != "01/01/0001 00:00:00")
+                if (project.EndDate.ToString() != "1/1/0001 00:00:00")
                 {
                     this.lblEndDateContent.Text = project.EndDate.ToString();
                 } else
@@ -79,7 +79,7 @@ namespace Webapp.WebForms
             Project project = new Project();
             project.Id = Int32.Parse(Request.QueryString["project"]);
             projectBusiness.ChangeProjectStatus(project);
-            
+            Page_Load(sender, e);
 
         }
     }
