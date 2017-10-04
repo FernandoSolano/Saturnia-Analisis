@@ -20,7 +20,10 @@ namespace Webapp.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] != null)
+            if (Page.IsPostBack == false)
+            { 
+
+                if (Request.QueryString["id"] != null)
             {
 
                 Project project = new Project();
@@ -36,21 +39,23 @@ namespace Webapp.WebForms
                 tbStartYear.Text = project.StartDate.Year.ToString();
 
                 //campos sobre fecha de finalizacion
+                lbTexto.Text = project.EndDate.ToString();
 
-                if (project.EndDate.ToString() != "01/01/0001 00:00:00")
-                {
-
-                }
-                else
+                if (project.EndDate.ToString() != "01/01/01 00:00:00")
                 {
                     tbEndMonth.Text = project.EndDate.Month.ToString();
                     tbEndDay.Text = project.EndDate.Day.ToString();
                     tbEndYear.Text = project.EndDate.Year.ToString();
                 }
+                else
+                {
+                    
+                }
             }
             else
             {
 
+            }
             }
         }
 
@@ -64,12 +69,20 @@ namespace Webapp.WebForms
             project.Description = tbDescription.Text;
             project.EstimatedHours = Int32.Parse(tbEstimatedHours.Text);
 
-
-
+            //validicacion de los campos de fecha
+           
             DateTime start_date = DateTime.Parse(tbStartDay.Text + "/" + tbStartMonth.Text + "/" + tbStartYear.Text);
 
             //linea que falla 
-            DateTime end_date = DateTime.Parse("01/01/0001 00:00:00");
+            DateTime end_date= DateTime.Parse("01/01/1760"); ;
+            if (tbEndMonth.Text != "" && tbEndDay.Text != "" && tbEndYear.Text != "")
+            {
+                end_date = DateTime.Parse(tbEndDay.Text + "/" + tbEndMonth.Text + "/" + tbEndYear.Text);
+            }
+            else {
+                 end_date = DateTime.Parse("01/01/1756");
+            }
+            
             project.StartDate = start_date;
 
             project.EndDate = end_date;

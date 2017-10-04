@@ -43,10 +43,9 @@
                 </td>
 
                 <td>
-             <asp:TextBox ID="tbStartMonth" runat="server" Width="36px"></asp:TextBox>
-            /<asp:TextBox ID="tbStartDay" runat="server" Width="36px"></asp:TextBox>
-            /<asp:TextBox ID="tbStartYear" runat="server" Width="36px"></asp:TextBox>
-            <asp:Label ID="Label9" runat="server" Text="Completar todos los campos" ForeColor="Red" Visible="False"></asp:Label> 
+             <asp:TextBox ID="tbStartMonth" runat="server" Width="36px" TextMode="Number"></asp:TextBox>
+            /<asp:TextBox ID="tbStartDay" runat="server" Width="36px" TextMode="Number"></asp:TextBox>
+            /<asp:TextBox ID="tbStartYear" runat="server" Width="36px" TextMode="Number"></asp:TextBox>
                 
                 </td>
 
@@ -59,9 +58,10 @@
                 </td>
 
                 <td>
-             <asp:TextBox ID="tbEndMonth" runat="server" Width="36px"></asp:TextBox>
-            /<asp:TextBox ID="tbEndDay" runat="server" Width="36px"></asp:TextBox>
-            /<asp:TextBox ID="tbEndYear" runat="server" Width="36px"></asp:TextBox>
+             <asp:TextBox ID="tbEndMonth" runat="server" Width="36px" TextMode="Number"></asp:TextBox>
+            /<asp:TextBox ID="tbEndDay" runat="server" Width="36px" TextMode="Number"></asp:TextBox>
+            /<asp:TextBox ID="tbEndYear" runat="server" Width="36px" TextMode="Number"></asp:TextBox>
+                    <asp:Label ID="lbTexto" runat="server" Text="Label"></asp:Label>
                 </td>
             </tr>
 
