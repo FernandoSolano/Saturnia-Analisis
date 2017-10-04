@@ -55,10 +55,10 @@
                         <li><a runat="server" href="~/WebForms/SearchCategory">Gestión de Categorías</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a runat="server" onclick="BtnLogout_Click">Cerrar Sesión</a>
-                        </li>
-                    </ul>
+                                <li>
+                                      <asp:LinkButton ID="BtnLogout" runat="server"  Text="Cerrar sesion" Width="150px" OnClick="BtnLogout_Click" />
+                                </li>
+                            </ul>
                 </div>
             </div>
         </div>
