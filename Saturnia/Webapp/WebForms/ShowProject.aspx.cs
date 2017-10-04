@@ -62,7 +62,7 @@ namespace Webapp.WebForms
                 project = projectBusiness.ShowProject(project);
                 projectBusiness.DeleteProject(project);
                 Response.Write("<script>alert('El projecto ha sido eliminado con éxito');window.location.href = 'SearchProject.aspx';</script>");
-                // Response.Redirect("SearchProject");
+                
             }//try
             catch
             {
