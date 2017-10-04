@@ -30,11 +30,11 @@ namespace Webapp.WebForms
                 this.lblName.Text = project.Name;
                 if (project.State) { 
                     this.lblStateDescription.Text = "Activo";
-                    this.linkButtonChangeStatus.Text = "Deshabilitar proyecto";
+                    this.linkButtonChangeStatus.Text = "Deshabilitar";
                 } else
                 {
                     this.lblStateDescription.Text = "Inactivo";
-                    this.linkButtonChangeStatus.Text = "Habilitar proyecto";
+                    this.linkButtonChangeStatus.Text = "Habilitar";
 
                 }
                 this.lblDescriptionContent.Text = project.Description;
