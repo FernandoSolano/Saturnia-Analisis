@@ -54,9 +54,8 @@ namespace Webapp.WebForms
 
         protected void btnSearchProject_Click(object sender, EventArgs e)
         {
-            //Para permitir que el usuario busque otro proyecto, redireccionamos con el texto a buscar a la pagina de buscar proyecto.
-            
-            Response.Redirect("./SearchProject.aspx?project="+ this.txtProjectName.Text);
+            //Para permitir que el usuario busque otro proyecto, volvemos a buscar proyecto.
+            Response.Redirect("./SearchProject.aspx");
         }
 
         protected void btnSearchUser_Click(object sender, EventArgs e)
