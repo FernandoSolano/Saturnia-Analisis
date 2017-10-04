@@ -44,5 +44,9 @@ namespace Core.Business
             this.projectData.DeleteProject(project);
         }
 
+        public void UpdatePorject(Project project)
+        {
+            this.projectData.UpdateProject(project);
         }
+    }
 }

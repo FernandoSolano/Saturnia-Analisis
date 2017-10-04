@@ -37,7 +37,12 @@ namespace Core.Data
 
             sqlConnection.Close();//cierra la conexion
         }//DeleteProject
-        
+
+        public void UpdateProject(Project project)
+        {
+            throw new NotImplementedException();
+        }
+
         public Project AddProject(Project project)
         {
             SqlConnection connection = new SqlConnection(connectionString);
