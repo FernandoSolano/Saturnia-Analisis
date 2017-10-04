@@ -226,7 +226,24 @@ namespace Core.Data
             return project;
         }
 
-        
+        public Boolean ChangeProjectStatus(Project project)
+        {
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand("SP_PROJECT_CHANGE_STATUS ", sqlConnection);
+            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@Id", project.Id);
+            try
+            {
+                sqlConnection.Open();
+                sqlCommand.ExecuteNonQuery();
+                sqlConnection.Close();
 
+                return true;
+            }
+            catch (SqlException sqlException)
+            {
+                throw sqlException;
+            }
+        }
     }
 }
