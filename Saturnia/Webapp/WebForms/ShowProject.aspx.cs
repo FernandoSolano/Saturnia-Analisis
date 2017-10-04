@@ -30,9 +30,11 @@ namespace Webapp.WebForms
                 this.lblName.Text = project.Name;
                 if (project.State) { 
                     this.lblStateDescription.Text = "Activo";
+                    this.linkButtonChangeStatus.Text = "Deshabilitar";
                 } else
                 {
                     this.lblStateDescription.Text = "Inactivo";
+                    this.linkButtonChangeStatus.Text = "Habilitar";
 
                 }
                 this.lblDescriptionContent.Text = project.Description;
@@ -61,13 +63,24 @@ namespace Webapp.WebForms
                 project.Id = Int32.Parse(Request.QueryString["project"]);
                 project = projectBusiness.ShowProject(project);
                 projectBusiness.DeleteProject(project);
-                Response.Write("<script>alert('El projecto ha sido eliminado con éxito');window.location.href = 'SearchProject.aspx';</script>");
-                
+
+                Response.Write("<script>alert('El proyecto ha sido eliminado con éxito');window.location.href = 'SearchProject.aspx';</script>");
+            
+
             }//try
             catch
             {
                 Response.Write("<script>alert('Ocurrió un problema, el proyecto no se pudo eliminar');window.location.href = 'SearchProject.aspx';</script>");
             }//catch
+        }
+
+        protected void LinkButonChangeStatus(object sender, EventArgs e)
+        {
+            Project project = new Project();
+            project.Id = Int32.Parse(Request.QueryString["project"]);
+            projectBusiness.ChangeProjectStatus(project);
+            
+
         }
     }
 }
