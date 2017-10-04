@@ -54,6 +54,11 @@
                         <li><a runat="server" href="~/WebForms/SearchProject">Gestión de Proyectos</a></li>
                         <li><a runat="server" href="~/WebForms/SearchCategory">Gestión de Categorías</a></li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                     <a runat="server" OnClick="BtnLogout_Click">Cerrar Sesión</a>
+                                </li>
+                            </ul>
                 </div>
             </div>
         </div>

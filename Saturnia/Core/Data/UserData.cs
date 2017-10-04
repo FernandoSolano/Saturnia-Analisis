@@ -18,6 +18,43 @@ namespace Core.Data
             connectionString = connectionData.ConnectionString;
         }
 
+      
+        public User VerifyUser(User user)
+        {
+           
+            SqlConnection connection = new SqlConnection(connectionString);
+          
+            SqlDataReader reader;  
+            SqlCommand sqlCommand = new SqlCommand("SP_USER_VERIFICATION", connection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@NICKNAME", user.Nickname);
+            sqlCommand.Parameters.AddWithValue("@PASSWORD", user.Password);
+            try
+            {
+                sqlCommand.Connection.Open();
+                sqlCommand.ExecuteNonQuery();
+
+                reader = sqlCommand.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    user.Id = reader.GetInt32(0);
+                    user.FirstName = reader.GetString(1);
+                    user.LastName = reader.GetString(2);
+                    user.Role.Id = reader.GetInt32(3);
+                }
+              
+                sqlCommand.Connection.Close();
+
+                return user;
+            }
+            catch (SqlException sqlEx)
+            {
+                throw sqlEx;
+            }
+        }
+
         /// <summary>
         /// Metodo para obtener los datos de un colaborador en concreto.
         /// </summary>
@@ -35,9 +72,6 @@ namespace Core.Data
             SqlCommand sqlCommand;
             SqlParameter parameter;
             SqlDataReader reader;
-
-            //Proyecto de retorno.
-            Project projectToShow = new Project();
 
             sqlCommand = new SqlCommand(sqlStoredProcedure, connection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -151,7 +185,7 @@ namespace Core.Data
 
         }
 
-        public Boolean AssignCollaboratorToProject(User user, Project project)
+        public Boolean AssignCollaboratorToProject(User user, Project project, char leader)
         {
 
             //Declaracion e inicializacion de variables e instancias.
@@ -164,7 +198,7 @@ namespace Core.Data
             //Variables para ejecutar el SP
             SqlCommand sqlCommand;
             SqlParameter parameter;
-            SqlDataReader reader;
+          
 
             sqlCommand = new SqlCommand(sqlStoredProcedure, connection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -176,6 +210,11 @@ namespace Core.Data
 
             //Parametro que contendra el id del proyecto para asociar.
             parameter = new SqlParameter("@ID_PROJECT", project.Id);
+            sqlCommand.Parameters.Add(parameter);
+            parameter = null;//Se destruye el parametro luego de agregado para evitar datos viejos.
+
+            //Parametro que contendra el un atributo que determina si el colaborador será lider o no.
+            parameter = new SqlParameter("@IsLeader", leader);
             sqlCommand.Parameters.Add(parameter);
             parameter = null;//Se destruye el parametro luego de agregado para evitar datos viejos.
 

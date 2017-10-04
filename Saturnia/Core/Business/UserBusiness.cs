@@ -17,6 +17,11 @@ namespace Core.Business
             this.userData = new UserData();
         }
 
+        public User VerifyUser(User user)
+        {
+            return userData.VerifyUser(user);
+        }
+
         public List<User> SearchUser(User user)
         {
             List<User> users;
@@ -33,5 +38,13 @@ namespace Core.Business
             return user;
         }
         
+        public Boolean AssignCollaboratorToProject(User user, Project project, char leader)
+        {
+            Boolean response = false;
+
+            response = this.userData.AssignCollaboratorToProject(user, project, leader);
+
+            return response;
+        }
     }
 }
