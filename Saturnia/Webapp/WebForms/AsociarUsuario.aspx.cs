@@ -55,7 +55,7 @@ namespace Webapp.WebForms
 
         protected void btnAsign_Click(object sender, EventArgs e)
         {
-
+            Response.Write("<script>function myFunction() {var txt;if (confirm('Asociación exitosa. ¿Desea asociar otro usuario a otro proyecto?') == true) {window.location = './SearchProject.aspx';} else {txt = 'You pressed Cancel!';}}</script>");
         }
 
         protected void btnSearchProject_Click(object sender, EventArgs e)
