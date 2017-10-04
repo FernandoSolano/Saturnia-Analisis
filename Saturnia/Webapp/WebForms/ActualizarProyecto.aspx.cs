@@ -40,8 +40,8 @@ namespace Webapp.WebForms
                 tbStartYear.Text = project.StartDate.Year.ToString();
 
                 //campos sobre fecha de finalizacion
-                lbTexto.Text = project.EndDate.ToString();
-
+              
+                
                 if (project.EndDate.ToString() != "01/01/01 00:00:00")
                 {
                     tbEndMonth.Text = project.EndDate.Month.ToString();
