@@ -13,16 +13,16 @@ namespace Webapp {
     public partial class SiteMaster {
         
         /// <summary>
-        /// Control BtnLogout.
+        /// BtnLogout control.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton BtnLogout;
         
         /// <summary>
-        /// Control MainContent.
+        /// MainContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
