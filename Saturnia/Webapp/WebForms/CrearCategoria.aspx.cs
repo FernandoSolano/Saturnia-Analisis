@@ -26,5 +26,10 @@ namespace Webapp.WebForms
             category = categoryBusiness.AddCategory(category);
             Response.Write("<script>alert('La categoría ha sido creada con éxito');window.location.href = 'SearchCategory.aspx';</script>");
         }
+
+        protected void btnCancelOnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/WebForms/SearchCategory.aspx");
+        }
     }
 }

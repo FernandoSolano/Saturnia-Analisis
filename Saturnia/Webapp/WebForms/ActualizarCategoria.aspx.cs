@@ -48,9 +48,10 @@ namespace Webapp.WebForms
             category.Name = tbName.Text;
             category.Description = tbDescription.Text;
             this.categoryBusiness.UpdateCategory(category);
+            Response.Write("<script>alert('Actualización exitosa.');</script>");
         }
 
 
 
-}
+    }
 }
