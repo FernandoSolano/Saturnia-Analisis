@@ -16,5 +16,6 @@
     <asp:TextBox ID="tb_estimated_hours" runat="server" TextMode="Number"></asp:TextBox>
     <asp:RequiredFieldValidator ID="validator_tb_estimated_hours" runat="server" ControlToValidate="tb_estimated_hours" ErrorMessage="RequiredFieldValidator" ForeColor="Red">Este campo es necesario</asp:RequiredFieldValidator>
     <br />
+    <asp:Button ID="btn_cancel" runat="server" CausesValidation="False" OnClick="btnCancelOnClick" Text="Cancelar" />
     <asp:Button ID="btn_create" runat="server" OnClick="btnCreateOnClick" Text="Crear" />
 </asp:Content>
