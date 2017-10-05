@@ -26,5 +26,10 @@ namespace Webapp.WebForms
             project = projectBusiness.AddProject(project);
             Response.Write("<script>alert('El proyecto ha sido creado con éxito');window.location.href = 'SearchProject.aspx';</script>");
         }
+
+        protected void btnCancelOnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/WebForms/SearchProject.aspx");
+        }
     }
 }
