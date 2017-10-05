@@ -141,6 +141,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\SearchProject.js" />
+    <Content Include="WebForms\ActualizarCategoria.aspx" />
+    <Content Include="WebForms\ActualizarProyecto.aspx" />
     <Content Include="WebForms\AsignarUsuario.aspx" />
     <Content Include="WebForms\AsociarUsuario.aspx" />
     <Content Include="WebForms\IniciarSesion.aspx" />
@@ -223,6 +225,20 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\ActualizarCategoria.aspx.cs">
+      <DependentUpon>ActualizarCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\ActualizarCategoria.aspx.designer.cs">
+      <DependentUpon>ActualizarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\ActualizarProyecto.aspx.cs">
+      <DependentUpon>ActualizarProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\ActualizarProyecto.aspx.designer.cs">
+      <DependentUpon>ActualizarProyecto.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\AsignarUsuario.aspx.cs">
       <DependentUpon>AsignarUsuario.aspx</DependentUpon>
