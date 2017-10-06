@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchProject.aspx.cs" Inherits="Webapp.WebForms.SearchProject" %>
+﻿<%@ Page Title="BuscarProyecto" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BuscarProyecto.aspx.cs" Inherits="Webapp.WebForms.BuscarProyecto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
         <h1>

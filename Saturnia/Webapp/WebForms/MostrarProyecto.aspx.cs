@@ -10,11 +10,11 @@ using Core.Domain;
 
 namespace Webapp.WebForms
 {
-    public partial class ShowProject : System.Web.UI.Page
+    public partial class MostrarProyecto : System.Web.UI.Page
     {
         private ProjectBusiness projectBusiness;
 
-        public ShowProject()
+        public MostrarProyecto()
         {
             this.projectBusiness = new ProjectBusiness();
         }
@@ -40,10 +40,10 @@ namespace Webapp.WebForms
                 }
                 this.lblDescriptionContent.Text = project.Description;
                 this.lblEstimatedHoursContent.Text = (project.EstimatedHours).ToString();
-                this.lblStartDateContent.Text = project.StartDate.ToString();
+                this.lblStartDateContent.Text = project.StartDate.Day.ToString() + " / " + project.StartDate.Month.ToString() + " / " + project.StartDate.Year.ToString();
                 if (project.EndDate.ToString() != "1/1/0001 00:00:00")
                 {
-                    this.lblEndDateContent.Text = project.EndDate.ToString();
+                    this.lblEndDateContent.Text = project.EndDate.Day.ToString() + " / " + project.EndDate.Month.ToString() + " / " + project.EndDate.Year.ToString();
                 } else
                 {
                     this.lblEndDateContent.Text = "Sin fecha de fin";
@@ -65,13 +65,13 @@ namespace Webapp.WebForms
                 project = projectBusiness.ShowProject(project);
                 projectBusiness.DeleteProject(project);
 
-                Response.Write("<script>alert('El proyecto ha sido eliminado con éxito');window.location.href = 'SearchProject.aspx';</script>");
+                Response.Write("<script>alert('El proyecto ha sido eliminado con éxito');window.location.href = 'BuscarProyecto.aspx';</script>");
             
 
             }//try
             catch
             {
-                Response.Write("<script>alert('Ocurrió un problema, el proyecto no se pudo eliminar');window.location.href = 'SearchProject.aspx';</script>");
+                Response.Write("<script>alert('Ocurrió un problema, el proyecto no se pudo eliminar');window.location.href = 'BuscarProyecto.aspx';</script>");
             }//catch
         }
 

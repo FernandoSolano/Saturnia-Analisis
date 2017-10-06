@@ -10,7 +10,7 @@
 namespace Webapp.WebForms {
     
     
-    public partial class SearchProject {
+    public partial class BuscarCategoria {
         
         /// <summary>
         /// Control txtName.
@@ -31,13 +31,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// Control lkProject.
+        /// Control lkCategory.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lkProject;
+        protected global::System.Web.UI.WebControls.HyperLink lkCategory;
         
         /// <summary>
         /// Control resultTable.

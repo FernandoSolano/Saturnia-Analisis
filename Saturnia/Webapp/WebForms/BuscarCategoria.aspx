@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchCategory.aspx.cs" Inherits="Webapp.WebForms.SearchCategory" %>
+﻿<%@ Page Title="BuscarCategoria" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BuscarCategoria.aspx.cs" Inherits="Webapp.WebForms.BuscarCategoria" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h1>
             <label>Buscar Categoría</label>
         </h1>
 
-        <table>
+        <table width="100%">
             <tr>
                 <td>
                     <label>Nombre: </label>

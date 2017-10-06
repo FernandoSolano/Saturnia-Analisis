@@ -10,7 +10,7 @@ using Core.Business;
 
 namespace Webapp.WebForms
 {
-    public partial class SearchProject : System.Web.UI.Page
+    public partial class BuscarProyecto : System.Web.UI.Page
     {
 
         private ProjectBusiness projectBusiness;
@@ -35,16 +35,22 @@ namespace Webapp.WebForms
                 tempRow = new TableRow();
                 tempCell = new TableCell();
 
-                tempCell.Text = "<a href=./ShowProject.aspx?project=" + listElement.Id + ">" + listElement.Name + "</a>";
+                if (listElement.Id != -1)
+                {
+                    tempCell.Text = "<a href=./MostrarProyecto.aspx?project=" + listElement.Id + ">" + listElement.Name + "</a>";
+                    tempRow.Cells.Add(tempCell);
+
+                    tempCell = null;
+                    tempCell = new TableCell();
+                    tempCell.Text = "<a href=./AsignarUsuario.aspx?project=" + listElement.Id + "> Asignar Usuario </a>";
+                } else
+                {
+                    tempCell.Text = listElement.Name;
+                }
+                
 
                 tempRow.Cells.Add(tempCell);
-
-                tempCell = null;
-                tempCell = new TableCell();
-                tempCell.Text = "<a href=./AsignarUsuario.aspx?project=" + listElement.Id + "> Asignar Usuario </a>";
-
-                tempRow.Cells.Add(tempCell);
-
+                
                 resultTable.Rows.Add(tempRow);
             }
 

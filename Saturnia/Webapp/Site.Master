@@ -51,8 +51,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/WebForms/SearchProject">Gestión de Proyectos</a></li>
-                        <li><a runat="server" href="~/WebForms/SearchCategory">Gestión de Categorías</a></li>
+                        <li><a runat="server" href="~/WebForms/BuscarProyecto">Gestión de Proyectos</a></li>
+                        <li><a runat="server" href="~/WebForms/BuscarCategoria">Gestión de Categorías</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                                 <li>
