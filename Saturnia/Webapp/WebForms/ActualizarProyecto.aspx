@@ -43,9 +43,15 @@
                 </td>
 
                 <td>
-             <asp:TextBox ID="tbStartMonth" runat="server" Width="36px" TextMode="Number"></asp:TextBox>
-            /<asp:TextBox ID="tbStartDay" runat="server" Width="36px" TextMode="Number"></asp:TextBox>
-            /<asp:TextBox ID="tbStartYear" runat="server" Width="50px" TextMode="Number"></asp:TextBox>
+             <asp:Calendar ID="CdStartDate" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px" >
+                 <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                 <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                 <OtherMonthDayStyle ForeColor="#999999" />
+                 <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                 <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                 <TodayDayStyle BackColor="#CCCCCC" />
+                    </asp:Calendar>
+            
                 
                 </td>
 
@@ -58,15 +64,28 @@
                 </td>
 
                 <td>
-             <asp:TextBox ID="tbEndMonth" runat="server" Width="36px" TextMode="Number"></asp:TextBox>
-            /<asp:TextBox ID="tbEndDay" runat="server" Width="36px" TextMode="Number"></asp:TextBox>
-            /<asp:TextBox ID="tbEndYear" runat="server" Width="50px" TextMode="Number"></asp:TextBox>
+                <asp:Calendar ID="CdEndDate" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px" >
+                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                    <OtherMonthDayStyle ForeColor="#999999" />
+                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                    <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                    <TodayDayStyle BackColor="#CCCCCC" />
+                    </asp:Calendar>
+                    </td>
+                <td>
+
+                    <asp:Label ID="lbEndDateError" runat="server" ForeColor="#0099FF" Text="Label" Visible="False"></asp:Label>
+
                 </td>
+
             </tr>
 
              <tr>
                 <td>
                     <asp:Button ID="btnUpdateProject" runat="server" OnClick="btnUpdateProject_Click" Text="Actualizar" />
+                    
+                    <asp:Label ID="lb" runat="server" Text="Label"></asp:Label>
                 </td>
 
             </tr>
