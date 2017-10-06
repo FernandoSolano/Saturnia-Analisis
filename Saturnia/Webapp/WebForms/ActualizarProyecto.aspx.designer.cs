@@ -85,31 +85,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Control tbStartMonth.
+        /// Control CdStartDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbStartMonth;
-        
-        /// <summary>
-        /// Control tbStartDay.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbStartDay;
-        
-        /// <summary>
-        /// Control tbStartYear.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbStartYear;
+        protected global::System.Web.UI.WebControls.Calendar CdStartDate;
         
         /// <summary>
         /// Control Label6.
@@ -121,31 +103,22 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// Control tbEndMonth.
+        /// Control CdEndDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEndMonth;
+        protected global::System.Web.UI.WebControls.Calendar CdEndDate;
         
         /// <summary>
-        /// Control tbEndDay.
+        /// Control lbEndDateError.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEndDay;
-        
-        /// <summary>
-        /// Control tbEndYear.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEndYear;
+        protected global::System.Web.UI.WebControls.Label lbEndDateError;
         
         /// <summary>
         /// Control btnUpdateProject.
@@ -155,15 +128,6 @@ namespace Webapp.WebForms {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdateProject;
-        
-        /// <summary>
-        /// Control Calendario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendario;
         
         /// <summary>
         /// Control lb.
