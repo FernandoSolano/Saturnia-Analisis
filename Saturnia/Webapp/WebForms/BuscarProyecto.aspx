@@ -27,12 +27,12 @@
             </tr>
         </table>
 
-        <asp:Table ID="resultTable" runat="server" Visible="false" BorderWidth="1">
+        <asp:Table ID="resultTable" runat="server" Visible="false" CssClass="results">
             <asp:TableHeaderRow>
-                <asp:TableHeaderCell>
+                <asp:TableHeaderCell CssClass="results">
                     Proyecto
                 </asp:TableHeaderCell>
-                <asp:TableHeaderCell>
+                <asp:TableHeaderCell CssClass="results">
                     Accion.
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>

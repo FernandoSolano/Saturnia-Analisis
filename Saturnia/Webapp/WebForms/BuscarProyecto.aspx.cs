@@ -38,6 +38,7 @@ namespace Webapp.WebForms
                 if (listElement.Id != -1)
                 {
                     tempCell.Text = "<a href=./MostrarProyecto.aspx?project=" + listElement.Id + ">" + listElement.Name + "</a>";
+                    tempCell.CssClass = "results";
                     tempRow.Cells.Add(tempCell);
 
                     tempCell = null;
@@ -47,10 +48,11 @@ namespace Webapp.WebForms
                 {
                     tempCell.Text = listElement.Name;
                 }
-                
+
+                tempCell.CssClass = "results";
 
                 tempRow.Cells.Add(tempCell);
-                
+                tempRow.CssClass = "results";
                 resultTable.Rows.Add(tempRow);
             }
 

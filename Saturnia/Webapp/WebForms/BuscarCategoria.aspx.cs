@@ -40,9 +40,10 @@ namespace Webapp.WebForms
                 {
                     tempCell.Text = listElement.Name;
                 }
-                
 
+                tempCell.CssClass = "results";
                 tempRow.Cells.Add(tempCell);
+                tempRow.CssClass = "results";
                 resultTable.Rows.Add(tempRow);
             }
 
