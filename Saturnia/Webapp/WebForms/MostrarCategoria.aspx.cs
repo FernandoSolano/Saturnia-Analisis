@@ -10,11 +10,11 @@ using Core.Domain;
 
 namespace Webapp.WebForms
 {
-    public partial class ShowCategory : System.Web.UI.Page
+    public partial class MostrarCategoria : System.Web.UI.Page
     {
         private CategoryBusiness categoryBusiness;
 
-        public ShowCategory()
+        public MostrarCategoria()
         {
             this.categoryBusiness = new CategoryBusiness();
         }
@@ -50,12 +50,12 @@ namespace Webapp.WebForms
                 category.Id = Int32.Parse(Request.QueryString["category"]);
                 category = projectBusiness.ShowCategory(category);
                 projectBusiness.DeleteCategory(category);
-                Response.Write("<script>alert('La categoría ha sido eliminada con éxito');window.location.href = 'SearchCategory.aspx';</script>");
+                Response.Write("<script>alert('La categoría ha sido eliminada con éxito');window.location.href = 'BuscarCategoria.aspx';</script>");
 
             }//try
             catch
             {
-                Response.Write("<script>alert('Ocurrió un problema, la categoría no se pudo eliminar');window.location.href = 'SearchCategory.aspx';</script>");
+                Response.Write("<script>alert('Ocurrió un problema, la categoría no se pudo eliminar');window.location.href = 'BuscarCategoria.aspx';</script>");
             }//catch
         }
     }
