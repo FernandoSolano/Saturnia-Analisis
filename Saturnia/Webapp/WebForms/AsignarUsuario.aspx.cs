@@ -48,14 +48,14 @@ namespace Webapp.WebForms
             {
                 //Si no había id de proyecto, quiere decir que el acceso a esta página no es según el orden normal.
                 //Redireccionamos a la página de buscar proyectos para que busque y en base a uno venga a esta página.
-                Response.Redirect("./SearchProject.aspx");
+                Response.Redirect("./BuscarProyecto.aspx");
             }
         }
 
         protected void btnSearchProject_Click(object sender, EventArgs e)
         {
             //Para permitir que el usuario busque otro proyecto, volvemos a buscar proyecto.
-            Response.Redirect("./SearchProject.aspx");
+            Response.Redirect("./BuscarProyecto.aspx");
         }
 
         protected void btnSearchUser_Click(object sender, EventArgs e)

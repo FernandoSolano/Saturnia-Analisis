@@ -10,7 +10,7 @@
 namespace Webapp.WebForms {
     
     
-    public partial class ShowProject {
+    public partial class MostrarProyecto {
         
         /// <summary>
         /// Control lblName.

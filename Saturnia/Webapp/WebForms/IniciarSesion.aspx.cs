@@ -32,7 +32,7 @@ namespace Webapp.WebForms
                 if (user.Role.Id == 1)
                 {
 
-                    Response.Redirect("~/WebForms/SearchProject.aspx");
+                    Response.Redirect("~/WebForms/BuscarProyecto.aspx");
                 }
                 else if (user.Role.Id == 2)
                 {

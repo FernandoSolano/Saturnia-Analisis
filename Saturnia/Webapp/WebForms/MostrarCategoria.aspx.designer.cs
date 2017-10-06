@@ -10,7 +10,7 @@
 namespace Webapp.WebForms {
     
     
-    public partial class ShowCategory {
+    public partial class MostrarCategoria {
         
         /// <summary>
         /// Control lblName.

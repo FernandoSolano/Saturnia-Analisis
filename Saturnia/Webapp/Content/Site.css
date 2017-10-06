@@ -33,3 +33,19 @@ textarea {
 .body_login {
     background-color: #222222;
 }
+
+table.results {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    max-width: 100%;
+}
+
+td.results, th.results {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr.results:nth-child(even) {
+    background-color: #dddddd;
+}

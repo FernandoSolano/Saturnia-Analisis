@@ -10,7 +10,7 @@ using Core.Domain;
 
 namespace Webapp.WebForms
 {
-    public partial class SearchCategory : System.Web.UI.Page
+    public partial class BuscarCategoria : System.Web.UI.Page
     {
         private CategoryBusiness categoryBusiness;
 
@@ -33,9 +33,17 @@ namespace Webapp.WebForms
                 tempRow = new TableRow();
                 tempCell = new TableCell();
 
-                tempCell.Text = "<a href=./ShowCategory.aspx?category=" + listElement.Id + ">" + listElement.Name + "</a>";
+                if (listElement.Id != -1)
+                {
+                    tempCell.Text = "<a href=./MostrarCategoria.aspx?category=" + listElement.Id + ">" + listElement.Name + "</a>";
+                } else
+                {
+                    tempCell.Text = listElement.Name;
+                }
 
+                tempCell.CssClass = "results";
                 tempRow.Cells.Add(tempCell);
+                tempRow.CssClass = "results";
                 resultTable.Rows.Add(tempRow);
             }
 

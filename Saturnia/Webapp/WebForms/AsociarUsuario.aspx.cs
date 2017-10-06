@@ -43,14 +43,14 @@ namespace Webapp.WebForms
 
                 } catch
                 {
-                    Response.Redirect("./SearchCategory.aspx");
+                    Response.Redirect("./BuscarCategoria.aspx");
                 }
             }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("./SearchProject.aspx");
+            Response.Redirect("./BuscarProyecto.aspx");
         }
 
         protected void btnAsign_Click(object sender, EventArgs e)
@@ -68,6 +68,10 @@ namespace Webapp.WebForms
             {
                 this.lblResponse.Text = "Asignación completada con éxito.";
                 this.lblResponse.ForeColor = System.Drawing.Color.Green;
+                this.btnAsign.Visible = false;
+                this.btnCancel.Visible = false;
+                this.btnSearchProject.Visible = false;
+                this.btnSearchUser.Visible = false;
             }
             else {
                 this.lblResponse.Text = "Hubo un error en la asignación del usuario, quizá este ya estuviese asigando.";
@@ -83,7 +87,7 @@ namespace Webapp.WebForms
 
         protected void btnSearchProject_Click(object sender, EventArgs e)
         {
-            Response.Redirect("./SearchProject.aspx");
+            Response.Redirect("./BuscarProyecto.aspx");
         }
 
         protected void btnSearchUser_Click(object sender, EventArgs e)
@@ -93,12 +97,12 @@ namespace Webapp.WebForms
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("./SearchCategory.aspx");
+            Response.Redirect("./BuscarCategoria.aspx");
         }
 
         protected void btnReturn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("./SearchProject.aspx");
+            Response.Redirect("./BuscarProyecto.aspx");
         }
     }
 }

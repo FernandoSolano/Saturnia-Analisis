@@ -24,12 +24,12 @@ namespace Webapp.WebForms
             project.EstimatedHours = Int32.Parse(tb_estimated_hours.Text);
             ProjectBusiness projectBusiness = new ProjectBusiness();
             project = projectBusiness.AddProject(project);
-            Response.Write("<script>alert('El proyecto ha sido creado con éxito');window.location.href = 'SearchProject.aspx';</script>");
+            Response.Write("<script>alert('El proyecto ha sido creado con éxito');window.location.href = 'BuscarProyecto.aspx';</script>");
         }
 
         protected void btnCancelOnClick(object sender, EventArgs e)
         {
-            Response.Redirect("~/WebForms/SearchProject.aspx");
+            Response.Redirect("~/WebForms/BuscarProyecto.aspx");
         }
     }
 }
