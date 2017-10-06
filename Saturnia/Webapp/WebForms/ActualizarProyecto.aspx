@@ -67,6 +67,8 @@
              <tr>
                 <td>
                     <asp:Button ID="btnUpdateProject" runat="server" OnClick="btnUpdateProject_Click" Text="Actualizar" />
+                    <asp:Calendar ID="Calendario" runat="server" OnSelectionChanged="Calendario_SelectionChanged1"></asp:Calendar>
+                    <asp:Label ID="lb" runat="server" Text="Label"></asp:Label>
                 </td>
 
             </tr>

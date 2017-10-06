@@ -20,6 +20,7 @@ namespace Webapp.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
+           
 
             if (Page.IsPostBack == false)
             { 
@@ -92,5 +93,12 @@ namespace Webapp.WebForms
 
         }
 
+
+ 
+
+        protected void Calendario_SelectionChanged1(object sender, EventArgs e)
+        {
+            lb.Text = Calendario.ToString();
+        }
     }
 }
