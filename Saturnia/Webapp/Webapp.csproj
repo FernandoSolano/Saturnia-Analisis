@@ -140,7 +140,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\bgwhite.jpg" />
+    <Content Include="Images\DarkGrayPatterns.png" />
     <Content Include="Images\image.png" />
+    <Content Include="Images\White-Colour-Background.jpg" />
     <Content Include="Scripts\SearchProject.js" />
     <Content Include="WebForms\ActualizarCategoria.aspx" />
     <Content Include="WebForms\ActualizarProyecto.aspx" />

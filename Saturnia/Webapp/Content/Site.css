@@ -2,6 +2,12 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    height: 100%;
+}
+
+body.background {
+    background: url(/Images/bgwhite.jpg);
+    height: 100%;
 }
 
 /* Wrapping element */
@@ -48,4 +54,35 @@ td.results, th.results {
 
 tr.results:nth-child(even) {
     background-color: #dddddd;
+}
+
+.panel-transparent {
+    background: none;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+    padding: 0px;
+    border: unset;
+}
+
+    .panel-transparent .panel-heading {
+        border-radius: 10px 10px 0px 0px;
+        background: rgba(10, 10, 10, 0.9);
+        height: 80px;
+        padding:-10px;
+    }
+
+    .panel-transparent .panel-body {
+        background: rgba(130,130,130, 0.5);
+        border-radius: 0px 0px 10px 10px;
+       
+    }
+img#logo {
+    position: relative;
+    top: -10px;
+    left: 0px;
+    right: 0px;
+    float: left;
+    height:80px;
+    width: 180px;
 }

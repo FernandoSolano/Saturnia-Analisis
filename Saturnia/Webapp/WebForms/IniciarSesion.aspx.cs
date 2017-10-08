@@ -42,7 +42,7 @@ namespace Webapp.WebForms
             }
             else
             {
-                Response.Write("Error al iniciar sesión, nombre de usuario o contraseña incorrectos");
+               LblMessage.Text = "Error al iniciar sesión, nombre de usuario o contraseña incorrectos";
                 TxtPassword.Text = "";
             }
         }
