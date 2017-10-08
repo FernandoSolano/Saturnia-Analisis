@@ -6,22 +6,34 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Iniciar sesión</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+
     <webopt:BundleReference runat="server" Path="~/Content/css" />
+
 </head>
-<body class="body_login">
+<body class="background">
     <form id="form1" runat="server">
-        <div class="form panel panel-default col-md-4 col-md-offset-4">
-            <asp:Label ID="LblTitle" runat="server" Text="Iniciar sesión" Font-Size="X-Large" CssClass="col-md-6 col-md-offset-3"></asp:Label>
-            <div class="form-group">
-                <asp:Label ID="LblNickname" runat="server" Text="Nombre de usuario: " CssClass="col-md-6"></asp:Label>
-                <asp:TextBox ID="TxtNickname" runat="server" CssClass="col-md-6"></asp:TextBox>
+        <div class="panel panel-transparent col-md-4 col-md-offset-4">
+            <div class="panel-heading">
+                <img src="../Images/image.png" id="logo" />
+                 <asp:Label ID="LblTitle" runat="server" Text="Iniciar sesión" Font-Size="X-Large" ForeColor="White"></asp:Label>
             </div>
-            <div class="form-group">
-                <asp:Label ID="LblPassword" runat="server" Text="Contraseña:" CssClass="col-md-6"></asp:Label>
-                <asp:TextBox ID="TxtPassword" runat="server" TextMode="Password" CssClass="col-md-6"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <asp:Button ID="BtnLogin" runat="server" Text="Iniciar sesión" OnClick="BtnLogin_Click" CssClass="btn-success col-md-6 col-md-offset-6" />
+            <div class="panel-body">
+                <div class="form-group" style="text-align: center">
+                    <asp:Label ID="LblNickname" runat="server" Text="Nombre de usuario: " Font-Bold="True"></asp:Label>
+                    <asp:TextBox ID="TxtNickname" runat="server"></asp:TextBox>
+                </div>
+                <div class="form-group" style="text-align: center">
+                    <asp:Label ID="LblPassword" runat="server" Text="Contraseña:" Font-Bold="True" ></asp:Label>
+                    <asp:TextBox ID="TxtPassword" runat="server" TextMode="Password" Style="margin-left: 48px"></asp:TextBox>
+                </div>
+                <div class="form-group" style="text-align: center">
+                    <asp:Button ID="BtnLogin" runat="server" Text="Iniciar sesión" OnClick="BtnLogin_Click" class="btn btn-danger" />
+                </div>
+                <div class="form-group" style="text-align: center">
+                    <asp:Label ID="LblMessage" runat="server" ForeColor="#990000"></asp:Label>
+                </div>
             </div>
         </div>
     </form>
