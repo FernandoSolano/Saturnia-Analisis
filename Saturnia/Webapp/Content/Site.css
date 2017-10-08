@@ -40,9 +40,19 @@ textarea {
     background-color: #222222;
 }
 
+a.results{
+    color: white;
+    text-decoration: underline;
+}
+a.results:hover {
+    color: #D9534F;
+}
+
 table.results {
     font-family: arial, sans-serif;
     border-collapse: collapse;
+    color: #cccccc;
+    background-color: #222222;
     max-width: 100%;
 }
 
@@ -52,8 +62,8 @@ td.results, th.results {
     padding: 8px;
 }
 
-tr.results:nth-child(even) {
-    background-color: #dddddd;
+th.results {
+    color: #D9534F;
 }
 
 .panel-transparent {

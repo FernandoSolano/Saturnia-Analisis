@@ -28,6 +28,11 @@
     </table>
 
     <asp:Table ID="resultTable" CssClass="results" runat="server" Visible="false">
+        <asp:TableHeaderRow>
+            <asp:TableHeaderCell CssClass="results">
+                Nombre
+            </asp:TableHeaderCell>
+        </asp:TableHeaderRow>
     </asp:Table>
 
 </asp:Content>

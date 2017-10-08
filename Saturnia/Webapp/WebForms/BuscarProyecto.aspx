@@ -33,7 +33,7 @@
                     Proyecto
                 </asp:TableHeaderCell>
                 <asp:TableHeaderCell CssClass="results">
-                    Accion.
+                    Acción
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>
         </asp:Table>

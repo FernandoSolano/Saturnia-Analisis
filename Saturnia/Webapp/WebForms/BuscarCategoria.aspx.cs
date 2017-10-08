@@ -35,7 +35,7 @@ namespace Webapp.WebForms
 
                 if (listElement.Id != -1)
                 {
-                    tempCell.Text = "<a href=./MostrarCategoria.aspx?category=" + listElement.Id + ">" + listElement.Name + "</a>";
+                    tempCell.Text = "<a class=results href=./MostrarCategoria.aspx?category=" + listElement.Id + ">" + listElement.Name + "</a>";
                 } else
                 {
                     tempCell.Text = listElement.Name;
