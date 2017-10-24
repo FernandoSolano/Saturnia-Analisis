@@ -82,6 +82,7 @@ namespace Webapp.WebForms
 
                 //Cargamos el nombre del usuario y la agregamos a la tabla.
                 tempCell.Text = listElement.FirstName;
+                tempCell.CssClass = "results";
                 tempRow.Cells.Add(tempCell);
 
                 //Para evitar contaminación, "destruímos" la variable y la inicializamos nuevamente para usarla de nuevo.
@@ -89,12 +90,14 @@ namespace Webapp.WebForms
                 tempCell = new TableCell();
                 //Solo que ahora, la cargamos con el apellido y la agregamos a la tabla.
                 tempCell.Text = listElement.LastName;
+                tempCell.CssClass = "results";
                 tempRow.Cells.Add(tempCell);
 
                 //Nuevamente la "destruímos" para cargarla con un link que permitirá la asociación del usuario al proyecto.
                 tempCell = null;
                 tempCell = new TableCell();
-                tempCell.Text = "<a href=./AsociarUsuario.aspx?user=" + listElement.Id + "&project=" + this.currentProject + ">  Asignar al proyecto </a>";
+                tempCell.CssClass = "results";
+                tempCell.Text = "<a class=results href=./AsociarUsuario.aspx?user=" + listElement.Id + "&project=" + this.currentProject + ">  Asignar al proyecto </a>";
                 tempRow.Cells.Add(tempCell);
                 
                 //Finalmente añadimos la tupla temporal.

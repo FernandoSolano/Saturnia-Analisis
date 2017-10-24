@@ -37,13 +37,13 @@ namespace Webapp.WebForms
 
                 if (listElement.Id != -1)
                 {
-                    tempCell.Text = "<a href=./MostrarProyecto.aspx?project=" + listElement.Id + ">" + listElement.Name + "</a>";
+                    tempCell.Text = "<a class=results href=./MostrarProyecto.aspx?project=" + listElement.Id + ">" + listElement.Name + "</a>";
                     tempCell.CssClass = "results";
                     tempRow.Cells.Add(tempCell);
 
                     tempCell = null;
                     tempCell = new TableCell();
-                    tempCell.Text = "<a href=./AsignarUsuario.aspx?project=" + listElement.Id + "> Asignar Usuario </a>";
+                    tempCell.Text = "<a class=results href=./AsignarUsuario.aspx?project=" + listElement.Id + "> Asignar Usuario </a>";
                 } else
                 {
                     tempCell.Text = listElement.Name;
