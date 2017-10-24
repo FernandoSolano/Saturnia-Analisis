@@ -42,10 +42,12 @@
   <ItemGroup>
     <Compile Include="Business\CategoryBusiness.cs" />
     <Compile Include="Business\ProjectBusiness.cs" />
+    <Compile Include="Business\TaskBusiness.cs" />
     <Compile Include="Business\UserBusiness.cs" />
     <Compile Include="Data\CategoryData.cs" />
     <Compile Include="Data\ConnectionData.cs" />
     <Compile Include="Data\ProjectData.cs" />
+    <Compile Include="Data\TaskData.cs" />
     <Compile Include="Data\UserData.cs" />
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\Project.cs" />
