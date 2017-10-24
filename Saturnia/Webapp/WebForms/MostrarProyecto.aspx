@@ -56,9 +56,9 @@
         </tr>
         <tr>
             <td style="width: 439px">
-                <asp:LinkButton ID="LinkButon_eliminar" runat="server" OnClick="LinkButon_eliminar_Click" OnClientClick="return confirm('¿Esta seguro de eliminar el proyecto?');" Width="130px">Eliminar proyecto</asp:LinkButton>
-                 <asp:HyperLink ID="LinkUpdateProject" runat="server" Width="130">Actualizar proyecto</asp:HyperLink>
-                 <asp:LinkButton ID="linkButtonChangeStatus" runat="server" OnClick="LinkButonChangeStatus" Width="127px"></asp:LinkButton>
+                <asp:LinkButton ID="LinkButon_eliminar" runat="server" class="btn btn-danger" OnClick="LinkButon_eliminar_Click" OnClientClick="return confirm('¿Esta seguro de eliminar el proyecto?');" Width="130px">Eliminar proyecto</asp:LinkButton>
+                 <asp:HyperLink ID="LinkUpdateProject" runat="server" class="btn btn-danger">Actualizar proyecto</asp:HyperLink>
+                 <asp:LinkButton ID="linkButtonChangeStatus" runat="server" class="btn btn-danger" OnClick="LinkButonChangeStatus" Width="127px"></asp:LinkButton>
             </td>
         </tr>
     </table>

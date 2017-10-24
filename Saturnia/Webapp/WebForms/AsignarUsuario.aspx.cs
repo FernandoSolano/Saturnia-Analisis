@@ -97,7 +97,13 @@ namespace Webapp.WebForms
                 tempCell = null;
                 tempCell = new TableCell();
                 tempCell.CssClass = "results";
-                tempCell.Text = "<a class=results href=./AsociarUsuario.aspx?user=" + listElement.Id + "&project=" + this.currentProject + ">  Asignar al proyecto </a>";
+                if (listElement.Id != -1)
+                {
+                    tempCell.Text = "<a class=results href=./AsociarUsuario.aspx?user=" + listElement.Id + "&project=" + this.currentProject + ">  Asignar al proyecto </a>";
+                } else
+                {
+                    tempCell.Text = "<a class=results>Para asignar un colaborador, seleccione uno existente por favor</a>";
+                }
                 tempRow.Cells.Add(tempCell);
                 
                 //Finalmente añadimos la tupla temporal.
