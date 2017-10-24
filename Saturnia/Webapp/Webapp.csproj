@@ -150,6 +150,7 @@
     <Content Include="WebForms\AsignarUsuario.aspx" />
     <Content Include="WebForms\AsociarUsuario.aspx" />
     <Content Include="WebForms\BuscarTarea.aspx" />
+    <Content Include="WebForms\CrearTarea.aspx" />
     <Content Include="WebForms\IniciarSesion.aspx" />
     <Content Include="WebForms\BuscarCategoria.aspx" />
     <Content Include="WebForms\BuscarProyecto.aspx" />
@@ -265,6 +266,13 @@
     </Compile>
     <Compile Include="WebForms\BuscarTarea.aspx.designer.cs">
       <DependentUpon>BuscarTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\CrearTarea.aspx.cs">
+      <DependentUpon>CrearTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\CrearTarea.aspx.designer.cs">
+      <DependentUpon>CrearTarea.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\IniciarSesion.aspx.cs">
       <DependentUpon>IniciarSesion.aspx</DependentUpon>
