@@ -23,6 +23,12 @@ namespace Webapp.WebForms
             this.categoryBusiness = new CategoryBusiness();
         }
 
+        private void selfRedirect()
+        {
+            String path = "./BuscarTarea.aspx?";
+            Response.Redirect(path);
+        }
+
         protected void btnSearchProject_Click(object sender, EventArgs e)
         {
             String name = this.txtProjectName.Text;
