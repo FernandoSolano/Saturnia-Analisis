@@ -48,6 +48,17 @@ a.results:hover {
     color: #D9534F;
 }
 
+div.fixDate {
+    background: #222222;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+}
+
+h2.fixDate, label.fixDate {
+    color: wheat;
+}
+
 table.results {
     font-family: arial, sans-serif;
     border-collapse: collapse;
