@@ -12,7 +12,7 @@
                 <label>Nombre: </label>
             </td>
             <td>
-                <asp:TextBox ID="txtName" runat="server" onkeyup="myFunction()"></asp:TextBox>
+                <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
             </td>
             <td>
                 <asp:Button ID="btnSearch" runat="server" Text="Buscar" OnClick="btnSearch_Click" />
