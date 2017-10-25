@@ -4,63 +4,72 @@
 
         <table>
             <h2 style="width: 372px">
-                <asp:Label ID="Label1" runat="server" Text="Datos del proyecto"></asp:Label>
-
+                <asp:Label ID="Label1" runat="server" Text="Actualizar"></asp:Label>
             </h2>
 
             <tr>
                 <td>
-                    <asp:Label ID="Label5" runat="server" Text="Nombre:"></asp:Label>
+                    <asp:Label ID="Label5" runat="server" Text="Colaborador:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="tbName" runat="server" Width="180px"></asp:TextBox>
+                    <asp:TextBox ID="tbColaborator" runat="server" Width="180px"></asp:TextBox>
                 </td>
 
             </tr>
 
             <tr>
                 <td>
-                    <asp:Label ID="Label4" runat="server" Text="Descripcion:"></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text="Proyecto:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="tbDescription" runat="server" Height="49px" TextMode="MultiLine" Width="182px"></asp:TextBox>
+                    <asp:TextBox ID="tbProject" runat="server" Width="182px"></asp:TextBox>
                 </td>
             </tr>
            
             <tr>
                 <td>
-                       <asp:Label ID="Label2" runat="server" Text="Horas estimadas:"></asp:Label> 
+                    <asp:Label ID="Label2" runat="server" Text="Categoria:"></asp:Label> 
                 </td>
                 <td>
-                    <asp:TextBox ID="tbEstimatedHours" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="tbCategory" runat="server" Width="182px"></asp:TextBox>
+                </td>
+            </tr>
+
+             <tr>
+                <td>
+                    <asp:Label ID="Label3" runat="server" Text="Descripción:"></asp:Label> 
+                </td>
+                <td>
+                    <asp:TextBox ID="tbDescription" runat="server" TextMode="MultiLine" Width="182px"></asp:TextBox>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <asp:Label ID="Label3" runat="server" Text="Fecha de inicio(mes/día/año):"></asp:Label> 
-                
+                    <asp:Label ID="Label7" runat="server" Text="Horas invertidas:"></asp:Label> 
                 </td>
-
                 <td>
-             <asp:Calendar ID="CdStartDate" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px" >
-                 <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                 <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                 <OtherMonthDayStyle ForeColor="#999999" />
-                 <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                 <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                 <TodayDayStyle BackColor="#CCCCCC" />
-                    </asp:Calendar>
-            
-                
+                    <asp:TextBox ID="tbHours" runat="server" Width="182px"></asp:TextBox>
                 </td>
+            </tr>
 
-                
+             <tr>
+                <td>
+                    <asp:Label ID="Label8" runat="server" Text="Horas extras:"></asp:Label> 
+                </td>
+                <td>  
+                    <asp:TextBox ID="tbExtraHours" runat="server" Width="182px"></asp:TextBox>
+                </td>
             </tr>
 
             <tr>
                  <td>
-                    <asp:Label ID="Label6" runat="server" Text="Fecha de finalización(mes/día/año):"></asp:Label> 
+                    <asp:Label ID="Label6" runat="server" Text="Fecha de realización:"></asp:Label> 
+                    
+                </td>
+
+                <td>
+                    <asp:TextBox ID="tbDate" TextMode="Date" runat="server"></asp:TextBox>
                 </td>
 
             </tr>
