@@ -14,7 +14,7 @@
                 <asp:TextBox ID="txtProjectName" runat="server"></asp:TextBox>
             </td>
             <td>
-                <asp:Button ID="btnSearchProject" runat="server" Text="Buscar" OnClick="btnSearchProject_Click" />
+                <asp:Button ID="btnSearchProject" runat="server" class="btn btn-danger" Text="Buscar proyecto" OnClick="btnSearchProject_Click" />
             </td>
         </tr>
         <tr>
@@ -25,20 +25,20 @@
                 <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
             </td>
             <td>
-                <asp:Button ID="btnSearchUser" runat="server" Text="Buscar" OnClick="btnSearchUser_Click" />
+                <asp:Button ID="btnSearchUser" class="btn btn-danger" runat="server" Text="Buscar usuario" OnClick="btnSearchUser_Click" />
             </td>
         </tr>
     </table>
 
-    <asp:Table ID="resultTable" runat="server" Visible="false" BorderWidth="1">
+    <asp:Table ID="resultTable" CssClass="results" runat="server" Visible="false" BorderWidth="1">
             <asp:TableHeaderRow>
-                <asp:TableHeaderCell>
+                <asp:TableHeaderCell CssClass="results">
                     Nombre
                 </asp:TableHeaderCell>
-                <asp:TableHeaderCell>
+                <asp:TableHeaderCell CssClass="results">
                     Apellidos
                 </asp:TableHeaderCell>
-                <asp:TableHeaderCell>
+                <asp:TableHeaderCell CssClass="results">
                     Acción
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>

@@ -14,7 +14,7 @@
                     <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:Button ID="btnSearch" runat="server" Text="Buscar" OnClick="btnSearch_Click" />
+                    <asp:Button ID="btnSearch" class="btn btn-danger" runat="server" Text="Buscar proyecto" OnClick="btnSearch_Click" />
                 </td>
             </tr>
             <tr>
@@ -33,7 +33,7 @@
                     Proyecto
                 </asp:TableHeaderCell>
                 <asp:TableHeaderCell CssClass="results">
-                    Accion.
+                    Acción
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>
         </asp:Table>

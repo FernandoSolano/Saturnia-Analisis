@@ -12,10 +12,10 @@
                 <label>Nombre: </label>
             </td>
             <td>
-                <asp:TextBox ID="txtName" runat="server" onkeyup="myFunction()"></asp:TextBox>
+                <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
             </td>
             <td>
-                <asp:Button ID="btnSearch" runat="server" Text="Buscar" OnClick="btnSearch_Click" />
+                <asp:Button ID="btnSearch" runat="server" Text="Buscar categoría" class="btn btn-danger" OnClick="btnSearch_Click" />
             </td>
         </tr>
         <tr>
@@ -28,6 +28,11 @@
     </table>
 
     <asp:Table ID="resultTable" CssClass="results" runat="server" Visible="false">
+        <asp:TableHeaderRow>
+            <asp:TableHeaderCell CssClass="results">
+                Nombre
+            </asp:TableHeaderCell>
+        </asp:TableHeaderRow>
     </asp:Table>
 
 </asp:Content>
