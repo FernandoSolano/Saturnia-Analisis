@@ -24,7 +24,12 @@ namespace Webapp.WebForms
             category.Description = tb_description.Text;
             CategoryBusiness categoryBusiness = new CategoryBusiness();
             category = categoryBusiness.AddCategory(category);
-            Response.Redirect("~/WebForms/CrearCategoria.aspx");
+            Response.Write("<script>alert('La categoría ha sido creada con éxito');window.location.href = 'BuscarCategoria.aspx';</script>");
+        }
+
+        protected void btnCancelOnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/WebForms/BuscarCategoria.aspx");
         }
     }
 }

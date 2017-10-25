@@ -140,15 +140,22 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\bgwhite.jpg" />
+    <Content Include="Images\DarkGrayPatterns.png" />
+    <Content Include="Images\image.png" />
+    <Content Include="Images\White-Colour-Background.jpg" />
     <Content Include="Scripts\SearchProject.js" />
-    <Content Include="WebForms\IniciarSesion.aspx" />
+    <Content Include="WebForms\ActualizarCategoria.aspx" />
+    <Content Include="WebForms\ActualizarProyecto.aspx" />
     <Content Include="WebForms\AsignarUsuario.aspx" />
     <Content Include="WebForms\AsociarUsuario.aspx" />
-    <Content Include="WebForms\IniciarSesion2.aspx" />
-    <Content Include="WebForms\SearchCategory.aspx" />
-    <Content Include="WebForms\SearchProject.aspx" />
-    <Content Include="WebForms\ShowCategory.aspx" />
-    <Content Include="WebForms\ShowProject.aspx" />
+    <Content Include="WebForms\BuscarTarea.aspx" />
+    <Content Include="WebForms\CrearTarea.aspx" />
+    <Content Include="WebForms\IniciarSesion.aspx" />
+    <Content Include="WebForms\BuscarCategoria.aspx" />
+    <Content Include="WebForms\BuscarProyecto.aspx" />
+    <Content Include="WebForms\MostrarCategoria.aspx" />
+    <Content Include="WebForms\MostrarProyecto.aspx" />
     <Content Include="WebForms\CrearCategoria.aspx">
       <BrowseToURL>~/WebForms/CrearCategoria.aspx</BrowseToURL>
     </Content>
@@ -225,12 +232,19 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\IniciarSesion.aspx.cs">
-      <DependentUpon>IniciarSesion.aspx</DependentUpon>
+    <Compile Include="WebForms\ActualizarCategoria.aspx.cs">
+      <DependentUpon>ActualizarCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\IniciarSesion.aspx.designer.cs">
-      <DependentUpon>IniciarSesion.aspx</DependentUpon>
+    <Compile Include="WebForms\ActualizarCategoria.aspx.designer.cs">
+      <DependentUpon>ActualizarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\ActualizarProyecto.aspx.cs">
+      <DependentUpon>ActualizarProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\ActualizarProyecto.aspx.designer.cs">
+      <DependentUpon>ActualizarProyecto.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\AsignarUsuario.aspx.cs">
       <DependentUpon>AsignarUsuario.aspx</DependentUpon>
@@ -246,40 +260,54 @@
     <Compile Include="WebForms\AsociarUsuario.aspx.designer.cs">
       <DependentUpon>AsociarUsuario.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\IniciarSesion2.aspx.cs">
-      <DependentUpon>IniciarSesion2.aspx</DependentUpon>
+    <Compile Include="WebForms\BuscarTarea.aspx.cs">
+      <DependentUpon>BuscarTarea.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\IniciarSesion2.aspx.designer.cs">
-      <DependentUpon>IniciarSesion2.aspx</DependentUpon>
+    <Compile Include="WebForms\BuscarTarea.aspx.designer.cs">
+      <DependentUpon>BuscarTarea.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\SearchCategory.aspx.cs">
-      <DependentUpon>SearchCategory.aspx</DependentUpon>
+    <Compile Include="WebForms\CrearTarea.aspx.cs">
+      <DependentUpon>CrearTarea.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\SearchCategory.aspx.designer.cs">
-      <DependentUpon>SearchCategory.aspx</DependentUpon>
+    <Compile Include="WebForms\CrearTarea.aspx.designer.cs">
+      <DependentUpon>CrearTarea.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\SearchProject.aspx.cs">
-      <DependentUpon>SearchProject.aspx</DependentUpon>
+    <Compile Include="WebForms\IniciarSesion.aspx.cs">
+      <DependentUpon>IniciarSesion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\SearchProject.aspx.designer.cs">
-      <DependentUpon>SearchProject.aspx</DependentUpon>
+    <Compile Include="WebForms\IniciarSesion.aspx.designer.cs">
+      <DependentUpon>IniciarSesion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\ShowCategory.aspx.cs">
-      <DependentUpon>ShowCategory.aspx</DependentUpon>
+    <Compile Include="WebForms\BuscarCategoria.aspx.cs">
+      <DependentUpon>BuscarCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\ShowCategory.aspx.designer.cs">
-      <DependentUpon>ShowCategory.aspx</DependentUpon>
+    <Compile Include="WebForms\BuscarCategoria.aspx.designer.cs">
+      <DependentUpon>BuscarCategoria.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\ShowProject.aspx.cs">
-      <DependentUpon>ShowProject.aspx</DependentUpon>
+    <Compile Include="WebForms\BuscarProyecto.aspx.cs">
+      <DependentUpon>BuscarProyecto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\ShowProject.aspx.designer.cs">
-      <DependentUpon>ShowProject.aspx</DependentUpon>
+    <Compile Include="WebForms\BuscarProyecto.aspx.designer.cs">
+      <DependentUpon>BuscarProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\MostrarCategoria.aspx.cs">
+      <DependentUpon>MostrarCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\MostrarCategoria.aspx.designer.cs">
+      <DependentUpon>MostrarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\MostrarProyecto.aspx.cs">
+      <DependentUpon>MostrarProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\MostrarProyecto.aspx.designer.cs">
+      <DependentUpon>MostrarProyecto.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\CrearCategoria.aspx.cs">
       <DependentUpon>CrearCategoria.aspx</DependentUpon>

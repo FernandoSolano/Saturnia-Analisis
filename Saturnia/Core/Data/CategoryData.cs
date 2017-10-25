@@ -45,6 +45,7 @@ namespace Core.Data
             return category;
         }
 
+        
         public void DeleteCategory(Category category)
         {
             SqlConnection sqlConnection = new SqlConnection(connectionString);
@@ -179,6 +180,36 @@ namespace Core.Data
             //Retornamos la lista.
             return category;
         } //Show Category
+
+        public void UpdateCategory(Category category)
+        {
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand("sp_category_update", connection);
+
+            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@id", category.Id));
+            sqlCommand.Parameters.Add(new SqlParameter("@name", category.Name));
+            sqlCommand.Parameters.Add(new SqlParameter("@description", category.Description));
+            try
+            {
+                connection.Open();
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            if (connection != null)
+            {
+                connection.Close();
+            }
+
+
+        }
+
+
 
     }//CategoryData
 

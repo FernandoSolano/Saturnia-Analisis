@@ -1,21 +1,41 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="IniciarSesion.aspx.cs" Inherits="Webapp.WebForms.IniciarSesion" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    
-    <div class="pannel">
-    <br />
-    <asp:Label ID="Label1" runat="server" Text="Iniciar sesión:"></asp:Label>
-    <br />
-    <br />
-    <asp:Label ID="LblNickname" runat="server" Text="Nombre de usuario: "></asp:Label>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="IniciarSesion.aspx.cs" Inherits="Webapp.WebForms.IniciarSesion" %>
 
-    <asp:TextBox ID="TxtNickname" runat="server" style="margin-left: 100px" Width="230px"></asp:TextBox>
-    <br />
-    <asp:Label ID="LblPassword" runat="server" Text="Contraseña:"></asp:Label>
+<!DOCTYPE html>
 
-    <asp:TextBox ID="TxtPassword" runat="server"  style="margin-left: 151px" Width="230px"></asp:TextBox>
-    <br />
-   
-    <asp:Button ID="BtnLogin" runat="server"  Text="Inciar sesion" Width="111px" OnClick="BtnLogin_Click" />
-    <br />
-    </div>
-</asp:Content>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Iniciar sesión</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+
+</head>
+<body class="background">
+    <form id="form1" runat="server">
+        <div class="panel panel-transparent col-md-4 col-md-offset-4">
+            <div class="panel-heading">
+                <img src="../Images/image.png" id="logo" />
+                 <asp:Label ID="LblTitle" runat="server" Text="Iniciar sesión" Font-Size="X-Large" ForeColor="White"></asp:Label>
+            </div>
+            <div class="panel-body">
+                <div class="form-group" style="text-align: center">
+                    <asp:Label ID="LblNickname" runat="server" Text="Nombre de usuario: " Font-Bold="True"></asp:Label>
+                    <asp:TextBox ID="TxtNickname" runat="server"></asp:TextBox>
+                </div>
+                <div class="form-group" style="text-align: center">
+                    <asp:Label ID="LblPassword" runat="server" Text="Contraseña:" Font-Bold="True" ></asp:Label>
+                    <asp:TextBox ID="TxtPassword" runat="server" TextMode="Password" Style="margin-left: 48px"></asp:TextBox>
+                </div>
+                <div class="form-group" style="text-align: center">
+                    <asp:Button ID="BtnLogin" runat="server" Text="Iniciar sesión" OnClick="BtnLogin_Click" class="btn btn-danger" />
+                </div>
+                <div class="form-group" style="text-align: center">
+                    <asp:Label ID="LblMessage" runat="server" ForeColor="#990000"></asp:Label>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -11,7 +11,6 @@ namespace Webapp.WebForms
 {
     public partial class IniciarSesion : System.Web.UI.Page
     {
-        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -27,20 +26,23 @@ namespace Webapp.WebForms
 
             if (user.Id > 0)
             {
-                Session["user"] = user;
+                Session["userId"] = user.Id;
+                Session["userName"] = user.FirstName+user.LastName;
+                Session["userRol"] = user.Role.Id;
                 if (user.Role.Id == 1)
                 {
 
-                    Response.Redirect("~/WebForms/SearchProject.aspx");
+                    Response.Redirect("~/WebForms/BuscarProyecto.aspx");
                 }
                 else if (user.Role.Id == 2)
                 {
-                    Response.Redirect("~Default.aspx");
+                    Response.Redirect("~/Default.aspx");
                 }
 
             }
-            else {
-                Response.Write("Error al iniciar sesión, nombre de usuario o contraseña incorrectos");
+            else
+            {
+               LblMessage.Text = "Error al iniciar sesión, nombre de usuario o contraseña incorrectos";
                 TxtPassword.Text = "";
             }
         }
