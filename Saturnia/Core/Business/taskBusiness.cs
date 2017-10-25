@@ -22,5 +22,11 @@ namespace Core.Business
         {
             return taskData.AddTask(task);
         }
-    }
+
+        public void DeleteTask(Task task)
+        {
+            this.taskData.DeleteTask(task);
+        }
+
+        }
 }
