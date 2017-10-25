@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Buscar Tarea</h1>
+    <h2></h2>
     <div id="filters">
         <input type="checkbox" id="cbUser" onchange="FadeForm(this,'User')" > <Label class="cb" ID="lblUserCB" >Colaborador</Label>
         <input type="checkbox" id="cbCategory" onchange="FadeForm(this,'Category')" > <Label class="cb" ID="lblCategoryCB" >Categor&iacute;a</Label>
@@ -35,6 +36,9 @@
                 </asp:TableHeaderCell>
                 <asp:TableHeaderCell CssClass="results">
                     Apellidos
+                </asp:TableHeaderCell>
+                <asp:TableHeaderCell CssClass="results">
+                    Filtrar
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>
         </asp:Table>
