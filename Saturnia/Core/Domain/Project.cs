@@ -14,6 +14,7 @@ namespace Core.Domain
 
         public Project()
         {
+            name = "";
         }
 
         public int Id { get => id; set => id = value; }
