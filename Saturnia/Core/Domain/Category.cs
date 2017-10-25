@@ -9,6 +9,7 @@ namespace Core.Domain
 
         public Category()
         {
+            name = "";
         }
 
         public int Id { get => id; set => id = value; }
