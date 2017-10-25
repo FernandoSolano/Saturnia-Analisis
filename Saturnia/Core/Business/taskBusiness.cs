@@ -22,5 +22,9 @@ namespace Core.Business
         {
             return taskData.AddTask(task);
         }
+        public void updateTask(Task task)
+        {
+             taskData.updateTask(task);
+        }
     }
 }
