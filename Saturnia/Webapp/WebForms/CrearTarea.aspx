@@ -66,15 +66,15 @@
 
                             </div>
                             <div style="text-align: center">
-                                <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger"  OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
                                 <asp:Button ID="BtnAdd" runat="server" class="btn btn-success" OnClick="BtnAdd_Click" Text="Ingresar" Style="margin-left: 10px" Height="30px" Width="120px" />
-                                <asp:Button ID="BtnSetData" runat="server" class="btn btn-danger"  OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Button ID="BtnSetData" runat="server" class="btn btn-danger" OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="setOfTasks">
 
                             <h1>Nuevo ingreso por lote</h1>
-                               
+
                             <div>
                                 <label>Ingrese las fechas deseadas</label>
                                 <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Black" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px">
@@ -87,12 +87,12 @@
                                     <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
                                     <TodayDayStyle BackColor="#CCCC99" />
                                 </asp:Calendar>
-                            
+
                                 <asp:Button ID="BtnAddDate" runat="server" class="btn btn-basic" Text=">>" />
                                 <asp:ListBox ID="Lbdates" runat="server"></asp:ListBox>
                             </div>
 
-                           <div>
+                            <div>
                                 <label>Proyecto</label>
                                 <asp:DropDownList ID="DdlProjectSoT" runat="server" Style="margin-left: 65px; margin-bottom: 20px;" Width="200px">
                                 </asp:DropDownList>
@@ -102,7 +102,7 @@
                                 <asp:DropDownList ID="DdlCategorySoT" runat="server" Style="margin-left: 60px; margin-bottom: 20px" Width="200px">
                                 </asp:DropDownList>
                             </div>
- <div>
+                            <div>
 
                                 <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" Style="margin: 20px 0px 20px 80px; list-style: none">
                                     <asp:ListItem Value="0" style="margin-right: 20px;">Horas regulares</asp:ListItem>
@@ -125,9 +125,9 @@
 
                             </div>
                             <div style="text-align: center">
-                                <asp:Button ID="BtnCancelSoT" runat="server" class="btn btn-danger"  OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Button ID="BtnCancelSoT" runat="server" class="btn btn-danger" OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
                                 <asp:Button ID="BtnAddSoT" runat="server" class="btn btn-success" OnClick="BtnAdd_Click" Text="Ingresar" Style="margin-left: 10px" Height="30px" Width="120px" />
-                                <asp:Button ID="BtnSetDataSoT" runat="server" class="btn btn-danger"  OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Button ID="BtnSetDataSoT" runat="server" class="btn btn-danger" OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
                             </div>
 
                         </div>
