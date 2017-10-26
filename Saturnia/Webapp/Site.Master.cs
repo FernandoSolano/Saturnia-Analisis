@@ -13,7 +13,7 @@ namespace Webapp
         {
             if (Session["userId"] == null)
             {
-                Response.Redirect("~/WebForms/IniciarSesion.aspx");
+               // Response.Redirect("~/WebForms/IniciarSesion.aspx");
             }
         }
 
