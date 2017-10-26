@@ -15,109 +15,122 @@
                     </ul>
 
                     <!-- Tab panes -->
+
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="singleTask">
                             <h1>Nuevo Ingreso</h1>
                             <div>
-                                Proyecto<asp:DropDownList ID="DdlProject" runat="server">
+                                <label>Proyecto</label>
+                                <asp:DropDownList ID="DdlProject" runat="server" Style="margin-left: 65px; margin-bottom: 20px;" Width="200px">
                                 </asp:DropDownList>
                             </div>
                             <div>
-                                Categoría<asp:DropDownList ID="DdlCategory" runat="server">
+                                <label>Categoría</label>
+                                <asp:DropDownList ID="DdlCategory" runat="server" Style="margin-left: 60px; margin-bottom: 20px" Width="200px">
                                 </asp:DropDownList>
                             </div>
                             <div>
-                                Fecha de ingreso
-                            <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="Black" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" SelectedDate="10/26/2017 10:00:30" TitleFormat="Month" Width="400px">
-                                <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" ForeColor="#333333" Height="10pt" />
-                                <DayStyle Width="14%" />
-                                <NextPrevStyle Font-Size="8pt" ForeColor="White" />
-                                <OtherMonthDayStyle ForeColor="#999999" />
-                                <SelectedDayStyle BackColor="#CC3333" ForeColor="Maroon" />
-                                <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
-                                <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
-                                <TodayDayStyle BackColor="#CCCC99" />
+                                <label>Fecha de ingreso</label>
+                                <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Black" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px">
+                                    <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" ForeColor="#333333" Height="10pt" />
+                                    <DayStyle Width="14%" />
+                                    <NextPrevStyle Font-Size="8pt" ForeColor="White" />
+                                    <OtherMonthDayStyle ForeColor="#999999" />
+                                    <SelectedDayStyle BackColor="#CC3333" ForeColor="Maroon" />
+                                    <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
+                                    <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
+                                    <TodayDayStyle BackColor="#CCCC99" />
                                 </asp:Calendar>
                             </div>
+
                             <div>
-                                <asp:RadioButton ID="RbRegularHours" runat="server" OnCheckedChanged="RadioButton1_CheckedChanged" Text="Horas regulares" />
-                                <asp:RadioButton ID="RbExtraHours" runat="server" OnCheckedChanged="RadioButton2_CheckedChanged" Text="Horas extra" />
+
+                                <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" Style="margin: 20px 0px 20px 80px; list-style: none">
+                                    <asp:ListItem Value="0" style="margin-right: 20px;">Horas regulares</asp:ListItem>
+                                    <asp:ListItem Value="1">Horas extra</asp:ListItem>
+                                </asp:RadioButtonList>
                             </div>
                             <div>
-                                Tiempo dedicado:
-                                Horas
-                                <asp:DropDownList ID="DdlHours" runat="server">
-                                  
+                                <label>Tiempo dedicado:</label>
+                                <br />
+                                <label style="margin-left: 80px">Horas</label>
+                                <asp:DropDownList ID="DdlHours" runat="server" Style="margin-left: 30px" Width="60px">
                                 </asp:DropDownList>
-                                Minutos
-                                <asp:DropDownList ID="DdlMinutes" runat="server">
-                                    
+                                <label style="margin-left: 20px">Minutos</label>
+                                <asp:DropDownList ID="DdlMinutes" runat="server" Style="margin-left: 30px" Width="60px">
                                 </asp:DropDownList>
                             </div>
                             <div>
-                                Descripción<textarea id="TaDescription" name="S1" style="width: 323px; height: 101px"></textarea>
+                                <label>Descripción</label>
+                                <textarea id="TaDescription" name="S1" style="width: 350px; height: 101px; margin-left: 30px; margin-bottom: 20px;"></textarea>
 
                             </div>
                             <div style="text-align: center">
-                                <asp:Button ID="BtnCancel" runat="server" OnClick="BtnCancel_Click" Text="Cancelar"  />
-                                <asp:Button ID="BtnAdd" runat="server" OnClick="BtnAdd_Click" Text="Ingresar" />
-                                <asp:Button ID="BtnSetData" runat="server" OnClick="BtnSetData_Click" Text="Limpiar campos" />
+                                <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger"  OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Button ID="BtnAdd" runat="server" class="btn btn-success" OnClick="BtnAdd_Click" Text="Ingresar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Button ID="BtnSetData" runat="server" class="btn btn-danger"  OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="setOfTasks">
 
-                             <h1>Nuevo ingreso por lote</h1>
-
-                             <div>
-                                Ingrese las fechas deseadas
-                            <asp:Calendar ID="Calendar2" runat="server" BackColor="White" BorderColor="Black" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" SelectedDate="10/26/2017 10:00:30" TitleFormat="Month" Width="400px">
-                                <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" ForeColor="#333333" Height="10pt" />
-                                <DayStyle Width="14%" />
-                                <NextPrevStyle Font-Size="8pt" ForeColor="White" />
-                                <OtherMonthDayStyle ForeColor="#999999" />
-                                <SelectedDayStyle BackColor="#CC3333" ForeColor="Maroon" />
-                                <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
-                                <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
-                                <TodayDayStyle BackColor="#CCCC99" />
+                            <h1>Nuevo ingreso por lote</h1>
+                               
+                            <div>
+                                <label>Ingrese las fechas deseadas</label>
+                                <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Black" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px">
+                                    <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" ForeColor="#333333" Height="10pt" />
+                                    <DayStyle Width="14%" />
+                                    <NextPrevStyle Font-Size="8pt" ForeColor="White" />
+                                    <OtherMonthDayStyle ForeColor="#999999" />
+                                    <SelectedDayStyle BackColor="#CC3333" ForeColor="Maroon" />
+                                    <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
+                                    <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
+                                    <TodayDayStyle BackColor="#CCCC99" />
                                 </asp:Calendar>
-                                 <asp:Button ID="BtnAdddate" runat="server" Text=">>" />
-                                 <asp:ListBox ID="Lbdates" runat="server"></asp:ListBox>
+                            
+                                <asp:Button ID="BtnAddDate" runat="server" class="btn btn-basic" Text=">>" />
+                                <asp:ListBox ID="Lbdates" runat="server"></asp:ListBox>
                             </div>
 
-                            <div>
-                                Proyecto<asp:DropDownList ID="DdlProjectSoT" runat="server">
+                           <div>
+                                <label>Proyecto</label>
+                                <asp:DropDownList ID="DdlProjectSoT" runat="server" Style="margin-left: 65px; margin-bottom: 20px;" Width="200px">
                                 </asp:DropDownList>
                             </div>
                             <div>
-                                Categoría<asp:DropDownList ID="DdlCategorySoT" runat="server">
+                                <label>Categoría</label>
+                                <asp:DropDownList ID="DdlCategorySoT" runat="server" Style="margin-left: 60px; margin-bottom: 20px" Width="200px">
                                 </asp:DropDownList>
                             </div>
-                           
-                            <div>
-                                <asp:RadioButton ID="RbregularHoursSoT" runat="server" OnCheckedChanged="RadioButton1_CheckedChanged" Text="Horas regulares" />
-                                <asp:RadioButton ID="RbextraHoursSoT" runat="server" OnCheckedChanged="RadioButton2_CheckedChanged" Text="Horas extra" />
+ <div>
+
+                                <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" Style="margin: 20px 0px 20px 80px; list-style: none">
+                                    <asp:ListItem Value="0" style="margin-right: 20px;">Horas regulares</asp:ListItem>
+                                    <asp:ListItem Value="1">Horas extra</asp:ListItem>
+                                </asp:RadioButtonList>
                             </div>
                             <div>
-                                Tiempo dedicado:
-                                Horas
-                                <asp:DropDownList ID="DddlHoursSoT" runat="server">
+                                <label>Tiempo dedicado:</label>
+                                <br />
+                                <label style="margin-left: 80px">Horas</label>
+                                <asp:DropDownList ID="DdlHoursSoT" runat="server" Style="margin-left: 30px" Width="60px">
                                 </asp:DropDownList>
-                                Minutos
-                                <asp:DropDownList ID="DdlMinutesSoT" runat="server">
+                                <label style="margin-left: 20px">Minutos</label>
+                                <asp:DropDownList ID="DdlMinutesSoT" runat="server" Style="margin-left: 30px" Width="60px">
                                 </asp:DropDownList>
                             </div>
                             <div>
-                                Descripción<textarea id="TaDescriptionSoT" name="S1" style="width: 323px; height: 101px"></textarea>
+                                <label>Descripción</label>
+                                <textarea id="TaDescription2" name="S1" style="width: 350px; height: 101px; margin-left: 30px; margin-bottom: 20px;"></textarea>
 
                             </div>
-                            <div>
-                                <asp:Button ID="BtnCancelSoT" runat="server" OnClick="BtnCancel_Click" Text="Cancelar" />
-                                <asp:Button ID="BtnAddSoT" runat="server" OnClick="BtnAdd_Click" Text="Ingresar" />
-                                <asp:Button ID="BtnSetdataSoT" runat="server" OnClick="BtnSetData_Click" Text="Limpiar campos" />
+                            <div style="text-align: center">
+                                <asp:Button ID="BtnCancelSoT" runat="server" class="btn btn-danger"  OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Button ID="BtnAddSoT" runat="server" class="btn btn-success" OnClick="BtnAdd_Click" Text="Ingresar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Button ID="BtnSetDataSoT" runat="server" class="btn btn-danger"  OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
                             </div>
 
                         </div>
-
                     </div>
                 </div>
             </div>

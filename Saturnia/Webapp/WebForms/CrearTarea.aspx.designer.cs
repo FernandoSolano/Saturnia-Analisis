@@ -40,22 +40,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Calendar Calendar1;
         
         /// <summary>
-        /// Control RbRegularHours.
+        /// Control RadioButtonList1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RbRegularHours;
-        
-        /// <summary>
-        /// Control RbExtraHours.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RbExtraHours;
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
         
         /// <summary>
         /// Control DdlHours.
@@ -112,13 +103,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Calendar Calendar2;
         
         /// <summary>
-        /// Control BtnAdddate.
+        /// Control BtnAddDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnAdddate;
+        protected global::System.Web.UI.WebControls.Button BtnAddDate;
         
         /// <summary>
         /// Control Lbdates.
@@ -148,31 +139,22 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.DropDownList DdlCategorySoT;
         
         /// <summary>
-        /// Control RbregularHoursSoT.
+        /// Control RadioButtonList2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RbregularHoursSoT;
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList2;
         
         /// <summary>
-        /// Control RbextraHoursSoT.
+        /// Control DdlHoursSoT.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RbextraHoursSoT;
-        
-        /// <summary>
-        /// Control DddlHoursSoT.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DddlHoursSoT;
+        protected global::System.Web.UI.WebControls.DropDownList DdlHoursSoT;
         
         /// <summary>
         /// Control DdlMinutesSoT.
@@ -202,12 +184,12 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Button BtnAddSoT;
         
         /// <summary>
-        /// Control BtnSetdataSoT.
+        /// Control BtnSetDataSoT.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSetdataSoT;
+        protected global::System.Web.UI.WebControls.Button BtnSetDataSoT;
     }
 }

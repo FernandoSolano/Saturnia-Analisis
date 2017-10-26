@@ -11,11 +11,16 @@ namespace Webapp.WebForms
 {
     public partial class CrearTarea : System.Web.UI.Page
     {
+
+       private TaskBusiness taskBusiness;
+       private CategoryBusiness categoryBusiness;
+       private ProjectBusiness projectBusiness;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            TaskBusiness taskBusiness = new TaskBusiness();
-            CategoryBusiness categoryBusiness = new CategoryBusiness();
-            ProjectBusiness projectBusiness = new ProjectBusiness();
+            taskBusiness = new TaskBusiness();
+            categoryBusiness = new CategoryBusiness();
+            projectBusiness = new ProjectBusiness();
 
             Category category = new Category();
             List<Category> categories = categoryBusiness.SearchCategory(category);
@@ -29,20 +34,28 @@ namespace Webapp.WebForms
             DdlCategorySoT.DataTextField = "Name";
             DdlCategorySoT.DataBind();
 
-            Project project = new Project();
+            User user = new User();
+           // user.Id = (int)Session["userId"];
+            user.Id = 5;
 
-           
+            List<Project> collaboratorProjects = projectBusiness.GetProjectsByCollaborator(user);
+            DdlProject.DataSource = collaboratorProjects;
+            DdlProject.DataValueField = "Id";
+            DdlProject.DataTextField = "Name";
+            DdlProject.DataBind();
+
+            DdlProjectSoT.DataSource = collaboratorProjects;
+            DdlProjectSoT.DataValueField = "Id";
+            DdlProjectSoT.DataTextField = "Name";
+            DdlProjectSoT.DataBind();
+
+
+            
+
+
         }
 
-        protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void RadioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         protected void BtnCancel_Click(object sender, EventArgs e)
         {
@@ -58,6 +71,11 @@ namespace Webapp.WebForms
         {
 
         }
-       
+
+        protected void AddDateToList(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
