@@ -49,13 +49,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// Control tbProject.
+        /// Control ddlProject.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbProject;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProject;
         
         /// <summary>
         /// Control Label2.
@@ -67,13 +67,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Control tbCategory.
+        /// Control ddlCategory.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbCategory;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
         
         /// <summary>
         /// Control Label3.
@@ -148,21 +148,21 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.TextBox tbDate;
         
         /// <summary>
-        /// Control Button1.
+        /// Control BtnUpdate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button BtnUpdate;
         
         /// <summary>
-        /// Control btnCancel.
+        /// Control BtnCancel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.Button BtnCancel;
     }
 }

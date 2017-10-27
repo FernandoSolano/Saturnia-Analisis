@@ -22,7 +22,8 @@
                     <asp:Label ID="Label4" runat="server" Text="Proyecto:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="tbProject" runat="server" Width="182px"></asp:TextBox>
+                    <asp:DropDownList ID="ddlProject" runat="server" Height="16px" Width="189px">
+                    </asp:DropDownList>
                 </td>
             </tr>
            
@@ -31,7 +32,8 @@
                     <asp:Label ID="Label2" runat="server" Text="Categoria:"></asp:Label> 
                 </td>
                 <td>
-                    <asp:TextBox ID="tbCategory" runat="server" Width="182px"></asp:TextBox>
+                    <asp:DropDownList ID="ddlCategory" runat="server" Height="16px" Width="189px">
+                    </asp:DropDownList>
                 </td>
             </tr>
 
@@ -40,13 +42,13 @@
                     <asp:Label ID="Label3" runat="server" Text="Descripción:"></asp:Label> 
                 </td>
                 <td>
-                    <asp:TextBox ID="tbDescription" runat="server" TextMode="MultiLine" Width="182px"></asp:TextBox>
+                    <asp:TextBox ID="tbDescription" runat="server" TextMode="MultiLine" Width="184px"></asp:TextBox>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <asp:Label ID="Label7" runat="server" Text="Horas invertidas:"></asp:Label> 
+                    <asp:Label ID="Label7" runat="server" Text="Horas regulares:"></asp:Label> 
                 </td>
                 <td>
                     <asp:TextBox ID="tbHours" runat="server" Width="182px"></asp:TextBox>
@@ -69,19 +71,15 @@
                 </td>
 
                 <td>
-                    <asp:TextBox ID="tbDate" TextMode="Date" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tbDate" TextMode="Date" runat="server" Width="180px"></asp:TextBox>
                 </td>
 
             </tr>
 
              <tr>
                  <td>
-                     <asp:Button ID="Button1" runat="server" OnClick="btnUpdateTask_Click" Text="Actualizar" />
-                 </td>
-
-                <td>
-                    <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancelar" />
-                    
+                    <asp:Button ID="BtnUpdate" runat="server" class="btn btn-success" OnClick="btnUpdateTask_Click" Text="Actualizar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                    <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="btnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />              
                 </td>
 
             </tr>
