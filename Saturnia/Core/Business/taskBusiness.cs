@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Core.Business
 {
-    class TaskBusiness
+    public class TaskBusiness
     {
 
         private TaskData taskData;
