@@ -67,6 +67,15 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.DropDownList DdlMinutes;
         
         /// <summary>
+        /// Control TbDescription.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TbDescription;
+        
+        /// <summary>
         /// Control BtnCancel.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,15 @@ namespace Webapp.WebForms {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnSetData;
+        
+        /// <summary>
+        /// Control LblWarning.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblWarning;
         
         /// <summary>
         /// Control Calendar2.
@@ -166,6 +184,15 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.DropDownList DdlMinutesSoT;
         
         /// <summary>
+        /// Control TbDescription2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TbDescription2;
+        
+        /// <summary>
         /// Control BtnCancelSoT.
         /// </summary>
         /// <remarks>
@@ -191,5 +218,14 @@ namespace Webapp.WebForms {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnSetDataSoT;
+        
+        /// <summary>
+        /// Control LblWarningSoT.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblWarningSoT;
     }
 }

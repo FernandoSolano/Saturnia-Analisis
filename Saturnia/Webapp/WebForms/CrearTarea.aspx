@@ -45,7 +45,7 @@
 
                             <div>
 
-                                <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" Style="margin: 20px 0px 20px 80px; list-style: none">
+                                <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" Style="margin: 20px 0px 20px 80px; list-style: none" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="True">
                                     <asp:ListItem Value="0" style="margin-right: 20px;">Horas regulares</asp:ListItem>
                                     <asp:ListItem Value="1">Horas extra</asp:ListItem>
                                 </asp:RadioButtonList>
@@ -58,17 +58,20 @@
                                 </asp:DropDownList>
                                 <label style="margin-left: 20px">Minutos</label>
                                 <asp:DropDownList ID="DdlMinutes" runat="server" Style="margin-left: 30px" Width="60px">
+                                    <asp:ListItem>00</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div>
-                                <label>Descripción</label>
-                                <textarea id="TaDescription" name="S1" style="width: 350px; height: 101px; margin-left: 30px; margin-bottom: 20px;"></textarea>
+                                <label>Descripción</label>&nbsp;
+                                <asp:TextBox ID="TbDescription" runat="server" Height="101px" TextMode="MultiLine" Width="350px" style=" margin-left: 30px; margin-bottom: 20px;"></asp:TextBox>
 
                             </div>
                             <div style="text-align: center">
                                 <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
                                 <asp:Button ID="BtnAdd" runat="server" class="btn btn-success" OnClick="BtnAdd_Click" Text="Ingresar" Style="margin-left: 10px" Height="30px" Width="120px" />
                                 <asp:Button ID="BtnSetData" runat="server" class="btn btn-danger" OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Label ID="LblWarning" runat="server" ForeColor="Black"></asp:Label>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="setOfTasks">
@@ -104,7 +107,7 @@
                             </div>
                             <div>
 
-                                <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" Style="margin: 20px 0px 20px 80px; list-style: none">
+                                <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="RadioButtonList2_SelectedIndexChanged" Style="margin: 20px 0px 20px 80px; list-style: none" AutoPostBack="True">
                                     <asp:ListItem Value="0" style="margin-right: 20px;">Horas regulares</asp:ListItem>
                                     <asp:ListItem Value="1">Horas extra</asp:ListItem>
                                 </asp:RadioButtonList>
@@ -117,20 +120,24 @@
                                 </asp:DropDownList>
                                 <label style="margin-left: 20px">Minutos</label>
                                 <asp:DropDownList ID="DdlMinutesSoT" runat="server" Style="margin-left: 30px" Width="60px">
+                                    <asp:ListItem>00</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div>
-                                <label>Descripción</label>
-                                <textarea id="TaDescription2" name="S1" style="width: 350px; height: 101px; margin-left: 30px; margin-bottom: 20px;"></textarea>
+                                <label>Descripción</label>&nbsp;
+                                <asp:TextBox ID="TbDescription2" runat="server" Height="101px" TextMode="MultiLine" Width="350px" style=" margin-left: 30px; margin-bottom: 20px;"></asp:TextBox>
 
                             </div>
                             <div style="text-align: center">
                                 <asp:Button ID="BtnCancelSoT" runat="server" class="btn btn-danger" OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
                                 <asp:Button ID="BtnAddSoT" runat="server" class="btn btn-success" OnClick="BtnAdd_Click" Text="Ingresar" Style="margin-left: 10px" Height="30px" Width="120px" />
                                 <asp:Button ID="BtnSetDataSoT" runat="server" class="btn btn-danger" OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                 <asp:Label ID="LblWarningSoT" runat="server" ForeColor="Maroon"></asp:Label>
                             </div>
 
                         </div>
+                       
                     </div>
                 </div>
             </div>
