@@ -21,40 +21,42 @@ namespace Webapp.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
             if (Page.IsPostBack == false)
             {
+
                 if (Request.QueryString["id"] != null)
                 {
-                    setProjectData();
-                   
+
+                    Project project = new Project();
+                    project.Id = Int32.Parse(Request.QueryString["id"]);
+                    project = this.projectBusiness.ShowProject(project);
+                    tbName.Text = project.Name;
+                    tbDescription.Text = project.Description;
+                    tbEstimatedHours.Text = project.EstimatedHours.ToString();
+
+                    CdStartDate.SelectedDate = DateTime.Parse(project.StartDate.ToString());
+                    CdStartDate.VisibleDate = DateTime.Parse(project.StartDate.ToString());
+
+                    if (project.EndDate.ToString() != "01/01/01 00:00:00")
+                    {
+                        CdEndDate.SelectedDate = DateTime.Parse(project.EndDate.ToString());
+                        CdEndDate.VisibleDate = DateTime.Parse(project.EndDate.ToString());
+                    }
+                    else {
+                        lbEndDateError.Visible = true;
+                        lbEndDateError.Text="El proyecto no cuenta con una fecha de finalizacíon";
+                    }
+
                 }
+                else
+                {
 
+                }
             }
         }
 
-        private void setProjectData()
-        {
-            Project project = new Project();
-            project.Id = Int32.Parse(Request.QueryString["id"]);
-            project = this.projectBusiness.ShowProject(project);
-            tbName.Text = project.Name;
-            tbDescription.Text = project.Description;
-            tbEstimatedHours.Text = project.EstimatedHours.ToString();
 
-            CdStartDate.SelectedDate = DateTime.Parse(project.StartDate.ToString());
-            CdStartDate.VisibleDate = DateTime.Parse(project.StartDate.ToString());
-
-            if (project.EndDate.ToString() != "01/01/01 00:00:00")
-            {
-                CdEndDate.SelectedDate = DateTime.Parse(project.EndDate.ToString());
-                CdEndDate.VisibleDate = DateTime.Parse(project.EndDate.ToString());
-            }
-            else
-            {
-                lbEndDateError.Visible = true;
-                lbEndDateError.Text = "El proyecto no cuenta con una fecha de finalizacíon";
-            }
-        }
 
         protected void btnUpdateProject_Click(object sender, EventArgs e)
         {

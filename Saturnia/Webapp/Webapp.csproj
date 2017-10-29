@@ -147,7 +147,6 @@
     <Content Include="Scripts\SearchProject.js" />
     <Content Include="WebForms\ActualizarCategoria.aspx" />
     <Content Include="WebForms\ActualizarProyecto.aspx" />
-    <Content Include="WebForms\ActualizarTarea.aspx" />
     <Content Include="WebForms\AsignarUsuario.aspx" />
     <Content Include="WebForms\AsociarUsuario.aspx" />
     <Content Include="WebForms\BuscarTarea.aspx" />
@@ -246,13 +245,6 @@
     </Compile>
     <Compile Include="WebForms\ActualizarProyecto.aspx.designer.cs">
       <DependentUpon>ActualizarProyecto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForms\ActualizarTarea.aspx.cs">
-      <DependentUpon>ActualizarTarea.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForms\ActualizarTarea.aspx.designer.cs">
-      <DependentUpon>ActualizarTarea.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\AsignarUsuario.aspx.cs">
       <DependentUpon>AsignarUsuario.aspx</DependentUpon>

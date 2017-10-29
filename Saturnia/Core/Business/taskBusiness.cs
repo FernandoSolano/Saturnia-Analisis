@@ -23,15 +23,9 @@ namespace Core.Business
             return taskData.AddTask(task);
         }
 
-
         public float GetHoursByDateAndCollaborator(Task task)
         {
             return taskData.GetHoursByDateAndCollaborator(task);
-
-        public void updateTask(Task task)
-        {
-             taskData.updateTask(task);
-
         }
     }
 }
