@@ -16,11 +16,13 @@ namespace Webapp.WebForms
         private CategoryBusiness categoryBusiness;
         private ProjectBusiness projectBusiness;
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             taskBusiness = new TaskBusiness();
             categoryBusiness = new CategoryBusiness();
             projectBusiness = new ProjectBusiness();
+
 
             if (!Page.IsPostBack)
             {
@@ -97,7 +99,7 @@ namespace Webapp.WebForms
             task.Collaborator.Id = (int)Session["userId"];
             if (Calendar1.SelectedDate.Year.ToString() == "0001")
             {
-                LblWarning.Text = "debe ingresar una fecha válida";
+                LblWarning.Text = "Debe ingresar una fecha válida";
             }
             else
             {
@@ -158,6 +160,106 @@ namespace Webapp.WebForms
 
         }
 
+        protected void BtnAddSoT_Click(object sender, EventArgs e)
+        {
+
+
+            if (Lbdates.Items.Count > 1)
+            {
+                foreach (ListItem date in Lbdates.Items)
+                {
+                    Task testTask = new Task();
+                    testTask.Collaborator.Id = (int)Session["userId"];
+                    testTask.Date = DateTime.Parse(date.Text);
+                    if (RadioButtonList2.SelectedIndex == 0)
+                    {
+                        testTask.ExtraHours = false;
+                    }
+                    else if (RadioButtonList2.SelectedIndex == 1)
+                    {
+                        testTask.ExtraHours = true;
+                    }
+                    float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(testTask);
+                    float hoursInTheForm = float.Parse(DdlHoursSoT.Text + "," + DdlMinutesSoT.Text);
+
+                    if ((testTask.ExtraHours && registeredHours + hoursInTheForm > 16) || (!testTask.ExtraHours && registeredHours + hoursInTheForm > 8))
+                    {
+                        LblWarningSoT.Text = "Usted ya ha ingresado " + registeredHours + " horas  anteriormente para el día " + testTask.Date.ToShortDateString() + ", no se puede pasar del límite de horas diario.";
+                        break;
+                    }
+
+                }
+
+
+                foreach (ListItem date in Lbdates.Items)
+                {
+
+                    Task task = new Task();
+                    task.Category.Id = Int32.Parse(DdlCategorySoT.SelectedItem.Value);
+                    task.Project.Id = Int32.Parse(DdlProjectSoT.SelectedItem.Value);
+                    task.Collaborator.Id = (int)Session["userId"];
+                    task.Date = DateTime.Parse(date.Text);
+                    if (TbDescription2.Text == "")
+                    {
+                        LblWarningSoT.Text = "Debe agregar una descripción de la tarea realizada";
+
+                    }
+                    else
+                    {
+                        task.Description = TbDescription2.Text;
+                        if ((DdlHoursSoT.SelectedIndex == 0 && DdlMinutesSoT.SelectedIndex == 0) ||
+                            (RadioButtonList2.SelectedIndex == 0 && DdlHoursSoT.SelectedIndex == 8 && DdlMinutesSoT.SelectedIndex == 1) ||
+                            (RadioButtonList2.SelectedIndex == 1 && DdlHoursSoT.SelectedIndex == 16 && DdlMinutesSoT.SelectedIndex == 1))
+                        {
+                            LblWarningSoT.Text = "No puede ingresar horas fuera del rango permitido";
+                        }
+                        else
+                        {
+
+                            if (RadioButtonList2.SelectedIndex == 0)
+                            {
+                                task.ExtraHours = false;
+                            }
+                            else if (RadioButtonList2.SelectedIndex == 1)
+                            {
+                                task.ExtraHours = true;
+                            }
+
+
+                            float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task);
+                            float hoursInTheForm = float.Parse(DdlHoursSoT.Text + "," + DdlMinutesSoT.Text);
+
+                            if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
+                            {
+                                LblWarningSoT.Text = "Usted ya ha ingresado " + registeredHours + " horas  anteriormente para el día " + task.Date.ToShortDateString() + ", no se puede pasar del límite de horas diario.";
+                                break;
+                            }
+                            else
+                            {
+                                task.Hours = hoursInTheForm;
+                                task = taskBusiness.addTask(task);
+                                if (task.Id > 0)
+                                {
+
+                                    LblWarningSoT.Text = "Se ha ingresado la nueva tarea con éxito";
+                                }
+                                else
+                                {
+                                    LblWarningSoT.Text = "Ha ocurrido un error, envíe el formulario nuevamente";
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                LblWarningSoT.Text = "Debe seleccionar al menos dos fechas para realizar el ingreso por lote";
+            }
+        }
+
         protected void BtnRemove_Click(object sender, EventArgs e)
         {
             if (Lbdates.SelectedIndex > -1)
@@ -173,9 +275,9 @@ namespace Webapp.WebForms
 
         protected void AddDateToList(object sender, EventArgs e)
         {
-            if (Lbdates.Items.ToString().Contains(Calendar2.SelectedDate.ToShortDateString()))
+            if (Lbdates.Items.Contains(new ListItem(Calendar2.SelectedDate.ToShortDateString())))
             {
-                LblWarningSoT.Text = "La fecha ya ha sido seleccionada con anterioridad";
+                LblWarningSoT.Text = "La fecha ya ha sido seleccionada anteriormente";
             }
             else
             {
@@ -262,6 +364,14 @@ namespace Webapp.WebForms
             }
 
 
+        }
+
+        protected void DisableDays(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date.Day > DateTime.Now.Day || e.Day.Date.Month > DateTime.Now.Month || e.Day.Date.Year > DateTime.Now.Year)
+            {
+                e.Day.IsSelectable = false;
+            }
         }
     }
 }

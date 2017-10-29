@@ -34,7 +34,7 @@
                                         </div>
                                         <div>
                                             <label>Fecha de ingreso</label>
-                                            <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px">
+                                            <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px" OnDayRender="DisableDays">
                                                 <DayHeaderStyle BackColor="#990000" Font-Bold="True" Font-Size="7pt" ForeColor="Silver" Height="10pt" />
                                                 <DayStyle Width="14%" />
                                                 <NextPrevStyle Font-Size="8pt" ForeColor="White" />
@@ -91,7 +91,17 @@
                                 <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
                                 <asp:Button ID="BtnAdd" runat="server" class="btn btn-success" OnClick="BtnAdd_Click" Text="Ingresar" Style="margin-left: 10px" Height="30px" Width="120px" />
                                 <asp:Button ID="BtnSetData" runat="server" class="btn btn-danger" OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
-                                <asp:Label ID="LblWarning" runat="server" ForeColor="Black" Style="margin-top: 10px"></asp:Label>
+                                <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <fieldset>
+                                            <asp:Label ID="LblWarning" runat="server" ForeColor="Black" Style="margin-top: 10px"></asp:Label>
+                                        </fieldset>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="BtnAdd" EventName="Click" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="setOfTasks">
@@ -103,7 +113,7 @@
                                         <div>
                                             <label>Ingrese las fechas deseadas</label>
 
-                                            <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px">
+                                            <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px" OnDayRender="DisableDays">
                                                 <DayHeaderStyle BackColor="#990000" Font-Bold="True" Font-Size="7pt" ForeColor="Silver" Height="10pt" />
                                                 <DayStyle Width="14%" />
                                                 <NextPrevStyle Font-Size="8pt" ForeColor="White" />
@@ -119,8 +129,8 @@
                                             <asp:UpdatePanel ID="UpDates" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
                                                     <fieldset>
-                                                        <asp:ListBox ID="Lbdates" runat="server" Width="200px" Style="margin-left: 60px; margin-top: 10px; margin-bottom: 10px"></asp:ListBox>
-                                                        <asp:Button ID="Btnremove" runat="server" Text="Remover"  OnClick="BtnRemove_Click" class="btn btn-warning" Style="margin-left: 10px; margin-top: 10px; margin-bottom: 80px"/>
+                                                        <asp:ListBox ID="Lbdates" runat="server" Width="230px" Height="100px" Style="margin-left: 60px; margin-top: 10px; margin-bottom: 10px"></asp:ListBox>
+                                                        <asp:Button ID="Btnremove" runat="server" Text="Remover" OnClick="BtnRemove_Click" class="btn btn-warning" Style="margin-left: 10px; margin-top: 10px; margin-bottom: 90px" />
                                                     </fieldset>
                                                 </ContentTemplate>
                                                 <Triggers>
@@ -169,7 +179,7 @@
                                         </div>
                                         <div>
                                             <label>Descripción</label>&nbsp;
-                                <asp:TextBox ID="TbDescription2" runat="server" Height="101px" TextMode="MultiLine" Width="350px" Style="margin-left: 30px; margin-bottom: 20px;"></asp:TextBox>
+                                            <asp:TextBox ID="TbDescription2" runat="server" Height="101px" TextMode="MultiLine" Width="350px" Style="margin-left: 30px; margin-bottom: 20px;"></asp:TextBox>
 
                                         </div>
                                     </fieldset>
@@ -182,9 +192,18 @@
                             </asp:UpdatePanel>
                             <div style="text-align: center">
                                 <asp:Button ID="BtnCancelSoT" runat="server" class="btn btn-danger" OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
-                                <asp:Button ID="BtnAddSoT" runat="server" class="btn btn-success" OnClick="BtnAdd_Click" Text="Ingresar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Button ID="BtnAddSoT" runat="server" class="btn btn-success" OnClick="BtnAddSoT_Click" Text="Ingresar" Style="margin-left: 10px" Height="30px" Width="120px" />
                                 <asp:Button ID="BtnSetDataSoT" runat="server" class="btn btn-danger" OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
-                                <asp:Label ID="LblWarningSoT" runat="server" ForeColor="Maroon"></asp:Label>
+                                <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <fieldset>
+                                            <asp:Label ID="LblWarningSoT" runat="server" Style="margin-top: 10px"></asp:Label>
+                                        </fieldset>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="BtnAddSoT" EventName="Click" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
                             </div>
 
                         </div>
