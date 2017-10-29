@@ -80,6 +80,7 @@ namespace Webapp.WebForms
             DdlMinutes.SelectedIndex = 0;
             DdlHoursSoT.Items.Clear();
             DdlMinutesSoT.SelectedIndex = 0;
+            Lbdates.Items.Clear();
 
         }
 
@@ -141,7 +142,7 @@ namespace Webapp.WebForms
                             task = taskBusiness.addTask(task);
                             if (task.Id > 0)
                             {
-                                
+
                                 LblWarning.Text = "Se ha ingresado la nueva tarea con éxito";
                             }
                             else
@@ -157,6 +158,14 @@ namespace Webapp.WebForms
 
         }
 
+        protected void BtnRemove_Click(object sender, EventArgs e)
+        {
+            if (Lbdates.SelectedIndex > -1)
+            {
+                Lbdates.Items.RemoveAt(Lbdates.SelectedIndex);
+            }
+        }
+
         protected void BtnSetData_Click(object sender, EventArgs e)
         {
             resetData();
@@ -164,7 +173,14 @@ namespace Webapp.WebForms
 
         protected void AddDateToList(object sender, EventArgs e)
         {
-
+            if (Lbdates.Items.ToString().Contains(Calendar2.SelectedDate.ToShortDateString()))
+            {
+                LblWarningSoT.Text = "La fecha ya ha sido seleccionada con anterioridad";
+            }
+            else
+            {
+                Lbdates.Items.Add(Calendar2.SelectedDate.ToShortDateString());
+            }
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
