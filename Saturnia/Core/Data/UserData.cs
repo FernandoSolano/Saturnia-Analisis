@@ -252,6 +252,5 @@ namespace Core.Data
                 return false;
             }
         }
-
     }
 }
