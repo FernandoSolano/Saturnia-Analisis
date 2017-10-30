@@ -32,7 +32,7 @@ namespace Core.Data
 
             // enviarle parametro al procedimiento
             cmd.Parameters.AddWithValue("@id_project", project.Id);
-
+            
             cmd.ExecuteNonQuery();//ejecuto el procedimiento almacenado
 
             sqlConnection.Close();//cierra la conexion
@@ -96,16 +96,16 @@ namespace Core.Data
             }
             return project;
         }
-        /// <summary>
+    /// <summary>
         /// Busqueda de proyectos con nombres similares al recibido.
         /// </summary>
         /// <param name="project">El objeto que contiene el nombre a buscar.</param>
         /// <returns> Una lista de proyectos que coincidieron con el nombre dado.</returns>
-        public List<Project> SearchProject(Project project)
+        public List <Project> SearchProject(Project project)
         {
             //Declaracion e inicializacion de variables e instancias.
             SqlConnection connection = new SqlConnection(connectionString);
-
+            
             //Nombre del SP
             string sqlStoredProcedure = "SP_PROJECT_SEARCH";
 
@@ -116,7 +116,7 @@ namespace Core.Data
 
             //Lista de retorno.
             List<Project> projects = new List<Project>();
-
+            
             //Objeto temporal para llenar la lista.
             Project tempProject;
 
@@ -133,7 +133,7 @@ namespace Core.Data
 
             //Ejecutamos el lector para recibir lo devuelto.
             reader = sqlCommand.ExecuteReader();
-
+            
             if (reader.HasRows)
             {
                 //Si hubiesen resultados, los añadimos uno a uno a la lista.
@@ -144,8 +144,7 @@ namespace Core.Data
                     tempProject.Name = reader.GetString(1);
                     projects.Add(tempProject);
                 }
-            }
-            else
+            } else
             {
                 //Si no hay resultados, agregamos un proyecto con id -1 y nombre que indique que no hubo resultados.
                 tempProject = new Project();
@@ -201,22 +200,21 @@ namespace Core.Data
                 project.Description = reader.GetString(2);
                 project.EstimatedHours = reader.GetInt32(3);
                 project.StartDate = reader.GetDateTime(4);
-
+                
                 if (reader.IsDBNull(5) == false)
                 {
                     project.EndDate = reader.GetDateTime(5);
                 }
+                
 
-
-            }
-            else
+            } else
             {
 
                 project.Name = "Error en conexión";
                 project.State = false;
                 project.Description = "Hubo un error en ProjectData";
                 project.EstimatedHours = 0;
-                project.StartDate = new DateTime(1995, 8, 8);
+                project.StartDate = new DateTime(1995,8,8);
                 project.EndDate = new DateTime(2020, 8, 8);
 
             }
@@ -246,53 +244,6 @@ namespace Core.Data
             {
                 throw sqlException;
             }
-        }
-
-        public List<Project> GetProjectsByCollaborator(User user)
-        {
-
-            List<Project> projects = new List<Project>();
-            Project temporalProject;
-
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand sqlCommand = new SqlCommand("SP_PROJECT_BY_COLLABORATOR_SEARCH", connection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@Id", user.Id);
-
-            SqlDataReader reader;
-            try
-            {
-                sqlCommand.Connection.Open();
-                //sqlCommand.ExecuteNonQuery();
-
-                reader = sqlCommand.ExecuteReader();
-
-
-                while (reader.Read())
-                {
-                    temporalProject = new Project();
-                    temporalProject.Id = Int32.Parse(reader["id"].ToString());
-                    temporalProject.Name = reader["name"].ToString();
-                    temporalProject.Description = reader["description"].ToString();
-                    projects.Add(temporalProject);
-                }
-
-
-
-                sqlCommand.Connection.Close();
-                return projects;
-            }
-            catch (SqlException sqlException)
-            {
-                throw sqlException;
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-
-
         }
     }
 }

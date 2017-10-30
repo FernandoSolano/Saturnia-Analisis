@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Core.Business
 {
-    public class TaskBusiness
+    class TaskBusiness
     {
 
         private TaskData taskData;
@@ -21,11 +21,6 @@ namespace Core.Business
         public Task addTask(Task task)
         {
             return taskData.AddTask(task);
-        }
-
-        public float GetHoursByDateAndCollaborator(Task task)
-        {
-            return taskData.GetHoursByDateAndCollaborator(task);
         }
     }
 }
