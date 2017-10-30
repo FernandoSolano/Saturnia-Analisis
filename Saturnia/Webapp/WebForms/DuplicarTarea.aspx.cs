@@ -14,14 +14,13 @@ namespace Webapp.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
             User user = new User();
-            if (Session["userId"] != null && Request.QueryString["TaskId"] != null)
+            if (Session["userId"] != null || Request.QueryString["TaskId"] != null)
             {
                 user.Id = (int)Session["userId"];
-                //TODO... Recibir id de tarea con un get
                 ProjectBusiness projectBusiness = new ProjectBusiness();
                 CategoryBusiness categoryBusiness = new CategoryBusiness();
                 TaskBusiness taskBusiness = new TaskBusiness();
-                //TODO... Obtener proyectos para determinado usuario
+                //Obtener proyectos para determinado usuario
                 ddl_projects.DataSource = projectBusiness.GetProjectsByCollaborator(user);
                 ddl_projects.DataTextField = "Name";
                 ddl_projects.DataValueField = "Id";
@@ -33,11 +32,17 @@ namespace Webapp.WebForms
                 ddl_categories.DataBind();
                 //Asignar valores de la tarea a los controles
                 Task task = new Task();
-                task.Id = Int32.Parse(Request.QueryString["TaskId"]);
-                task = taskBusiness.SearchTask(task);
+                //TODO... Recibir id de tarea con un get
+                //task.Id = Int32.Parse(Request.QueryString["TaskId"]);
+                //*********************Pruebas*********************
+                //task.Id = 147;//Horas regulares
+                task.Id = 155;//Horas extra
+                //*************************************************
+                task = taskBusiness.ShowTask(task);
                 ddl_projects.SelectedValue = task.Project.Id.ToString();
                 ddl_categories.SelectedValue = task.Category.Id.ToString();
-                rbl_hours_type.SelectedValue = task.ExtraHours.ToString();
+                rbl_hours_type.SelectedValue = Convert.ToInt32(task.ExtraHours).ToString();
+                lbl_title.Text = task.ExtraHours.ToString();
                 //TODO... Validar las horas y medias horas, task.Hours es un flotante
                 //ddl_hours.SelectedValue = task.Hours.ToString();
                 //ddl_minutes.SelectedValue = ;

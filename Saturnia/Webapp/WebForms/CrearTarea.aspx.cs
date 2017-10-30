@@ -141,7 +141,7 @@ namespace Webapp.WebForms
                         else
                         {
                             task.Hours = hoursInTheForm;
-                            task = taskBusiness.addTask(task);
+                            task = taskBusiness.AddTask(task);
                             if (task.Id > 0)
                             {
 
@@ -237,7 +237,7 @@ namespace Webapp.WebForms
                             else
                             {
                                 task.Hours = hoursInTheForm;
-                                task = taskBusiness.addTask(task);
+                                task = taskBusiness.AddTask(task);
                                 if (task.Id > 0)
                                 {
 

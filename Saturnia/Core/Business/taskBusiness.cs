@@ -18,7 +18,7 @@ namespace Core.Business
             this.taskData = new TaskData();
         }
 
-        public Task addTask(Task task)
+        public Task AddTask(Task task)
         {
             return taskData.AddTask(task);
         }
@@ -26,6 +26,11 @@ namespace Core.Business
         public float GetHoursByDateAndCollaborator(Task task)
         {
             return taskData.GetHoursByDateAndCollaborator(task);
+        }
+
+        public Task ShowTask(Task task)
+        {
+            return taskData.ShowTask(task);
         }
     }
 }
