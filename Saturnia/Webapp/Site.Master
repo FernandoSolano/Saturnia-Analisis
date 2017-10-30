@@ -14,6 +14,10 @@
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
 <body>
@@ -37,6 +41,7 @@
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
             </Scripts>
+
         </asp:ScriptManager>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -55,10 +60,10 @@
                         <li><a runat="server" href="~/WebForms/BuscarCategoria">Gestión de Categorías</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                      <asp:LinkButton ID="BtnLogout" runat="server"  Text="Cerrar sesion" Width="150px" OnClick="BtnLogout_Click" CausesValidation="False" />
-                                </li>
-                            </ul>
+                        <li>
+                            <asp:LinkButton ID="BtnLogout" runat="server" Text="Cerrar sesion" Width="150px" OnClick="BtnLogout_Click" CausesValidation="False" />
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
