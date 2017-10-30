@@ -36,7 +36,7 @@ namespace Webapp.WebForms
                 }
                 else if (user.Role.Id == 2)
                 {
-                    Response.Redirect("~/Default.aspx");
+                    Response.Redirect("~/WebForms/CrearTarea.aspx");
                 }
 
             }
