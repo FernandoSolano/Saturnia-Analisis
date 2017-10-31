@@ -7,17 +7,15 @@ using System.Web.UI.WebControls;
 
 namespace Webapp
 {
-    public partial class SiteMaster : MasterPage
+    public partial class SiteCollaborator : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-            if (Session["userId"] == null || (int)(Session["userRole"]) != 1)
+            if (Session["userId"] == null)
             {
                 Response.Redirect("~/WebForms/IniciarSesion.aspx");
             }
         }
-
         protected void BtnLogout_Click(object sender, EventArgs e)
         {
             Session.Remove("userId");

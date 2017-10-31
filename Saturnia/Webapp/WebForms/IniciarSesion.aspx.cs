@@ -28,7 +28,7 @@ namespace Webapp.WebForms
             {
                 Session["userId"] = user.Id;
                 Session["userName"] = user.FirstName+" "+user.LastName;
-                Session["userRol"] = user.Role.Id;
+                Session["userRole"] = user.Role.Id;
                 if (user.Role.Id == 1)
                 {
 

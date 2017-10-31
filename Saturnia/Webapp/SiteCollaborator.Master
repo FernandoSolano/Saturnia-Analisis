@@ -1,8 +1,8 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Webapp.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteCollaborator.master.cs" Inherits="Webapp.SiteCollaborator" %>
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 </head>
 <body>
     <form runat="server">
@@ -43,7 +42,6 @@
             </Scripts>
 
         </asp:ScriptManager>
-
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -56,8 +54,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/WebForms/BuscarProyecto">Gestión de Proyectos</a></li>
-                        <li><a runat="server" href="~/WebForms/BuscarCategoria">Gestión de Categorías</a></li>
+                        <li><a runat="server" href="~/WebForms/CrearTarea">Gestión de Tareas</a></li>
+                        <li><a runat="server">Reportes</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
