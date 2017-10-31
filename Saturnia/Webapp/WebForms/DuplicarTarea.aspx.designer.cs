@@ -76,6 +76,15 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.RadioButtonList rbl_hours_type;
         
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// lbl_dedicated_time control.
         /// </summary>
         /// <remarks>
