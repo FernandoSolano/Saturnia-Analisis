@@ -49,14 +49,9 @@ namespace Core.Business
             return this.projectData.ChangeProjectStatus(project);
         }
 
-        public void UpdateProject(Project project)
+      public void UpdatePorject(Project project)
         {
             this.projectData.UpdateProject(project);
-        }
-
-        public List<Project> GetProjectsByCollaborator(User user)
-        {
-            return this.projectData.GetProjectsByCollaborator(user);
         }
     }
 }

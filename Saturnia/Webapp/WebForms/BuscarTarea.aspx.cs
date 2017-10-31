@@ -1,5 +1,4 @@
-﻿
-using Core.Business;
+﻿using Core.Business;
 using Core.Domain;
 using System;
 using System.Collections.Generic;
