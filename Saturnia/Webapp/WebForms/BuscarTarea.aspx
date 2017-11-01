@@ -28,19 +28,28 @@
         </table>
         <!--Fin de table-->
         <!--Inicio de asp:Table-->
-        <asp:Table ID="resultUserTable" runat="server" Visible="false" CssClass="results">
-            <asp:TableHeaderRow>
-                <asp:TableHeaderCell CssClass="results">
-                    Nombre
-                </asp:TableHeaderCell>
-                <asp:TableHeaderCell CssClass="results">
-                    Apellidos
-                </asp:TableHeaderCell>
-                <asp:TableHeaderCell CssClass="results">
-                    Filtrar
-                </asp:TableHeaderCell>
-            </asp:TableHeaderRow>
-        </asp:Table>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <fieldset>
+                    <asp:Table ID="resultUserTable" runat="server" CssClass="results" Visible="false">
+                        <asp:TableHeaderRow>
+                            <asp:TableHeaderCell CssClass="results">
+                            Nombre
+                        </asp:TableHeaderCell>
+                            <asp:TableHeaderCell CssClass="results">
+                            Apellidos
+                        </asp:TableHeaderCell>
+                            <asp:TableHeaderCell CssClass="results">
+                            Filtrar
+                        </asp:TableHeaderCell>
+                        </asp:TableHeaderRow>
+                    </asp:Table>
+                </fieldset>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnSearchUser" EventName="Click" />
+            </Triggers>
+        </asp:UpdatePanel>
         <!--Fin de asp:Table-->
     </div>
     <div id="areaCategory">
@@ -96,6 +105,8 @@
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>
         </asp:Table>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="BTEliminar" runat="server" BackColor="#990000" ForeColor="White" Height="38px" OnClick="BTEliminar_Click" Text="Eliminar" Width="137px" />
     </div>
     <div class="fixDate" align="center">
         <h2 class="fixDate">Rango de fechas</h2>
