@@ -26,13 +26,14 @@ namespace Webapp.WebForms
 
             if (!Page.IsPostBack)
             {
-                setCategoryDropDownList();
-                setProjectsDropDownList();
+                SetCategoryDropDownList();
+                SetProjectsDropDownList();
+                SetHoursDropDownList();
 
             }
         }
 
-        public void setCategoryDropDownList()
+        public void SetCategoryDropDownList()
         {
             Category category = new Category();
             List<Category> categories = categoryBusiness.SearchCategory(category);
@@ -47,7 +48,21 @@ namespace Webapp.WebForms
             DdlCategorySoT.DataBind();
         }
 
-        public void setProjectsDropDownList()
+        public void SetHoursDropDownList()
+        {
+            DdlHours.Items.Clear();
+            DdlHoursSoT.Items.Clear();
+
+            for (int i = 0; i <= 8; i++)
+            {
+                DdlHours.Items.Add(new ListItem(i.ToString()));
+            }
+
+            DdlHoursSoT.Items.AddRange(DdlHours.Items.OfType<ListItem>().ToArray());
+
+        }
+
+        public void SetProjectsDropDownList()
         {
             User user = new User();
             user.Id = (int)Session["userId"];
@@ -72,23 +87,24 @@ namespace Webapp.WebForms
             DdlProjectSoT.DataBind();
         }
 
-        public void resetData()
+        public void ResetData()
         {
-            RadioButtonList1.SelectedIndex = -1;
-            RadioButtonList2.SelectedIndex = -1;
+            RadioButtonList1.SelectedIndex = 0;
+            RadioButtonList2.SelectedIndex = 0;
             TbDescription.Text = "";
             TbDescription2.Text = "";
-            DdlHours.Items.Clear();
+            SetHoursDropDownList();
             DdlMinutes.SelectedIndex = 0;
-            DdlHoursSoT.Items.Clear();
             DdlMinutesSoT.SelectedIndex = 0;
             Lbdates.Items.Clear();
+            LblWarning.Text = "";
+            LblWarningSoT.Text = "";
 
         }
 
         protected void BtnCancel_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/WebForms/IndexColaborador.aspx");
         }
 
         protected void BtnAdd_Click(object sender, EventArgs e)
@@ -130,7 +146,7 @@ namespace Webapp.WebForms
                         {
                             task.ExtraHours = true;
                         }
-                        float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task);
+                        float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
                         float hoursInTheForm = float.Parse(DdlHours.Text + "," + DdlMinutes.Text);
 
                         if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
@@ -179,7 +195,7 @@ namespace Webapp.WebForms
                     {
                         testTask.ExtraHours = true;
                     }
-                    float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(testTask);
+                    float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(testTask).Hours;
                     float hoursInTheForm = float.Parse(DdlHoursSoT.Text + "," + DdlMinutesSoT.Text);
 
                     if ((testTask.ExtraHours && registeredHours + hoursInTheForm > 16) || (!testTask.ExtraHours && registeredHours + hoursInTheForm > 8))
@@ -226,7 +242,7 @@ namespace Webapp.WebForms
                             }
 
 
-                            float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task);
+                            float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
                             float hoursInTheForm = float.Parse(DdlHoursSoT.Text + "," + DdlMinutesSoT.Text);
 
                             if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
@@ -270,7 +286,7 @@ namespace Webapp.WebForms
 
         protected void BtnSetData_Click(object sender, EventArgs e)
         {
-            resetData();
+            ResetData();
         }
 
         protected void AddDateToList(object sender, EventArgs e)
@@ -289,37 +305,19 @@ namespace Webapp.WebForms
         {
             if (RadioButtonList1.SelectedIndex == 0)
             {
-                DdlHours.Items.Clear();
-                DdlHours.Items.Add(new ListItem("0", "0"));
-                DdlHours.Items.Add(new ListItem("1", "1"));
-                DdlHours.Items.Add(new ListItem("2", "2"));
-                DdlHours.Items.Add(new ListItem("3", "3"));
-                DdlHours.Items.Add(new ListItem("4", "4"));
-                DdlHours.Items.Add(new ListItem("5", "5"));
-                DdlHours.Items.Add(new ListItem("6", "6"));
-                DdlHours.Items.Add(new ListItem("7", "7"));
-                DdlHours.Items.Add(new ListItem("8", "8"));
+                for (int i = 9; i <= 16; i++)
+                {
+                    DdlHours.Items.Remove(i.ToString());
+                }
             }
             else if (RadioButtonList1.SelectedIndex == 1)
             {
-                DdlHours.Items.Clear();
-                DdlHours.Items.Add(new ListItem("0", "0"));
-                DdlHours.Items.Add(new ListItem("1", "1"));
-                DdlHours.Items.Add(new ListItem("2", "2"));
-                DdlHours.Items.Add(new ListItem("3", "3"));
-                DdlHours.Items.Add(new ListItem("4", "4"));
-                DdlHours.Items.Add(new ListItem("5", "5"));
-                DdlHours.Items.Add(new ListItem("6", "6"));
-                DdlHours.Items.Add(new ListItem("7", "7"));
-                DdlHours.Items.Add(new ListItem("8", "8"));
-                DdlHours.Items.Add(new ListItem("9", "9"));
-                DdlHours.Items.Add(new ListItem("10", "10"));
-                DdlHours.Items.Add(new ListItem("11", "11"));
-                DdlHours.Items.Add(new ListItem("12", "12"));
-                DdlHours.Items.Add(new ListItem("13", "13"));
-                DdlHours.Items.Add(new ListItem("14", "14"));
-                DdlHours.Items.Add(new ListItem("15", "15"));
-                DdlHours.Items.Add(new ListItem("16", "16"));
+
+
+                for (int i = 9; i <= 16; i++)
+                {
+                    DdlHours.Items.Add(new ListItem(i.ToString()));
+                }
 
             }
 
@@ -329,37 +327,17 @@ namespace Webapp.WebForms
         {
             if (RadioButtonList2.SelectedIndex == 0)
             {
-                DdlHoursSoT.Items.Clear();
-                DdlHoursSoT.Items.Add(new ListItem("0", "0"));
-                DdlHoursSoT.Items.Add(new ListItem("1", "1"));
-                DdlHoursSoT.Items.Add(new ListItem("2", "2"));
-                DdlHoursSoT.Items.Add(new ListItem("3", "3"));
-                DdlHoursSoT.Items.Add(new ListItem("4", "4"));
-                DdlHoursSoT.Items.Add(new ListItem("5", "5"));
-                DdlHoursSoT.Items.Add(new ListItem("6", "6"));
-                DdlHoursSoT.Items.Add(new ListItem("7", "7"));
-                DdlHoursSoT.Items.Add(new ListItem("8", "8"));
+                for (int i = 9; i <= 16; i++)
+                {
+                    DdlHoursSoT.Items.Remove(i.ToString());
+                }
             }
             else if (RadioButtonList2.SelectedIndex == 1)
             {
-                DdlHoursSoT.Items.Clear();
-                DdlHoursSoT.Items.Add(new ListItem("0", "0"));
-                DdlHoursSoT.Items.Add(new ListItem("1", "1"));
-                DdlHoursSoT.Items.Add(new ListItem("2", "2"));
-                DdlHoursSoT.Items.Add(new ListItem("3", "3"));
-                DdlHoursSoT.Items.Add(new ListItem("4", "4"));
-                DdlHoursSoT.Items.Add(new ListItem("5", "5"));
-                DdlHoursSoT.Items.Add(new ListItem("6", "6"));
-                DdlHoursSoT.Items.Add(new ListItem("7", "7"));
-                DdlHoursSoT.Items.Add(new ListItem("8", "8"));
-                DdlHoursSoT.Items.Add(new ListItem("9", "9"));
-                DdlHoursSoT.Items.Add(new ListItem("10", "10"));
-                DdlHoursSoT.Items.Add(new ListItem("11", "11"));
-                DdlHoursSoT.Items.Add(new ListItem("12", "12"));
-                DdlHoursSoT.Items.Add(new ListItem("13", "13"));
-                DdlHoursSoT.Items.Add(new ListItem("14", "14"));
-                DdlHoursSoT.Items.Add(new ListItem("15", "15"));
-                DdlHoursSoT.Items.Add(new ListItem("16", "16"));
+                for (int i = 9; i <= 16; i++)
+                {
+                    DdlHoursSoT.Items.Add(new ListItem(i.ToString()));
+                }
 
             }
 
@@ -368,7 +346,7 @@ namespace Webapp.WebForms
 
         protected void DisableDays(object sender, DayRenderEventArgs e)
         {
-            if (e.Day.Date.Day > DateTime.Now.Day || e.Day.Date.Month > DateTime.Now.Month || e.Day.Date.Year > DateTime.Now.Year)
+            if (e.Day.Date > DateTime.Now.Date)
             {
                 e.Day.IsSelectable = false;
             }

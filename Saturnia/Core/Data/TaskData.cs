@@ -52,7 +52,7 @@ namespace Core.Data
             return task;
         }
 
-        public float GetHoursByDateAndCollaborator(Task task)
+        public Task GetHoursByDateAndCollaborator(Task task)
         {
             float hours = 0;
             SqlConnection connection = new SqlConnection(connectionString);
@@ -71,9 +71,9 @@ namespace Core.Data
                 sqlCommand.ExecuteNonQuery();
 
                 hours = float.Parse(sqlCommand.Parameters["@hours"].Value.ToString());
-
+                task.Hours = hours;
                 sqlCommand.Connection.Close();
-                return hours;
+                return task;
             }
             catch (SqlException sqlException)
             {

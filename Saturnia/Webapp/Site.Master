@@ -52,12 +52,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Saturnia</a>
+                    <a class="navbar-brand" runat="server" href="~/WebForms/IndexAdmin.aspx">Saturnia</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/WebForms/BuscarProyecto">Gestión de Proyectos</a></li>
                         <li><a runat="server" href="~/WebForms/BuscarCategoria">Gestión de Categorías</a></li>
+                         <li><a runat="server" href="~/WebForms/CrearTarea">Gestión de Tareas</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>

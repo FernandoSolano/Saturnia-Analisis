@@ -151,6 +151,8 @@
     <Content Include="WebForms\AsociarUsuario.aspx" />
     <Content Include="WebForms\BuscarTarea.aspx" />
     <Content Include="WebForms\CrearTarea.aspx" />
+    <Content Include="WebForms\IndexAdmin.aspx" />
+    <Content Include="WebForms\IndexColaborador.aspx" />
     <Content Include="WebForms\IniciarSesion.aspx" />
     <Content Include="WebForms\BuscarCategoria.aspx" />
     <Content Include="WebForms\BuscarProyecto.aspx" />
@@ -280,6 +282,20 @@
     </Compile>
     <Compile Include="WebForms\CrearTarea.aspx.designer.cs">
       <DependentUpon>CrearTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\IndexAdmin.aspx.cs">
+      <DependentUpon>IndexAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\IndexAdmin.aspx.designer.cs">
+      <DependentUpon>IndexAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\IndexColaborador.aspx.cs">
+      <DependentUpon>IndexColaborador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\IndexColaborador.aspx.designer.cs">
+      <DependentUpon>IndexColaborador.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\IniciarSesion.aspx.cs">
       <DependentUpon>IniciarSesion.aspx</DependentUpon>
