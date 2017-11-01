@@ -54,6 +54,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                         <li><a runat="server" href="~/WebForms/BuscarTareaColaborador">Mis Tareas</a></li>
                         <li><a runat="server" href="~/WebForms/CrearTarea">Gestión de Tareas</a></li>
                         <li><a runat="server">Reportes</a></li>
                     </ul>
