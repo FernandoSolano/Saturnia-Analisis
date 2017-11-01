@@ -36,6 +36,9 @@
                 <asp:TableHeaderCell CssClass="results">
                     Apellidos
                 </asp:TableHeaderCell>
+                <asp:TableHeaderCell CssClass="results">
+                    Filtrar
+                </asp:TableHeaderCell>
             </asp:TableHeaderRow>
         </asp:Table>
         <!--Fin de asp:Table-->

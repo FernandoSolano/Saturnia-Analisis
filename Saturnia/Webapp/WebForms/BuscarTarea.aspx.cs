@@ -24,6 +24,37 @@ namespace Webapp.WebForms
             this.categoryBusiness = new CategoryBusiness();
         }
 
+        /// <summary>
+        /// Metodo que agrega por querrystring el id de una entidad seleccionada como filtro sin importar el botón, se usa "commandName" y "commandParameter" en el botón.
+        /// </summary>
+        /// <param name="sender">El botón que fue presionado</param>
+        /// <param name="e"></param>
+        private void btnAddEntityFilter_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            String path = "./BuscarTarea.aspx?", user, category, project;
+
+            user = ((Request.QueryString["user"] != null) ? ("user=" + Request.QueryString["user"].ToString() + "&") : (""));
+            category = ((Request.QueryString["category"] != null) ? ("category=" + Request.QueryString["category"].ToString() + "&") : (""));
+            project = ((Request.QueryString["project"] != null) ? ("project=" + Request.QueryString["project"].ToString() + "&") : (""));
+
+            switch (btn.CommandName)
+            {
+                case "user":
+                    path += "user=" + btn.CommandArgument.ToString() + "&" + category + project;
+                    break;
+                case "category":
+                    path += user + "category=" + btn.CommandArgument.ToString() + "&" + project;
+                    break;
+                case "project":
+                    path += user + category + "project=" + btn.CommandArgument.ToString() + "&";
+                    break;
+            }
+
+            path = path.Remove(path.Length - 1);
+            Response.Redirect("./BuscarProyecto.aspx");
+        }
+
         protected void btnSearchProject_Click(object sender, EventArgs e)
         {
             String name = this.txtProjectName.Text;
@@ -63,7 +94,7 @@ namespace Webapp.WebForms
             {
                 tempRow = new TableRow();
                 tempCell = new TableCell();
-                
+
                 tempCell.Text = listElement.Name;
 
                 tempCell.CssClass = "results";
@@ -90,6 +121,7 @@ namespace Webapp.WebForms
             //Variables temporales para llenar la tabla de resultados.
             TableRow tempRow;
             TableCell tempCell;
+            Button tempButton;
 
             foreach (User listElement in results)
             {
@@ -108,12 +140,28 @@ namespace Webapp.WebForms
                 tempCell.CssClass = "results";
                 tempRow.Cells.Add(tempCell);
 
+                //Re-inicializamos a "tempCell" para agregar el botón de seleccionar a la tabla
+                tempCell = new TableCell();
+                tempButton = new Button();
+
+                tempButton.Text = "Tareas de " + listElement.FirstName;
+                tempButton.CommandName = "user";
+                tempButton.CommandArgument = listElement.Id + "";
+                tempButton.CausesValidation = false;
+                tempButton.Click += new EventHandler(this.btnAddEntityFilter_Click);
+                tempButton.ID = (listElement.FirstName + "" + listElement.Id);
+                tempButton.CssClass = "btn btn-primary";
+
+                tempCell.Controls.Clear();
+                tempCell.Controls.Add(tempButton);
+                tempCell.CssClass = "results";
+                tempRow.Cells.Add(tempCell);
+
                 //Finalmente añadimos la tupla temporal.
                 this.resultUserTable.Rows.Add(tempRow);
             }
             //Hacemos visible la tabla que originalmente es invisible.
             this.resultUserTable.Visible = true;
         }
-
     }
 }
