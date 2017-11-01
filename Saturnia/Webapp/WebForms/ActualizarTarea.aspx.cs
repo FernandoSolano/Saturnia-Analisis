@@ -11,29 +11,18 @@ namespace Webapp.WebForms
 {
     public partial class ActualizarTarea : System.Web.UI.Page
     {
-        private TaskBusiness taskBusiness;
         private CategoryBusiness categoryBusiness;
         private ProjectBusiness projectBusiness;
+        private TaskBusiness taskBusiness;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             taskBusiness = new TaskBusiness();
             categoryBusiness = new CategoryBusiness();
             projectBusiness = new ProjectBusiness();
-          
 
             setCategoryDropDownList();
             setProjectsDropDownList();
-        }
-
-        protected void btnUpdateTask_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-
         }
 
         public void setCategoryDropDownList()
@@ -55,20 +44,32 @@ namespace Webapp.WebForms
         {
             User user = new User();
             //user.userSearch();
-            
+
             List<Project> collaboratorProjects = projectBusiness.GetProjectsByCollaborator(user);
             ddlProject.DataSource = collaboratorProjects;
-          
+
             if (collaboratorProjects.Count <= 0)
             {
-              
-               
+
+
             }
             ddlProject.DataValueField = "Id";
             ddlProject.DataTextField = "Name";
-           
+
             ddlProject.DataBind();
-        
+
+        }
+
+        protected void btnUpdateTask_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+
+
         }
 
     }
