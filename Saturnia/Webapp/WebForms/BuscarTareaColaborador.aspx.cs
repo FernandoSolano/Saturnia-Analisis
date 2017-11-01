@@ -49,14 +49,6 @@ namespace Webapp.WebForms
                
                 Response.Redirect("~/WebForms/ActualizarTarea.aspx?id=" + row.Cells[0].Text);
             }
-
-            if (e.CommandName == "Editar2")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GridViewTasks.Rows[index];
-
-                Response.Redirect("~/WebForms/ActualizarTarea.aspx?id=" + row.Cells[0].Text);
-            }
         }
     }
 }
