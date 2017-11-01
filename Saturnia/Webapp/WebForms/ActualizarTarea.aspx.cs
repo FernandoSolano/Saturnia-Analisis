@@ -40,10 +40,11 @@ namespace Webapp.WebForms
             } else {
                 rdHours.Enabled = false;
                 rdExtrasHours.Checked = true;
-            } 
-            tbDate.Text = task.Date.ToString("yyyy-MM-dd");
-        
-            
+            }
+            CdDate.SelectedDate = DateTime.Parse(task.Date.ToString());
+            CdDate.VisibleDate = DateTime.Parse(task.Date.ToString());
+
+
 
         }
 
@@ -54,13 +55,15 @@ namespace Webapp.WebForms
             task.Id = Int32.Parse(Request.QueryString["id"]);
             task.Description = tbDescription.Text;
             task.Hours = Int32.Parse(tbHours.Text);
-
+            task.Date = DateTime.Parse(CdDate.SelectedDate.ToString());
             if (rdHours.Checked==true) {
                 task.ExtraHours = false;
             }
             else {
                 task.ExtraHours = true;
             }
+
+            taskBusiness = new TaskBusiness();
             taskBusiness.UpdateTask(task);
 
         }

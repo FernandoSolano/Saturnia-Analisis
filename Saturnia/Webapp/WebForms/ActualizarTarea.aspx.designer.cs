@@ -94,13 +94,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// Control tbDate.
+        /// Control CdDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDate;
+        protected global::System.Web.UI.WebControls.Calendar CdDate;
         
         /// <summary>
         /// Control BtnUpdate.
