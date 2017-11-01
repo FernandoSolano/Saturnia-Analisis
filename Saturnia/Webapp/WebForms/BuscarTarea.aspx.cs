@@ -114,5 +114,6 @@ namespace Webapp.WebForms
             //Hacemos visible la tabla que originalmente es invisible.
             this.resultUserTable.Visible = true;
         }
+
     }
 }

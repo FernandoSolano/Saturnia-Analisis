@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Core.Data
 {
-    class TaskData
+    public class TaskData
     {
 
         private String connectionString;
@@ -52,6 +52,23 @@ namespace Core.Data
             return task;
         }
 
+        public void DeleteTask(Task task)
+        {
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            sqlConnection.Open();//abre la conexion
+            SqlCommand cmd;
+
+            cmd = new SqlCommand("sp_task_delete", sqlConnection);//agrego mi procedimiento almacenado para utilizarlo
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;//indico que voy a utilizar un procedimiento almacenado
+
+            // enviarle parametro al procedimiento
+            cmd.Parameters.AddWithValue("@id_task", task.Id);
+
+            cmd.ExecuteNonQuery();//ejecuto el procedimiento almacenado
+
+            sqlConnection.Close();//cierra la conexion
+        }//DeleteTask
+
         public Task GetHoursByDateAndCollaborator(Task task)
         {
             float hours = 0;
@@ -84,6 +101,5 @@ namespace Core.Data
                 connection.Close();
             }
         }
-
     }
 }
