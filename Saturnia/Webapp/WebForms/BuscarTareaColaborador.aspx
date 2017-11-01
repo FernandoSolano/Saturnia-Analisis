@@ -7,7 +7,7 @@
         <asp:Button ID="BtnSearch" runat="server" class="btn btn-primary" Text="Ver mis aportes" OnClick="BtnSearch_Click" />
     </div>
     <div style="margin-top:20px;">
-        <asp:GridView ID="GridViewTasks" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="GridViewTasks" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GridViewTasks_SelectedIndexChanged" OnRowCommand="GridViewTask_RowCommand">
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="Código de la tarea" />
                 <asp:BoundField DataField="Date" HeaderText="Fecha de ingreso" />
@@ -16,13 +16,8 @@
                 <asp:BoundField DataField="Hours" HeaderText="Horas ingresadas" />
                 <asp:BoundField DataField="Description" HeaderText="Descripción" />
                 <asp:BoundField DataField="ExtraHours" HeaderText="Horas extra" />
-
-                <asp:TemplateField HeaderText="Acciones" >
-                    <ItemTemplate>
-                        <asp:Button ID="BtnEditar" runat="server" class="btn btn-danger" Text="Editar"  />
-                        <asp:Button ID="BtnEliminar" runat="server" class="btn btn-danger" Text="Eliminar"/>
-                    </ItemTemplate>
-                </asp:TemplateField>
+                <asp:ButtonField ButtonType="Link" CommandName="Editar" Text="Editar" HeaderText="Acciones" />
+                <asp:ButtonField ButtonType="Link" CommandName="Editar" Text="Eliminar" HeaderText="Acciones" />
 
             </Columns>
 

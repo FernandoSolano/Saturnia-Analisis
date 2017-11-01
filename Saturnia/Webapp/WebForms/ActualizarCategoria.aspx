@@ -29,7 +29,10 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Button ID="btnUpdateCategory" runat="server" OnClick="btnUpdateCategory_Click" Text="Actualizar" />
+                    
+                    <asp:Button ID="BtnUpdate" runat="server" class="btn btn-success" OnClick="btnUpdateCategory_Click" Text="Actualizar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                    <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="btnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />              
+                               
                 </td>
 
             </tr>
