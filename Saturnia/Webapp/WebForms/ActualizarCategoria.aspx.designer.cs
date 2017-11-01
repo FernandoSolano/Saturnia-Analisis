@@ -58,12 +58,21 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.TextBox tbDescription;
         
         /// <summary>
-        /// Control btnUpdateCategory.
+        /// Control BtnUpdate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateCategory;
+        protected global::System.Web.UI.WebControls.Button BtnUpdate;
+        
+        /// <summary>
+        /// Control BtnCancel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnCancel;
     }
 }

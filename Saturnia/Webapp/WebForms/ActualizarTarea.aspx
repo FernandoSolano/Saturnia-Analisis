@@ -59,9 +59,23 @@
 
              <tr>
                  <td>
-                    <asp:Button ID="BtnUpdate" runat="server" class="btn btn-success" OnClick="btnUpdateTask_Click" Text="Actualizar" Style="margin-left: 10px" Height="30px" Width="120px" />
-                    <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="btnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />              
-                </td>
+                     <div runat="server" id="DefaultMenu">
+                         <asp:Button ID="BtnUpdate" runat="server" class="btn btn-success" OnClick="btnUpdateTask_Click" Text="Actualizar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                         <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="btnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />              
+                    </div>
+
+                     <div runat="server" id="ConfirmationMenu">
+                         <h4>¿Esta seguro que desea actualizar?</h4>
+
+                         <asp:Button ID="Button1" runat="server" class="btn btn-success" OnClick="btnUpdateTaskConfirmation_Click" Text="Aceptar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                         <asp:Button ID="Button2" runat="server" class="btn btn-danger" OnClick="btnCancelUpdate_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />              
+                    </div>
+
+                 </td>
+
+                 <td>
+                     <asp:Label ID="lbMessage" runat="server" Text="La tarea ha sido actualizada correctamente." ForeColor="#3366FF" Visible="False"></asp:Label>
+                 </td>
 
             </tr>
 
