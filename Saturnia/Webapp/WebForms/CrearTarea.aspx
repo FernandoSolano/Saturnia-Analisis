@@ -49,7 +49,7 @@
                                         <div>
 
                                             <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" Style="margin: 20px 0px 20px 80px; list-style: none" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="True">
-                                                <asp:ListItem Value="0" Style="margin-right: 20px;" Selected="True">Horas regulares</asp:ListItem>
+                                                <asp:ListItem Value="0" style="margin-right: 20px;" Selected="True">Horas regulares</asp:ListItem>
                                                 <asp:ListItem Value="1">Horas extra</asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
@@ -152,7 +152,7 @@
                                         <div>
 
                                             <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="RadioButtonList2_SelectedIndexChanged" Style="margin: 20px 0px 20px 80px; list-style: none" AutoPostBack="True">
-                                                <asp:ListItem Value="0" Style="margin-right: 20px;" Selected="True">Horas regulares</asp:ListItem>
+                                                <asp:ListItem Value="0" style="margin-right: 20px;" Selected="True">Horas regulares</asp:ListItem>
                                                 <asp:ListItem Value="1">Horas extra</asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
