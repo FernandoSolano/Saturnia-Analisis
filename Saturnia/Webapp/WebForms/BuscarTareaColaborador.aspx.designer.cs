@@ -10,24 +10,33 @@
 namespace Webapp.WebForms {
     
     
-    public partial class IndexColaborador {
+    public partial class BuscarTareaColaborador {
         
         /// <summary>
-        /// Control Label1.
+        /// Control LblCollaboratorName.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label LblCollaboratorName;
         
         /// <summary>
-        /// Control Button1.
+        /// Control BtnSearch.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button BtnSearch;
+        
+        /// <summary>
+        /// Control GridViewTasks.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewTasks;
     }
 }

@@ -8,36 +8,6 @@
                 <asp:Label ID="Label1" runat="server" Text="Actualizar"></asp:Label>
             </h2>
 
-            <tr>
-                <td>
-                    <asp:Label ID="Label5" runat="server" Text="Colaborador:"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="lbCollaborator" runat="server" Text="Label"></asp:Label>
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    <asp:Label ID="Label4" runat="server" Text="Proyecto:"></asp:Label>
-                </td>
-                <td>
-                    <asp:DropDownList ID="ddlProject" runat="server" Height="16px" Width="189px">
-                    </asp:DropDownList>
-                </td>
-            </tr>
-           
-            <tr>
-                <td>
-                    <asp:Label ID="Label2" runat="server" Text="Categoria:"></asp:Label> 
-                </td>
-                <td>
-                    <asp:DropDownList ID="ddlCategory" runat="server" Height="16px" Width="189px">
-                    </asp:DropDownList>
-                </td>
-            </tr>
-
              <tr>
                 <td>
                     <asp:Label ID="Label3" runat="server" Text="Descripción:"></asp:Label> 
@@ -49,19 +19,22 @@
 
             <tr>
                 <td>
-                    <asp:Label ID="Label7" runat="server" Text="Horas regulares:"></asp:Label> 
+                    <asp:Label ID="Label7" runat="server" Text="Tipo de horas:"></asp:Label> 
                 </td>
                 <td>
-                    <asp:TextBox ID="tbHours" runat="server" Width="182px"></asp:TextBox>
+                    <asp:RadioButton ID="rdExtrasHours" runat="server" Text="Extras" />
+                    &nbsp;
+                    <asp:RadioButton ID="rdHours" runat="server" Text="Ordinarias" />
+                    
                 </td>
             </tr>
 
              <tr>
                 <td>
-                    <asp:Label ID="Label8" runat="server" Text="Horas extras:"></asp:Label> 
+                    <asp:Label ID="Label8" runat="server" Text="Horas invertidas:"></asp:Label> 
                 </td>
                 <td>  
-                    <asp:TextBox ID="tbExtraHours" runat="server" Width="182px"></asp:TextBox>
+                    <asp:TextBox ID="tbHours" runat="server" Width="182px" TextMode="Number"></asp:TextBox>
                 </td>
             </tr>
 
@@ -72,7 +45,14 @@
                 </td>
 
                 <td>
-                    <asp:TextBox ID="tbDate" TextMode="Date" runat="server" Width="180px"></asp:TextBox>
+                    <asp:Calendar ID="CdDate" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px" >
+                 <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                 <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                 <OtherMonthDayStyle ForeColor="#999999" />
+                 <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                 <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                 <TodayDayStyle BackColor="#CCCCCC" />
+                    </asp:Calendar>
                 </td>
 
             </tr>

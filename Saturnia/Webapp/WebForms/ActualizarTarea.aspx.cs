@@ -11,65 +11,66 @@ namespace Webapp.WebForms
 {
     public partial class ActualizarTarea : System.Web.UI.Page
     {
-        private CategoryBusiness categoryBusiness;
-        private ProjectBusiness projectBusiness;
+      
         private TaskBusiness taskBusiness;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            taskBusiness = new TaskBusiness();
-            categoryBusiness = new CategoryBusiness();
-            projectBusiness = new ProjectBusiness();
-
-            setCategoryDropDownList();
-            setProjectsDropDownList();
-        }
-
-        public void setCategoryDropDownList()
-        {
-            Category category = new Category();
-            List<Category> categories = categoryBusiness.SearchCategory(category);
-            ddlCategory.DataSource = categories;
-            ddlCategory.DataValueField = "Id";
-            ddlCategory.DataTextField = "Name";
-            ddlCategory.DataBind();
-
-            ddlCategory.DataSource = categories;
-            ddlCategory.DataValueField = "Id";
-            ddlCategory.DataTextField = "Name";
-            ddlCategory.DataBind();
-        }
-
-        public void setProjectsDropDownList()
-        {
-            User user = new User();
-            //user.userSearch();
-
-            List<Project> collaboratorProjects = projectBusiness.GetProjectsByCollaborator(user);
-            ddlProject.DataSource = collaboratorProjects;
-
-            if (collaboratorProjects.Count <= 0)
+            if (Page.IsPostBack == false)
             {
-
-
+                if (Request.QueryString["id"] != null)
+                {
+                    loadTaskData();
+                }
             }
-            ddlProject.DataValueField = "Id";
-            ddlProject.DataTextField = "Name";
+        }
 
-            ddlProject.DataBind();
+        private void loadTaskData()
+        {
+            Task task = new Task();
+            task.Id= Int32.Parse(Request.QueryString["id"]);
+            taskBusiness = new TaskBusiness();
+            task = taskBusiness.ShowTask(task);
+
+            tbDescription.Text = task.Description;
+            tbHours.Text = task.Hours.ToString();
+            if (task.ExtraHours==false) {
+                rdHours.Checked = true;
+                rdExtrasHours.Enabled = false;
+            } else {
+                rdHours.Enabled = false;
+                rdExtrasHours.Checked = true;
+            }
+            CdDate.SelectedDate = DateTime.Parse(task.Date.ToString());
+            CdDate.VisibleDate = DateTime.Parse(task.Date.ToString());
+
+
 
         }
 
         protected void btnUpdateTask_Click(object sender, EventArgs e)
         {
+            Task task = new Task();
 
+            task.Id = Int32.Parse(Request.QueryString["id"]);
+            task.Description = tbDescription.Text;
+            task.Hours = Int32.Parse(tbHours.Text);
+            task.Date = DateTime.Parse(CdDate.SelectedDate.ToString());
+            if (rdHours.Checked==true) {
+                task.ExtraHours = false;
+            }
+            else {
+                task.ExtraHours = true;
+            }
+
+            taskBusiness = new TaskBusiness();
+            taskBusiness.UpdateTask(task);
 
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-
-
+            
         }
 
     }

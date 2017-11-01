@@ -22,60 +22,6 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Control Label5.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-        
-        /// <summary>
-        /// Control lbCollaborator.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCollaborator;
-        
-        /// <summary>
-        /// Control Label4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
-        /// Control ddlProject.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProject;
-        
-        /// <summary>
-        /// Control Label2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
-        /// Control ddlCategory.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
-        
-        /// <summary>
         /// Control Label3.
         /// </summary>
         /// <remarks>
@@ -103,13 +49,22 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// Control tbHours.
+        /// Control rdExtrasHours.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbHours;
+        protected global::System.Web.UI.WebControls.RadioButton rdExtrasHours;
+        
+        /// <summary>
+        /// Control rdHours.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdHours;
         
         /// <summary>
         /// Control Label8.
@@ -121,13 +76,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// Control tbExtraHours.
+        /// Control tbHours.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbExtraHours;
+        protected global::System.Web.UI.WebControls.TextBox tbHours;
         
         /// <summary>
         /// Control Label6.
@@ -139,13 +94,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// Control tbDate.
+        /// Control CdDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDate;
+        protected global::System.Web.UI.WebControls.Calendar CdDate;
         
         /// <summary>
         /// Control BtnUpdate.
