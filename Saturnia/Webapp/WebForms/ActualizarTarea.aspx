@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ActualizarTarea.aspx.cs" Inherits="Webapp.WebForms.ActualizarTarea" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
     <div>
 
         <table>
@@ -12,7 +13,7 @@
                     <asp:Label ID="Label5" runat="server" Text="Colaborador:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="tbColaborator" runat="server" Width="180px"></asp:TextBox>
+                    <asp:Label ID="lbCollaborator" runat="server" Text="Label"></asp:Label>
                 </td>
 
             </tr>
@@ -66,7 +67,7 @@
 
             <tr>
                  <td>
-                    <asp:Label ID="Label6" runat="server" Text="Fecha de realización:"></asp:Label> 
+                    <asp:Label ID="Label6" runat="server" Text="Fecha de registro:"></asp:Label> 
                     
                 </td>
 
@@ -87,6 +88,5 @@
         </table>
 
     </div>
-
 
 </asp:Content>

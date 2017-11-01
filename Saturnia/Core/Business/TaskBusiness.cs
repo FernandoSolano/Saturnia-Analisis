@@ -33,9 +33,14 @@ namespace Core.Business
             return taskData.GetHoursByDateAndCollaborator(task);
         }
 
+
         public Task ShowTask(Task task)
         {
             return taskData.ShowTask(task);
+
+        public void UpdateTask(Task task)
+        {
+            this.taskData.UpdateTask(task);
         }
     }
 

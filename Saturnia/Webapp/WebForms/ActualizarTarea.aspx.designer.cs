@@ -31,13 +31,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// Control tbColaborator.
+        /// Control lbCollaborator.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbColaborator;
+        protected global::System.Web.UI.WebControls.Label lbCollaborator;
         
         /// <summary>
         /// Control Label4.
