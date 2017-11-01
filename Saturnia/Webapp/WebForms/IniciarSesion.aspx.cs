@@ -27,8 +27,8 @@ namespace Webapp.WebForms
             if (user.Id > 0)
             {
                 Session["userId"] = user.Id;
-                Session["userName"] = user.FirstName+user.LastName;
-                Session["userRol"] = user.Role.Id;
+                Session["userName"] = user.FirstName+" "+user.LastName;
+                Session["userRole"] = user.Role.Id;
                 if (user.Role.Id == 1)
                 {
 
@@ -36,7 +36,7 @@ namespace Webapp.WebForms
                 }
                 else if (user.Role.Id == 2)
                 {
-                    Response.Redirect("~/Default.aspx");
+                    Response.Redirect("~/WebForms/IndexColaborador.aspx");
                 }
 
             }

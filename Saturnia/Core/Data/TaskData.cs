@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Core.Data
 {
-    class TaskData
+    public class TaskData
     {
 
         private String connectionString;
@@ -51,7 +51,6 @@ namespace Core.Data
             }
             return task;
         }
-
 
         public void DeleteTask(Task task)
         {
@@ -102,7 +101,5 @@ namespace Core.Data
                 connection.Close();
             }
         }
-
-
     }
 }

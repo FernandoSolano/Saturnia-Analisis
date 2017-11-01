@@ -67,7 +67,7 @@ namespace Webapp.WebForms
             
             project.StartDate = DateTime.Parse(CdStartDate.SelectedDate.ToString());
             project.EndDate = DateTime.Parse(CdEndDate.SelectedDate.ToString());
-            projectBusiness.UpdatePorject(project);
+            projectBusiness.UpdateProject(project);
             Response.Write("<script>alert('Actualización exitosa.');</script>");
         }
 
