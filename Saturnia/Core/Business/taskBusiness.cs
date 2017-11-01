@@ -18,20 +18,9 @@ namespace Core.Business
             this.taskData = new TaskData();
         }
 
-        public Task AddTask(Task task)
+        public Task addTask(Task task)
         {
             return taskData.AddTask(task);
         }
-
-        public float GetHoursByDateAndCollaborator(Task task)
-        {
-            return taskData.GetHoursByDateAndCollaborator(task);
-        }
-
-        public Task ShowTask(Task task)
-        {
-            return taskData.ShowTask(task);
-        }
-
     }
 }
