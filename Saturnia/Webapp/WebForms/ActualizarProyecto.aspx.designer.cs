@@ -121,21 +121,21 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label lbEndDateError;
         
         /// <summary>
-        /// Control btnUpdateProject.
+        /// Control BtnUpdate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateProject;
+        protected global::System.Web.UI.WebControls.Button BtnUpdate;
         
         /// <summary>
-        /// Control lb.
+        /// Control BtnCancel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb;
+        protected global::System.Web.UI.WebControls.Button BtnCancel;
     }
 }
