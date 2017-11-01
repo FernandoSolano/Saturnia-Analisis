@@ -94,6 +94,15 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Table resultProjectTable;
         
         /// <summary>
+        /// Control BTEliminar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTEliminar;
+        
+        /// <summary>
         /// Control txtFrom.
         /// </summary>
         /// <remarks>

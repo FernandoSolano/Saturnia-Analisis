@@ -13,5 +13,10 @@ namespace Webapp.WebForms
         {
             Label1.Text = Session["userName"].ToString();
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EliminarTarea.aspx");
+        }
     }
 }
