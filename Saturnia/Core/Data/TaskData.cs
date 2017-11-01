@@ -101,5 +101,29 @@ namespace Core.Data
                 connection.Close();
             }
         }
+
+        public Task ShowTask(Task task)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            string sqlProcedure = "SP_TASK_SHOW";
+            SqlCommand command = new SqlCommand(sqlProcedure, connection);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@ID", task.Id));
+
+            connection.Open();
+            SqlDataReader dataReader = command.ExecuteReader();
+            dataReader.Read();
+            //hours, extra_hours, date, description
+            //project_id, collaborator_id, category_id
+            task.Hours = float.Parse(dataReader["hours"].ToString());
+            task.ExtraHours = Boolean.Parse(dataReader["extra_hours"].ToString());
+            task.Date = DateTime.Parse(dataReader["date"].ToString());
+            task.Description = dataReader["description"].ToString();
+            task.Project.Id = Int32.Parse(dataReader["project_id"].ToString());
+            task.Collaborator.Id = Int32.Parse(dataReader["collaborator_id"].ToString());
+            task.Category.Id = Int32.Parse(dataReader["category_id"].ToString());
+            connection.Close();
+            return task;
+        }
     }
 }
