@@ -153,6 +153,7 @@
     <Content Include="WebForms\BuscarTarea.aspx" />
     <Content Include="WebForms\CrearTarea.aspx" />
     <Content Include="WebForms\DuplicarTarea.aspx" />
+    <Content Include="WebForms\EliminarTarea.aspx" />
     <Content Include="WebForms\IndexAdmin.aspx" />
     <Content Include="WebForms\IndexColaborador.aspx" />
     <Content Include="WebForms\IniciarSesion.aspx" />
@@ -298,6 +299,13 @@
     </Compile>
     <Compile Include="WebForms\DuplicarTarea.aspx.designer.cs">
       <DependentUpon>DuplicarTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\EliminarTarea.aspx.cs">
+      <DependentUpon>EliminarTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\EliminarTarea.aspx.designer.cs">
+      <DependentUpon>EliminarTarea.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\IndexAdmin.aspx.cs">
       <DependentUpon>IndexAdmin.aspx</DependentUpon>
