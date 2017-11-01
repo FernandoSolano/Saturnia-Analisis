@@ -27,10 +27,11 @@
             </tr>
         </table>
         <!--Fin de table-->
-        <!--Inicio de asp:Table-->
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <!--Inicio de asp:UpdatePanel-->
+        <asp:UpdatePanel ID="UPUser" runat="server">
             <ContentTemplate>
                 <fieldset>
+                    <!-- Inicio de tabla de resultados para usuario -->
                     <asp:Table ID="resultUserTable" runat="server" CssClass="results" Visible="false">
                         <asp:TableHeaderRow>
                             <asp:TableHeaderCell CssClass="results">
@@ -44,13 +45,14 @@
                         </asp:TableHeaderCell>
                         </asp:TableHeaderRow>
                     </asp:Table>
+                    <!-- Fin de tabla de resultados para usuario -->
                 </fieldset>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnSearchUser" EventName="Click" />
             </Triggers>
         </asp:UpdatePanel>
-        <!--Fin de asp:Table-->
+        <!--Fin de asp:UpdatePanel-->
     </div>
     <div id="areaCategory">
         <h1>
