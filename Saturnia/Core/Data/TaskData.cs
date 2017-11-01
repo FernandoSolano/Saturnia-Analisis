@@ -1,6 +1,7 @@
 ﻿using Core.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -49,6 +50,39 @@ namespace Core.Data
                 connection.Close();
             }
             return task;
+        }
+
+        public Task GetHoursByDateAndCollaborator(Task task)
+        {
+            float hours = 0;
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand("SP_GET_HOURS_BY_DATE_AND_COLLABORATOR", connection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            SqlParameter DBHours = new SqlParameter("@hours", System.Data.SqlDbType.Float);
+            DBHours.Direction = System.Data.ParameterDirection.Output;
+            sqlCommand.Parameters.Add(DBHours);
+            sqlCommand.Parameters.AddWithValue("@collaborator_id", task.Collaborator.Id);
+            sqlCommand.Parameters.AddWithValue("@date", task.Date);
+            sqlCommand.Parameters.AddWithValue("@extra_hour", task.ExtraHours);
+
+            try
+            {
+                sqlCommand.Connection.Open();
+                sqlCommand.ExecuteNonQuery();
+
+                hours = float.Parse(sqlCommand.Parameters["@hours"].Value.ToString());
+                task.Hours = hours;
+                sqlCommand.Connection.Close();
+                return task;
+            }
+            catch (SqlException sqlException)
+            {
+                throw sqlException;
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
     }
