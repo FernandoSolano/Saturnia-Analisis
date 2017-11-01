@@ -198,7 +198,6 @@ namespace Core.Data
 
             //Variables para ejecutar el SP
             SqlCommand sqlCommand;
-            SqlParameter parameter;
           
 
             sqlCommand = new SqlCommand(sqlStoredProcedure, connection);
