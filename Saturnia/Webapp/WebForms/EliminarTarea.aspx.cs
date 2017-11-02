@@ -18,19 +18,19 @@ namespace Webapp.WebForms
 
         protected void BTCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuscarTarea.aspx");
+            Response.Redirect("BuscarTareaColaborador.aspx");
         }
 
         protected void BTAceptar_Click(object sender, EventArgs e)
         {
             try
             {
-            TaskBusiness taskBusiness = new TaskBusiness();
-            Task task = new Task();
-            task.Id = 156;
-            task = taskBusiness.ShowTask(task);
-            taskBusiness.DeleteTask(task);
-            Response.Redirect("BuscarTarea.aspx");
+                TaskBusiness taskBusiness = new TaskBusiness();
+                Task task = new Task();
+                task.Id = Int32.Parse(Request.QueryString["id"]);
+                task = taskBusiness.ShowTask(task);
+                taskBusiness.DeleteTask(task);
+                Response.Redirect("BuscarTareaColaborador.aspx");
             }//try
             catch
             {

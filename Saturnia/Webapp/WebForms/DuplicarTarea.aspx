@@ -13,15 +13,15 @@
     </asp:DropDownList>
     <br />
     <asp:Label ID="lbl_hours_type" runat="server" Text="Tipo de horas:"></asp:Label>
-    <asp:RadioButtonList ID="rbl_hours_type" runat="server">
-        <asp:ListItem Selected="True" Value="0">Horas regulares</asp:ListItem>
+    <asp:RadioButtonList ID="rbl_hours_type" runat="server" OnSelectedIndexChanged="rbl_hours_type_SelectedIndexChanged" AutoPostBack="True">
+        <asp:ListItem Value="0">Horas regulares</asp:ListItem>
         <asp:ListItem Value="1">Horas extra</asp:ListItem>
     </asp:RadioButtonList>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <fieldset>
                 <asp:Label ID="lbl_dedicated_time" runat="server" Text="Tiempo dedicado:"></asp:Label>
-                <asp:DropDownList ID="ddl_hours" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_hours_SelectedIndexChanged">
+                <asp:DropDownList ID="ddl_hours" runat="server" AutoPostBack="True">
                 </asp:DropDownList>
                 <asp:Label ID="lbl_hours" runat="server" Text="hora(s)"></asp:Label>
                 <asp:DropDownList ID="ddl_minutes" runat="server">
@@ -38,9 +38,18 @@
     <asp:TextBox ID="tb_description" runat="server" TextMode="MultiLine" Height="76px" Width="333px"></asp:TextBox>
     <br />
     <asp:Label ID="lbl_date" runat="server" Text="Fecha:"></asp:Label>
-    <asp:Calendar ID="cld_selected_date" runat="server" OnSelectionChanged="cld_selected_date_SelectionChanged"></asp:Calendar>
+    <asp:Calendar ID="cld_selected_date" runat="server" OnSelectionChanged="cld_selected_date_SelectionChanged"  BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px" OnDayRender="DisableDays">
+        <DayHeaderStyle BackColor="#990000" Font-Bold="True" Font-Size="7pt" ForeColor="Silver" Height="10pt" />
+        <DayStyle Width="14%" />
+        <NextPrevStyle Font-Size="8pt" ForeColor="White" />
+        <OtherMonthDayStyle ForeColor="#999999" />
+        <SelectedDayStyle BackColor="#CC3333" ForeColor="Maroon" />
+        <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
+        <TitleStyle BackColor="#252525" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
+        <TodayDayStyle BackColor="#CCCC99" />
+    </asp:Calendar>
     <br />
     <asp:Button ID="btn_cancel" runat="server" Text="Cancelar" />
-    <asp:Button ID="btn_save" runat="server" Text="Guardar" OnClick="btn_save_Click" />
+    <asp:Button ID="btn_save" runat="server" Text="Guardar" OnClick="btn_save_Click" UseSubmitBehavior="False" />
 
 </asp:Content>
