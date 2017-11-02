@@ -46,5 +46,11 @@ namespace Webapp.WebForms
                 TxtPassword.Text = "";
             }
         }
+
+        protected void BtnCancel_Click(object sender, EventArgs e)
+        {
+            TxtNickname.Text = "";
+            TxtPassword.Text = "";
+        }
     }
 }
