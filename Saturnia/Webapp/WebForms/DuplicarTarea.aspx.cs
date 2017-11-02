@@ -26,15 +26,12 @@ namespace Webapp.WebForms
             {
                 if ((int)Session["userRole"] == 1)
                 {
-
                     this.MasterPageFile = "~/Site.master";
                 }
                 else if ((int)Session["userRole"] == 2)
                 {
-
                     this.MasterPageFile = "~/SiteCollaborator.master";
                 }
-
             }
         }
 
@@ -65,7 +62,7 @@ namespace Webapp.WebForms
                 ddl_categories.DataValueField = "Id";
                 ddl_categories.DataBind();
                 //Asignar valores de la tarea a los controles
-                //TODO... Recibir id de tarea con un get
+                //Recibir id de tarea con un get
                 registeredTask.Id = Int32.Parse(Request.QueryString["id"]);
                 registeredTask = taskBusiness.ShowTask(registeredTask);
                 ddl_projects.SelectedValue = registeredTask.Project.Id.ToString();
@@ -102,14 +99,8 @@ namespace Webapp.WebForms
             }
             registeredTask.Hours = selectedHours;
             taskBusiness.AddTask(registeredTask);
-            if ((int)Session["userRole"] == 2)
-            {
-                Response.Redirect("./IndexColaborador.aspx");
-            }
-            else
-            {
-                Response.Redirect("./IndexAdmin.aspx");
-            }
+            Response.Redirect("~/WebForms/BuscarTareaColaborador");
+
         }
 
         protected void rbl_hours_type_SelectedIndexChanged(object sender, EventArgs e)

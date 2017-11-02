@@ -14,58 +14,45 @@ namespace Webapp.WebForms
         TaskBusiness taskBusiness;
         List<Task> collaboratorTasks;
         Task task;
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["userRole"] != null)
+            {
+                if ((int)Session["userRole"] == 1)
+                {
+                    this.MasterPageFile = "~/Site.master";
+                }
+                else if ((int)Session["userRole"] == 2)
+                {
+                    this.MasterPageFile = "~/SiteCollaborator.master";
+                }
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            taskBusiness = new TaskBusiness();
-            collaboratorTasks = new List<Task>();
-            task = new Task();
-            task.Collaborator.Id = (int)(Session["userId"]);
-            if (!Page.IsPostBack)
+            if (Session["userId"] != null)
             {
-                LblCollaboratorName.Text += Session["userName"].ToString();
-            }
-
-        }
-
-        protected void BtnSearch_Click(object sender, EventArgs e)
-        {
-            collaboratorTasks = taskBusiness.GetTaskByCollaborator(task);
-            GridViewTasks.DataSource = collaboratorTasks;
-            GridViewTasks.DataBind();
-        }
-
-        protected void GridViewTasks_SelectedIndexChanged(object sender, EventArgs e)
-        {
-         
-        }
-
-    
-        protected void GridViewTask_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Editar")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GridViewTasks.Rows[index];
-               
-                Response.Redirect("~/WebForms/ActualizarTarea.aspx?id=" + row.Cells[0].Text);
-            }
-            else if (e.CommandName == "Eliminar")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GridViewTasks.Rows[index];
-
-                Response.Redirect("~/WebForms/EliminarTarea.aspx?id=" + row.Cells[0].Text);
-            } else if (e.CommandName == "Duplicar")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GridViewTasks.Rows[index];
-                Response.Redirect("~/WebForms/DuplicarTarea.aspx?id=" + row.Cells[0].Text);
+                taskBusiness = new TaskBusiness();
+                collaboratorTasks = new List<Task>();
+                task = new Task();
+                task.Collaborator.Id = (int)(Session["userId"]);
+                collaboratorTasks = taskBusiness.GetTaskByCollaborator(task);
+                GridViewTasks.DataSource = collaboratorTasks;
+                GridViewTasks.DataBind();
             }
         }
 
         protected void BtnCreate_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/WebForms/CrearTarea.aspx");
+        }
+
+        protected void gridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridViewTasks.PageIndex = e.NewPageIndex;
+            GridViewTasks.DataBind();
         }
     }
 }

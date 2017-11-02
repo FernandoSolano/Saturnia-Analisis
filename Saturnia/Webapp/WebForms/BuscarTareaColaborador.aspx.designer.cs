@@ -13,13 +13,13 @@ namespace Webapp.WebForms {
     public partial class BuscarTareaColaborador {
         
         /// <summary>
-        /// LblCollaboratorName control.
+        /// GridViewTasks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblCollaboratorName;
+        protected global::System.Web.UI.WebControls.GridView GridViewTasks;
         
         /// <summary>
         /// BtnCreate control.
@@ -29,23 +29,5 @@ namespace Webapp.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnCreate;
-        
-        /// <summary>
-        /// BtnSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSearch;
-        
-        /// <summary>
-        /// GridViewTasks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewTasks;
     }
 }
