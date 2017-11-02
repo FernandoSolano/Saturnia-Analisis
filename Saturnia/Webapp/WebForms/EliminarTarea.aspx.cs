@@ -37,5 +37,10 @@ namespace Webapp.WebForms
                 LabelMensaje.Text = "La tarea no pudo ser eliminada";
             }//catch
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
