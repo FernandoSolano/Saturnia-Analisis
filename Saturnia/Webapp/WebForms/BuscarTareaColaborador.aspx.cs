@@ -49,6 +49,23 @@ namespace Webapp.WebForms
                
                 Response.Redirect("~/WebForms/ActualizarTarea.aspx?id=" + row.Cells[0].Text);
             }
+            else if (e.CommandName == "Eliminar")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = GridViewTasks.Rows[index];
+
+                Response.Redirect("~/WebForms/EliminarTarea.aspx?id=" + row.Cells[0].Text);
+            } else if (e.CommandName == "Duplicar")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = GridViewTasks.Rows[index];
+                Response.Redirect("~/WebForms/DuplicarTarea.aspx?id=" + row.Cells[0].Text);
+            }
+        }
+
+        protected void BtnCreate_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/WebForms/CrearTarea.aspx");
         }
     }
 }
