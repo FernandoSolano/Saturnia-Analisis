@@ -38,11 +38,5 @@
             </div>
         </div>
     </form>
-    <div class="container body-content col-md-6 col-md-offset-3">
-
-        <footer style="position: absolute; bottom: 0; background-color:#333333">
-            <p>&copy; <%: DateTime.Now.Year %> - Saturnia</p>
-        </footer>
-    </div>
 </body>
 </html>

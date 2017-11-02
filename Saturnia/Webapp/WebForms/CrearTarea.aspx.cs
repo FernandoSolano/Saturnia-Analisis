@@ -29,8 +29,33 @@ namespace Webapp.WebForms
                 SetCategoryDropDownList();
                 SetProjectsDropDownList();
                 SetHoursDropDownList();
+                SetYearDropdownList();
+                SetMonthDropDownList();
 
             }
+        }
+
+        public void SetYearDropdownList()
+        {
+            for (int year = DateTime.Now.Year - 20; year <= DateTime.Now.Year; year++)
+            {
+                DdlYear.Items.Add(year.ToString());
+                DdlYearSoT.Items.Add(year.ToString());
+            }
+            DdlYear.Items.FindByValue(DateTime.Now.Year.ToString()).Selected = true;
+            DdlYearSoT.Items.FindByValue(DateTime.Now.Year.ToString()).Selected = true;
+        }
+
+        public void SetMonthDropDownList()
+        {
+            var date = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat;
+            for (int i = 1; i <= 12; i++)
+            {
+                DdlMonth.Items.Add(new ListItem(date.GetMonthName(i), i.ToString()));
+                DdlMonthSoT.Items.Add(new ListItem(date.GetMonthName(i), i.ToString()));
+            }
+            DdlMonthSoT.Items.FindByValue(DateTime.Now.Month.ToString()).Selected = true;
+            DdlMonthSoT.Items.FindByValue(DateTime.Now.Month.ToString()).Selected = true;
         }
 
         public void SetCategoryDropDownList()
@@ -109,7 +134,36 @@ namespace Webapp.WebForms
             Lbdates.Items.Clear();
             LblWarning.Text = "";
             LblWarningSoT.Text = "";
+            DdlYear.SelectedValue = DateTime.Now.Year.ToString();
+            DdlYearSoT.SelectedValue = DateTime.Now.Year.ToString();
+            DdlMonth.SelectedValue = DateTime.Now.Month.ToString();
+            DdlMonthSoT.SelectedValue = DateTime.Now.Month.ToString();
+            CalendarControl();
 
+
+        }
+
+        public void CalendarControl()
+        {
+            int year = Int32.Parse(DdlYear.SelectedValue);
+            int month = Int32.Parse(DdlMonth.SelectedValue);
+            Calendar1.TodaysDate = new DateTime(year, month, 1);
+            Calendar2.TodaysDate = new DateTime(year, month, 1);
+
+        }
+
+        public void SetCalendar(object sender, EventArgs e)
+        {
+            int year = Int32.Parse(DdlYear.SelectedValue);
+            int month = Int32.Parse(DdlMonth.SelectedValue);
+            Calendar1.TodaysDate = new DateTime(year, month, 1);
+        }
+       
+        public void SetCalendarSoT(object sender, EventArgs e)
+        {
+            int year = Int32.Parse(DdlYearSoT.SelectedValue);
+            int month = Int32.Parse(DdlMonthSoT.SelectedValue);
+            Calendar2.TodaysDate = new DateTime(year, month, 1);
         }
 
         protected void BtnCancel_Click(object sender, EventArgs e)
@@ -158,7 +212,7 @@ namespace Webapp.WebForms
                                 (RadioButtonList1.SelectedIndex == 0 && DdlHours.SelectedIndex == 8 && DdlMinutes.SelectedIndex == 1) ||
                                 (RadioButtonList1.SelectedIndex == 1 && DdlHours.SelectedIndex == 16 && DdlMinutes.SelectedIndex == 1))
                             {
-                                LblWarning.Text = "No puede ingresar horas fuera del rango permitido";
+                                LblWarning.Text = "No puede ingresar horas fuera del límite permitido, el límite diario de horas regulares es de 8 y de horas extra 16";
                             }
                             else
                             {
@@ -268,7 +322,7 @@ namespace Webapp.WebForms
                                     (RadioButtonList2.SelectedIndex == 0 && DdlHoursSoT.SelectedIndex == 8 && DdlMinutesSoT.SelectedIndex == 1) ||
                                     (RadioButtonList2.SelectedIndex == 1 && DdlHoursSoT.SelectedIndex == 16 && DdlMinutesSoT.SelectedIndex == 1))
                                 {
-                                    LblWarningSoT.Text = "No puede ingresar horas fuera del rango permitido";
+                                    LblWarningSoT.Text = "No puede ingresar horas fuera del límite permitido, el límite diario de horas regulares es de 8 y de horas extra 16";
                                 }
                                 else
                                 {
@@ -396,19 +450,5 @@ namespace Webapp.WebForms
             }
         }
 
-        protected void DdlHours_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LblWarning.Text = "cacaqwe";
-            if ((RadioButtonList1.SelectedIndex == 0 && DdlHours.SelectedValue.Equals("8")) || (RadioButtonList1.SelectedIndex == 1 && DdlHours.SelectedValue.Equals(16)))
-            {
-                DdlMinutes.Items[1].Enabled = false;
-                LblWarning.Text = "caca";
-            }
-            else if(DdlHours.SelectedIndex == 0)
-            {
-                DdlMinutes.Items[0].Enabled = false;
-                LblWarning.Text = "caca2";
-            }
-        }
     }
 }
