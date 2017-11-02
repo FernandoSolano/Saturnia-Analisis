@@ -87,7 +87,7 @@
                 </td>
 
                 <td>
-                    <asp:Label ID="lbMessage" runat="server" Text="La tarea ha sido actualizada correctamente." ForeColor="Black" Visible="False"></asp:Label>
+                    <asp:Label ID="lbMessage" runat="server" Text="La tarea ha sido actualizada correctamente." ForeColor="Blue" Visible="False"></asp:Label>
                 </td>
 
             </tr>
