@@ -76,6 +76,15 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Button BtnLogin;
         
         /// <summary>
+        /// Control BtnCancel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnCancel;
+        
+        /// <summary>
         /// Control LblMessage.
         /// </summary>
         /// <remarks>

@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class=" col-xs-20 col-sm-16 col-md-11 col-lg-6  col-centered">
                 <!-- Nav tabs -->
                 <div class="card">
                     <ul class="nav nav-tabs" role="tablist">
@@ -34,7 +34,7 @@
                                         </div>
                                         <div>
                                             <label>Fecha de ingreso</label>
-                                            <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px" OnDayRender="DisableDays">
+                                            <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px" OnDayRender="DisableDays">
                                                 <DayHeaderStyle BackColor="#990000" Font-Bold="True" Font-Size="7pt" ForeColor="Silver" Height="10pt" />
                                                 <DayStyle Width="14%" />
                                                 <NextPrevStyle Font-Size="8pt" ForeColor="White" />
@@ -60,7 +60,7 @@
                                                 <ContentTemplate>
                                                     <fieldset>
                                                         <label style="margin-left: 80px">Horas</label>
-                                                        <asp:DropDownList ID="DdlHours" runat="server" Style="margin-left: 30px" Width="60px">
+                                                        <asp:DropDownList ID="DdlHours" runat="server" Style="margin-left: 30px" Width="60px" OnSelectedIndexChanged="DdlHours_SelectedIndexChanged">
                                                         </asp:DropDownList>
                                                         <label style="margin-left: 20px">Minutos</label>
                                                         <asp:DropDownList ID="DdlMinutes" runat="server" Style="margin-left: 30px" Width="60px">
@@ -113,7 +113,7 @@
                                         <div>
                                             <label>Ingrese las fechas deseadas</label>
 
-                                            <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px" OnDayRender="DisableDays">
+                                            <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px" OnDayRender="DisableDays">
                                                 <DayHeaderStyle BackColor="#990000" Font-Bold="True" Font-Size="7pt" ForeColor="Silver" Height="10pt" />
                                                 <DayStyle Width="14%" />
                                                 <NextPrevStyle Font-Size="8pt" ForeColor="White" />

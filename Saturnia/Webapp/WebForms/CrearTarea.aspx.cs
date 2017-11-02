@@ -37,6 +37,7 @@ namespace Webapp.WebForms
         {
             Category category = new Category();
             List<Category> categories = categoryBusiness.SearchCategory(category);
+
             DdlCategory.DataSource = categories;
             DdlCategory.DataValueField = "Id";
             DdlCategory.DataTextField = "Name";
@@ -46,6 +47,8 @@ namespace Webapp.WebForms
             DdlCategorySoT.DataValueField = "Id";
             DdlCategorySoT.DataTextField = "Name";
             DdlCategorySoT.DataBind();
+            DdlCategory.Items.Insert(0, new ListItem("Seleccione"));
+            DdlCategorySoT.Items.Insert(0, new ListItem("Seleccione"));
         }
 
         public void SetHoursDropDownList()
@@ -67,6 +70,7 @@ namespace Webapp.WebForms
             User user = new User();
             user.Id = (int)Session["userId"];
             List<Project> collaboratorProjects = projectBusiness.GetProjectsByCollaborator(user);
+
             DdlProject.DataSource = collaboratorProjects;
             DdlProjectSoT.DataSource = collaboratorProjects;
             if (collaboratorProjects.Count <= 0)
@@ -85,10 +89,16 @@ namespace Webapp.WebForms
             DdlProjectSoT.DataTextField = "Name";
             DdlProject.DataBind();
             DdlProjectSoT.DataBind();
+            DdlProject.Items.Insert(0, new ListItem("Seleccione"));
+            DdlProjectSoT.Items.Insert(0, new ListItem("Seleccione"));
         }
 
         public void ResetData()
         {
+            DdlCategory.SelectedIndex = 0;
+            DdlCategorySoT.SelectedIndex = 0;
+            DdlProject.SelectedIndex = 0;
+            DdlProjectSoT.SelectedIndex = 0;
             RadioButtonList1.SelectedIndex = 0;
             RadioButtonList2.SelectedIndex = 0;
             TbDescription.Text = "";
@@ -110,67 +120,85 @@ namespace Webapp.WebForms
         protected void BtnAdd_Click(object sender, EventArgs e)
         {
             Task task = new Task();
-            task.Category.Id = Int32.Parse(DdlCategory.SelectedItem.Value);
-            task.Project.Id = Int32.Parse(DdlProject.SelectedItem.Value);
-            task.Collaborator.Id = (int)Session["userId"];
-            if (Calendar1.SelectedDate.Year.ToString() == "0001")
+            if (DdlProject.SelectedIndex == 0)
             {
-                LblWarning.Text = "Debe ingresar una fecha válida";
+                LblWarning.Text = "Seleccione un proyecto de la lista";
             }
             else
             {
-                task.Date = Calendar1.SelectedDate;
-
-                if (TbDescription.Text == "")
+                task.Project.Id = Int32.Parse(DdlProject.SelectedItem.Value);
+                if (DdlCategory.SelectedIndex == 0)
                 {
-                    LblWarning.Text = "Debe agregar una descripción de la tarea realizada";
-
+                    LblWarning.Text = "Selecciona una categoría de la lista";
                 }
                 else
                 {
-                    task.Description = TbDescription.Text;
-                    if ((DdlHours.SelectedIndex == 0 && DdlMinutes.SelectedIndex == 0) ||
-                        (RadioButtonList1.SelectedIndex == 0 && DdlHours.SelectedIndex == 8 && DdlMinutes.SelectedIndex == 1) ||
-                        (RadioButtonList1.SelectedIndex == 1 && DdlHours.SelectedIndex == 16 && DdlMinutes.SelectedIndex == 1))
+
+
+                    task.Category.Id = Int32.Parse(DdlCategory.SelectedItem.Value);
+
+                    task.Collaborator.Id = (int)Session["userId"];
+                    if (Calendar1.SelectedDate.Year.ToString() == "0001")
                     {
-                        LblWarning.Text = "No puede ingresar horas fuera del rango permitido";
+                        LblWarning.Text = "Debe ingresar una fecha válida";
                     }
                     else
                     {
+                        task.Date = Calendar1.SelectedDate;
 
-                        if (RadioButtonList1.SelectedIndex == 0)
+                        if (TbDescription.Text == "")
                         {
-                            task.ExtraHours = false;
-                        }
-                        else if (RadioButtonList1.SelectedIndex == 1)
-                        {
-                            task.ExtraHours = true;
-                        }
-                        float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
-                        float hoursInTheForm = float.Parse(DdlHours.Text + "," + DdlMinutes.Text);
-
-                        if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
-                        {
-                            LblWarning.Text = "Usted ya ha ingresado " + registeredHours + " horas anteriormente, no se puede pasar del límite de horas diario.";
+                            LblWarning.Text = "Debe agregar una descripción de la tarea realizada";
 
                         }
                         else
                         {
-                            task.Hours = hoursInTheForm;
-                            task = taskBusiness.AddTask(task);
-                            if (task.Id > 0)
+                            task.Description = TbDescription.Text;
+                            if ((DdlHours.SelectedIndex == 0 && DdlMinutes.SelectedIndex == 0) ||
+                                (RadioButtonList1.SelectedIndex == 0 && DdlHours.SelectedIndex == 8 && DdlMinutes.SelectedIndex == 1) ||
+                                (RadioButtonList1.SelectedIndex == 1 && DdlHours.SelectedIndex == 16 && DdlMinutes.SelectedIndex == 1))
                             {
-
-                                LblWarning.Text = "Se ha ingresado la nueva tarea con éxito";
+                                LblWarning.Text = "No puede ingresar horas fuera del rango permitido";
                             }
                             else
                             {
-                                LblWarning.Text = "Ha ocurrido un error, envíe el formulario nuevamente";
+
+                                if (RadioButtonList1.SelectedIndex == 0)
+                                {
+                                    task.ExtraHours = false;
+                                }
+                                else if (RadioButtonList1.SelectedIndex == 1)
+                                {
+                                    task.ExtraHours = true;
+                                }
+                                float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
+                                float hoursInTheForm = float.Parse(DdlHours.Text + "," + DdlMinutes.Text);
+
+                                if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
+                                {
+                                    LblWarning.Text = "Usted ya ha ingresado " + registeredHours + " horas anteriormente, no se puede pasar del límite de horas diario.";
+
+                                }
+                                else
+                                {
+                                    task.Hours = hoursInTheForm;
+                                    task = taskBusiness.AddTask(task);
+                                    if (task.Id > 0)
+                                    {
+
+                                        ResetData();
+                                        LblWarning.Text = "Se ha ingresado la nueva tarea con éxito";
+                                    }
+                                    else
+                                    {
+                                        LblWarning.Text = "Ha ocurrido un error, envíe el formulario nuevamente";
+                                    }
+                                }
+
                             }
                         }
 
                     }
-
                 }
             }
 
@@ -211,60 +239,76 @@ namespace Webapp.WebForms
                 {
 
                     Task task = new Task();
-                    task.Category.Id = Int32.Parse(DdlCategorySoT.SelectedItem.Value);
-                    task.Project.Id = Int32.Parse(DdlProjectSoT.SelectedItem.Value);
-                    task.Collaborator.Id = (int)Session["userId"];
-                    task.Date = DateTime.Parse(date.Text);
-                    if (TbDescription2.Text == "")
+                    if (DdlProjectSoT.SelectedIndex == 0)
                     {
-                        LblWarningSoT.Text = "Debe agregar una descripción de la tarea realizada";
-
+                        LblWarningSoT.Text = "Seleccione un proyecto de la lista";
                     }
                     else
                     {
-                        task.Description = TbDescription2.Text;
-                        if ((DdlHoursSoT.SelectedIndex == 0 && DdlMinutesSoT.SelectedIndex == 0) ||
-                            (RadioButtonList2.SelectedIndex == 0 && DdlHoursSoT.SelectedIndex == 8 && DdlMinutesSoT.SelectedIndex == 1) ||
-                            (RadioButtonList2.SelectedIndex == 1 && DdlHoursSoT.SelectedIndex == 16 && DdlMinutesSoT.SelectedIndex == 1))
+                        task.Project.Id = Int32.Parse(DdlProjectSoT.SelectedItem.Value);
+                        if (DdlCategorySoT.SelectedIndex == 0)
                         {
-                            LblWarningSoT.Text = "No puede ingresar horas fuera del rango permitido";
+                            LblWarningSoT.Text = "Seleccione una categoría de la lista";
                         }
                         else
                         {
+                            task.Category.Id = Int32.Parse(DdlCategorySoT.SelectedItem.Value);
 
-                            if (RadioButtonList2.SelectedIndex == 0)
+                            task.Collaborator.Id = (int)Session["userId"];
+                            task.Date = DateTime.Parse(date.Text);
+                            if (TbDescription2.Text == "")
                             {
-                                task.ExtraHours = false;
-                            }
-                            else if (RadioButtonList2.SelectedIndex == 1)
-                            {
-                                task.ExtraHours = true;
-                            }
+                                LblWarningSoT.Text = "Debe agregar una descripción de la tarea realizada";
 
-
-                            float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
-                            float hoursInTheForm = float.Parse(DdlHoursSoT.Text + "," + DdlMinutesSoT.Text);
-
-                            if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
-                            {
-                                LblWarningSoT.Text = "Usted ya ha ingresado " + registeredHours + " horas  anteriormente para el día " + task.Date.ToShortDateString() + ", no se puede pasar del límite de horas diario.";
-                                break;
                             }
                             else
                             {
-                                task.Hours = hoursInTheForm;
-                                task = taskBusiness.AddTask(task);
-                                if (task.Id > 0)
+                                task.Description = TbDescription2.Text;
+                                if ((DdlHoursSoT.SelectedIndex == 0 && DdlMinutesSoT.SelectedIndex == 0) ||
+                                    (RadioButtonList2.SelectedIndex == 0 && DdlHoursSoT.SelectedIndex == 8 && DdlMinutesSoT.SelectedIndex == 1) ||
+                                    (RadioButtonList2.SelectedIndex == 1 && DdlHoursSoT.SelectedIndex == 16 && DdlMinutesSoT.SelectedIndex == 1))
                                 {
-
-                                    LblWarningSoT.Text = "Se ha ingresado la nueva tarea con éxito";
+                                    LblWarningSoT.Text = "No puede ingresar horas fuera del rango permitido";
                                 }
                                 else
                                 {
-                                    LblWarningSoT.Text = "Ha ocurrido un error, envíe el formulario nuevamente";
+
+                                    if (RadioButtonList2.SelectedIndex == 0)
+                                    {
+                                        task.ExtraHours = false;
+                                    }
+                                    else if (RadioButtonList2.SelectedIndex == 1)
+                                    {
+                                        task.ExtraHours = true;
+                                    }
+
+
+                                    float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
+                                    float hoursInTheForm = float.Parse(DdlHoursSoT.Text + "," + DdlMinutesSoT.Text);
+
+                                    if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
+                                    {
+                                        LblWarningSoT.Text = "Usted ya ha ingresado " + registeredHours + " horas  anteriormente para el día " + task.Date.ToShortDateString() + ", no se puede pasar del límite de horas diario.";
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        task.Hours = hoursInTheForm;
+                                        task = taskBusiness.AddTask(task);
+                                        if (task.Id > 0)
+                                        {
+                                            ResetData();
+                                            LblWarningSoT.Text = "Se ha ingresado la nueva tarea con éxito";
+
+                                        }
+                                        else
+                                        {
+                                            LblWarningSoT.Text = "Ha ocurrido un error, envíe el formulario nuevamente";
+                                        }
+                                    }
+
                                 }
                             }
-
                         }
                     }
 
@@ -349,6 +393,21 @@ namespace Webapp.WebForms
             if (e.Day.Date > DateTime.Now.Date)
             {
                 e.Day.IsSelectable = false;
+            }
+        }
+
+        protected void DdlHours_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LblWarning.Text = "cacaqwe";
+            if ((RadioButtonList1.SelectedIndex == 0 && DdlHours.SelectedValue.Equals("8")) || (RadioButtonList1.SelectedIndex == 1 && DdlHours.SelectedValue.Equals(16)))
+            {
+                DdlMinutes.Items[1].Enabled = false;
+                LblWarning.Text = "caca";
+            }
+            else if(DdlHours.SelectedIndex == 0)
+            {
+                DdlMinutes.Items[0].Enabled = false;
+                LblWarning.Text = "caca2";
             }
         }
     }
