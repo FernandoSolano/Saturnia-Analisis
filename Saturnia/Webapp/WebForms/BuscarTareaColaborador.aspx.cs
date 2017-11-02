@@ -25,8 +25,6 @@ namespace Webapp.WebForms
                 LblCollaboratorName.Text += Session["userName"].ToString();
             }
 
-
-
         }
 
         protected void BtnSearch_Click(object sender, EventArgs e)
@@ -34,6 +32,23 @@ namespace Webapp.WebForms
             collaboratorTasks = taskBusiness.GetTaskByCollaborator(task);
             GridViewTasks.DataSource = collaboratorTasks;
             GridViewTasks.DataBind();
+        }
+
+        protected void GridViewTasks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+         
+        }
+
+    
+        protected void GridViewTask_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Editar")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = GridViewTasks.Rows[index];
+               
+                Response.Redirect("~/WebForms/ActualizarTarea.aspx?id=" + row.Cells[0].Text);
+            }
         }
     }
 }

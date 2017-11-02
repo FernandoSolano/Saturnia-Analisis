@@ -38,7 +38,7 @@
 
             <tr>
                 <td>
-                    <asp:Label ID="Label3" runat="server" Text="Fecha de inicio(mes/día/año):"></asp:Label> 
+                    <asp:Label ID="Label3" runat="server" Text="Fecha de inicio:"></asp:Label> 
                 
                 </td>
 
@@ -60,7 +60,7 @@
 
             <tr>
                  <td>
-                    <asp:Label ID="Label6" runat="server" Text="Fecha de finalización(mes/día/año):"></asp:Label> 
+                    <asp:Label ID="Label6" runat="server" Text="Fecha de finalización:"></asp:Label> 
                 </td>
 
                 <td>
@@ -83,9 +83,9 @@
 
              <tr>
                 <td>
-                    <asp:Button ID="btnUpdateProject" runat="server" OnClick="btnUpdateProject_Click" Text="Actualizar" />
-                    
-                    <asp:Label ID="lb" runat="server" Text="Label"></asp:Label>
+                    <asp:Button ID="BtnUpdate" runat="server" class="btn btn-success" OnClick="btnUpdateProject_Click" Text="Actualizar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                    <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="btnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />              
+  
                 </td>
 
             </tr>

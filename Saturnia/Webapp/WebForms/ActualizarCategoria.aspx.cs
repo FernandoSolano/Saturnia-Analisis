@@ -51,6 +51,11 @@ namespace Webapp.WebForms
             Response.Write("<script>alert('Actualización exitosa.');</script>");
         }
 
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/WebForms/BuscarCategoria.aspx");
+        }
+
 
 
     }
