@@ -32,7 +32,7 @@ namespace Webapp.WebForms
                 if (user.Role.Id == 1)
                 {
 
-                    Response.Redirect("~/WebForms/BuscarProyecto.aspx");
+                    Response.Redirect("~/WebForms/IndexAdmin.aspx");
                 }
                 else if (user.Role.Id == 2)
                 {
@@ -45,6 +45,12 @@ namespace Webapp.WebForms
                LblMessage.Text = "Error al iniciar sesión, nombre de usuario o contraseña incorrectos";
                 TxtPassword.Text = "";
             }
+        }
+
+        protected void BtnCancel_Click(object sender, EventArgs e)
+        {
+            TxtNickname.Text = "";
+            TxtPassword.Text = "";
         }
     }
 }

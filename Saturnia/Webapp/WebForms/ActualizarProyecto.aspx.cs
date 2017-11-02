@@ -68,7 +68,12 @@ namespace Webapp.WebForms
             project.StartDate = DateTime.Parse(CdStartDate.SelectedDate.ToString());
             project.EndDate = DateTime.Parse(CdEndDate.SelectedDate.ToString());
             projectBusiness.UpdateProject(project);
-            Response.Write("<script>alert('Actualización exitosa.');</script>");
+            
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/WebForms/BuscarProyecto.aspx");
         }
 
 

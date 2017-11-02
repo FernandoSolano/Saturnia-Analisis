@@ -151,6 +151,7 @@
     <Content Include="WebForms\AsignarUsuario.aspx" />
     <Content Include="WebForms\AsociarUsuario.aspx" />
     <Content Include="WebForms\BuscarTarea.aspx" />
+    <Content Include="WebForms\BuscarTareaColaborador.aspx" />
     <Content Include="WebForms\CrearTarea.aspx" />
     <Content Include="WebForms\DuplicarTarea.aspx" />
     <Content Include="WebForms\EliminarTarea.aspx" />
@@ -285,6 +286,13 @@
     </Compile>
     <Compile Include="WebForms\BuscarTarea.aspx.designer.cs">
       <DependentUpon>BuscarTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\BuscarTareaColaborador.aspx.cs">
+      <DependentUpon>BuscarTareaColaborador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\BuscarTareaColaborador.aspx.designer.cs">
+      <DependentUpon>BuscarTareaColaborador.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\CrearTarea.aspx.cs">
       <DependentUpon>CrearTarea.aspx</DependentUpon>
