@@ -21,13 +21,13 @@ namespace Webapp.WebForms
             {
                 if (Request.QueryString["id"] != null)
                 {
-                    loadTaskData();
+                    ShowTaskData();
                     ConfirmationMenu.Visible = false;
                 }
             }
         }
 
-        private void loadTaskData()
+        private void ShowTaskData()
         {
             Task task = new Task();
             task.Id= Int32.Parse(Request.QueryString["id"]);
@@ -37,23 +37,31 @@ namespace Webapp.WebForms
             tbDescription.Text = task.Description;
             tbHours.Text = task.Hours.ToString();
             if (task.ExtraHours==false) {
-                rdHours.Checked = true;
-                rdExtrasHours.Enabled = false;
+                RadioButtonList.SelectedIndex = 0;
             } else {
-                rdHours.Enabled = false;
-                rdExtrasHours.Checked = true;
+                RadioButtonList.SelectedIndex = 1;
             }
             CdDate.SelectedDate = DateTime.Parse(task.Date.ToString());
             CdDate.VisibleDate = DateTime.Parse(task.Date.ToString());
-
-
-
         }
 
         protected void btnUpdateTask_Click(object sender, EventArgs e)
         {
-            DefaultMenu.Visible = false;
-            ConfirmationMenu.Visible = true;
+            if (RadioButtonList.SelectedIndex == 0 && Int32.Parse(tbHours.Text) >= 9)
+            {
+                lbHours.Text = "Las horas regulares tienen un maximo de 8 horas.";
+                lbHours.Visible = true;
+            }
+            else if (RadioButtonList.SelectedIndex == 1 && Int32.Parse(tbHours.Text) >= 17)
+            {
+                lbHours.Text = "Las horas regulares tienen un maximo de 16 horas.";
+                lbHours.Visible = true;
+            }
+            else {
+                DefaultMenu.Visible = false;
+                ConfirmationMenu.Visible = true;
+            }
+            
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -69,7 +77,7 @@ namespace Webapp.WebForms
             task.Description = tbDescription.Text;
             task.Hours = Int32.Parse(tbHours.Text);
             task.Date = DateTime.Parse(CdDate.SelectedDate.ToString());
-            if (rdHours.Checked == true)
+            if (RadioButtonList.SelectedIndex == 0)
             {
                 task.ExtraHours = false;
             }
@@ -92,6 +100,5 @@ namespace Webapp.WebForms
             DefaultMenu.Visible = true;
             ConfirmationMenu.Visible = false;
         }
-
     }
 }

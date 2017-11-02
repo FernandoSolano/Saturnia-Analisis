@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteCollaborator.Master" AutoEventWireup="true" CodeBehind="ActualizarTarea.aspx.cs" Inherits="Webapp.WebForms.ActualizarTarea" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div>
@@ -8,74 +9,86 @@
                 <asp:Label ID="Label1" runat="server" Text="Actualizar"></asp:Label>
             </h2>
 
-             <tr>
+            <tr>
                 <td>
-                    <asp:Label ID="Label3" runat="server" Text="Descripción:"></asp:Label> 
+                    <asp:Label ID="Label3" runat="server" Text="Descripción:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="tbDescription" runat="server" TextMode="MultiLine" Width="184px"></asp:TextBox>
+                    <asp:TextBox ID="tbDescription" runat="server" TextMode="MultiLine" Width="198px" Height="36px"></asp:TextBox>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <asp:Label ID="Label7" runat="server" Text="Tipo de horas:"></asp:Label> 
+                    <asp:Label ID="Label7" runat="server" Text="Tipo de horas:"></asp:Label>
                 </td>
                 <td>
-                    <asp:RadioButton ID="rdExtrasHours" runat="server" Text="Extras" />
-                    &nbsp;
-                    <asp:RadioButton ID="rdHours" runat="server" Text="Ordinarias" />
-                    
-                </td>
-            </tr>
 
-             <tr>
-                <td>
-                    <asp:Label ID="Label8" runat="server" Text="Horas invertidas:"></asp:Label> 
-                </td>
-                <td>  
-                    <asp:TextBox ID="tbHours" runat="server" Width="182px" TextMode="Number"></asp:TextBox>
+                    <div>
+                        <asp:RadioButtonList ID="RadioButtonList" runat="server" RepeatDirection="Horizontal" Style="margin: 20px 0px 20px 1px; list-style: none"  AutoPostBack="False">
+                            <asp:ListItem Value="0" style="margin-right: 20px;" Selected="True">Horas regulares</asp:ListItem>
+                            <asp:ListItem Value="1">Horas extras</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </div>
                 </td>
             </tr>
 
             <tr>
-                 <td>
-                    <asp:Label ID="Label6" runat="server" Text="Fecha de registro:"></asp:Label> 
-                    
+                <td>
+
+                    <label>Horas:</label>
+                    <asp:TextBox ID="tbHours" runat="server" TextMode="Number"></asp:TextBox>
+                    <br />
+                    <asp:Label ID="lbHours" runat="server" Text="Label" Visible="False"></asp:Label>
+                </td>
+                <td>
+                    <label style="margin-left: 20px">Minutos:</label>
+                                <asp:DropDownList ID="DdlMinutes" runat="server" Style="margin-left: 30px" Width="60px">
+                                    <asp:ListItem>00</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                </asp:DropDownList>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <asp:Label ID="Label6" runat="server" Text="Fecha de registro:"></asp:Label>
+
                 </td>
 
                 <td>
-                    <asp:Calendar ID="CdDate" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px" >
-                 <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                 <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                 <OtherMonthDayStyle ForeColor="#999999" />
-                 <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                 <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                 <TodayDayStyle BackColor="#CCCCCC" />
+                    <asp:Calendar ID="CdDate" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
+                        <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                        <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                        <OtherMonthDayStyle ForeColor="#999999" />
+                        <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                        <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                        <TodayDayStyle BackColor="#CCCCCC" />
                     </asp:Calendar>
                 </td>
 
             </tr>
 
-             <tr>
-                 <td>
-                     <div runat="server" id="DefaultMenu">
-                         <asp:Button ID="BtnUpdate" runat="server" class="btn btn-success" OnClick="btnUpdateTask_Click" Text="Actualizar" Style="margin-left: 10px" Height="30px" Width="120px" />
-                         <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="btnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />              
+            <tr>
+                <td>
+                    <div runat="server" id="DefaultMenu">
+                        <asp:Button ID="BtnUpdate" runat="server" class="btn btn-success" OnClick="btnUpdateTask_Click" Text="Actualizar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                        <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="btnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
                     </div>
 
-                     <div runat="server" id="ConfirmationMenu">
-                         <h4>¿Esta seguro que desea actualizar?</h4>
+                    <div runat="server" id="ConfirmationMenu">
+                        <h4>¿Está seguro que desea actualizar?</h4>
 
-                         <asp:Button ID="Button1" runat="server" class="btn btn-success" OnClick="btnUpdateTaskConfirmation_Click" Text="Aceptar" Style="margin-left: 10px" Height="30px" Width="120px" />
-                         <asp:Button ID="Button2" runat="server" class="btn btn-danger" OnClick="btnCancelUpdate_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />              
+                        <asp:Button ID="Button1" runat="server" class="btn btn-success" OnClick="btnUpdateTaskConfirmation_Click" Text="Aceptar" Style="margin-left: 10px" Height="30px" Width="120px" />
+                        <asp:Button ID="Button2" runat="server" class="btn btn-danger" OnClick="btnCancelUpdate_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
                     </div>
 
-                 </td>
+                </td>
 
-                 <td>
-                     <asp:Label ID="lbMessage" runat="server" Text="La tarea ha sido actualizada correctamente." ForeColor="#3366FF" Visible="False"></asp:Label>
-                 </td>
+                <td>
+                    <asp:Label ID="lbMessage" runat="server" Text="La tarea ha sido actualizada correctamente." ForeColor="Blue" Visible="False"></asp:Label>
+                </td>
 
             </tr>
 
