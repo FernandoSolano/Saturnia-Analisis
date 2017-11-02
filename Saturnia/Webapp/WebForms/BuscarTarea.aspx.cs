@@ -16,12 +16,17 @@ namespace Webapp.WebForms
         private UserBusiness userBusiness;
         private ProjectBusiness projectBusiness;
         private CategoryBusiness categoryBusiness;
+        private TaskBusiness taskBusiness;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.userBusiness = new UserBusiness();
-            this.projectBusiness = new ProjectBusiness();
-            this.categoryBusiness = new CategoryBusiness();
+            if (Page.IsPostBack == false)
+            {
+                this.userBusiness = new UserBusiness();
+                this.projectBusiness = new ProjectBusiness();
+                this.categoryBusiness = new CategoryBusiness();
+                this.taskBusiness = new TaskBusiness();
+            }
         }
 
         /// <summary>
@@ -142,18 +147,9 @@ namespace Webapp.WebForms
 
                 //Re-inicializamos a "tempCell" para agregar el botón de seleccionar a la tabla
                 tempCell = new TableCell();
-                tempButton = new Button();
-
-                tempButton.Text = "Tareas de " + listElement.FirstName;
-                tempButton.CommandName = "user";
-                tempButton.CommandArgument = listElement.Id + "";
-                tempButton.CausesValidation = false;
-                tempButton.Click += new EventHandler(this.btnAddEntityFilter_Click);
-                tempButton.ID = (listElement.FirstName + "" + listElement.Id);
-                tempButton.CssClass = "btn btn-primary";
-
-                tempCell.Controls.Clear();
-                tempCell.Controls.Add(tempButton);
+                //El boton no contiene id, pero sí un 'value' que es el id de la entidad, también llamamos al método
+                // que llena el hidden de la entidad pasando el nombre de la entidad, y el valor de este botón.
+                tempCell.Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"User\", this.value)'>Tareas de " + listElement.FirstName + "</button>";
                 tempCell.CssClass = "results";
                 tempRow.Cells.Add(tempCell);
 
@@ -167,6 +163,36 @@ namespace Webapp.WebForms
         protected void BTEliminar_Click(object sender, EventArgs e)
         {
             Response.Redirect("EliminarTarea.aspx");
+        }
+
+        protected void btnSearchTask_Click(object sender, EventArgs e)
+        {
+            int user, category, project;
+            String textFrom, textTo;
+            DateTime dateFrom, dateTo;
+
+            this.TaskSearchingMessage.Visible = true;
+
+            textFrom = this.txtFrom.Text;
+            textTo = this.txtTo.Text;
+
+            user = Int16.Parse(this.hdnUser.Value);
+            category = Int16.Parse(this.hdnUser.Value);
+            project = Int16.Parse(this.hdnUser.Value);
+            //Inicializamos las variables de fecha.
+            if (textFrom != "")
+            {
+                dateFrom = DateTime.Parse(textFrom);
+            }
+            if (textTo != "")
+            {
+                dateTo = DateTime.Parse(textTo);
+            }
+
+            this.resultTaskTable.Visible = true;
+
+            this.TaskSearchingMessage.Visible = false;
+
         }
     }
 }
