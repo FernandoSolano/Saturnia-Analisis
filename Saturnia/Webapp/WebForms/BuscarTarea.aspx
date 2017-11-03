@@ -155,9 +155,8 @@
         <h2 class="fixDate">Rango de fechas</h2>
         &nbsp;<label class="fixDate">De:</label>&nbsp;<asp:TextBox ID="txtFrom" TextMode="Date" runat="server"></asp:TextBox>
         &nbsp;<label class="fixDate">A:</label>&nbsp;<asp:TextBox ID="txtTo" TextMode="Date" runat="server"></asp:TextBox>&nbsp;<br /><br />
-        <asp:Button ID="btnSearchTask" runat="server" Text="Buscar Tarea" CssClass="btn btn-danger" OnClick="btnSearchTask_Click" />&nbsp; <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" Text="Cancelar" /><br />
+        <asp:Button ID="btnSearchTask" runat="server" Text="Buscar Tarea" CssClass="btn btn-danger" OnClientClick="FadeAllAreas();" OnClick="btnSearchTask_Click" />&nbsp; <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" Text="Cancelar" /><br />
         &nbsp;
-        <asp:Label ID="tst" runat="server" Text=""></asp:Label>
     </div>
     <!--Fin de Div para buscar tareas-->
 
@@ -171,8 +170,7 @@
             $('#areaUser').hide();
             $('#areaProject').hide();
             $('#areaCategory').hide();
-            $('#MainContent_txtFrom').datePicker();
-            $('#MainContent_txtTo').datePicker();
+            $('[data-toggle="tooltip"]').tooltip();
         });
 
         /**
@@ -188,6 +186,14 @@
                 document.getElementById('MainContent_hdn' + entity).value = 0; //Eliminar el valor del hidden.
             }
         }
+        /**
+         * Metodo que oculta todas las areas de filtros de forma agradable visualmente.
+         */
+        function FadeAllAreas(){
+            $('#areaUser').fadeOut('slow');
+            $('#areaCategory').fadeOut('slow');
+            $('#areaProject').fadeOut('slow');
+        }
 
         /**
          * Este metodo recibe el nombre de  la entidad y el id de dicha entidad, para guardarlo en el
@@ -197,7 +203,6 @@
          */
         function FillHidden(entity, id) {
             document.getElementById('MainContent_hdn' + entity).value = id;
-            alert(document.getElementById('MainContent_hdn' + entity).value);
         }
     </script>
 </asp:Content>
