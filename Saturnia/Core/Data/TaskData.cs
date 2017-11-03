@@ -266,7 +266,7 @@ namespace Core.Data
                 {
                     tempTask = new Task();
                     tempTask.Id = reader.GetInt32(0);
-                    tempTask.Hours = reader.GetFloat(1);
+                    tempTask.Hours = float.Parse(reader.GetDouble(1).ToString());
                     tempTask.ExtraHours = reader.GetBoolean(2);
                     tempTask.Date = reader.GetDateTime(3);
                     tempTask.Description = reader.GetString(4);
