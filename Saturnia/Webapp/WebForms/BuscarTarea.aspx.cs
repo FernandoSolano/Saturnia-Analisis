@@ -20,13 +20,10 @@ namespace Webapp.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Page.IsPostBack == false)
-            {
-                this.userBusiness = new UserBusiness();
-                this.projectBusiness = new ProjectBusiness();
-                this.categoryBusiness = new CategoryBusiness();
-                this.taskBusiness = new TaskBusiness();
-            }
+            this.userBusiness = new UserBusiness();
+            this.projectBusiness = new ProjectBusiness();
+            this.categoryBusiness = new CategoryBusiness();
+            this.taskBusiness = new TaskBusiness();
         }
 
         /// <summary>
@@ -168,30 +165,110 @@ namespace Webapp.WebForms
         protected void btnSearchTask_Click(object sender, EventArgs e)
         {
             int user, category, project;
-            String textFrom, textTo;
+            String textDateFrom, textDateTo, taskDescription;
             DateTime dateFrom, dateTo;
+            Task localTask;
+            List<Task> taskList;
+            TableRow tempRow;
+            TableCell tempCell;
 
-            this.TaskSearchingMessage.Visible = true;
-
-            textFrom = this.txtFrom.Text;
-            textTo = this.txtTo.Text;
+            textDateFrom = this.txtFrom.Text;
+            textDateTo = this.txtTo.Text;
+            taskDescription = ""; //Actualmente no se busca por descripción, pero de ser necesario queda listo.
+                                 //Tan solo falta añadir un txt para descripción y obtener su texto aquí.
 
             user = Int16.Parse(this.hdnUser.Value);
-            category = Int16.Parse(this.hdnUser.Value);
-            project = Int16.Parse(this.hdnUser.Value);
+            category = Int16.Parse(this.hdnCategory.Value);
+            project = Int16.Parse(this.hdnProject.Value);
             //Inicializamos las variables de fecha.
-            if (textFrom != "")
-            {
-                dateFrom = DateTime.Parse(textFrom);
-            }
-            if (textTo != "")
-            {
-                dateTo = DateTime.Parse(textTo);
-            }
+            dateFrom = DateTime.Parse(
+                (textDateFrom != "") ? textDateFrom : "1801-08-05"
+            );
+            dateTo = DateTime.Parse(
+                (textDateTo != "") ? textDateTo : "1801-08-05"
+            );
 
+            //Inicializamos la tarea a buscar
+            localTask = new Task();
+
+            //Primero los filtros usuario, categoria y colaborador
+            localTask.Collaborator.Id = user;
+            localTask.Project.Id = project;
+            localTask.Category.Id = category;
+            //Luego las fechas.
+            localTask.Date = dateFrom;
+            //Con esto nos ahorramos una conversión en data en algunos casos, en otros se obtiene de la descripcion del
+            //proyecto que conforma la tarea.
+            localTask.Project.Description = (
+                dateFrom == dateTo ? ("Same") : (dateTo.ToString())
+            );
+            //Finalmente la descripcion de la tarea
+            localTask.Description = taskDescription;
+
+
+            taskList = this.taskBusiness.Search(localTask);
+
+            foreach(Task listItem in taskList)
+            {
+                tempRow = new TableRow();
+
+                tempCell = new TableCell
+                {
+
+                    //Añadimos descripcion
+                    Text = listItem.Description,
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                //Añadimos fecha
+                tempCell = new TableCell
+                {
+                    Text = listItem.Date.ToShortDateString(),
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                //Añadimos el nombre del proyecto.
+                tempCell = new TableCell
+                {
+                    Text = listItem.Project.Name,
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                //Añadimos las horas dedicadas.
+                tempCell = new TableCell
+                {
+                    Text = listItem.Hours.ToString(),
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                //Añadimos un indicador de si son horas extra o no.
+                tempCell = new TableCell
+                {
+                    Text = "<input id='"+listItem.Id+"' class='results' type=\"checkbox\" " + (listItem.ExtraHours ? "checked " : "") + "disabled ><label for='"+listItem.Id+"'><span></span></label>",
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                //Finalmente un botón para ver la tarea en detalle
+                tempCell = new TableCell
+                {
+                    Text = "<a href=\"#\" class=\"btn btn-danger\" data-toggle=\"tooltip\" title=\"Ver tarea en detalle\">Ver</a>",
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                tempRow.CssClass = "results";
+                this.resultTaskTable.Rows.Add(tempRow);
+            }
+            
             this.resultTaskTable.Visible = true;
-
-            this.TaskSearchingMessage.Visible = false;
+            this.resultUserTable.Visible = false;
+            this.resultCategoryTable.Visible = false;
+            this.resultProjectTable.Visible = false;
 
         }
     }
