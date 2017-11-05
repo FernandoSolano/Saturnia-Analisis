@@ -16,12 +16,14 @@ namespace Webapp.WebForms
         private UserBusiness userBusiness;
         private ProjectBusiness projectBusiness;
         private CategoryBusiness categoryBusiness;
+        private TaskBusiness taskBusiness;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             this.userBusiness = new UserBusiness();
             this.projectBusiness = new ProjectBusiness();
             this.categoryBusiness = new CategoryBusiness();
+            this.taskBusiness = new TaskBusiness();
         }
 
         /// <summary>
@@ -142,18 +144,9 @@ namespace Webapp.WebForms
 
                 //Re-inicializamos a "tempCell" para agregar el botón de seleccionar a la tabla
                 tempCell = new TableCell();
-                tempButton = new Button();
-
-                tempButton.Text = "Tareas de " + listElement.FirstName;
-                tempButton.CommandName = "user";
-                tempButton.CommandArgument = listElement.Id + "";
-                tempButton.CausesValidation = false;
-                tempButton.Click += new EventHandler(this.btnAddEntityFilter_Click);
-                tempButton.ID = (listElement.FirstName + "" + listElement.Id);
-                tempButton.CssClass = "btn btn-primary";
-
-                tempCell.Controls.Clear();
-                tempCell.Controls.Add(tempButton);
+                //El boton no contiene id, pero sí un 'value' que es el id de la entidad, también llamamos al método
+                // que llena el hidden de la entidad pasando el nombre de la entidad, y el valor de este botón.
+                tempCell.Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"User\", this.value)'>Tareas de " + listElement.FirstName + "</button>";
                 tempCell.CssClass = "results";
                 tempRow.Cells.Add(tempCell);
 
@@ -167,6 +160,116 @@ namespace Webapp.WebForms
         protected void BTEliminar_Click(object sender, EventArgs e)
         {
             Response.Redirect("EliminarTarea.aspx");
+        }
+
+        protected void btnSearchTask_Click(object sender, EventArgs e)
+        {
+            int user, category, project;
+            String textDateFrom, textDateTo, taskDescription;
+            DateTime dateFrom, dateTo;
+            Task localTask;
+            List<Task> taskList;
+            TableRow tempRow;
+            TableCell tempCell;
+
+            textDateFrom = this.txtFrom.Text;
+            textDateTo = this.txtTo.Text;
+            taskDescription = ""; //Actualmente no se busca por descripción, pero de ser necesario queda listo.
+                                 //Tan solo falta añadir un txt para descripción y obtener su texto aquí.
+
+            user = Int16.Parse(this.hdnUser.Value);
+            category = Int16.Parse(this.hdnCategory.Value);
+            project = Int16.Parse(this.hdnProject.Value);
+            //Inicializamos las variables de fecha.
+            dateFrom = DateTime.Parse(
+                (textDateFrom != "") ? textDateFrom : "1801-08-05"
+            );
+            dateTo = DateTime.Parse(
+                (textDateTo != "") ? textDateTo : "1801-08-05"
+            );
+
+            //Inicializamos la tarea a buscar
+            localTask = new Task();
+
+            //Primero los filtros usuario, categoria y colaborador
+            localTask.Collaborator.Id = user;
+            localTask.Project.Id = project;
+            localTask.Category.Id = category;
+            //Luego las fechas.
+            localTask.Date = dateFrom;
+            //Con esto nos ahorramos una conversión en data en algunos casos, en otros se obtiene de la descripcion del
+            //proyecto que conforma la tarea.
+            localTask.Project.Description = (
+                dateFrom == dateTo ? ("Same") : (dateTo.ToString())
+            );
+            //Finalmente la descripcion de la tarea
+            localTask.Description = taskDescription;
+
+
+            taskList = this.taskBusiness.Search(localTask);
+
+            foreach(Task listItem in taskList)
+            {
+                tempRow = new TableRow();
+
+                tempCell = new TableCell
+                {
+
+                    //Añadimos descripcion
+                    Text = listItem.Description,
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                //Añadimos fecha
+                tempCell = new TableCell
+                {
+                    Text = listItem.Date.ToShortDateString(),
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                //Añadimos el nombre del proyecto.
+                tempCell = new TableCell
+                {
+                    Text = listItem.Project.Name,
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                //Añadimos las horas dedicadas.
+                tempCell = new TableCell
+                {
+                    Text = listItem.Hours.ToString(),
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                //Añadimos un indicador de si son horas extra o no.
+                tempCell = new TableCell
+                {
+                    Text = "<input id='"+listItem.Id+"' class='results' type=\"checkbox\" " + (listItem.ExtraHours ? "checked " : "") + "disabled ><label for='"+listItem.Id+"'><span></span></label>",
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                //Finalmente un botón para ver la tarea en detalle
+                tempCell = new TableCell
+                {
+                    Text = "<a href=\"#\" class=\"btn btn-danger\" data-toggle=\"tooltip\" title=\"Ver tarea en detalle\">Ver</a>",
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
+
+                tempRow.CssClass = "results";
+                this.resultTaskTable.Rows.Add(tempRow);
+            }
+            
+            this.resultTaskTable.Visible = true;
+            this.resultUserTable.Visible = false;
+            this.resultCategoryTable.Visible = false;
+            this.resultProjectTable.Visible = false;
+
         }
     }
 }
