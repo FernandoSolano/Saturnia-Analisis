@@ -175,6 +175,26 @@ input[type="checkbox"].results {
         height: 19px;
         margin: -2px 10px 0 0;
         vertical-align: middle;
+        background: url(../Images/check_radio_sheet-inverted.png) left top no-repeat;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"].results:checked + label span {
+        background: url(../Images/check_radio_sheet-inverted.png) -19px top no-repeat;
+    }
+/* ----- End Custom Checkbox -----*/
+/* ----- Results Checkbox -----*/
+/*Tomado de: https://webdesign.tutsplus.com/articles/quick-tip-easy-css3-checkboxes-and-radio-buttons--webdesign-8953 */
+input[type="checkbox"].results {
+    display: none;
+}
+
+    input[type="checkbox"].results + label span {
+        display: inline-block;
+        width: 19px;
+        height: 19px;
+        margin: -2px 10px 0 0;
+        vertical-align: middle;
         background: url(../Images/check_radio_sheet.png) left top no-repeat;
         cursor: pointer;
     }
@@ -182,4 +202,4 @@ input[type="checkbox"].results {
     input[type="checkbox"].results:checked + label span {
         background: url(../Images/check_radio_sheet.png) -19px top no-repeat;
     }
-/* ----- End Results Checkbox -----*/
+/* ----- End Custom Checkbox -----*/
