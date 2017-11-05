@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BuscarTarea.aspx.cs" Inherits="Webapp.WebForms.BuscarTarea" %>
+﻿<%@ Page Title="Buscar Tarea" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BuscarTarea.aspx.cs" Inherits="Webapp.WebForms.BuscarTarea" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Buscar Tarea</h1>
@@ -27,6 +27,7 @@
             </tr>
         </table>
         <!--Fin de table-->
+        <asp:HiddenField ID="hdnUser" runat="server" Value="0" /> <!-- Hidden field de usuario -->
         <!--Inicio de asp:UpdatePanel-->
         <asp:UpdatePanel ID="UPUser" runat="server">
             <ContentTemplate>
@@ -72,6 +73,7 @@
             </tr>
         </table>
         <!--Fin de table-->
+        <asp:HiddenField ID="hdnCategory" runat="server" Value="0" /> <!-- Hidden field de categoria -->
         <!--Inicio de asp:Table-->
         <asp:Table ID="resultCategoryTable" runat="server" Visible="false" CssClass="results">
             <asp:TableHeaderRow>
@@ -99,6 +101,7 @@
             </tr>
         </table>
         <!--Fin de table-->
+        <asp:HiddenField ID="hdnProject" runat="server" Value="0" /> <!-- Hidden field de proyecto -->
         <!--Inicio de asp:Table-->
         <asp:Table ID="resultProjectTable" runat="server" Visible="false" CssClass="results">
             <asp:TableHeaderRow>
@@ -107,16 +110,55 @@
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>
         </asp:Table>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="BTEliminar" runat="server" BackColor="#990000" ForeColor="White" Height="38px" OnClick="BTEliminar_Click" Text="Eliminar" Width="137px" />
     </div>
+    <div id="resultsPlace">
+        <!--Inicio de update panel para resultados de tarea-->
+        <asp:UpdatePanel ID="UPTaskResults" runat="server">
+            <ContentTemplate>
+                <fieldset>
+                    <!--Label de mensaje mostrado mientras se buscan tareas-->
+                    <asp:Label ID="TaskSearchingMessage" runat="server" Visible="false" Text="Buscando tareas, un momento por favor" ForeColor="Blue"></asp:Label>
+                    <!--Inicio de tabla de resultados de tarea-->
+                        <asp:Table ID="resultTaskTable" runat="server" Visible="false" CssClass="results">
+                            <asp:TableHeaderRow>
+                                <asp:TableHeaderCell>
+                                    Descripci&oacute;n
+                                </asp:TableHeaderCell>
+                                <asp:TableHeaderCell>
+                                    Fecha
+                                </asp:TableHeaderCell>
+                                <asp:TableHeaderCell>
+                                    Proyecto
+                                </asp:TableHeaderCell>
+                                <asp:TableHeaderCell>
+                                    Horas
+                                </asp:TableHeaderCell>
+                                <asp:TableHeaderCell>
+                                    Horas extra
+                                </asp:TableHeaderCell>
+                                <asp:TableHeaderCell>
+                                    Acci&oacute;n
+                                </asp:TableHeaderCell>
+                            </asp:TableHeaderRow>
+                        </asp:Table>
+                    <!--Fin de tabla de resultados de tarea-->
+                </fieldset>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnSearchTask" EventName="Click" />
+            </Triggers>
+        </asp:UpdatePanel>
+        <!--Fin de update panel para resultados de tarea-->
+    </div>
+    <!--Div para buscar tareas-->
     <div class="fixDate" align="center">
         <h2 class="fixDate">Rango de fechas</h2>
         &nbsp;<label class="fixDate">De:</label>&nbsp;<asp:TextBox ID="txtFrom" TextMode="Date" runat="server"></asp:TextBox>
         &nbsp;<label class="fixDate">A:</label>&nbsp;<asp:TextBox ID="txtTo" TextMode="Date" runat="server"></asp:TextBox>&nbsp;<br /><br />
-        <asp:Button ID="btnSearchTask" runat="server" Text="Buscar Tarea" class="btn btn-danger" />&nbsp; <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" Text="Cancelar" /><br />
+        <asp:Button ID="btnSearchTask" runat="server" Text="Buscar Tarea" CssClass="btn btn-danger" OnClientClick="FadeAllAreas();" OnClick="btnSearchTask_Click" />&nbsp; <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" Text="Cancelar" /><br />
         &nbsp;
     </div>
+    <!--Fin de Div para buscar tareas-->
 
     <script>
 
@@ -128,6 +170,7 @@
             $('#areaUser').hide();
             $('#areaProject').hide();
             $('#areaCategory').hide();
+            $('[data-toggle="tooltip"]').tooltip();
         });
 
         /**
@@ -140,7 +183,26 @@
                 $('#area' + entity).fadeIn('slow');
             } else {
                 $('#area' + entity).fadeOut('slow');
+                document.getElementById('MainContent_hdn' + entity).value = 0; //Eliminar el valor del hidden.
             }
+        }
+        /**
+         * Metodo que oculta todas las areas de filtros de forma agradable visualmente.
+         */
+        function FadeAllAreas(){
+            $('#areaUser').fadeOut('slow');
+            $('#areaCategory').fadeOut('slow');
+            $('#areaProject').fadeOut('slow');
+        }
+
+        /**
+         * Este metodo recibe el nombre de  la entidad y el id de dicha entidad, para guardarlo en el
+         * hidden field correspondiente.
+         * @param {entity} string
+         * @param {id} Integer
+         */
+        function FillHidden(entity, id) {
+            document.getElementById('MainContent_hdn' + entity).value = id;
         }
     </script>
 </asp:Content>
