@@ -69,11 +69,18 @@ namespace Webapp.WebForms
             foreach (Project listElement in results)
             {
                 tempRow = new TableRow();
-                tempCell = new TableCell();
-
-                tempCell.Text = listElement.Name;
-                tempCell.CssClass = "results";
+                tempCell = new TableCell
+                {
+                    Text = listElement.Name,
+                    CssClass = "results"
+                };
                 tempRow.Cells.Add(tempCell);
+
+                tempCell = new TableCell
+                {
+                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"Project\", this.value,\"" + listElement.Name + "\")'>Tareas por el proyecto " + listElement.Name + "</button>",
+                    CssClass = "results"
+                };
 
                 tempRow.Cells.Add(tempCell);
                 tempRow.CssClass = "results";
@@ -81,13 +88,16 @@ namespace Webapp.WebForms
             }
 
             this.resultProjectTable.Visible = true;
+            this.resultTaskTable.Visible = false;
         }
 
         protected void btnSearchCategory_Click(object sender, EventArgs e)
         {
             String name = this.txtCategoryName.Text;
-            Category category = new Category();
-            category.Name = name;
+            Category category = new Category
+            {
+                Name = name
+            };
             List<Category> results = this.categoryBusiness.SearchCategory(category);
             TableRow tempRow;
             TableCell tempCell;
@@ -95,17 +105,28 @@ namespace Webapp.WebForms
             foreach (Category listElement in results)
             {
                 tempRow = new TableRow();
-                tempCell = new TableCell();
+                tempCell = new TableCell
+                {
+                    Text = listElement.Name,
 
-                tempCell.Text = listElement.Name;
+                    CssClass = "results"
+                };
+                tempRow.Cells.Add(tempCell);
 
-                tempCell.CssClass = "results";
+                tempCell = new TableCell
+                {
+                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"Category\", this.value,\"" + listElement.Name + "\")'>Tareas por la categoría " + listElement.Name + "</button>",
+
+                    CssClass = "results"
+                };
+
                 tempRow.Cells.Add(tempCell);
                 tempRow.CssClass = "results";
                 this.resultCategoryTable.Rows.Add(tempRow);
             }
 
             this.resultCategoryTable.Visible = true;
+            this.resultTaskTable.Visible = false;
         }
 
         protected void btnSearchUser_Click(object sender, EventArgs e)
@@ -123,31 +144,36 @@ namespace Webapp.WebForms
             //Variables temporales para llenar la tabla de resultados.
             TableRow tempRow;
             TableCell tempCell;
-            Button tempButton;
 
             foreach (User listElement in results)
             {
                 //Se inicializan.
                 tempRow = new TableRow();
-                tempCell = new TableCell();
+                tempCell = new TableCell
+                {
 
-                //Cargamos el nombre del usuario y la agregamos a la tabla.
-                tempCell.Text = listElement.FirstName;
-                tempCell.CssClass = "results"; //Importante, el CSS contiene la clase "results" para las tablas similares a esta.
+                    //Cargamos el nombre del usuario y la agregamos a la tabla.
+                    Text = listElement.FirstName,
+                    CssClass = "results" //Importante, el CSS contiene la clase "results" para las tablas similares a esta.
+                };
                 tempRow.Cells.Add(tempCell);
 
                 //Re-inicializamos a "tempCell" para agregar los apellidos a la tabla
-                tempCell = new TableCell();
-                tempCell.Text = listElement.LastName;
-                tempCell.CssClass = "results";
+                tempCell = new TableCell
+                {
+                    Text = listElement.LastName,
+                    CssClass = "results"
+                };
                 tempRow.Cells.Add(tempCell);
 
                 //Re-inicializamos a "tempCell" para agregar el botón de seleccionar a la tabla
-                tempCell = new TableCell();
-                //El boton no contiene id, pero sí un 'value' que es el id de la entidad, también llamamos al método
-                // que llena el hidden de la entidad pasando el nombre de la entidad, y el valor de este botón.
-                tempCell.Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"User\", this.value)'>Tareas de " + listElement.FirstName + "</button>";
-                tempCell.CssClass = "results";
+                tempCell = new TableCell
+                {
+                    //El boton no contiene id, pero sí un 'value' que es el id de la entidad, también llamamos al método
+                    // que llena el hidden de la entidad pasando el nombre de la entidad, y el valor de este botón.
+                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"User\", this.value,\"" + listElement.FirstName + " " + listElement.LastName + "\")'>Tareas de " + listElement.FirstName + " " + listElement.LastName + "</button>",
+                    CssClass = "results"
+                };
                 tempRow.Cells.Add(tempCell);
 
                 //Finalmente añadimos la tupla temporal.
@@ -155,6 +181,8 @@ namespace Webapp.WebForms
             }
             //Hacemos visible la tabla que originalmente es invisible.
             this.resultUserTable.Visible = true;
+            //Hacemos invisible la tabla de resultados para evitar el "bug" donde solo quedan visibles los encabezados.
+            this.resultTaskTable.Visible = false;
         }
 
         protected void BTEliminar_Click(object sender, EventArgs e)
@@ -216,7 +244,7 @@ namespace Webapp.WebForms
                 {
 
                     //Añadimos descripcion
-                    Text = listItem.Description,
+                    Text = "<a href=\"#\" class=\"results\" data-toggle=\"tooltip\" title=\"Ver tarea en detalle\">" + listItem.Description + "</a>",
                     CssClass = "results"
                 };
                 tempRow.Cells.Add(tempCell);
@@ -245,7 +273,7 @@ namespace Webapp.WebForms
                 };
                 tempRow.Cells.Add(tempCell);
 
-                //Añadimos un indicador de si son horas extra o no.
+                //Por último añadimos un indicador de si son horas extra o no.
                 tempCell = new TableCell
                 {
                     Text = "<input id='"+listItem.Id+"' class='results' type=\"checkbox\" " + (listItem.ExtraHours ? "checked " : "") + "disabled ><label for='"+listItem.Id+"'><span></span></label>",
@@ -253,18 +281,10 @@ namespace Webapp.WebForms
                 };
                 tempRow.Cells.Add(tempCell);
 
-                //Finalmente un botón para ver la tarea en detalle
-                tempCell = new TableCell
-                {
-                    Text = "<a href=\"#\" class=\"btn btn-danger\" data-toggle=\"tooltip\" title=\"Ver tarea en detalle\">Ver</a>",
-                    CssClass = "results"
-                };
-                tempRow.Cells.Add(tempCell);
-
                 tempRow.CssClass = "results";
                 this.resultTaskTable.Rows.Add(tempRow);
             }
-            
+
             this.resultTaskTable.Visible = true;
             this.resultUserTable.Visible = false;
             this.resultCategoryTable.Visible = false;

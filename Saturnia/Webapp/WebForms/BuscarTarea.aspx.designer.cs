@@ -85,6 +85,15 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.HiddenField hdnCategory;
         
         /// <summary>
+        /// Control UPCategory.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UPCategory;
+        
+        /// <summary>
         /// Control resultCategoryTable.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,15 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.HiddenField hdnProject;
         
         /// <summary>
+        /// Control UPProject.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UPProject;
+        
+        /// <summary>
         /// Control resultProjectTable.
         /// </summary>
         /// <remarks>
@@ -137,15 +155,6 @@ namespace Webapp.WebForms {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UPTaskResults;
-        
-        /// <summary>
-        /// Control TaskSearchingMessage.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TaskSearchingMessage;
         
         /// <summary>
         /// Control resultTaskTable.
