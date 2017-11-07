@@ -202,5 +202,102 @@ namespace Core.Data
             }
         }
 
+        public List<Task> Search(Task task)
+        {
+            //Declaracion e inicializacion de variables e instancias.
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            //Nombre del SP
+            string sqlStoredProcedure = "SP_SEARCH_TASK_FILTERED";
+
+            //Variables para ejecutar el SP
+            SqlCommand sqlCommand;
+            SqlParameter parameter;
+            SqlDataReader reader;
+
+            //Lista de retorno.
+            List<Task> tasks = new List<Task>();
+
+            //Objeto temporal para llenar la lista.
+            Task tempTask;
+
+            sqlCommand = new SqlCommand(sqlStoredProcedure, connection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            //Parametro que contendra la descripción para la búsqueda.
+            parameter = new SqlParameter("@_Description", task.Description);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra el filtro por proyecto.
+            parameter = new SqlParameter("@_Project", task.Project.Id);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra el filtro por usuario.
+            parameter = new SqlParameter("@_User", task.Collaborator.Id);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra el filtro por categoria.
+            parameter = new SqlParameter("@_Category", task.Category.Id);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra la fecha "desde".
+            parameter = new SqlParameter("@_Date_From", task.Date);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra la fecha "hasta".
+            //Si proyecto trae en su descripción la palabra "Same" quiere decir que ambas fechas son iguales.
+            //Lo que nos hace tomar la desición de enviar nuevamente task.date, sino se hace un parse.
+            parameter = new SqlParameter("@_Date_To", 
+                task.Project.Description == "Same" ? task.Date : DateTime.Parse(task.Project.Description)
+            );
+            sqlCommand.Parameters.Add(parameter);
+
+            //Abrimos y ejecutamos el SP
+            sqlCommand.Connection.Open();
+            sqlCommand.ExecuteNonQuery();
+
+            //Ejecutamos el lector para recibir lo devuelto.
+            reader = sqlCommand.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                //Si hubiesen resultados, los añadimos uno a uno a la lista.
+                while (reader.Read())
+                {
+                    tempTask = new Task();
+                    tempTask.Id = reader.GetInt32(0);
+                    tempTask.Hours = float.Parse(reader.GetDouble(1).ToString());
+                    tempTask.ExtraHours = reader.GetBoolean(2);
+                    tempTask.Date = reader.GetDateTime(3);
+                    tempTask.Description = reader.GetString(4);
+                    tempTask.Project.Name = reader.GetString(5);
+                    tempTask.Collaborator.FirstName = reader.GetString(6);
+                    tempTask.Collaborator.LastName = reader.GetString(7);
+                    tempTask.Category.Name = reader.GetString(8);
+                    tasks.Add(tempTask);
+                }
+            }
+            else
+            {
+                //Si no hay resultados, agregamos un proyecto con id -1 y nombre que indique que no hubo resultados.
+                tempTask = new Task();
+                tempTask.Id = -1;
+                tempTask.Hours = 0;
+                tempTask.ExtraHours = false;
+                tempTask.Date = DateTime.Today;
+                tempTask.Description = "No se encontraron coincidencias";
+                tempTask.Project.Name = "";
+                tempTask.Collaborator.FirstName = "";
+                tempTask.Category.Name = "";
+                tasks.Add(tempTask);
+            }
+
+            //Cerramos la conexion.
+            sqlCommand.Connection.Close();
+
+            //Retornamos la lista.
+            return tasks;
+        }
+
     }
 }

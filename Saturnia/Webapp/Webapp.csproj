@@ -141,6 +141,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\bgwhite.jpg" />
+    <Content Include="Images\check_radio_sheet-inverted.png" />
+    <Content Include="Images\check_radio_sheet.png" />
     <Content Include="Images\DarkGrayPatterns.png" />
     <Content Include="Images\image.png" />
     <Content Include="Images\White-Colour-Background.jpg" />

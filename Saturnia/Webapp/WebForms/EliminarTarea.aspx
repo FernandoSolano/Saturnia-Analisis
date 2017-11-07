@@ -22,9 +22,9 @@
     <br />
     <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="BTAceptar" runat="server" CssClass="btn btn-danger" OnClick="BTAceptar_Click" Text="Aceptar" Width="91px" />
+    <asp:Button ID="BTAceptar" runat="server" class="btn btn-danger" OnClick="BTAceptar_Click" Text="Aceptar" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="BTCancelar" runat="server" CssClass="btn btn-danger" Height="27px" OnClick="BTCancelar_Click" Text="Cancelar" Width="90px" />
+    <asp:Button ID="BTCancelar" runat="server" class="btn btn-danger" OnClick="BTCancelar_Click" Text="Cancelar" />
 </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 </asp:Content>
