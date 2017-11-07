@@ -272,7 +272,8 @@ namespace Core.Data
                     tempTask.Description = reader.GetString(4);
                     tempTask.Project.Name = reader.GetString(5);
                     tempTask.Collaborator.FirstName = reader.GetString(6);
-                    tempTask.Category.Name = reader.GetString(7);
+                    tempTask.Collaborator.LastName = reader.GetString(7);
+                    tempTask.Category.Name = reader.GetString(8);
                     tasks.Add(tempTask);
                 }
             }
