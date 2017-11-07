@@ -13,7 +13,7 @@
     </asp:DropDownList>
     <br />
     <asp:Label ID="lbl_hours_type" runat="server" Text="Tipo de horas:"></asp:Label>
-    <asp:RadioButtonList ID="rbl_hours_type" runat="server" OnSelectedIndexChanged="rbl_hours_type_SelectedIndexChanged" AutoPostBack="True">
+    <asp:RadioButtonList ID="rbl_hours_type" runat="server" OnSelectedIndexChanged="rbl_hours_type_SelectedIndexChanged" AutoPostBack="True" EnableViewState="False">
         <asp:ListItem Value="0">Horas regulares</asp:ListItem>
         <asp:ListItem Value="1">Horas extra</asp:ListItem>
     </asp:RadioButtonList>
@@ -21,7 +21,7 @@
         <ContentTemplate>
             <fieldset>
                 <asp:Label ID="lbl_dedicated_time" runat="server" Text="Tiempo dedicado:"></asp:Label>
-                <asp:DropDownList ID="ddl_hours" runat="server" AutoPostBack="True">
+                <asp:DropDownList ID="ddl_hours" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_hours_SelectedIndexChanged">
                 </asp:DropDownList>
                 <asp:Label ID="lbl_hours" runat="server" Text="hora(s)"></asp:Label>
                 <asp:DropDownList ID="ddl_minutes" runat="server">
