@@ -2,27 +2,28 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Buscar Tarea</h1>
+    ¿O desea <asp:HyperLink ID="HLCreateTask" runat="server">crear</asp:HyperLink> una tarea?
     <div id="filters">
-        <h2>Filtrado por:</h2>
+        <h2>Filtrar por:</h2>
         <input type="checkbox" class="custom" id="cbUser" onchange="FadeForm(this,'User')" > <Label for="cbUser" ID="lblUserCB" ><span></span>Colaborador</Label>&nbsp;&nbsp;
         <input type="checkbox" class="custom" id="cbCategory" onchange="FadeForm(this,'Category')" > <Label for="cbCategory" ID="lblCategoryCB" ><span></span>Categor&iacute;a</Label>&nbsp;&nbsp;
         <input type="checkbox" class="custom" id="cbProject" onchange="FadeForm(this,'Project')" > <Label for="cbProject" ID="lblProjectCB" ><span></span>Proyecto</Label>
     </div>
     <div id="areaUser"><!--User area-->
         <h1>
-            Usuario
+            Colaborador
         </h1>
         <!--Inicio de table-->
         <table>
             <tr>
                 <td>
-                    <label>Usuario: </label>
+                    <label>Colaborador: </label>
                 </td>
                 <td>
                     <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:Button ID="btnSearchUser" OnClick="btnSearchUser_Click" runat="server" Text="Buscar usaurio" class="btn btn-danger" />
+                    <asp:Button ID="btnSearchUser" OnClick="btnSearchUser_Click" runat="server" Text="Buscar Colaborador" class="btn btn-danger" />
                 </td>
             </tr>
         </table>
@@ -57,7 +58,7 @@
         <!--Fin de asp:UpdatePanel-->
     </div> <!--Fin de User area-->
     <div id="reselectUser"><!--Reselect user-->
-        <label style="color:blue">Est&aacute; filtrando por el usuario:</label> <label id="labelReselectUser"></label><br />
+        <label style="color:blue">Est&aacute; filtrando por el colaborador:</label> <label id="labelReselectUser"></label><br />
         <button type="button" id="changeUser" class="btn btn-info" onclick="reselectFilter('User')">Deseo cambiar el usuario filtrado</button>
     </div><!--Fin de reselect user-->
     <div id="areaCategory"><!--Area category-->
@@ -179,6 +180,9 @@
                                 </asp:TableHeaderCell>
                                 <asp:TableHeaderCell>
                                     Horas extra
+                                </asp:TableHeaderCell>
+                                <asp:TableHeaderCell>
+                                    Acciones    
                                 </asp:TableHeaderCell>
                             </asp:TableHeaderRow>
                         </asp:Table>
