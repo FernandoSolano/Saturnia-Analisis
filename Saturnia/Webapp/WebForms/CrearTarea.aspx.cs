@@ -94,6 +94,9 @@ namespace Webapp.WebForms
         {
             User user = new User();
             user.Id = (int)Session["userId"];
+            user.FirstName = ""; //El data es utilizado también cuando el colaborador busca entre sus proyectos uno
+                                 //con un nombre o descripción en específico, por eso ponemos texto vacio en el atributo FirstName,
+                                //así traerá proyectos sin importar el nombre.
             List<Project> collaboratorProjects = projectBusiness.GetProjectsByCollaborator(user);
 
             DdlProject.DataSource = collaboratorProjects;
