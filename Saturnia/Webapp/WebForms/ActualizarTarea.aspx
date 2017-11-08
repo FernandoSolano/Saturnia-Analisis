@@ -14,7 +14,7 @@
                     <asp:Label ID="Label3" runat="server" Text="Descripción:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="tbDescription" runat="server" TextMode="MultiLine" Width="198px" Height="36px"></asp:TextBox>
+                    <asp:TextBox ID="tbDescription" runat="server" TextMode="MultiLine" Width="293px" Height="55px"></asp:TextBox>
                 </td>
             </tr>
 
@@ -25,10 +25,7 @@
                 <td>
 
                     <div>
-                        <asp:RadioButtonList ID="RadioButtonList" runat="server" RepeatDirection="Horizontal" Style="margin: 20px 0px 20px 1px; list-style: none"  AutoPostBack="False">
-                            <asp:ListItem Value="0" style="margin-right: 20px;" Selected="True">Horas regulares</asp:ListItem>
-                            <asp:ListItem Value="1">Horas extras</asp:ListItem>
-                        </asp:RadioButtonList>
+                        <asp:Label ID="lbTipoDeHora" runat="server" Text="Label"></asp:Label>
                     </div>
                 </td>
             </tr>
@@ -43,7 +40,7 @@
                 </td>
                 <td>
                     <label style="margin-left: 20px">Minutos:</label>
-                                <asp:DropDownList ID="DdlMinutes" runat="server" Style="margin-left: 30px" Width="60px">
+                                <asp:DropDownList ID="ddlMinutes" runat="server" Style="margin-left: 30px" Width="60px">
                                     <asp:ListItem>00</asp:ListItem>
                                     <asp:ListItem>30</asp:ListItem>
                                 </asp:DropDownList>
