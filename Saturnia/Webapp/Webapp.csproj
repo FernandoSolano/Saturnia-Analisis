@@ -162,6 +162,7 @@
     <Content Include="WebForms\IniciarSesion.aspx" />
     <Content Include="WebForms\BuscarCategoria.aspx" />
     <Content Include="WebForms\BuscarProyecto.aspx" />
+    <Content Include="WebForms\IrABuscarTarea.aspx" />
     <Content Include="WebForms\MostrarCategoria.aspx" />
     <Content Include="WebForms\MostrarProyecto.aspx" />
     <Content Include="WebForms\CrearCategoria.aspx">
@@ -170,6 +171,7 @@
     <Content Include="WebForms\CrearProyecto.aspx">
       <BrowseToURL>~/WebForms/CrearProyecto.aspx</BrowseToURL>
     </Content>
+    <Content Include="WebForms\MostrarTarea.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -352,6 +354,13 @@
     <Compile Include="WebForms\BuscarProyecto.aspx.designer.cs">
       <DependentUpon>BuscarProyecto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\IrABuscarTarea.aspx.cs">
+      <DependentUpon>IrABuscarTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\IrABuscarTarea.aspx.designer.cs">
+      <DependentUpon>IrABuscarTarea.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\MostrarCategoria.aspx.cs">
       <DependentUpon>MostrarCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -379,6 +388,13 @@
     </Compile>
     <Compile Include="WebForms\CrearProyecto.aspx.designer.cs">
       <DependentUpon>CrearProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\MostrarTarea.aspx.cs">
+      <DependentUpon>MostrarTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\MostrarTarea.aspx.designer.cs">
+      <DependentUpon>MostrarTarea.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

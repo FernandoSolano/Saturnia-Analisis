@@ -258,6 +258,7 @@ namespace Core.Data
             SqlCommand sqlCommand = new SqlCommand("SP_PROJECT_BY_COLLABORATOR_SEARCH", connection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@Id", user.Id);
+            sqlCommand.Parameters.AddWithValue("@Project", user.FirstName);
 
             SqlDataReader reader;
             try
