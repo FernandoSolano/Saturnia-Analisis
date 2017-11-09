@@ -17,6 +17,11 @@ namespace Webapp.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
             this.categoryBusiness = new CategoryBusiness();
+
+            if (!IsPostBack)
+            {
+                this.btnSearch_Click(this, new EventArgs());
+            }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)

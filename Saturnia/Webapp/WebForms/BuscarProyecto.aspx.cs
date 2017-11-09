@@ -18,6 +18,10 @@ namespace Webapp.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
             this.projectBusiness = new ProjectBusiness();
+            if (!IsPostBack)
+            {
+                this.btnSearch_Click(this, new EventArgs());
+            }
 
         }
 
