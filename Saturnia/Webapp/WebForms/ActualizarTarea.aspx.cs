@@ -23,6 +23,7 @@ namespace Webapp.WebForms
                 {
                     ShowTaskData();
                     ConfirmationMenu.Visible = false;
+                    
                 }
             }
         }
@@ -35,11 +36,20 @@ namespace Webapp.WebForms
             task = taskBusiness.ShowTask(task);
 
             tbDescription.Text = task.Description;
-            tbHours.Text = task.Hours.ToString();
+            
+            int horas= (int)Math.Floor(task.Hours);
+            tbHours.Text = horas.ToString();
             if (task.ExtraHours==false) {
-                RadioButtonList.SelectedIndex = 0;
+                lbTipoDeHora.Text = "Horas regulares";
             } else {
-                RadioButtonList.SelectedIndex = 1;
+                lbTipoDeHora.Text = "Horas extra";
+            }
+            if (horas - task.Hours == 0)
+            {
+                ddlMinutes.Items.FindByValue("00").Selected = true;
+            }
+            else {
+                ddlMinutes.Items.FindByValue("30").Selected = true;
             }
             CdDate.SelectedDate = DateTime.Parse(task.Date.ToString());
             CdDate.VisibleDate = DateTime.Parse(task.Date.ToString());
@@ -47,19 +57,25 @@ namespace Webapp.WebForms
 
         protected void btnUpdateTask_Click(object sender, EventArgs e)
         {
-            if (RadioButtonList.SelectedIndex == 0 && Int32.Parse(tbHours.Text) >= 9)
+            lbMessage.Visible = false;
+            if (Int32.Parse(tbHours.Text) >= 9)
             {
                 lbHours.Text = "Las horas regulares tienen un maximo de 8 horas.";
                 lbHours.Visible = true;
             }
-            else if (RadioButtonList.SelectedIndex == 1 && Int32.Parse(tbHours.Text) >= 17)
+            else if (Int32.Parse(tbHours.Text) >= 17)
             {
                 lbHours.Text = "Las horas regulares tienen un maximo de 16 horas.";
+                lbHours.Visible = true;
+            }
+            else if (Int32.Parse(tbHours.Text) <0) {
+                lbHours.Text = "Ingrese un campo valido";
                 lbHours.Visible = true;
             }
             else {
                 DefaultMenu.Visible = false;
                 ConfirmationMenu.Visible = true;
+                lbHours.Visible = false;
             }
             
         }
@@ -75,9 +91,10 @@ namespace Webapp.WebForms
 
             task.Id = Int32.Parse(Request.QueryString["id"]);
             task.Description = tbDescription.Text;
-            task.Hours = Int32.Parse(tbHours.Text);
+   
+            task.Hours = float.Parse(tbHours.Text + "." + ddlMinutes.SelectedValue.ToString()) ;
             task.Date = DateTime.Parse(CdDate.SelectedDate.ToString());
-            if (RadioButtonList.SelectedIndex == 0)
+            if (lbTipoDeHora.Text.Equals("Horas regulares"))
             {
                 task.ExtraHours = false;
             }
