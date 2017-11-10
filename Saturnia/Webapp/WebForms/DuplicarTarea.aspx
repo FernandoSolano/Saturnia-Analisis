@@ -13,7 +13,7 @@
     </asp:DropDownList>
     <br />
     <asp:Label ID="lbl_hours_type" runat="server" Text="Tipo de horas:"></asp:Label>
-    <asp:RadioButtonList ID="rbl_hours_type" runat="server" OnSelectedIndexChanged="rbl_hours_type_SelectedIndexChanged" AutoPostBack="True" EnableViewState="False">
+    <asp:RadioButtonList ID="rbl_hours_type" runat="server" OnSelectedIndexChanged="rbl_hours_type_SelectedIndexChanged" AutoPostBack="True">
         <asp:ListItem Value="0">Horas regulares</asp:ListItem>
         <asp:ListItem Value="1">Horas extra</asp:ListItem>
     </asp:RadioButtonList>
@@ -27,6 +27,7 @@
                 <asp:DropDownList ID="ddl_minutes" runat="server">
                 </asp:DropDownList>
                 <asp:Label ID="lbl_minutes" runat="server" Text="minutos"></asp:Label>
+                <asp:Label ID="lbl_error_hours" runat="server" ForeColor="Red" Text="No ha seleccionado  horas, el tiempo mínimo permitido es de 30 minutos" Visible="False"></asp:Label>
             </fieldset>
         </ContentTemplate>
         <Triggers>
@@ -49,7 +50,7 @@
         <TodayDayStyle BackColor="#CCCC99" />
     </asp:Calendar>
     <br />
-    <asp:Button ID="btn_cancel" runat="server" Text="Cancelar" />
+    <asp:Button ID="btn_cancel" runat="server" Text="Cancelar" OnClick="btn_cancel_Click" />
     <asp:Button ID="btn_save" runat="server" Text="Guardar" OnClick="btn_save_Click" UseSubmitBehavior="False" />
 
 </asp:Content>

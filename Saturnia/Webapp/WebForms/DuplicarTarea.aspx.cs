@@ -16,7 +16,7 @@ namespace Webapp.WebForms
         private CategoryBusiness categoryBusiness;
         private TaskBusiness taskBusiness;
         private User user;
-        private Task registeredTask;
+        private Task task;
         private float registeredHours, allowedHours;
         private int ddl_hours_PreValue;
 
@@ -42,7 +42,7 @@ namespace Webapp.WebForms
                 if (!Page.IsPostBack)
                 {
                     user = new User();
-                    registeredTask = new Task();
+                    task = new Task();
                     taskBusiness = new TaskBusiness();
                     projectBusiness = new ProjectBusiness();
                     categoryBusiness = new CategoryBusiness();
@@ -62,46 +62,52 @@ namespace Webapp.WebForms
                     ddl_categories.DataValueField = "Id";
                     ddl_categories.DataBind();
                     //Recibir id de tarea con un get
-                    registeredTask.Id = Int32.Parse(Request.QueryString["id"]);
-                    registeredTask = taskBusiness.ShowTask(registeredTask);
+                    task.Id = Int32.Parse(Request.QueryString["id"]);
+                    task = taskBusiness.ShowTask(task);
                     //Asignar valores de la tarea a los controles
-                    ddl_projects.SelectedValue = registeredTask.Project.Id.ToString();
-                    ddl_categories.SelectedValue = registeredTask.Category.Id.ToString();
+                    ddl_projects.SelectedValue = task.Project.Id.ToString();
+                    ddl_categories.SelectedValue = task.Category.Id.ToString();
                     //rbl_hours_type.SelectedValue = Convert.ToInt32(registeredTask.ExtraHours).ToString();//***********Al remover esta línea el rbl ejecuta su evento correctamente
-                    tb_description.Text = registeredTask.Description;
-                    cld_selected_date.SelectedDate = registeredTask.Date;
-                    cld_selected_date.VisibleDate = registeredTask.Date;
+                    tb_description.Text = task.Description;
+                    cld_selected_date.SelectedDate = task.Date;
+                    cld_selected_date.VisibleDate = task.Date;
+                    registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
+                    GetAllowedHours();
+                    LoadHoursDropDownList();
+                    ddl_hours.SelectedValue = ddl_hours_PreValue + "";
+                    LoadMinutesDropDownList();
                 }
-                //Validar las horas y medias horas
-                if (!Page.IsPostBack)
-                    registeredHours = taskBusiness.GetHoursByDateAndCollaborator(registeredTask).Hours;
-                GetAllowedHours();
                 if (Page.IsPostBack)
                     ddl_hours_PreValue = Int32.Parse(ddl_hours.SelectedValue);
-                LoadHoursDropDownList();
-                ddl_hours.SelectedValue = ddl_hours_PreValue + "";
-                LoadMinutesDropDownList();
             }
         }
 
         protected void btn_save_Click(object sender, EventArgs e)
         {
-            registeredTask.Project.Id = Int32.Parse(ddl_projects.SelectedValue);
-            registeredTask.Category.Id = Int32.Parse(ddl_categories.SelectedValue);
-            registeredTask.Collaborator.Id = (int)Session["userId"];
-            registeredTask.ExtraHours = (rbl_hours_type.SelectedValue == "0") ? (false) : (true);
-            registeredTask.Description = tb_description.Text;
-            registeredTask.Date = cld_selected_date.SelectedDate;
-            float selectedHours = 0;
-            selectedHours = Int32.Parse(ddl_hours.SelectedValue);
-            if (ddl_minutes.SelectedValue == "1")
+            if (ddl_hours.SelectedValue != "0" || ddl_minutes.SelectedValue != "0")
             {
-                selectedHours += (float)0.5;
+                taskBusiness = new TaskBusiness();
+                task = new Task();
+                task.Project.Id = Int32.Parse(ddl_projects.SelectedValue);
+                task.Category.Id = Int32.Parse(ddl_categories.SelectedValue);
+                task.Collaborator.Id = (int)Session["userId"];
+                task.ExtraHours = (rbl_hours_type.SelectedValue == "0") ? (false) : (true);
+                task.Description = tb_description.Text;
+                task.Date = cld_selected_date.SelectedDate;
+                float selectedHours = 0;
+                selectedHours = Int32.Parse(ddl_hours.SelectedValue);
+                if (ddl_minutes.SelectedValue == "1")
+                {
+                    selectedHours += (float)0.5;
+                }
+                task.Hours = selectedHours;
+                taskBusiness.AddTask(task);
+                Response.Redirect("~/WebForms/BuscarTareaColaborador");
             }
-            registeredTask.Hours = selectedHours;
-            taskBusiness.AddTask(registeredTask);
-            Response.Redirect("~/WebForms/BuscarTareaColaborador");
-
+            else
+            {
+                lbl_error_hours.Visible = true;
+            }
         }
 
         //TODO... Se ejecuta cuando se cambia del índice señalado en el PageLoad a otro, pero no al revés
@@ -116,17 +122,20 @@ namespace Webapp.WebForms
         protected void cld_selected_date_SelectionChanged(object sender, EventArgs e)
         {
             GetRegisteredHours();
-            ddl_hours_PreValue = Int32.Parse(ddl_hours.SelectedValue);
+            //ddl_hours_PreValue = Int32.Parse(ddl_hours.SelectedValue);
+            GetAllowedHours();
+            LoadHoursDropDownList();
+            LoadMinutesDropDownList();
         }
 
         private void GetRegisteredHours()
         {
             taskBusiness = new TaskBusiness();
-            registeredTask = new Task();
-            registeredTask.Collaborator.Id = (int)Session["userId"];
-            registeredTask.Date = cld_selected_date.SelectedDate;
-            registeredTask.ExtraHours = Convert.ToBoolean(Int32.Parse(rbl_hours_type.SelectedValue));
-            registeredHours = taskBusiness.GetHoursByDateAndCollaborator(registeredTask).Hours;
+            task = new Task();
+            task.Collaborator.Id = (int)Session["userId"];
+            task.Date = cld_selected_date.SelectedDate;
+            task.ExtraHours = Convert.ToBoolean(Int32.Parse(rbl_hours_type.SelectedValue));
+            registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
         }
 
         private void GetAllowedHours()
@@ -180,9 +189,14 @@ namespace Webapp.WebForms
         {
             GetRegisteredHours();
             GetAllowedHours();
-            LoadHoursDropDownList();
-            ddl_hours.SelectedValue = ddl_hours_PreValue + "";
+            //LoadHoursDropDownList();
+            //ddl_hours.SelectedValue = ddl_hours_PreValue + "";
             LoadMinutesDropDownList();
+        }
+
+        protected void btn_cancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/WebForms/BuscarTareaColaborador");
         }
 
         protected void DisableDays(object sender, DayRenderEventArgs e)
