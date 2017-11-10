@@ -14,6 +14,8 @@ namespace Core.Domain
         {
             role = new Role();
             project = new LinkedList<Project>();
+            firstName = "";
+            lastName = "";
         }
 
         public int Id { get => id; set => id = value; }

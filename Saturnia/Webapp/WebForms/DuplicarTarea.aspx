@@ -21,12 +21,13 @@
         <ContentTemplate>
             <fieldset>
                 <asp:Label ID="lbl_dedicated_time" runat="server" Text="Tiempo dedicado:"></asp:Label>
-                <asp:DropDownList ID="ddl_hours" runat="server" AutoPostBack="True">
+                <asp:DropDownList ID="ddl_hours" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_hours_SelectedIndexChanged">
                 </asp:DropDownList>
                 <asp:Label ID="lbl_hours" runat="server" Text="hora(s)"></asp:Label>
                 <asp:DropDownList ID="ddl_minutes" runat="server">
                 </asp:DropDownList>
                 <asp:Label ID="lbl_minutes" runat="server" Text="minutos"></asp:Label>
+                <asp:Label ID="lbl_error_hours" runat="server" ForeColor="Red" Text="No ha seleccionado  horas, el tiempo mínimo permitido es de 30 minutos" Visible="False"></asp:Label>
             </fieldset>
         </ContentTemplate>
         <Triggers>
@@ -49,7 +50,7 @@
         <TodayDayStyle BackColor="#CCCC99" />
     </asp:Calendar>
     <br />
-    <asp:Button ID="btn_cancel" runat="server" Text="Cancelar" />
+    <asp:Button ID="btn_cancel" runat="server" Text="Cancelar" OnClick="btn_cancel_Click" />
     <asp:Button ID="btn_save" runat="server" Text="Guardar" OnClick="btn_save_Click" UseSubmitBehavior="False" />
 
 </asp:Content>
