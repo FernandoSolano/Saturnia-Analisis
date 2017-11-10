@@ -12,8 +12,8 @@
     <!--Div para buscar tareas-->
     <div class="fixDate" align="center">
         <h2 class="fixDate">Rango de fechas</h2>
-        &nbsp;<label class="fixDate">De:</label>&nbsp;<asp:TextBox ID="txtFrom" TextMode="Date" runat="server"></asp:TextBox>
-        &nbsp;<label class="fixDate">A:</label>&nbsp;<asp:TextBox ID="txtTo" TextMode="Date" runat="server"></asp:TextBox>&nbsp;<br /><br />
+        &nbsp;<label class="fixDate">De:</label>&nbsp;<asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
+        &nbsp;<label class="fixDate">A:</label>&nbsp;<asp:TextBox ID="txtTo" runat="server"></asp:TextBox>&nbsp;<br /><br />
         <asp:Button ID="btnSearchTask" runat="server" Text="Buscar" CssClass="btn btn-danger" OnClientClick="ActionsBeforeSearch()" OnClick="btnSearchTask_Click" />&nbsp; <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" Text="Cancelar" /><br />
         &nbsp;
     </div>
@@ -219,6 +219,8 @@
         <!--Fin de update panel para resultados de tarea-->
     </div> <!--Fin de results place-->
 
+    <script src="../Content/jquerry-ui-1.11.0.js"></script> <!--Include ui jquery-->
+    <script src="../Scripts/SearchTask.js"></script> <!--Metodos en común-->
     <script>
         /**
          * Funcion "Document ready"
@@ -291,7 +293,5 @@
             $('#cbUser').attr("checked", false);
         }
 
-    </script>
-    <script src="../Scripts/SearchTask.js">
     </script>
 </asp:Content>
