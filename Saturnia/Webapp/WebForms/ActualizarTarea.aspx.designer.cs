@@ -49,13 +49,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// Control RadioButtonList.
+        /// Control lbTipoDeHora.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList;
+        protected global::System.Web.UI.WebControls.Label lbTipoDeHora;
         
         /// <summary>
         /// Control tbHours.
@@ -76,13 +76,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label lbHours;
         
         /// <summary>
-        /// Control DdlMinutes.
+        /// Control ddlMinutes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlMinutes;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMinutes;
         
         /// <summary>
         /// Control Label6.

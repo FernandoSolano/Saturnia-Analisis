@@ -1,28 +1,47 @@
 ﻿<%@ Page Title="Buscar Tarea" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BuscarTarea.aspx.cs" Inherits="Webapp.WebForms.BuscarTarea" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Buscar Tarea</h1>
+    <h1>Gestión de tareas</h1>
+    <h2>Crear tarea</h2>
+    ¿Desea <asp:HyperLink ID="HLCreateTask" runat="server">crear</asp:HyperLink> una tarea?
+
+    <h2>Buscar tareas</h2>
+    Para editar, duplicar o eliminar una tarea, primero debe buscarla.
+    La b&uacute;squeda puede ser filtrada seg&uacute;n lo necesite.<br />
+
+    <!--Div para buscar tareas-->
+    <div class="fixDate" align="center">
+        <h2 class="fixDate">Rango de fechas</h2>
+        &nbsp;<label class="fixDate">De:</label>&nbsp;<asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
+        &nbsp;<label class="fixDate">A:</label>&nbsp;<asp:TextBox ID="txtTo" runat="server"></asp:TextBox>&nbsp;<br /><br />
+        <asp:Button ID="btnSearchTask" runat="server" Text="Buscar" CssClass="btn btn-danger" OnClientClick="ActionsBeforeSearch()" OnClick="btnSearchTask_Click" />&nbsp; <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" Text="Cancelar" /><br />
+        &nbsp;
+    </div>
+    <!--Fin de Div para buscar tareas-->
+
     <div id="filters">
-        <h2>Filtrado por:</h2>
+        <h2>Filtrar por:</h2>
         <input type="checkbox" class="custom" id="cbUser" onchange="FadeForm(this,'User')" > <Label for="cbUser" ID="lblUserCB" ><span></span>Colaborador</Label>&nbsp;&nbsp;
         <input type="checkbox" class="custom" id="cbCategory" onchange="FadeForm(this,'Category')" > <Label for="cbCategory" ID="lblCategoryCB" ><span></span>Categor&iacute;a</Label>&nbsp;&nbsp;
         <input type="checkbox" class="custom" id="cbProject" onchange="FadeForm(this,'Project')" > <Label for="cbProject" ID="lblProjectCB" ><span></span>Proyecto</Label>
     </div>
+    
     <div id="areaUser"><!--User area-->
+        <div id="beforeUser"><br /><br /></div>
         <h1>
-            Usuario
+            Colaborador
         </h1>
         <!--Inicio de table-->
         <table>
             <tr>
                 <td>
-                    <label>Usuario: </label>
+                    <label>Nombre: </label>
                 </td>
                 <td>
                     <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:Button ID="btnSearchUser" OnClick="btnSearchUser_Click" runat="server" Text="Buscar usaurio" class="btn btn-danger" />
+                    <asp:Button ID="btnSearchUser" OnClick="btnSearchUser_Click" runat="server" Text="Buscar" class="btn btn-danger" />
                 </td>
             </tr>
         </table>
@@ -43,7 +62,7 @@
                             Apellidos
                         </asp:TableHeaderCell>
                             <asp:TableHeaderCell CssClass="results">
-                            Filtrar
+                            Filtrar por el colaborador
                         </asp:TableHeaderCell>
                         </asp:TableHeaderRow>
                     </asp:Table>
@@ -57,23 +76,25 @@
         <!--Fin de asp:UpdatePanel-->
     </div> <!--Fin de User area-->
     <div id="reselectUser"><!--Reselect user-->
-        <label style="color:blue">Est&aacute; filtrando por el usuario:</label> <label id="labelReselectUser"></label><br />
-        <button type="button" id="changeUser" class="btn btn-info" onclick="reselectFilter('User')">Deseo cambiar el usuario filtrado</button>
+        <br />
+        <label>Est&aacute; filtrando por el colaborador:</label> <label style="color:#D9534F" id="labelReselectUser"></label><br />
+        <button type="button" id="changeUser" class="btn btn-danger" onclick="reselectFilter('User')">Deseo cambiar el usuario filtrado</button>
     </div><!--Fin de reselect user-->
     <div id="areaCategory"><!--Area category-->
+        <div id="beforeCategory"><br /><br /></div>
         <h1>
             Categor&iacute;a
         </h1>
         <table>
             <tr>
                 <td>
-                    <label>Categoria: </label>
+                    <label>Nombre: </label>
                 </td>
                 <td>
                     <asp:TextBox ID="txtCategoryName" runat="server"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:Button ID="btnSearchCategory" runat="server" Text="Buscar Categoría" class="btn btn-danger" OnClick="btnSearchCategory_Click" />
+                    <asp:Button ID="btnSearchCategory" runat="server" Text="Buscar" class="btn btn-danger" OnClick="btnSearchCategory_Click" />
                 </td>
             </tr>
         </table>
@@ -91,7 +112,7 @@
                                 Nombre
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell CssClass="results">
-                                Filtrar
+                                Filtrar por la categoría
                             </asp:TableHeaderCell>
                         </asp:TableHeaderRow>
                     </asp:Table>
@@ -105,23 +126,25 @@
         <!--Fin de asp:UpdatePanel-->
     </div><!--Fin de area category-->
     <div id="reselectCategory"><!--Reselect category-->
-        <label style="color:blue">Est&aacute; filtrando por la categor&iacute;a:</label> <label id="labelReselectCategory"></label><br />
-        <button type="button" id="changeCategory" class="btn btn-info" onclick="reselectFilter('Category')">Deseo cambiar la categor&iacute;a filtrada</button>
+        <br />
+        <label>Est&aacute; filtrando por la categor&iacute;a:</label> <label style="color:#D9534F" id="labelReselectCategory"></label><br />
+        <button type="button" id="changeCategory" class="btn btn-danger" onclick="reselectFilter('Category')">Deseo cambiar la categor&iacute;a filtrada</button>
     </div><!--Fin de reselect category-->
     <div id="areaProject"><!--Area project-->
+        <div id="beforeProject"><br /><br /></div>
         <h1>
             Proyecto
         </h1>
         <table>
             <tr>
                 <td>
-                    <label>Proyecto: </label>
+                    <label>Nombre: </label>
                 </td>
                 <td>
                     <asp:TextBox ID="txtProjectName" runat="server"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:Button ID="btnSearchProject" class="btn btn-danger" runat="server" Text="Buscar proyecto" OnClick="btnSearchProject_Click" />
+                    <asp:Button ID="btnSearchProject" class="btn btn-danger" runat="server" Text="Buscar" OnClick="btnSearchProject_Click" />
                 </td>
             </tr>
         </table>
@@ -139,7 +162,7 @@
                                 Proyecto
                             </asp:TableHeaderCell>
                             <asp:TableHeaderCell CssClass="results">
-                                Filtrar
+                                Filtrar por el proyecto
                             </asp:TableHeaderCell>
                         </asp:TableHeaderRow>
                     </asp:Table>
@@ -153,8 +176,9 @@
         <!--Fin de asp:UpdatePanel-->
     </div><!--Fin de area project-->
     <div id="reselectProject"><!--Reselect project-->
-        <label style="color:blue">Est&aacute; filtrando por el proyecto:</label> <label id="labelReselectProject"></label><br />
-        <button type="button" id="changeProject" class="btn btn-info" onclick="reselectFilter('Project')">Deseo cambiar el proyecto filtrado</button>
+        <br />
+        <label>Est&aacute; filtrando por el proyecto:</label> <label style="color:#D9534F" id="labelReselectProject"></label><br />
+        <button type="button" id="changeProject" class="btn btn-danger" onclick="reselectFilter('Project')">Deseo cambiar el proyecto filtrado</button>
     </div><!--Fin de reselect project-->
     <br />
     <div id="resultsPlace"> <!--Results place-->
@@ -180,6 +204,9 @@
                                 <asp:TableHeaderCell>
                                     Horas extra
                                 </asp:TableHeaderCell>
+                                <asp:TableHeaderCell>
+                                    Acciones    
+                                </asp:TableHeaderCell>
                             </asp:TableHeaderRow>
                         </asp:Table>
                     <!--Fin de tabla de resultados de tarea-->
@@ -191,18 +218,10 @@
         </asp:UpdatePanel>
         <!--Fin de update panel para resultados de tarea-->
     </div> <!--Fin de results place-->
-    <!--Div para buscar tareas-->
-    <div class="fixDate" align="center">
-        <h2 class="fixDate">Rango de fechas</h2>
-        &nbsp;<label class="fixDate">De:</label>&nbsp;<asp:TextBox ID="txtFrom" TextMode="Date" runat="server"></asp:TextBox>
-        &nbsp;<label class="fixDate">A:</label>&nbsp;<asp:TextBox ID="txtTo" TextMode="Date" runat="server"></asp:TextBox>&nbsp;<br /><br />
-        <asp:Button ID="btnSearchTask" runat="server" Text="Buscar Tarea" CssClass="btn btn-danger" OnClientClick="ActionsBeforeSearch()" OnClick="btnSearchTask_Click" />&nbsp; <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" Text="Cancelar" /><br />
-        &nbsp;
-    </div>
-    <!--Fin de Div para buscar tareas-->
 
+    <script src="../Content/jquerry-ui-1.11.0.js"></script> <!--Include ui jquery-->
+    <script src="../Scripts/SearchTask.js"></script> <!--Metodos en común-->
     <script>
-
         /**
          * Funcion "Document ready"
          */
@@ -219,66 +238,6 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
 
-        /**
-         * Esta funcion hace visible o invisible un area en base a un checkbox recibido y al nombre del area. Este método
-         * debe ejecutarse al darle click a un checkbox que esté enlazado a este método.
-         * @param {checkBox} checkBox es el checkbox que llama al método.
-         * @param {string} entity es el nombre de la entidad sobre la que se trabaja.
-         */
-        function FadeForm(checkBox, entity) {
-            //Si el checkbox está seleccionado
-            if (checkBox.checked) {
-                FadeInElement('#area' + entity); //Mostramos el area de la entidad deseada.
-            } else {
-                //Si no esta seleccionado
-                FadeOutElement('#area' + entity); //Oculta el area de la entidad
-                FadeOutElement('#reselect' + entity); //Oculta la opción de cambiar la entidad si esta fuera visible.
-                document.getElementById('MainContent_hdn' + entity).value = 0; //Eliminar el valor del hidden.
-            }
-        }
-
-        /**
-         * Método que hace visible un elemento por id, de forma lenta y gradual.
-         * @param {element} String es el id del elemento a mostrar.
-         */
-        function FadeInElement(element) {
-            $(element).fadeIn('slow');
-        }
-
-        /**
-         * Método que oculta un elemento por id, de forma lenta y gradual.
-         * @param {element} String es el id del elemento a ocultar.
-         */
-        function FadeOutElement(element) {
-            $(element).fadeOut('slow');
-        }
-
-        /**
-         * Metodo que oculta todas las areas de filtros de forma agradable visualmente.
-         */
-        function FadeAllAreas(){
-            FadeOutElement('#areaUser');
-            FadeOutElement('#areaCategory');
-            FadeOutElement('#areaProject');
-        }
-
-        /**
-         * Método que oculta todos los "Cambiar entidad filtrada".
-         */
-        function FadeAllReselect() {
-            FadeOutElement('#reselectUser');
-            FadeOutElement('#reselectCategory');
-            FadeOutElement('#reselectProject');
-        }
-
-        /**
-         * Método que desenmarca todos los checkbox.
-         */
-        function UnmarkAllCheck() {
-            $('#cbUser').attr("checked", false);
-            $('#cbProject').attr("checked", false);
-            $('#cbCategory').attr("checked", false);
-        }
         /**
          * Metodo que se ejecuta antes de buscar tareas, hace unas validaciones y oculta areas innecesarias para los
          * resultados.
@@ -302,28 +261,37 @@
             //IMPORTANTE Esta sentencia debe estar depués de los if, sino se des enmarcarán todos los chekbox y los if
             //anterioes hacen 0 todos los hidden.
             UnmarkAllCheck();
+            FadeInElement('#resultsPlace');
+            goTo('filters', 750); //Al final desplazamos al lugar de los resultados con un retardo de 1.25 segundos
         }
 
         /**
-         * Este metodo recibe el nombre de  la entidad y el id de dicha entidad, para guardarlo en el
-         * hidden field correspondiente.
-         * @param {entity} string
-         * @param {id} Integer
+         * Metodo que oculta todas las areas de filtros de forma agradable visualmente.
          */
-        function FillHidden(entity, id, filteredBy) {
-            document.getElementById('MainContent_hdn' + entity).value = id;
-            FadeOutElement('#area' + entity);
-            document.getElementById("labelReselect"+entity).innerHTML = filteredBy;
-            FadeInElement('#reselect' + entity);
+        function FadeAllAreas() {
+            FadeOutElement('#areaUser');
+            FadeOutElement('#areaCategory');
+            FadeOutElement('#areaProject');
+            FadeOutElement('#resultsPlace');
         }
 
         /**
-         * Metodo que muestra nuevamente el area de un filtro y oculta el botón "cambiar entidad filtrada".
-         * @param {filter} String es el nombre de la entidad del filtro a mostrar de nuevo y el nombre del "reselect" a ocultar.
+         * Método que oculta todos los "Cambiar entidad filtrada".
          */
-        function reselectFilter(filter) {
-            FadeOutElement('#reselect' + filter);
-            FadeInElement('#area' + filter);
+        function FadeAllReselect() {
+            FadeOutElement('#reselectUser');
+            FadeOutElement('#reselectCategory');
+            FadeOutElement('#reselectProject');
         }
+
+        /**
+         * Método que desenmarca todos los checkbox.
+         */
+        function UnmarkAllCheck() {
+            $('#cbProject').attr("checked", false);
+            $('#cbCategory').attr("checked", false);
+            $('#cbUser').attr("checked", false);
+        }
+
     </script>
 </asp:Content>

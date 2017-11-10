@@ -49,9 +49,8 @@ a.results:hover {
 
 div.fixDate {
     background: #222222;
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
+    border: 5px solid;
+    border-radius: 15px;
 }
 
 h2.fixDate, label.fixDate {
