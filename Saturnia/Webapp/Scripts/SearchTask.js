@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
-    $('#MainContent_txtFrom').datepicker();
-    $('#MainContent_txtTo').datepicker();
+    $('#MainContent_txtFrom').datepicker({ dateFormat: 'dd-mm-yy' });
+    $('#MainContent_txtTo').datepicker({ dateFormat: 'dd-mm-yy' });
 });
 
 /**
