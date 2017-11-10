@@ -1,4 +1,10 @@
-﻿/**
+﻿$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+    $('#MainContent_txtFrom').datepicker({ dateFormat: 'dd-mm-yy' });
+    $('#MainContent_txtTo').datepicker({ dateFormat: 'dd-mm-yy' });
+});
+
+/**
  * Esta funcion hace visible o invisible un area en base a un checkbox recibido y al nombre del area. Este método
  * debe ejecutarse al darle click a un checkbox que esté enlazado a este método.
  * @param {checkBox} checkBox es el checkbox que llama al método.

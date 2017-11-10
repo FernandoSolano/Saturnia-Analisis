@@ -165,6 +165,7 @@
         <!--Fin de update panel para resultados de tarea-->
     </div> <!--Fin de results place-->
 
+    <script src="../Content/jquerry-ui-1.11.0.js"></script>
     <script>
         /**
         * Funcion "Document ready"

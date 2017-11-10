@@ -146,6 +146,7 @@
     <Content Include="Images\DarkGrayPatterns.png" />
     <Content Include="Images\image.png" />
     <Content Include="Images\White-Colour-Background.jpg" />
+    <Content Include="Content\jquerry-ui-1.11.0.js" />
     <Content Include="Scripts\SearchTask.js" />
     <Content Include="WebForms\ActualizarCategoria.aspx" />
     <Content Include="WebForms\ActualizarProyecto.aspx" />
