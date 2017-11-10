@@ -26,16 +26,16 @@
                 </td>
             </tr>
         </table>
-
-        <asp:Table ID="resultTable" runat="server" Visible="false" CssClass="results">
-            <asp:TableHeaderRow>
-                <asp:TableHeaderCell CssClass="results">
-                    Proyecto
-                </asp:TableHeaderCell>
-                <asp:TableHeaderCell CssClass="results">
-                    Acción
-                </asp:TableHeaderCell>
-            </asp:TableHeaderRow>
-        </asp:Table>
-
+    <div align="center">
+            <asp:Table ID="resultTable" runat="server" Visible="false" CssClass="results">
+                <asp:TableHeaderRow>
+                    <asp:TableHeaderCell CssClass="results">
+                        Proyecto
+                    </asp:TableHeaderCell>
+                    <asp:TableHeaderCell CssClass="results">
+                        Acción
+                    </asp:TableHeaderCell>
+                </asp:TableHeaderRow>
+            </asp:Table>
+    </div>
 </asp:Content>

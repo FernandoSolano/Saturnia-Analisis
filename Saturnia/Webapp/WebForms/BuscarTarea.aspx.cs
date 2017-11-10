@@ -48,7 +48,7 @@ namespace Webapp.WebForms
 
                 tempCell = new TableCell
                 {
-                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"Project\", this.value,\"" + listElement.Name + "\")'>Tareas por el proyecto " + listElement.Name + "</button>",
+                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"Project\", this.value,\"" + listElement.Name + "\")' style=\"width:100%\">" + listElement.Name + "</button>",
                     CssClass = "results"
                 };
 
@@ -84,7 +84,7 @@ namespace Webapp.WebForms
 
                 tempCell = new TableCell
                 {
-                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"Category\", this.value,\"" + listElement.Name + "\")'>Tareas por la categoría " + listElement.Name + "</button>",
+                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"Category\", this.value,\"" + listElement.Name + "\")' style=\"width:100%\">" + listElement.Name + "</button>",
 
                     CssClass = "results"
                 };
@@ -139,7 +139,7 @@ namespace Webapp.WebForms
                 {
                     //El boton no contiene id, pero sí un 'value' que es el id de la entidad, también llamamos al método
                     // que llena el hidden de la entidad pasando el nombre de la entidad, y el valor de este botón.
-                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"User\", this.value,\"" + listElement.FirstName + " " + listElement.LastName + "\")'>Tareas de " + listElement.FirstName + " " + listElement.LastName + "</button>",
+                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"User\", this.value,\"" + listElement.FirstName + " " + listElement.LastName + "\")' style=\"width:100%\"> " + listElement.FirstName + " " + listElement.LastName + "</button>",
                     CssClass = "results"
                 };
                 tempRow.Cells.Add(tempCell);
@@ -246,8 +246,8 @@ namespace Webapp.WebForms
                 //Se agregan en el orden: Link para actualizar, link para duplicar y link para eliminar.
                 tempCell = new TableCell
                 {
-                    Text = "<a href=\"./ActualizarTarea.aspx?id=" + listItem.Id + "\" class=\"results\">Editar</a><br/>" +
-                    "<a href=\"./DuplicarTarea.aspx?id=" + listItem.Id + "\" class=\"results\">Duplicar</a><br/>" +
+                    Text = "<a href=\"./ActualizarTarea.aspx?id=" + listItem.Id + "\" class=\"results\">Editar</a>&nbsp;" +
+                    "<a href=\"./DuplicarTarea.aspx?id=" + listItem.Id + "\" class=\"results\">Duplicar</a>&nbsp;" +
                     "<a href=\"EliminarTarea.aspx?id=" + listItem.Id + "\" class=\"results\">Eliminar</a>",
                     CssClass = "results"
                 };
