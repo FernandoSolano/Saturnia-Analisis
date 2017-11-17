@@ -36,11 +36,6 @@ namespace Webapp.WebForms
 
         }
 
-        protected void btnSearchTask_Click(object sender, EventArgs e)
-        {
-            HideColumn(this.reportTable, 2);
-        }
-
         /// <summary>
         /// Método que oculta una columna de una tabla, tomado de:
         /// https://stackoverflow.com/questions/7275135/how-do-i-hide-a-column-in-an-asptable
@@ -62,6 +57,11 @@ namespace Webapp.WebForms
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("./IndexAdmin.aspx");
+        }
+
+        protected void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
