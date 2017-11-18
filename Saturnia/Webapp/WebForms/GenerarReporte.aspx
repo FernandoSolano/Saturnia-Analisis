@@ -8,13 +8,13 @@
         <!--Div para generar reporte-->
         <div class="fixDate">
             <h2 class="fixDate">Filtrar por:</h2>
-            <input type="checkbox" class="results" id="cbUser" onchange="ActivateFilter(this,'User')" > <Label for="cbUser" ID="lblUserCB" class="fixDate" ><span></span>Colaborador</Label>&nbsp;&nbsp;
-            <input type="checkbox" class="results" id="cbCategory" onchange="ActivateFilter(this,'Category')" > <Label for="cbCategory" ID="lblCategoryCB" class="fixDate" ><span></span>Categor&iacute;a</Label>&nbsp;&nbsp;
-            <input type="checkbox" class="results" id="cbProject" onchange="ActivateFilter(this,'Project')" > <Label for="cbProject" ID="lblProjectCB" class="fixDate" ><span></span>Proyecto</Label>
+            <input type="checkbox" class="results" id="cbUser" onchange="ActivateFilter(this,'User')" > <Label for="cbUser" ID="lblUserCB" class="fixDate" data-toggle="tooltip" title="Ordenar reporte por colaborador." ><span></span>Colaborador</Label>&nbsp;&nbsp;
+            <input type="checkbox" class="results" id="cbCategory" onchange="ActivateFilter(this,'Category')" > <Label for="cbCategory" ID="lblCategoryCB" class="fixDate" data-toggle="tooltip" title="Ordenar reporte por categoría." ><span></span>Categor&iacute;a</Label>&nbsp;&nbsp;
+            <input type="checkbox" class="results" id="cbProject" onchange="ActivateFilter(this,'Project')" > <Label for="cbProject" ID="lblProjectCB" class="fixDate" data-toggle="tooltip" title="Ordenar reporte por proyecto." ><span></span>Proyecto</Label>
             <h2 class="fixDate">Rango de fechas</h2>
             &nbsp;<label class="fixDate">De:</label>&nbsp;<asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
             &nbsp;<label class="fixDate">A:</label>&nbsp;<asp:TextBox ID="txtTo" runat="server"></asp:TextBox><br /><br />
-            <asp:Button ID="btnGenerateReport" runat="server" Text="Buscar" CssClass="btn btn-danger" data-toggle="tooltip" title="Generar reporte" OnClientClick="ActionsBeforeSearch()" OnClick="btnGenerateReport_Click"/>&nbsp; <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" Text="Cancelar" data-toggle="tooltip" title="Volver a inicio." OnClick="btnCancel_Click" /><br />
+            <asp:Button ID="btnGenerateReport" runat="server" Text="Generar" CssClass="btn btn-danger" data-toggle="tooltip" title="Generar un reporte" OnClientClick="ActionsBeforeSearch()" OnClick="btnGenerateReport_Click"/>&nbsp; <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" Text="Cancelar" data-toggle="tooltip" title="Volver a inicio." OnClick="btnCancel_Click" /><br />
             &nbsp;
         </div>
         <!--Fin de Div para generar reporte-->
@@ -37,7 +37,9 @@
         </table>
         <div id="rerportRange" class="fixDate">
             <font color="wheat">Reporte de horas laboradas por proyecto, colaborador y categoría</font><br />
-            <font color="wheat">De la fecha: 08/08/1995 hasta el 08/08/2017</font>
+            <font color="wheat">
+                    De la fecha: <label ID="lblReportDateFrom"></label> hasta el <label ID="lblReportDateTo"></label>
+            </font> 
         </div>
          
         <br />
@@ -48,63 +50,6 @@
                     <fieldset>
                         <!--Inicio de tabla de resultados de tarea-->
                             <asp:Table ID="reportTable" runat="server" CssClass="results">
-                                <asp:TableHeaderRow>
-                                    <asp:TableHeaderCell CssClass="results">
-                                        Proyecto
-                                    </asp:TableHeaderCell>
-                                    <asp:TableHeaderCell CssClass="results">
-                                        Colaborador
-                                    </asp:TableHeaderCell>
-                                    <asp:TableHeaderCell CssClass="results">
-                                        Categoría
-                                    </asp:TableHeaderCell>
-                                    <asp:TableHeaderCell CssClass="results" ColumnSpan="2">
-                                        Horas
-                                    </asp:TableHeaderCell>
-                                    <asp:TableHeaderCell CssClass="results">
-                                        Total
-                                    </asp:TableHeaderCell>
-                                </asp:TableHeaderRow>
-                                <asp:TableRow>
-                                    <asp:TableCell CssClass="results">
-                                        Análisis y diseño de softare
-                                    </asp:TableCell>
-                                    <asp:TableCell CssClass="results">
-                                        Esteban Sanabria.
-                                    </asp:TableCell>
-                                    <asp:TableCell CssClass="results">
-                                        Curso universitario
-                                    </asp:TableCell>
-                                    <asp:TableCell CssClass="results">
-                                        120 regulares
-                                    </asp:TableCell>
-                                    <asp:TableCell CssClass="results">
-                                        60 extra
-                                    </asp:TableCell>
-                                    <asp:TableCell CssClass="results">
-                                        180
-                                    </asp:TableCell>
-                                </asp:TableRow>
-                                <asp:TableRow>
-                                    <asp:TableCell CssClass="results">
-                                        Aresep
-                                    </asp:TableCell>
-                                    <asp:TableCell CssClass="results">
-                                        Esteban Sanabria.
-                                    </asp:TableCell>
-                                    <asp:TableCell CssClass="results">
-                                        Trabajo.
-                                    </asp:TableCell>
-                                    <asp:TableCell CssClass="results">
-                                        40 regulares
-                                    </asp:TableCell>
-                                    <asp:TableCell CssClass="results">
-                                        10 extra
-                                    </asp:TableCell>
-                                    <asp:TableCell CssClass="results">
-                                        50
-                                    </asp:TableCell>
-                                </asp:TableRow>
                             </asp:Table>
                         <!--Fin de tabla de resultados de tarea-->
                     </fieldset>
@@ -147,6 +92,8 @@
             //IMPORTANTE Esta sentencia debe estar depués de los if, sino se des enmarcarán todos los chekbox y los if
             //anterioes hacen 0 todos los hidden.
             UnmarkAllCheck();
+            document.getElementById('lblReportDateFrom').innerHTML = document.getElementById('MainContent_txtFrom').value;
+            document.getElementById('lblReportDateTo').innerHTML = document.getElementById('MainContent_txtTo').value;
             FadeInReportAndReportActions();
         }
 
