@@ -147,6 +147,7 @@
     <Content Include="Images\image.png" />
     <Content Include="Images\White-Colour-Background.jpg" />
     <Content Include="Content\jquerry-ui-1.11.0.js" />
+    <Content Include="Scripts\GenerateReport.js" />
     <Content Include="Scripts\SearchTask.js" />
     <Content Include="WebForms\ActualizarCategoria.aspx" />
     <Content Include="WebForms\ActualizarProyecto.aspx" />
@@ -158,6 +159,7 @@
     <Content Include="WebForms\CrearTarea.aspx" />
     <Content Include="WebForms\DuplicarTarea.aspx" />
     <Content Include="WebForms\EliminarTarea.aspx" />
+    <Content Include="WebForms\GenerarReporte.aspx" />
     <Content Include="WebForms\IndexAdmin.aspx" />
     <Content Include="WebForms\IndexColaborador.aspx" />
     <Content Include="WebForms\IniciarSesion.aspx" />
@@ -319,6 +321,13 @@
     </Compile>
     <Compile Include="WebForms\EliminarTarea.aspx.designer.cs">
       <DependentUpon>EliminarTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\GenerarReporte.aspx.cs">
+      <DependentUpon>GenerarReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\GenerarReporte.aspx.designer.cs">
+      <DependentUpon>GenerarReporte.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\IndexAdmin.aspx.cs">
       <DependentUpon>IndexAdmin.aspx</DependentUpon>

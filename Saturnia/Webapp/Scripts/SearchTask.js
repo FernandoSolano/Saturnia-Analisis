@@ -25,7 +25,7 @@ function FadeForm(checkBox, entity) {
 
 /**
  * Método que hace visible un elemento por id, de forma lenta y gradual.
- * @param {element} String es el id del elemento a mostrar.
+ * @param {String} element es el id del elemento a mostrar.
  */
 function FadeInElement(element) {
     $(element).fadeIn('slow');
@@ -33,7 +33,7 @@ function FadeInElement(element) {
 
 /**
  * Método que oculta un elemento por id, de forma lenta y gradual.
- * @param {element} String es el id del elemento a ocultar.
+ * @param {String} element es el id del elemento a ocultar.
  */
 function FadeOutElement(element) {
     $(element).fadeOut('slow');
@@ -42,8 +42,8 @@ function FadeOutElement(element) {
 /**
  * Este metodo recibe el nombre de  la entidad y el id de dicha entidad, para guardarlo en el
  * hidden field correspondiente.
- * @param {entity} string
- * @param {id} Integer
+ * @param {String} entity Nombre de la entidad para buscar su hidden correspondiene.
+ * @param {Integer} id Id de la entidad a guardar en el hidden.
  */
 function FillHidden(entity, id, filteredBy) {
     document.getElementById('MainContent_hdn' + entity).value = id;
@@ -54,8 +54,8 @@ function FillHidden(entity, id, filteredBy) {
 
 /**
  * Método para desplazar la pantalla a un lugar en específico con retardo de recibido.
- * @param {place} String es el id del lugar al que hay que moverse.
- * @param {time} Integer es la cantidad de retardo para el desplazamiento (1 segundo = 1000);
+ * @param {String} place es el id del lugar al que hay que moverse.
+ * @param {Integer} time es la cantidad de retardo para el desplazamiento (1 segundo = 1000);
  */
 function goTo(place, time) {
     setTimeout(function () { window.location.hash = place; }, time);
@@ -63,7 +63,7 @@ function goTo(place, time) {
 
 /**
  * Metodo que muestra nuevamente el area de un filtro y oculta el botón "cambiar entidad filtrada".
- * @param {filter} String es el nombre de la entidad del filtro a mostrar de nuevo y el nombre del "reselect" a ocultar.
+ * @param {String} filter es el nombre de la entidad del filtro a mostrar de nuevo y el nombre del "reselect" a ocultar.
  */
 function reselectFilter(filter) {
     FadeOutElement('#reselect' + filter);
