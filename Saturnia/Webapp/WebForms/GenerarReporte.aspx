@@ -160,4 +160,10 @@
         }
 
     </script>
+    <script src="../Content/printThis.js"></script><!--Inclusión de "printThis()"-->
+    <script>
+        $('#btnPdf').click(function () {
+            $('#reportPlace').printThis();
+        });
+    </script>
 </asp:Content>
