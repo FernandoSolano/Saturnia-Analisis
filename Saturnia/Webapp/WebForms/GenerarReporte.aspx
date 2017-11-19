@@ -2,8 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div id="formGenerateReport">
         <h1>Generar reporte</h1>
-        Para editar, duplicar o eliminar una tarea, primero debe buscarla.
-        La b&uacute;squeda puede ser filtrada seg&uacute;n lo necesite.<br />
 
         <!--Div para generar reporte-->
         <div class="fixDate">
@@ -36,8 +34,7 @@
             </tr>
         </table>
         <div id="rerportRange" class="fixDate">
-            <font color="wheat">Reporte de horas laboradas por proyecto, colaborador y categoría</font><br />
-            <font color="wheat">
+            <font color="wheat">Reporte de horas laboradas por proyecto, colaborador y categoría<br />
                     De la fecha: <label ID="lblReportDateFrom"></label> hasta el <label ID="lblReportDateTo"></label>
             </font> 
         </div>

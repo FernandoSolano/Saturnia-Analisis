@@ -119,118 +119,121 @@ namespace Webapp.WebForms
             }
         }
 
-        
+
         /// <summary>
-        /// Defectuso, borrelo apenas lo logre suplantar.
+        /// 
         /// </summary>
         /// <param name="report"></param>
-        /*private void FillReportTableByAllFilter(List<Task> report)
+        /// <param name="majorEntity"></param>
+        /// <param name="middleEntity"></param>
+        /// <param name="minorEntity"></param>
+        private void FillReportTableByThreEntities(List<Task> report, char majorEntity, char middleEntity, char minorEntity)
         {
             TableRow tempRow;
             TableCell tempCell;
-            String currentProject, currentCategory, currentUser, rowUser;
-            Boolean firstProyect = true, firstCategory = true, change = false;
-            float tempHours = 0, tempExtra = 0, totalExtra = 0, totalHours = 0;
+            String currentMajorEntity = "", currentMiddleEntity = "", currentMinorEntity = "", rowMajorEntity = "", rowMiddleEntity = "", rowMinorEntity = "";
+            float regular, extra, regularTotal = 0, extraTotal = 0;
+            bool firstMajor = true, firstMiddle = true, firstMinor = true, extraCell = false, middleExtraCell = false;
 
-            currentProject = report[0].Project.Name;
-            currentCategory = report[0].Category.Name;
-            currentUser = report[0].Collaborator.FirstName + " " + report[0].Collaborator.LastName;
-
-            foreach (Task temp in report)
+            currentMajorEntity = GetEntityName(report[0], majorEntity);
+            currentMiddleEntity = GetEntityName(report[0], middleEntity);
+            currentMinorEntity = GetEntityName(report[0], minorEntity);
+            //Llamada a método creado, este se encuentra más abajo para efectos de querer "checkearlo"
+            this.reportTable.Rows.Add(BuiltTableHeaderRow(majorEntity, middleEntity, minorEntity));
+            //Recorremos la lista.
+            foreach (Task task in report)
             {
-                tempRow = new TableRow();
-                tempCell = new TableCell();
-
-                rowUser = temp.Collaborator.FirstName + " " + temp.Collaborator.LastName;
-
-                tempHours = 0;
-                tempExtra = 0;
-
-                if ((currentUser == rowUser) && (change))
+                //Pasamos la tarea actual y obtenemos el nombre necesario según la entidad con la que se trabaje.
+                rowMajorEntity = GetEntityName(task, majorEntity);
+                rowMinorEntity = GetEntityName(task, minorEntity);
+                //Si no es la primera vez de una entidad mayor.
+                if (!firstMajor)
                 {
-                    continue;
+                    //Si la mayor actual es distinta a la mayor de la tarae actual
+                    if (currentMajorEntity != rowMajorEntity)
+                    {
+                        //Re asignamos el valor de actual entidad mayor.
+                        currentMajorEntity = rowMajorEntity;
+                        //Método creado, más abajo se podrá encontrar, nos devuelve un "row" con el total dedicado dentro de
+                        //la entidad mayor, para efectos del reporte.
+                        tempRow = this.TotalHoursDedicatedRow(regularTotal, extraTotal, 2);
+                        this.reportTable.Rows.Add(tempRow);
+                        //Reiniciamos los totales de horas.
+                        regularTotal = 0;
+                        extraTotal = 0;
+                        //Ahora este mayor es el primero.
+                        firstMajor = true;
+                        //No requeriremos una celda extra vacía para evitar repetir el nombre de la entidad mayor..
+                        extraCell = false;
+                    }
+                }
+
+                if (!firstMinor)
+                {
+                    //Se consulta si es primer entidad mayor para los casos donde pese a ser de distintas entidades mayores
+                    //la entidad menor sea la misma, así forzamos a que agregue la menor pese a no ser "distinta".
+                    if ((currentMinorEntity != rowMinorEntity) || (firstMajor))
+                    {
+                        //Asignamos a la actual entidad menor el valor de la entidad menor de la tarea actual.
+                        currentMinorEntity = rowMinorEntity;
+                        firstMinor = true;
+                    }
+                }
+
+                tempRow = new TableRow();
+
+                //Solo si es la primera vez de  esta entidad mayor, agregamos una celda con su nombre.
+                //De lo contrario, solicitamos una celda en blanco en lugar de repetir el nombre de la entidad mayor.
+                if (firstMajor)
+                {
+                    firstMajor = false;
+                    extraCell = false;
+                    tempCell = MakeMeATableCell("results", currentMajorEntity, 0);
+                    tempRow.Cells.Add(tempCell);
                 }
                 else
                 {
-                    currentUser = rowUser;
-                    if (temp.Project.Name != currentProject)
-                    {
-                        currentProject = temp.Project.Name;
-                        tempCell.Text = currentProject;
-                        tempCell.CssClass = "results";
-
-                    }
-                    else
-                    {
-                        if (firstProyect)
-                        {
-                            firstProyect = false;
-                            tempCell.Text = currentProject;
-                            tempCell.CssClass = "results";
-                        }
-                        else
-                        {
-                            tempCell.Text = "";
-                            tempCell.CssClass = "";
-                        }
-                    }
-                    tempRow.Cells.Add(tempCell);
-
-                    tempCell = new TableCell
-                    {
-                        Text = rowUser,
-                        CssClass = "results"
-                    };
-                    tempRow.Cells.Add(tempCell);
-
-                    tempCell = new TableCell();
-                    if (temp.Category.Name != currentCategory)
-                    {
-                        currentCategory = temp.Category.Name;
-                        tempCell.Text = currentCategory;
-                        tempCell.CssClass = "results";
-                    }
-                    else
-                    {
-                        if (firstCategory)
-                        {
-                            firstCategory = false;
-                            tempCell.Text = currentCategory;
-                            tempCell.CssClass = "results";
-                        }
-                        else
-                        {
-                            tempCell.Text = "";
-                            tempCell.CssClass = "";
-                        }
-                    }
-                    tempRow.Cells.Add(tempCell);
-
-                    tempHours = this.SumHoursOfUser(report, rowUser, currentProject, currentCategory, false);
-                    tempCell = new TableCell();
-                    tempCell.Text = tempHours + " regulares";
-                    tempCell.CssClass = "results";
-                    tempRow.Cells.Add(tempCell);
-                    totalHours += tempHours;
-
-                    tempExtra = this.SumHoursOfUser(report, rowUser, currentProject, currentCategory, true);
-                    tempCell = new TableCell();
-                    tempCell.Text = tempExtra + " extra";
-                    tempCell.CssClass = "results";
-                    tempRow.Cells.Add(tempCell);
-                    totalExtra += tempExtra;
-
-                    tempCell = new TableCell();
-                    tempCell.Text = (tempExtra + tempHours) + "";
-                    tempCell.CssClass = "results";
-                    tempRow.Cells.Add(tempCell);
-
-
-                    this.reportTable.Rows.Add(tempRow);
+                    extraCell = true;
                 }
-                change = true;
+                //Solo si es la primera vez de esta entidad menor, agregamos celdas con: Su nombre, su cantidad de horas regulares,
+                //su cantidad de horas extra y su total de horas.
+                if (firstMinor)
+                {
+                    firstMinor = false;
+                    //Si se pide celda extra, se agrega primero una celda vacía en lugar de repetir el nombre de la entidad mayor.
+                    if (extraCell)
+                    {
+                        tempCell = MakeMeATableCell("-", "", 0);
+                        tempRow.Cells.Add(tempCell);
+                    }
+                    //Celda con nombre de entidad menor.
+                    tempCell = MakeMeATableCell("results", currentMinorEntity, 0);
+                    tempRow.Cells.Add(tempCell);
+                    //Horas regulares de la entidad menor por medio de un método creado, este se encuentra más abajo.
+                    regular = SumHoursTwoEntities(report, currentMajorEntity, currentMinorEntity, minorEntity, majorEntity, false);
+                    regularTotal += regular;
+                    tempCell = MakeMeATableCell("results", (regular + " regulares"), 0);
+                    tempRow.Cells.Add(tempCell);
+                    //Horas extra de la entidad menor por medio de un método creado, este se encuentra más abajo.
+                    extra = SumHoursTwoEntities(report, currentMajorEntity, currentMinorEntity, minorEntity, majorEntity, true);
+                    extraTotal += extra;
+                    tempCell = MakeMeATableCell("results", (extra + " extra"), 0);
+                    tempRow.Cells.Add(tempCell);
+                    //Total de horas para la entidad menor.
+                    tempCell = MakeMeATableCell("results", ((extra + regular) + " horas"), 0);
+                    tempRow.Cells.Add(tempCell);
+                }
+                //Agregamos la fila creada en el reporte.
+                this.reportTable.Rows.Add(tempRow);
+
             }
-        }*/
+            //Agregamos nuevamente el "row" con los totales para entidad mayor, se hace fuera del ciclo "foreach" dado que la
+            //última vez que debería agregarse, no lo hace por finalizado el ciclo.
+            tempRow = new TableRow();
+            tempRow = this.TotalHoursDedicatedRow(regularTotal, extraTotal, 2);
+
+            this.reportTable.Rows.Add(tempRow);
+        }
 
         /// <summary>
         /// Método que llena la tabla para un reporte de 2 entidades.
@@ -248,32 +251,43 @@ namespace Webapp.WebForms
 
             currentMajorEntity = GetEntityName(report[0], majorEntity);
             currentMinorEntity = GetEntityName(report[0], minorEntity);
-
+            //Llamada a método creado, este se encuentra más abajo para efectos de querer "checkearlo"
             this.reportTable.Rows.Add(BuiltTableHeaderRow(majorEntity, '-', minorEntity));
-
+            //Recorremos la lista.
             foreach (Task task in report)
             {
+                //Pasamos la tarea actual y obtenemos el nombre necesario según la entidad con la que se trabaje.
                 rowMajorEntity = GetEntityName(task, majorEntity);
                 rowMinorEntity = GetEntityName(task, minorEntity);
-
+                //Si no es la primera vez de una entidad mayor.
                 if (!firstMajor)
                 {
+                    //Si la mayor actual es distinta a la mayor de la tarae actual
                     if (currentMajorEntity != rowMajorEntity)
                     {
+                        //Re asignamos el valor de actual entidad mayor.
                         currentMajorEntity = rowMajorEntity;
+                        //Método creado, más abajo se podrá encontrar, nos devuelve un "row" con el total dedicado dentro de
+                        //la entidad mayor, para efectos del reporte.
                         tempRow = this.TotalHoursDedicatedRow(regularTotal, extraTotal, 2);
                         this.reportTable.Rows.Add(tempRow);
+                        //Reiniciamos los totales de horas.
                         regularTotal = 0;
                         extraTotal = 0;
+                        //Ahora este mayor es el primero.
                         firstMajor = true;
+                        //No requeriremos una celda extra vacía para evitar repetir el nombre de la entidad mayor..
                         extraCell = false;
                     }
                 }
 
                 if (!firstMinor)
                 {
-                    if (currentMinorEntity != rowMinorEntity)
+                    //Se consulta si es primer entidad mayor para los casos donde pese a ser de distintas entidades mayores
+                    //la entidad menor sea la misma, así forzamos a que agregue la menor pese a no ser "distinta".
+                    if ((currentMinorEntity != rowMinorEntity) || (firstMajor))
                     {
+                        //Asignamos a la actual entidad menor el valor de la entidad menor de la tarea actual.
                         currentMinorEntity = rowMinorEntity;
                         firstMinor = true;
                     }
@@ -281,70 +295,53 @@ namespace Webapp.WebForms
 
                 tempRow = new TableRow();
 
-
+                //Solo si es la primera vez de  esta entidad mayor, agregamos una celda con su nombre.
+                //De lo contrario, solicitamos una celda en blanco en lugar de repetir el nombre de la entidad mayor.
                 if (firstMajor)
                 {
                     firstMajor = false;
                     extraCell = false;
-                    tempCell = new TableCell
-                    {
-                        CssClass = "results",
-                        Text = currentMajorEntity
-                    };
+                    tempCell = MakeMeATableCell("results", currentMajorEntity, 0);
                     tempRow.Cells.Add(tempCell);
                 }
                 else
                 {
                     extraCell = true;
                 }
-
+                //Solo si es la primera vez de esta entidad menor, agregamos celdas con: Su nombre, su cantidad de horas regulares,
+                //su cantidad de horas extra y su total de horas.
                 if (firstMinor)
                 {
                     firstMinor = false;
-
+                    //Si se pide celda extra, se agrega primero una celda vacía en lugar de repetir el nombre de la entidad mayor.
                     if (extraCell)
                     {
-                        tempCell = new TableCell();
-                        tempCell.Text = "";
+                        tempCell = MakeMeATableCell("-", "", 0);
                         tempRow.Cells.Add(tempCell);
                     }
-
-                    tempCell = new TableCell
-                    {
-                        CssClass = "results",
-                        Text = currentMinorEntity
-                    };
+                    //Celda con nombre de entidad menor.
+                    tempCell = MakeMeATableCell("results", currentMinorEntity, 0);
                     tempRow.Cells.Add(tempCell);
-                    //Horas regulares
+                    //Horas regulares de la entidad menor por medio de un método creado, este se encuentra más abajo.
                     regular = SumHoursTwoEntities(report, currentMajorEntity, currentMinorEntity, minorEntity, majorEntity, false);
                     regularTotal += regular;
-                    tempCell = new TableCell
-                    {
-                        Text = regular + " regulares",
-                        CssClass = "results"
-                    };
+                    tempCell = MakeMeATableCell("results", (regular + " regulares"), 0);
                     tempRow.Cells.Add(tempCell);
-                    //Horas extra
+                    //Horas extra de la entidad menor por medio de un método creado, este se encuentra más abajo.
                     extra = SumHoursTwoEntities(report, currentMajorEntity, currentMinorEntity, minorEntity, majorEntity, true);
                     extraTotal += extra;
-                    tempCell = new TableCell
-                    {
-                        Text = extra + " extra",
-                        CssClass = "results"
-                    };
+                    tempCell = MakeMeATableCell("results", (extra + " extra"), 0);
                     tempRow.Cells.Add(tempCell);
-                    //Horas total
-                    tempCell = new TableCell
-                    {
-                        Text = extra + regular + " horas",
-                        CssClass = "results"
-                    };
+                    //Total de horas para la entidad menor.
+                    tempCell = MakeMeATableCell("results", ((extra + regular) + " horas"), 0);
                     tempRow.Cells.Add(tempCell);
                 }
-
+                //Agregamos la fila creada en el reporte.
                 this.reportTable.Rows.Add(tempRow);
 
             }
+            //Agregamos nuevamente el "row" con los totales para entidad mayor, se hace fuera del ciclo "foreach" dado que la
+            //última vez que debería agregarse, no lo hace por finalizado el ciclo.
             tempRow = new TableRow();
             tempRow = this.TotalHoursDedicatedRow(regularTotal, extraTotal, 2);
 
@@ -361,7 +358,7 @@ namespace Webapp.WebForms
             TableRow tempRow;
             TableCell tempCell;
             String currentEntity = "", rowEntity = "";
-            float regular, extra;
+            float regular, extra, totalRegular = 0, totalExtra = 0;
             bool firstTime = true;
 
             currentEntity = GetEntityName(report[0], minorEntity);
@@ -386,44 +383,32 @@ namespace Webapp.WebForms
                     firstTime = false;
                     tempRow = new TableRow();
 
-                    tempCell = new TableCell
-                    {
-                        Text = currentEntity,
-                        CssClass = "results"
-                    };
+                    tempCell = MakeMeATableCell("results", currentEntity, 0);
                     tempRow.Cells.Add(tempCell);
                     //Horas regulares
                     regular = SumHoursSingleEntity(report, currentEntity, minorEntity, false);
-                    tempCell = new TableCell
-                    {
-                        Text = regular + " regulares",
-                        CssClass = "results"
-                    };
+                    tempCell = MakeMeATableCell("results", (regular + " regulares"), 0);
                     tempRow.Cells.Add(tempCell);
                     //Horas extra
                     extra = SumHoursSingleEntity(report, currentEntity, minorEntity, true);
-                    tempCell = new TableCell
-                    {
-                        Text = extra + " extra",
-                        CssClass = "results"
-                    };
+                    tempCell = MakeMeATableCell("results", (extra + " extra"), 0);
                     tempRow.Cells.Add(tempCell);
                     //Horas total
-                    tempCell = new TableCell
-                    {
-                        Text = extra + regular + " horas",
-                        CssClass = "results"
-                    };
+                    tempCell = MakeMeATableCell("results", ((regular + extra) + " horas"), 0);
+                    totalExtra += extra;
+                    totalRegular += regular;
                     tempRow.Cells.Add(tempCell);
 
                     this.reportTable.Rows.Add(tempRow);
                 }
-
             }
+            tempRow = new TableRow();
+            tempRow = TotalHoursDedicatedRow(totalRegular, totalExtra, 1);
+            this.reportTable.Rows.Add(tempRow);
         }
 
         /// <summary>
-        /// Método que suma las horas de una entidad para un reporte.
+        /// Método que suma la totalidad de horas de una entidad para un reporte.
         /// </summary>
         /// <param name="report">Lista de tareas que será nuestro reporte.</param>
         /// <param name="entityName">El nombre de la entidad a calcular su total de horas.</param>
@@ -449,7 +434,7 @@ namespace Webapp.WebForms
         }
 
         /// <summary>
-        /// Método que suma las horas de la entidad menor.
+        /// Método que devuelve la totalidad de horas regulares o extra de una entidad menor que está dentro de una entidad mayor.
         /// </summary>
         /// <param name="report">Lista de tareas que será nuestro reporte.</param>
         /// <param name="majorEntityName">Tan solo evita que se sumen valores de otro campo del reporte.</param>
@@ -478,6 +463,38 @@ namespace Webapp.WebForms
         }
 
         /// <summary>
+        /// Método que devuelve la totalidad de horas regulares o extra de una entidad menor que está dentro de una entidad media y una mayor.
+        /// </summary>
+        /// <param name="report"></param>
+        /// <param name="majorEntityName">Tan solo evita que se sumen valores de otro campo del reporte.</param>
+        /// <param name="middleEntityName"></param>
+        /// <param name="minorEntityName">Es de quien buscaremos horas dentro de la entidad del medio.</param>
+        /// <param name="majorEntity">Letra código de la entidad mayor, para buscar en una tarea específica de la lista.</param>
+        /// <param name="middleEntity"></param>
+        /// <param name="minorEntity">Letra código de la entidad menor, para buscar en una tarea específica de la lista.</param>
+        /// <param name="extra">Indica si se retornara la suma de horas regulares o las horas extra.</param>
+        /// <returns>La totalidad de horas de la entidad dentro de la entidad del medio que pertenece a una mayor.</returns>
+        private float SumHoursThreeEntities(List<Task> report, string majorEntityName, string middleEntityName, string minorEntityName, char majorEntity, char middleEntity, char minorEntity, bool extra)
+        {
+            float hours = 0;
+            String currentMajorEntity = "", currentMiddleEntity = "", currentMinorEntity = "";
+
+            foreach (Task task in report)
+            {
+                currentMajorEntity = GetEntityName(task, majorEntity);
+                currentMiddleEntity = GetEntityName(task, middleEntity);
+                currentMinorEntity = GetEntityName(task, minorEntity);
+
+                if ((extra == task.ExtraHours) && (currentMajorEntity == majorEntityName) && (currentMiddleEntity == middleEntityName) && (currentMinorEntity == minorEntityName))
+                {
+                    hours += task.Hours;
+                }
+            }
+
+            return hours;
+        }
+
+        /// <summary>
         /// Método que arma un "TableRow" indicando el tortal de horas dedicadas de una entidad mayor.
         /// La primer columna tendrá un mensaje indicando "Total de horas" y el colspan de esta columna es el alterado.
         /// Las siguientes columnas serás el total de horas regulares, luego las horas extra y finalmente la suma de estas.
@@ -486,36 +503,21 @@ namespace Webapp.WebForms
         /// <param name="totalExtra">Total de horas extra.</param>
         /// <param name="span">Grosor de columnas de la columna mensaje.</param>
         /// <returns>Un TableRow armado y listo para ser insertado en una tabla.</returns>
-        private TableRow TotalHoursDedicatedRow(float totalRegular, float totalExtra, byte span)
+        private TableRow TotalHoursDedicatedRow(float totalRegular, float totalExtra, byte columnSpan)
         {
             TableRow tempRow = new TableRow();
-            TableCell tempCell = new TableCell
-            {
-                ColumnSpan = span,
-                CssClass = "results",
-                Text = "Total horas invertidas:"
-            };
+            TableCell tempCell;
+
+            tempCell = MakeMeATableCell("total", "Total horas invertidas:", columnSpan);
             tempRow.Cells.Add(tempCell);
 
-            tempCell = new TableCell
-            {
-                CssClass = "results",
-                Text = totalRegular + " Regulares"
-            };
+            tempCell = MakeMeATableCell("total", (totalRegular + " Regulares"), 0);
             tempRow.Cells.Add(tempCell);
 
-            tempCell = new TableCell
-            {
-                CssClass = "results",
-                Text = totalExtra + " Extra"
-            };
+            tempCell = MakeMeATableCell("total", (totalExtra + " Extra"), 0);
             tempRow.Cells.Add(tempCell);
 
-            tempCell = new TableCell
-            {
-                CssClass = "results",
-                Text = totalRegular+ totalExtra + " horas"
-            };
+            tempCell = MakeMeATableCell("total", (totalRegular + totalExtra + " horas"), 0);
             tempRow.Cells.Add(tempCell);
 
             return tempRow;
@@ -553,49 +555,29 @@ namespace Webapp.WebForms
         {
             TableHeaderRow tempHeader = new TableHeaderRow();
             TableHeaderCell tempHeaderCell;
-            
-            if(MajorEntity != '-')
+
+            if (MajorEntity != '-')
             {
-                tempHeaderCell = new TableHeaderCell
-                {
-                    CssClass = "results",
-                    Text = PassCharEntityToName(MajorEntity)
-                };
+                tempHeaderCell = MakeMeATableHeaderCell("results", PassCharEntityToName(MajorEntity), 0);
                 tempHeader.Cells.Add(tempHeaderCell);
             }
 
             if (MiddleEntity != '-')
             {
-                tempHeaderCell = new TableHeaderCell
-                {
-                    CssClass = "results",
-                    Text = PassCharEntityToName(MiddleEntity)
-                };
+                tempHeaderCell = MakeMeATableHeaderCell("results", PassCharEntityToName(MiddleEntity), 0);
                 tempHeader.Cells.Add(tempHeaderCell);
             }
 
             if (MinorEntity != '-')
             {
-                tempHeaderCell = new TableHeaderCell
-                {
-                    CssClass = "results",
-                    Text = PassCharEntityToName(MinorEntity)
-                };
+                tempHeaderCell = MakeMeATableHeaderCell("results", PassCharEntityToName(MinorEntity), 0);
                 tempHeader.Cells.Add(tempHeaderCell);
             }
 
-            tempHeaderCell = new TableHeaderCell
-            {
-                Text = "Horas",
-                ColumnSpan = 2,
-                CssClass = "results"
-            };
+            tempHeaderCell = MakeMeATableHeaderCell("results","Horas",2);
             tempHeader.Cells.Add(tempHeaderCell);
-            tempHeaderCell = new TableHeaderCell
-            {
-                Text = "Total",
-                CssClass = "results"
-            };
+
+            tempHeaderCell = MakeMeATableHeaderCell("results", "Total", 0);
             tempHeader.Cells.Add(tempHeaderCell);
 
             return tempHeader;
@@ -619,6 +601,62 @@ namespace Webapp.WebForms
                 default:
                     return "";
             }
+        }
+
+        /// <summary>
+        /// Método que fabrica un "TableCell", debido a que se hace mucho en esta clase
+        /// se creó este método para ahorrar lineas de código.
+        /// </summary>
+        /// <param name="cssClass">Nommbre del class de css para la celda.</param>
+        /// <param name="text">Texto que contendrá la celda, puede ser código html dentro de un string.</param>
+        /// <param name="columnSpan">Columnas que abarcará la celda.</param>
+        /// <returns>La celda deseada según los parametros recibidos.</returns>
+        private TableCell MakeMeATableCell(string cssClass, string text, byte columnSpan)
+        {
+            TableCell tempCell = new TableCell
+            {
+                Text = text
+            };
+
+            if (cssClass != "-")
+            {
+                tempCell.CssClass = cssClass;
+            }
+
+            if (columnSpan != 0)
+            {
+                tempCell.ColumnSpan = columnSpan;
+            }
+
+            return tempCell;
+        }
+
+        /// <summary>
+        /// Método que fabrica un "TableHeaderCell", debido a que se hace mucho en esta clase
+        /// se creó este método para ahorrar lineas de código.
+        /// </summary>
+        /// <param name="cssClass">Nommbre del class de css para la celda.</param>
+        /// <param name="text">Texto que contendrá la celda, puede ser código html dentro de un string.</param>
+        /// <param name="columnSpan">Columnas que abarcará la celda.</param>
+        /// <returns>La celda deseada según los parametros recibidos.</returns>
+        private TableHeaderCell MakeMeATableHeaderCell(string cssClass, string text, byte columnSpan)
+        {
+            TableHeaderCell tempCell = new TableHeaderCell
+            {
+                Text = text
+            };
+
+            if (cssClass != "-")
+            {
+                tempCell.CssClass = cssClass;
+            }
+
+            if (columnSpan != 0)
+            {
+                tempCell.ColumnSpan = columnSpan;
+            }
+
+            return tempCell;
         }
     }
 }
