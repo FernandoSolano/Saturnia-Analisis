@@ -87,7 +87,7 @@ namespace Webapp.WebForms
         {
             if ((this.hdnProject.Value != "0") && (this.hdnCategory.Value != "0") && (this.hdnUser.Value != "0"))
             {
-                //FillReportTableByAllFilter(report);
+                FillReportTableByThreEntities(report, 'p', 'c', 'u');
             }
             else if ((this.hdnProject.Value != "0") && (this.hdnCategory.Value != "0"))
             {
@@ -115,13 +115,12 @@ namespace Webapp.WebForms
             }
             else
             {
-                //Tagar al usuario por no indicar.
+                FillReportTableByThreEntities(report, 'p', 'c', 'u');
             }
         }
 
-
         /// <summary>
-        /// 
+        /// Método que llena la tabla para un reporte de 3 entidades.
         /// </summary>
         /// <param name="report"></param>
         /// <param name="majorEntity"></param>
@@ -145,6 +144,7 @@ namespace Webapp.WebForms
             {
                 //Pasamos la tarea actual y obtenemos el nombre necesario según la entidad con la que se trabaje.
                 rowMajorEntity = GetEntityName(task, majorEntity);
+                rowMiddleEntity = GetEntityName(task, middleEntity);
                 rowMinorEntity = GetEntityName(task, minorEntity);
                 //Si no es la primera vez de una entidad mayor.
                 if (!firstMajor)
@@ -156,7 +156,7 @@ namespace Webapp.WebForms
                         currentMajorEntity = rowMajorEntity;
                         //Método creado, más abajo se podrá encontrar, nos devuelve un "row" con el total dedicado dentro de
                         //la entidad mayor, para efectos del reporte.
-                        tempRow = this.TotalHoursDedicatedRow(regularTotal, extraTotal, 2);
+                        tempRow = this.TotalHoursDedicatedRow(regularTotal, extraTotal, 3);
                         this.reportTable.Rows.Add(tempRow);
                         //Reiniciamos los totales de horas.
                         regularTotal = 0;
@@ -168,11 +168,25 @@ namespace Webapp.WebForms
                     }
                 }
 
+                if (!firstMiddle)
+                {
+                    //Se consulta si es primer entidad del medio para los casos donde pese a ser de distintas entidades mayores
+                    //la entidad del medio sea la misma, así forzamos a que agregue la del medio pese a no ser "distinta".
+                    if ((currentMiddleEntity != rowMiddleEntity) || (firstMajor))
+                    {
+                        //Asignamos a la actual entidad menor el valor de la entidad menor de la tarea actual.
+                        currentMiddleEntity = rowMiddleEntity;
+                        firstMiddle = true;
+                        //No requeriremos una celda extra vacía para evitar repetir el nombre de la entidad mayor..
+                        middleExtraCell = false;
+                    }
+                }
+
                 if (!firstMinor)
                 {
                     //Se consulta si es primer entidad mayor para los casos donde pese a ser de distintas entidades mayores
                     //la entidad menor sea la misma, así forzamos a que agregue la menor pese a no ser "distinta".
-                    if ((currentMinorEntity != rowMinorEntity) || (firstMajor))
+                    if ((currentMinorEntity != rowMinorEntity) || (firstMiddle))
                     {
                         //Asignamos a la actual entidad menor el valor de la entidad menor de la tarea actual.
                         currentMinorEntity = rowMinorEntity;
@@ -182,18 +196,29 @@ namespace Webapp.WebForms
 
                 tempRow = new TableRow();
 
-                //Solo si es la primera vez de  esta entidad mayor, agregamos una celda con su nombre.
+                //Solo si es la primera vez de  esta entidad mayor, negamos que sea primera para siguiente giro y no solicitamos
+                //celda en blanco.
                 //De lo contrario, solicitamos una celda en blanco en lugar de repetir el nombre de la entidad mayor.
                 if (firstMajor)
                 {
                     firstMajor = false;
                     extraCell = false;
-                    tempCell = MakeMeATableCell("results", currentMajorEntity, 0);
-                    tempRow.Cells.Add(tempCell);
                 }
                 else
                 {
                     extraCell = true;
+                }
+                //Solo si es la primera vez de esta entidad del medio, negamos que sea primera para siguiente giro y no solicitamos
+                //celda en blanco.
+                //De lo contrario, solicitamos una celda en blanco en lugar de repetir el nombre de la entidad del medio.
+                if (firstMiddle)
+                {
+                    firstMiddle = false;
+                    middleExtraCell = false;
+                }
+                else
+                {
+                    middleExtraCell = true;
                 }
                 //Solo si es la primera vez de esta entidad menor, agregamos celdas con: Su nombre, su cantidad de horas regulares,
                 //su cantidad de horas extra y su total de horas.
@@ -201,21 +226,37 @@ namespace Webapp.WebForms
                 {
                     firstMinor = false;
                     //Si se pide celda extra, se agrega primero una celda vacía en lugar de repetir el nombre de la entidad mayor.
+                    //Caso contrario, agregamos una celda con el nombre actual de la entidad.
                     if (extraCell)
                     {
                         tempCell = MakeMeATableCell("-", "", 0);
+                        tempRow.Cells.Add(tempCell);
+                    } else
+                    {
+                        tempCell = MakeMeATableCell("results", currentMajorEntity, 0);
+                        tempRow.Cells.Add(tempCell);
+                    }
+                    //Si se pide celda extra, se agrega primero una celda vacía en lugar de repetir el nombre de la entidad mayor.
+                    //Caso contrario, agregamos una celda con el nombre actual de la entidad.
+                    if (middleExtraCell)
+                    {
+                        tempCell = MakeMeATableCell("-", "", 0);
+                        tempRow.Cells.Add(tempCell);
+                    } else
+                    {
+                        tempCell = MakeMeATableCell("results", currentMiddleEntity, 0);
                         tempRow.Cells.Add(tempCell);
                     }
                     //Celda con nombre de entidad menor.
                     tempCell = MakeMeATableCell("results", currentMinorEntity, 0);
                     tempRow.Cells.Add(tempCell);
                     //Horas regulares de la entidad menor por medio de un método creado, este se encuentra más abajo.
-                    regular = SumHoursTwoEntities(report, currentMajorEntity, currentMinorEntity, minorEntity, majorEntity, false);
+                    regular = SumHoursThreeEntities(report, currentMajorEntity, currentMiddleEntity, currentMinorEntity, majorEntity, middleEntity, minorEntity, false);
                     regularTotal += regular;
                     tempCell = MakeMeATableCell("results", (regular + " regulares"), 0);
                     tempRow.Cells.Add(tempCell);
                     //Horas extra de la entidad menor por medio de un método creado, este se encuentra más abajo.
-                    extra = SumHoursTwoEntities(report, currentMajorEntity, currentMinorEntity, minorEntity, majorEntity, true);
+                    extra = SumHoursThreeEntities(report, currentMajorEntity, currentMiddleEntity, currentMinorEntity, majorEntity, middleEntity, minorEntity, true);
                     extraTotal += extra;
                     tempCell = MakeMeATableCell("results", (extra + " extra"), 0);
                     tempRow.Cells.Add(tempCell);
@@ -230,7 +271,7 @@ namespace Webapp.WebForms
             //Agregamos nuevamente el "row" con los totales para entidad mayor, se hace fuera del ciclo "foreach" dado que la
             //última vez que debería agregarse, no lo hace por finalizado el ciclo.
             tempRow = new TableRow();
-            tempRow = this.TotalHoursDedicatedRow(regularTotal, extraTotal, 2);
+            tempRow = this.TotalHoursDedicatedRow(regularTotal, extraTotal, 3);
 
             this.reportTable.Rows.Add(tempRow);
         }
@@ -295,14 +336,13 @@ namespace Webapp.WebForms
 
                 tempRow = new TableRow();
 
-                //Solo si es la primera vez de  esta entidad mayor, agregamos una celda con su nombre.
+                //Solo si es la primera vez de esta entidad mayor, negamos primera vez para siguiente vuelta de ciclo y no pedimos
+                //celda extra.
                 //De lo contrario, solicitamos una celda en blanco en lugar de repetir el nombre de la entidad mayor.
                 if (firstMajor)
                 {
                     firstMajor = false;
                     extraCell = false;
-                    tempCell = MakeMeATableCell("results", currentMajorEntity, 0);
-                    tempRow.Cells.Add(tempCell);
                 }
                 else
                 {
@@ -314,9 +354,15 @@ namespace Webapp.WebForms
                 {
                     firstMinor = false;
                     //Si se pide celda extra, se agrega primero una celda vacía en lugar de repetir el nombre de la entidad mayor.
+                    //Si no se pide extra, se agrega una con el titulo de la entidad mayor.
                     if (extraCell)
                     {
                         tempCell = MakeMeATableCell("-", "", 0);
+                        tempRow.Cells.Add(tempCell);
+                    } else
+                    {
+
+                        tempCell = MakeMeATableCell("results", currentMajorEntity, 0);
                         tempRow.Cells.Add(tempCell);
                     }
                     //Celda con nombre de entidad menor.
