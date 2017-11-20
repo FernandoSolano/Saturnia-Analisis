@@ -51,6 +51,8 @@ div.fixDate {
     background: #222222;
     border: 5px solid;
     border-radius: 15px;
+    position: center;
+    text-align: center;
 }
 
 h2.fixDate, label.fixDate {
@@ -65,10 +67,16 @@ table.results {
     max-width: 100%;
 }
 
-td.results, th.results {
+td.results, th.results, td.total {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    text-align:center;
+}
+
+td.total {
+    color: wheat;
+    font-weight: bold;
 }
 
 th.results {
@@ -202,3 +210,13 @@ input[type="checkbox"].custom {
         background: url(../Images/check_radio_sheet.png) -19px top no-repeat;
     }
 /* ----- End Custom Checkbox -----*/
+
+/* ----- Report table -----*/
+table#report {
+    width: 100%;
+}
+
+td#reportTd{
+    width: 60%;
+}
+/* ----- End report table-----*/

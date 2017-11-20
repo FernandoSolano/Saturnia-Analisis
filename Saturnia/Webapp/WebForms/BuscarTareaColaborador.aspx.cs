@@ -263,5 +263,9 @@ namespace Webapp.WebForms
 
         }
 
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./IndexColaborador.aspx");
+        }
     }
 }
