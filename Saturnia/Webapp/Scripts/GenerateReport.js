@@ -13,6 +13,9 @@ $(document).ready(function () {
     //Permitimos los calendarios
     $('#MainContent_txtFrom').datepicker({ dateFormat: 'dd-mm-yy' });
     $('#MainContent_txtTo').datepicker({ dateFormat: 'dd-mm-yy' });
+    $('#btnPdf').click(function () {
+        $('#reportPlace').printThis();
+    });
 });
 
 /**

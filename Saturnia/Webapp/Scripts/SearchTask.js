@@ -1,11 +1,7 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
     $('#MainContent_txtFrom').datepicker({ dateFormat: 'dd-mm-yy' });
     $('#MainContent_txtTo').datepicker({ dateFormat: 'dd-mm-yy' });
-    $('#btnPdf').click(function () {
-        $('#reportPlace').printThis();
-    });
 });
 
 /**
