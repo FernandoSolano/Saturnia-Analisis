@@ -11,7 +11,10 @@ namespace Webapp.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label1.Text = Session["userName"].ToString();
+            if (Session["userId"] != null)
+            {
+                Label1.Text = Session["userName"].ToString();
+            }
         }
     }
 }
