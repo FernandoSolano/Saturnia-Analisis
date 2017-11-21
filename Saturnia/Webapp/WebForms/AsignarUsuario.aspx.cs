@@ -16,6 +16,21 @@ namespace Webapp.WebForms
         private UserBusiness userBusiness;
         private int currentProject; //Esta variable nos permite guardar el Id del proyecto reibido en PageLoad para futuros usos.
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["userRole"] != null)
+            {
+                if ((int)Session["userRole"] == 1)
+                {
+                    this.MasterPageFile = "~/Site.master";
+                }
+                else if ((int)Session["userRole"] == 2)
+                {
+                    this.MasterPageFile = "~/SiteCollaborator.master";
+                }
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //Si, viene un id de proyecto.
