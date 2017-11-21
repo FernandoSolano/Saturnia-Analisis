@@ -55,7 +55,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/WebForms/IrABuscarTarea">Gestión de Tareas</a></li>
-                        <li><a runat="server">Reportes</a></li>
+                        <li><a runat="server" href="~/WebForms/IrAGenerarReporte.aspx">Reportes</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>

@@ -41,6 +41,10 @@ namespace Webapp.WebForms
             this.taskBusiness = new TaskBusiness();
             this.HLCreateTask.NavigateUrl = "./CrearTarea.aspx";
             this.userId = Int16.Parse(Session["userId"].ToString());
+            if (!IsPostBack)
+            {
+                this.btnSearchTask_Click(this, new EventArgs());
+            }
         }
 
         protected void btnSearchProject_Click(object sender, EventArgs e)
@@ -65,7 +69,7 @@ namespace Webapp.WebForms
 
                 tempCell = new TableCell
                 {
-                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"Project\", this.value,\"" + listElement.Name + "\")'>Tareas por el proyecto " + listElement.Name + "</button>",
+                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"Project\", this.value,\"" + listElement.Name + "\")' style=\"width:100%\">" + listElement.Name + "</button>",
                     CssClass = "results"
                 };
 
@@ -101,7 +105,7 @@ namespace Webapp.WebForms
 
                 tempCell = new TableCell
                 {
-                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"Category\", this.value,\"" + listElement.Name + "\")'>Tareas por la categoría " + listElement.Name + "</button>",
+                    Text = "<button type='button' class='btn btn-danger' value=" + listElement.Id + " onclick='FillHidden(\"Category\", this.value,\"" + listElement.Name + "\")' style=\"width:100%\">" + listElement.Name + "</button>",
 
                     CssClass = "results"
                 };
@@ -208,8 +212,8 @@ namespace Webapp.WebForms
                 //Se agregan en el orden: Link para actualizar, link para duplicar y link para eliminar.
                 tempCell = new TableCell
                 {
-                    Text = "<a href=\"./ActualizarTarea.aspx?id=" + listItem.Id + "\" class=\"results\">Editar</a><br/>" +
-                    "<a href=\"./DuplicarTarea.aspx?id=" + listItem.Id + "\" class=\"results\">Duplicar</a><br/>" +
+                    Text = "<a href=\"./ActualizarTarea.aspx?id=" + listItem.Id + "\" class=\"results\">Editar</a>&nbsp;" +
+                    "<a href=\"./DuplicarTarea.aspx?id=" + listItem.Id + "\" class=\"results\">Duplicar</a>&nbsp;" +
                     "<a href=\"EliminarTarea.aspx?id=" + listItem.Id + "\" class=\"results\">Eliminar</a>",
                     CssClass = "results"
                 };
@@ -259,5 +263,9 @@ namespace Webapp.WebForms
 
         }
 
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./IndexColaborador.aspx");
+        }
     }
 }

@@ -26,13 +26,14 @@
             </td>
         </tr>
     </table>
-
-    <asp:Table ID="resultTable" CssClass="results" runat="server" Visible="false">
-        <asp:TableHeaderRow>
-            <asp:TableHeaderCell CssClass="results">
-                Nombre
-            </asp:TableHeaderCell>
-        </asp:TableHeaderRow>
-    </asp:Table>
+    <div align="center">
+        <asp:Table ID="resultTable" CssClass="results" runat="server" Visible="false">
+            <asp:TableHeaderRow>
+                <asp:TableHeaderCell CssClass="results">
+                    Nombre
+                </asp:TableHeaderCell>
+            </asp:TableHeaderRow>
+        </asp:Table>
+    </div>
 
 </asp:Content>

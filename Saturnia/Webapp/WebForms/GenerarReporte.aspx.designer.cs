@@ -10,16 +10,7 @@
 namespace Webapp.WebForms {
     
     
-    public partial class BuscarTareaColaborador {
-        
-        /// <summary>
-        /// Control HLCreateTask.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HLCreateTask;
+    public partial class GenerarReporte {
         
         /// <summary>
         /// Control txtFrom.
@@ -40,13 +31,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.TextBox txtTo;
         
         /// <summary>
-        /// Control btnSearchTask.
+        /// Control btnGenerateReport.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchTask;
+        protected global::System.Web.UI.WebControls.Button btnGenerateReport;
         
         /// <summary>
         /// Control btnCancel.
@@ -58,22 +49,13 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
-        /// Control txtCategoryName.
+        /// Control hdnUser.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCategoryName;
-        
-        /// <summary>
-        /// Control btnSearchCategory.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchCategory;
+        protected global::System.Web.UI.WebControls.HiddenField hdnUser;
         
         /// <summary>
         /// Control hdnCategory.
@@ -85,42 +67,6 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.HiddenField hdnCategory;
         
         /// <summary>
-        /// Control UPCategory.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UPCategory;
-        
-        /// <summary>
-        /// Control resultCategoryTable.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table resultCategoryTable;
-        
-        /// <summary>
-        /// Control txtProjectName.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProjectName;
-        
-        /// <summary>
-        /// Control btnSearchProject.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchProject;
-        
-        /// <summary>
         /// Control hdnProject.
         /// </summary>
         /// <remarks>
@@ -130,39 +76,48 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.HiddenField hdnProject;
         
         /// <summary>
-        /// Control UPProject.
+        /// Control lblUserName.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UPProject;
+        protected global::System.Web.UI.WebControls.Label lblUserName;
         
         /// <summary>
-        /// Control resultProjectTable.
+        /// Control UPReport.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table resultProjectTable;
+        protected global::System.Web.UI.UpdatePanel UPReport;
         
         /// <summary>
-        /// Control UPTaskResults.
+        /// Control reportTable.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UPTaskResults;
+        protected global::System.Web.UI.WebControls.Table reportTable;
         
         /// <summary>
-        /// Control resultTaskTable.
+        /// Control lblDateMessage.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table resultTaskTable;
+        protected global::System.Web.UI.WebControls.Label lblDateMessage;
+        
+        /// <summary>
+        /// Control btnBackToTheFuture.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBackToTheFuture;
     }
 }
