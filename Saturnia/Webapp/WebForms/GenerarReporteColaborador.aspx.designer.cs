@@ -10,7 +10,7 @@
 namespace Webapp.WebForms {
     
     
-    public partial class GenerarReporte {
+    public partial class GenerarReporteColaborador {
         
         /// <summary>
         /// Control txtFrom.
@@ -47,15 +47,6 @@ namespace Webapp.WebForms {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
-        
-        /// <summary>
-        /// Control hdnUser.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnUser;
         
         /// <summary>
         /// Control hdnCategory.

@@ -1,12 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GenerarReporte.aspx.cs" Inherits="Webapp.WebForms.GenerarReporte" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteCollaborator.Master" AutoEventWireup="true" CodeBehind="GenerarReporteColaborador.aspx.cs" Inherits="Webapp.WebForms.GenerarReporteColaborador" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="formGenerateReport">
-        <h1>Generar reporte</h1>
+        <div id="formGenerateReport">
+        <h1>Generar mi reporte</h1>
 
         <!--Div para generar reporte-->
         <div class="fixDate">
             <h2 class="fixDate">Filtrar por:</h2>
-            <input type="checkbox" class="results" id="cbUser"> <Label for="cbUser" ID="lblUserCB" class="fixDate" data-toggle="tooltip" title="Ordenar reporte por colaborador." ><span></span>Colaborador</Label>&nbsp;&nbsp;
             <input type="checkbox" class="results" id="cbCategory"> <Label for="cbCategory" ID="lblCategoryCB" class="fixDate" data-toggle="tooltip" title="Ordenar reporte por categoría." ><span></span>Categor&iacute;a</Label>&nbsp;&nbsp;
             <input type="checkbox" class="results" id="cbProject"> <Label for="cbProject" ID="lblProjectCB" class="fixDate" data-toggle="tooltip" title="Ordenar reporte por proyecto." ><span></span>Proyecto</Label>
             <h2 class="fixDate">Rango de fechas</h2>
@@ -16,7 +15,6 @@
             &nbsp;
         </div>
         <!--Fin de Div para generar reporte-->
-        <asp:HiddenField ID="hdnUser" runat="server" Value="0" /> <!-- Hidden field de usuario -->
         <asp:HiddenField ID="hdnCategory" runat="server" Value="0" /> <!-- Hidden field de categoria -->
         <asp:HiddenField ID="hdnProject" runat="server" Value="0" /> <!-- Hidden field de proyecto -->
     </div>
@@ -34,7 +32,7 @@
             </tr>
         </table>
         <div id="rerportRange" class="fixDate">
-            <font color="wheat">Reporte de horas laboradas por <label id="lblFilter"></label><br />
+            <font color="wheat">Reporte de mis horas laboradas por <label id="lblFilter"></label><br />
                     De la fecha: <label ID="lblReportDateFrom"></label> hasta el <label ID="lblReportDateTo"></label>
             </font> 
         </div>
@@ -68,6 +66,7 @@
     </div>
 
     <script src="../Content/jquerry-ui-1.11.0.js"></script> <!--Include ui jquery-->
+    <script src="../Content/printThis.js"></script> <!--Inclusión de "printThis()"-->
     <script src="../Scripts/GenerateReport.js"></script> <!--Metodos en común-->
     <script>
         /**
@@ -81,7 +80,6 @@
             //Si el checkbox de user está marcado: Ponemos 1 en el hidden, sino lo "borramos" al poner 0,
             //esto porque si ya se había realizado una búsqueda en el pasado, el hidden queda "sucio" con el valor anterior.
             //Esto se hace para los 3 checkbox de filtro.
-            document.getElementById('MainContent_hdnUser').value = ($('#cbUser').is(":checked") ? (1) : (0) );
             
             document.getElementById('MainContent_hdnCategory').value = ($('#cbCategory').is(":checked") ? (1) : (0) );
             
@@ -89,14 +87,12 @@
 
             //Si los 3 filtros fueron seleccionados, o si ninguno de los 3 fuerojn seleccionados, se coloca un mensaje indicando que
             //se filtró por los 3, caso contrario preguntamos por cuales sí para mostrar cuales fueron usados en un mensaje.
-            if (($('#cbUser').is(":checked")) && ($('#cbCategory').is(":checked")) && ($('#cbProject').is(":checked"))) {
-                document.getElementById('lblFilter').innerHTML = 'proyecto, categoría y colaborador';
-            } else if (!($('#cbUser').is(":checked")) && !($('#cbCategory').is(":checked")) && !($('#cbProject').is(":checked"))) {
-                document.getElementById('lblFilter').innerHTML = 'proyecto, categoría y colaborador';
+            if (($('#cbCategory').is(":checked")) && ($('#cbProject').is(":checked"))) {
+                document.getElementById('lblFilter').innerHTML = 'proyecto y categoría';
+            } else if (!($('#cbCategory').is(":checked")) && !($('#cbProject').is(":checked"))) {
+                document.getElementById('lblFilter').innerHTML = 'proyecto y categoría';
             } else {
-
-                message += ($('#cbUser').is(":checked") ? ('colaborador y ') : (''));
-
+                
                 message += ($('#cbCategory').is(":checked") ? ('categoría y ') : (''));
 
                 message += ($('#cbProject').is(":checked") ? ('proyecto y ') : (''));
@@ -119,14 +115,7 @@
         function UnmarkAllCheck() {
             $('#cbProject').attr("checked", false);
             $('#cbCategory').attr("checked", false);
-            $('#cbUser').attr("checked", false);
         }
 
-    </script>
-    <script src="../Content/printThis.js"></script><!--Inclusión de "printThis()"-->
-    <script>
-        $('#btnPdf').click(function () {
-            $('#reportPlace').printThis();
-        });
     </script>
 </asp:Content>
