@@ -68,6 +68,7 @@
     </div>
 
     <script src="../Content/jquerry-ui-1.11.0.js"></script> <!--Include ui jquery-->
+    <script src="../Content/printThis.js"></script><!--Inclusión de "printThis()"-->
     <script src="../Scripts/GenerateReport.js"></script> <!--Metodos en común-->
     <script>
         /**
@@ -122,11 +123,5 @@
             $('#cbUser').attr("checked", false);
         }
 
-    </script>
-    <script src="../Content/printThis.js"></script><!--Inclusión de "printThis()"-->
-    <script>
-        $('#btnPdf').click(function () {
-            $('#reportPlace').printThis();
-        });
     </script>
 </asp:Content>
