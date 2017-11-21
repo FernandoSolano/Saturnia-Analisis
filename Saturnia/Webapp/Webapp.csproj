@@ -129,6 +129,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\printThis.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -141,10 +142,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\bgwhite.jpg" />
+    <Content Include="Images\check_radio_sheet-inverted.png" />
+    <Content Include="Images\check_radio_sheet.png" />
     <Content Include="Images\DarkGrayPatterns.png" />
     <Content Include="Images\image.png" />
     <Content Include="Images\White-Colour-Background.jpg" />
-    <Content Include="Scripts\SearchProject.js" />
+    <Content Include="Content\jquerry-ui-1.11.0.js" />
+    <Content Include="Scripts\GenerateReport.js" />
+    <Content Include="Scripts\SearchTask.js" />
     <Content Include="WebForms\ActualizarCategoria.aspx" />
     <Content Include="WebForms\ActualizarProyecto.aspx" />
     <Content Include="WebForms\ActualizarTarea.aspx" />
@@ -155,11 +160,15 @@
     <Content Include="WebForms\CrearTarea.aspx" />
     <Content Include="WebForms\DuplicarTarea.aspx" />
     <Content Include="WebForms\EliminarTarea.aspx" />
+    <Content Include="WebForms\GenerarReporte.aspx" />
+    <Content Include="WebForms\GenerarReporteColaborador.aspx" />
     <Content Include="WebForms\IndexAdmin.aspx" />
     <Content Include="WebForms\IndexColaborador.aspx" />
     <Content Include="WebForms\IniciarSesion.aspx" />
     <Content Include="WebForms\BuscarCategoria.aspx" />
     <Content Include="WebForms\BuscarProyecto.aspx" />
+    <Content Include="WebForms\IrABuscarTarea.aspx" />
+    <Content Include="WebForms\IrAGenerarReporte.aspx" />
     <Content Include="WebForms\MostrarCategoria.aspx" />
     <Content Include="WebForms\MostrarProyecto.aspx" />
     <Content Include="WebForms\CrearCategoria.aspx">
@@ -168,6 +177,7 @@
     <Content Include="WebForms\CrearProyecto.aspx">
       <BrowseToURL>~/WebForms/CrearProyecto.aspx</BrowseToURL>
     </Content>
+    <Content Include="WebForms\MostrarTarea.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -315,6 +325,20 @@
     <Compile Include="WebForms\EliminarTarea.aspx.designer.cs">
       <DependentUpon>EliminarTarea.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\GenerarReporte.aspx.cs">
+      <DependentUpon>GenerarReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\GenerarReporte.aspx.designer.cs">
+      <DependentUpon>GenerarReporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\GenerarReporteColaborador.aspx.cs">
+      <DependentUpon>GenerarReporteColaborador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\GenerarReporteColaborador.aspx.designer.cs">
+      <DependentUpon>GenerarReporteColaborador.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\IndexAdmin.aspx.cs">
       <DependentUpon>IndexAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -350,6 +374,20 @@
     <Compile Include="WebForms\BuscarProyecto.aspx.designer.cs">
       <DependentUpon>BuscarProyecto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\IrABuscarTarea.aspx.cs">
+      <DependentUpon>IrABuscarTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\IrABuscarTarea.aspx.designer.cs">
+      <DependentUpon>IrABuscarTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\IrAGenerarReporte.aspx.cs">
+      <DependentUpon>IrAGenerarReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\IrAGenerarReporte.aspx.designer.cs">
+      <DependentUpon>IrAGenerarReporte.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\MostrarCategoria.aspx.cs">
       <DependentUpon>MostrarCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -377,6 +415,13 @@
     </Compile>
     <Compile Include="WebForms\CrearProyecto.aspx.designer.cs">
       <DependentUpon>CrearProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\MostrarTarea.aspx.cs">
+      <DependentUpon>MostrarTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\MostrarTarea.aspx.designer.cs">
+      <DependentUpon>MostrarTarea.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

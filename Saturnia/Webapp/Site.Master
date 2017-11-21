@@ -58,7 +58,8 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/WebForms/BuscarProyecto">Gestión de Proyectos</a></li>
                         <li><a runat="server" href="~/WebForms/BuscarCategoria">Gestión de Categorías</a></li>
-                         <li><a runat="server" href="~/WebForms/BuscarTareaColaborador">Gestión de Tareas</a></li>
+                         <li><a runat="server" href="~/WebForms/IrABuscarTarea">Gestión de Tareas</a></li>
+                        <li><a runat="server" href="WebForms/IrAGenerarReporte.aspx">Generar reporte</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>

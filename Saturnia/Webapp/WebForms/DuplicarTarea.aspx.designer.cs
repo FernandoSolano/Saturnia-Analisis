@@ -130,6 +130,15 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.Label lbl_minutes;
         
         /// <summary>
+        /// lbl_error_hours control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_error_hours;
+        
+        /// <summary>
         /// lbl_description control.
         /// </summary>
         /// <remarks>

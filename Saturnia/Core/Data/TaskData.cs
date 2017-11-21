@@ -201,6 +201,206 @@ namespace Core.Data
                 connection.Close();
             }
         }
+        /// <summary>
+        /// Método que busca una tárea en base a filtrado.
+        /// </summary>
+        /// <param name="task">Tarea que contiene los filtros para la búsqueda.</param>
+        /// <returns>Retorna una lista de tareas que coincidan con la búsqueda.</returns>
+        public List<Task> Search(Task task)
+        {
+            //Declaracion e inicializacion de variables e instancias.
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            //Nombre del SP
+            string sqlStoredProcedure = "SP_SEARCH_TASK_FILTERED";
+
+            //Variables para ejecutar el SP
+            SqlCommand sqlCommand;
+            SqlParameter parameter;
+            SqlDataReader reader;
+
+            //Lista de retorno.
+            List<Task> tasks = new List<Task>();
+
+            //Objeto temporal para llenar la lista.
+            Task tempTask;
+
+            sqlCommand = new SqlCommand(sqlStoredProcedure, connection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            //Parametro que contendra la descripción para la búsqueda.
+            parameter = new SqlParameter("@_Description", task.Description);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra el filtro por proyecto.
+            parameter = new SqlParameter("@_Project", task.Project.Id);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra el filtro por usuario.
+            parameter = new SqlParameter("@_User", task.Collaborator.Id);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra el filtro por categoria.
+            parameter = new SqlParameter("@_Category", task.Category.Id);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra la fecha "desde".
+            parameter = new SqlParameter("@_Date_From", task.Date);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra la fecha "hasta".
+            //Si proyecto trae en su descripción la palabra "Same" quiere decir que ambas fechas son iguales.
+            //Lo que nos hace tomar la desición de enviar nuevamente task.date, sino se hace un parse.
+            parameter = new SqlParameter("@_Date_To", 
+                task.Project.Description == "Same" ? task.Date : DateTime.Parse(task.Project.Description)
+            );
+            sqlCommand.Parameters.Add(parameter);
+
+            //Abrimos y ejecutamos el SP
+            sqlCommand.Connection.Open();
+            sqlCommand.ExecuteNonQuery();
+
+            //Ejecutamos el lector para recibir lo devuelto.
+            reader = sqlCommand.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                //Si hubiesen resultados, los añadimos uno a uno a la lista.
+                while (reader.Read())
+                {
+                    tempTask = new Task();
+                    tempTask.Id = reader.GetInt32(0);
+                    tempTask.Hours = float.Parse(reader.GetDouble(1).ToString());
+                    tempTask.ExtraHours = reader.GetBoolean(2);
+                    tempTask.Date = reader.GetDateTime(3);
+                    tempTask.Description = reader.GetString(4);
+                    tempTask.Project.Name = reader.GetString(5);
+                    tempTask.Collaborator.FirstName = reader.GetString(6);
+                    tempTask.Collaborator.LastName = reader.GetString(7);
+                    tempTask.Category.Name = reader.GetString(8);
+                    tasks.Add(tempTask);
+                }
+            }
+            else
+            {
+                //Si no hay resultados, agregamos un proyecto con id -1 y nombre que indique que no hubo resultados.
+                tempTask = new Task();
+                tempTask.Id = -1;
+                tempTask.Hours = 0;
+                tempTask.ExtraHours = false;
+                tempTask.Date = DateTime.Today;
+                tempTask.Description = "No se encontraron coincidencias";
+                tempTask.Project.Name = "";
+                tempTask.Collaborator.FirstName = "";
+                tempTask.Category.Name = "";
+                tasks.Add(tempTask);
+            }
+
+            //Cerramos la conexion.
+            sqlCommand.Connection.Close();
+
+            //Retornamos la lista.
+            return tasks;
+        }
+
+        /// <summary>
+        /// Método que busca los datos para generar un reporte en base a criterios dados en la pantalla.
+        /// </summary>
+        /// <param name="task">Tarea que contiene los criterios para la búsqueda.</param>
+        /// <returns>Una lista de tareas que se usará para generar el reporte.</returns>
+        public List<Task> GenerateReport(Task task)
+        {
+            //Declaracion e inicializacion de variables e instancias.
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            //Nombre del SP
+            string sqlStoredProcedure = "SP_GENERATE_REPORT_FILTERED";
+
+            //Variables para ejecutar el SP
+            SqlCommand sqlCommand;
+            SqlParameter parameter;
+            SqlDataReader reader;
+
+            //Lista de retorno.
+            List<Task> tasks = new List<Task>();
+
+            //Objeto temporal para llenar la lista.
+            Task tempTask;
+
+            sqlCommand = new SqlCommand(sqlStoredProcedure, connection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            //Parametro que indica si se debe filtrar por usuario o no.
+            parameter = new SqlParameter("@_UserTaskOnly", task.Id);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra el filtro por proyecto.
+            parameter = new SqlParameter("@_Project", task.Project.Id);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra el filtro por usuario.
+            parameter = new SqlParameter("@_User", task.Collaborator.Id);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra el filtro por categoria.
+            parameter = new SqlParameter("@_Category", task.Category.Id);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra la fecha "desde".
+            parameter = new SqlParameter("@_Date_From", task.Date);
+            sqlCommand.Parameters.Add(parameter);
+
+            //Parametro que contendra la fecha "hasta".
+            //Si proyecto trae en su descripción la palabra "Same" quiere decir que ambas fechas son iguales.
+            //Lo que nos hace tomar la desición de enviar nuevamente task.date, sino se hace un parse.
+            parameter = new SqlParameter("@_Date_To",
+                task.Project.Description == "Same" ? task.Date : DateTime.Parse(task.Project.Description)
+            );
+            sqlCommand.Parameters.Add(parameter);
+
+            //Abrimos y ejecutamos el SP
+            sqlCommand.Connection.Open();
+            sqlCommand.ExecuteNonQuery();
+
+            //Ejecutamos el lector para recibir lo devuelto.
+            reader = sqlCommand.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                //Si hubiesen resultados, los añadimos uno a uno a la lista.
+                while (reader.Read())
+                {
+                    tempTask = new Task();
+                    tempTask.Hours = float.Parse(reader.GetDouble(0).ToString());
+                    tempTask.ExtraHours = reader.GetBoolean(1);
+                    tempTask.Project.Name = reader.GetString(2);
+                    tempTask.Collaborator.FirstName = reader.GetString(3);
+                    tempTask.Collaborator.LastName = reader.GetString(4);
+                    tempTask.Category.Name = reader.GetString(5);
+                    tasks.Add(tempTask);
+                }
+            }
+            else
+            {
+                //Si no hay resultados, agregamos un proyecto con id -1 y nombre que indique que no hubo resultados.
+                tempTask = new Task
+                {
+                    Hours = 0,
+                    ExtraHours = false
+                };
+                tempTask.Project.Name = "No hay proyectos trabajados en este rango.";
+                tempTask.Collaborator.FirstName = "Nadie que laborara";
+                tempTask.Collaborator.LastName = "en esta ocasión.";
+                tempTask.Category.Name = "Ninguna tarea fue reportada a ninguna categoría.";
+                tasks.Add(tempTask);
+            }
+
+            //Cerramos la conexion.
+            sqlCommand.Connection.Close();
+
+            //Retornamos la lista.
+            return tasks;
+        }
 
     }
 }

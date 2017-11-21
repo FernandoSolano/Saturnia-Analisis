@@ -49,9 +49,10 @@ a.results:hover {
 
 div.fixDate {
     background: #222222;
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
+    border: 5px solid;
+    border-radius: 15px;
+    position: center;
+    text-align: center;
 }
 
 h2.fixDate, label.fixDate {
@@ -66,10 +67,16 @@ table.results {
     max-width: 100%;
 }
 
-td.results, th.results {
+td.results, th.results, td.total {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    text-align:center;
+}
+
+td.total {
+    color: wheat;
+    font-weight: bold;
 }
 
 th.results {
@@ -163,3 +170,53 @@ img#logo {
     margin-bottom: 30px;
 }
 /* ----- END Conf for multitab panel in CrearTarea form -----*/
+
+/* ----- Results Checkbox -----*/
+/*Tomado de: https://webdesign.tutsplus.com/articles/quick-tip-easy-css3-checkboxes-and-radio-buttons--webdesign-8953 */
+input[type="checkbox"].results {
+    display: none;
+}
+    input[type="checkbox"].results + label span {
+        display: inline-block;
+        width: 19px;
+        height: 19px;
+        margin: -2px 10px 0 0;
+        vertical-align: middle;
+        background: url(../Images/check_radio_sheet-inverted.png) left top no-repeat;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"].results:checked + label span {
+        background: url(../Images/check_radio_sheet-inverted.png) -19px top no-repeat;
+    }
+/* ----- End Results Checkbox -----*/
+/* ----- Custom Checkbox -----*/
+/*Tomado de: https://webdesign.tutsplus.com/articles/quick-tip-easy-css3-checkboxes-and-radio-buttons--webdesign-8953 */
+input[type="checkbox"].custom {
+    display: none;
+}
+
+    input[type="checkbox"].custom + label span {
+        display: inline-block;
+        width: 19px;
+        height: 19px;
+        margin: -2px 10px 0 0;
+        vertical-align: middle;
+        background: url(../Images/check_radio_sheet.png) left top no-repeat;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"].custom:checked + label span {
+        background: url(../Images/check_radio_sheet.png) -19px top no-repeat;
+    }
+/* ----- End Custom Checkbox -----*/
+
+/* ----- Report table -----*/
+table#report {
+    width: 100%;
+}
+
+td#reportTd{
+    width: 60%;
+}
+/* ----- End report table-----*/

@@ -11,7 +11,10 @@ namespace Webapp.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label1.Text = Session["userName"].ToString();
+            if (Session["userName"] == null)
+                Response.Redirect("~/WebForms/IniciarSesion.aspx");
+            else
+                Label1.Text = Session["userName"].ToString();
         }
 
         protected void Button1_Click(object sender, EventArgs e)

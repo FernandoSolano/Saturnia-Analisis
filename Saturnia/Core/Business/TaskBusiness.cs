@@ -51,5 +51,15 @@ namespace Core.Business
 
         }
 
+        public List<Task> Search(Task task)
+        {
+            return this.taskData.Search(task);
+        }
+
+        public List<Task> GenerateReport(Task task)
+        {
+            return this.taskData.GenerateReport(task);
+        }
+
     }
 }
