@@ -13,17 +13,10 @@ $(document).ready(function () {
     //Permitimos los calendarios
     $('#MainContent_txtFrom').datepicker({ dateFormat: 'dd-mm-yy' });
     $('#MainContent_txtTo').datepicker({ dateFormat: 'dd-mm-yy' });
+    $('#btnPdf').click(function () {
+        $('#reportPlace').printThis();
+    });
 });
-
-/**
- * Método que cambia el valor de un hidden según se desee o no filtrar por una entidad
- * @param {CheckBox} checkBox Es el checkbox que llamó al método.
- * @param {string} entity Es el nombre de la entidad asociada al hidden para alterar.
- */
-function ActivateFilter(checkBox, entity) {
-    //Si el checkbox está seleccionado asignamos 1 al hiden, sino se asigna 0.
-    document.getElementById('MainContent_hdn' + entity).value = (checkBox.checked? 1 : 0);
-}
 
 /**
  * Método que hace visible un elemento por id, de forma lenta y gradual.

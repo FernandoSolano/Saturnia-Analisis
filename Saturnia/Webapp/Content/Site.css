@@ -67,11 +67,16 @@ table.results {
     max-width: 100%;
 }
 
-td.results, th.results {
+td.results, th.results, td.total {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
     text-align:center;
+}
+
+td.total {
+    color: wheat;
+    font-weight: bold;
 }
 
 th.results {

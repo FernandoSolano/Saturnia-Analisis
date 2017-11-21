@@ -1,5 +1,5 @@
-﻿using Core.Domain;
-using Core.Business;
+﻿using Core.Business;
+using Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,36 +9,22 @@ using System.Web.UI.WebControls;
 
 namespace Webapp.WebForms
 {
-    public partial class GenerarReporte : System.Web.UI.Page
+    public partial class GenerarReporteColaborador : System.Web.UI.Page
     {
         private TaskBusiness taskBusiness;
-        
-        protected void Page_PreInit(object sender, EventArgs e)
-        {
-            if (Session["userRole"] != null)
-            {
-                if ((int)Session["userRole"] == 1)
-                {
-                    this.MasterPageFile = "~/Site.master";
-                }
-                else if ((int)Session["userRole"] == 2)
-                {
-                    this.MasterPageFile = "~/SiteCollaborator.master";
-                }
-            }
-        }
+        private int user;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["userName"] == null)
+            if (Session["userName"] == null || Session["userId"] == null)
             {
                 Response.Redirect("~/WebForms/IniciarSesion.aspx");
             }
             else
             {
                 this.lblUserName.Text = Session["userName"].ToString();
-                this.
-                = new TaskBusiness();
+                this.user = Int16.Parse(Session["userId"].ToString());
+                this.taskBusiness = new TaskBusiness();
             }
         }
 
@@ -52,22 +38,21 @@ namespace Webapp.WebForms
             Task generate;
             List<Task> report;
             DateTime dateFrom = DateTime.Today, dateTo = DateTime.Today;
-            int project, user, category;
+            int project, category;
             String textDateFrom, textDateTo;
 
             textDateFrom = (this.txtFrom.Text);
             textDateTo = (this.txtTo.Text);
             project = Int16.Parse(this.hdnProject.Value);
-            user = Int16.Parse(this.hdnUser.Value);
             category = Int16.Parse(this.hdnCategory.Value);
 
-            if( (project == 0) && (user == 0) && (category == 0) )
+            if ((project == 0) && (category == 0))
             {
                 project = 1;
-                user = 1;
                 category = 1;
             }
-            try { 
+            try
+            {
                 dateFrom = DateTime.Parse(
                     (textDateFrom != "") ? textDateFrom : "1801-08-05"
                 );
@@ -75,7 +60,8 @@ namespace Webapp.WebForms
                     (textDateTo != "") ? textDateTo : "1801-08-05"
                 );
             }
-            catch {
+            catch
+            {
                 textDateFrom = "";
                 textDateTo = "";
             }
@@ -83,16 +69,18 @@ namespace Webapp.WebForms
             this.reportTable.Visible = false;
             this.lblDateMessage.Visible = false;
 
-            if ( (textDateFrom == "") || (textDateTo == "") ) {
+            if ((textDateFrom == "") || (textDateTo == ""))
+            {
                 this.lblDateMessage.Visible = true;
-            } else
+            }
+            else
             {
                 //Con la primer linea indicamos que no se debe filtrar por id de colaborador, en terminos sencillos ese 0 dice
                 //que somos administradores, si fuera 1 el id de colaborador sería tomado para mostrar únicamente las tareas de
                 //ese colaborador.
-                generate = new Task { Id = 0 };
+                generate = new Task { Id = 1 };
                 generate.Project.Id = project;
-                generate.Collaborator.Id = user;
+                generate.Collaborator.Id = this.user;
                 generate.Category.Id = category;
                 //Luego las fechas.
                 generate.Date = dateFrom;
@@ -116,6 +104,7 @@ namespace Webapp.WebForms
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("./IndexAdmin.aspx");
+
         }
 
         /// <summary>
@@ -124,33 +113,17 @@ namespace Webapp.WebForms
         /// <param name="report">Lista de tareas con las que se hará el reporte.</param>
         private void FillReportTable(List<Task> report)
         {
-            if ((this.hdnProject.Value != "0") && (this.hdnCategory.Value != "0") && (this.hdnUser.Value != "0"))
+            if ((this.hdnProject.Value != "0") && (this.hdnCategory.Value != "0"))
             {
                 FillReportTableByThreEntities(report, 'p', 'c', 'u');
             }
-            else if ((this.hdnProject.Value != "0") && (this.hdnCategory.Value != "0"))
-            {
-                FillReportTableByTwoEntities(report, 'p', 'c');
-            }
-            else if ((this.hdnProject.Value != "0") && (this.hdnUser.Value != "0"))
+            else if ((this.hdnProject.Value != "0"))
             {
                 FillReportTableByTwoEntities(report, 'p', 'u');
             }
-            else if ((this.hdnUser.Value != "0") && (this.hdnCategory.Value != "0"))
-            {
-                FillReportTableByTwoEntities(report, 'u', 'c');
-            }
-            else if ((this.hdnProject.Value != "0"))
-            {
-                FillReportTableBySingleEntity(report, 'p');
-            }
             else if ((this.hdnCategory.Value != "0"))
             {
-                FillReportTableBySingleEntity(report, 'c');
-            }
-            else if ((this.hdnUser.Value != "0"))
-            {
-                FillReportTableBySingleEntity(report, 'u');
+                FillReportTableByTwoEntities(report, 'u', 'c');
             }
             else
             {
@@ -271,7 +244,8 @@ namespace Webapp.WebForms
                     {
                         tempCell = MakeMeATableCell("-", "", 0);
                         tempRow.Cells.Add(tempCell);
-                    } else
+                    }
+                    else
                     {
                         tempCell = MakeMeATableCell("results", currentMajorEntity, 0);
                         tempRow.Cells.Add(tempCell);
@@ -282,7 +256,8 @@ namespace Webapp.WebForms
                     {
                         tempCell = MakeMeATableCell("-", "", 0);
                         tempRow.Cells.Add(tempCell);
-                    } else
+                    }
+                    else
                     {
                         tempCell = MakeMeATableCell("results", currentMiddleEntity, 0);
                         tempRow.Cells.Add(tempCell);
@@ -399,7 +374,8 @@ namespace Webapp.WebForms
                     {
                         tempCell = MakeMeATableCell("-", "", 0);
                         tempRow.Cells.Add(tempCell);
-                    } else
+                    }
+                    else
                     {
 
                         tempCell = MakeMeATableCell("results", currentMajorEntity, 0);
@@ -432,91 +408,6 @@ namespace Webapp.WebForms
             tempRow = this.TotalHoursDedicatedRow(regularTotal, extraTotal, 2);
 
             this.reportTable.Rows.Add(tempRow);
-        }
-
-        /// <summary>
-        /// Método que llena la tabla para un reporte de una sola entidad.
-        /// </summary>
-        /// <param name="report">Es la lista de tareas de la que generamos el reporte.</param>
-        /// <param name="minorEntity">Es la letra código de la entidad con la que trabajaremos.</param>
-        private void FillReportTableBySingleEntity(List<Task> report, char minorEntity)
-        {
-            TableRow tempRow;
-            TableCell tempCell;
-            String currentEntity = "", rowEntity = "";
-            float regular, extra, totalRegular = 0, totalExtra = 0;
-            bool firstTime = true;
-
-            currentEntity = GetEntityName(report[0], minorEntity);
-
-            this.reportTable.Rows.Add(BuiltTableHeaderRow('-', '-', minorEntity));
-
-            foreach (Task task in report)
-            {
-                rowEntity = GetEntityName(task, minorEntity);
-
-                if (!firstTime)
-                {
-                    if (currentEntity != rowEntity)
-                    {
-                        currentEntity = rowEntity;
-                        firstTime = true;
-                    }
-                }
-
-                if (firstTime)
-                {
-                    firstTime = false;
-                    tempRow = new TableRow();
-
-                    tempCell = MakeMeATableCell("results", currentEntity, 0);
-                    tempRow.Cells.Add(tempCell);
-                    //Horas regulares
-                    regular = SumHoursSingleEntity(report, currentEntity, minorEntity, false);
-                    tempCell = MakeMeATableCell("results", (regular + " regulares"), 0);
-                    tempRow.Cells.Add(tempCell);
-                    //Horas extra
-                    extra = SumHoursSingleEntity(report, currentEntity, minorEntity, true);
-                    tempCell = MakeMeATableCell("results", (extra + " extra"), 0);
-                    tempRow.Cells.Add(tempCell);
-                    //Horas total
-                    tempCell = MakeMeATableCell("results", ((regular + extra) + " horas"), 0);
-                    totalExtra += extra;
-                    totalRegular += regular;
-                    tempRow.Cells.Add(tempCell);
-
-                    this.reportTable.Rows.Add(tempRow);
-                }
-            }
-            tempRow = new TableRow();
-            tempRow = TotalHoursDedicatedRow(totalRegular, totalExtra, 1);
-            this.reportTable.Rows.Add(tempRow);
-        }
-
-        /// <summary>
-        /// Método que suma la totalidad de horas de una entidad para un reporte.
-        /// </summary>
-        /// <param name="report">Lista de tareas que será nuestro reporte.</param>
-        /// <param name="entityName">El nombre de la entidad a calcular su total de horas.</param>
-        /// <param name="entity">Letra código de la entidad, para buscar en una tarea específica de la lista.</param>
-        /// <param name="extra">Indica si se retornara la suma de horas regulares o las horas extra.</param>
-        /// <returns>La totalidad de horas de la entidad sumadas.</returns>
-        private float SumHoursSingleEntity(List<Task> report, string entityName, char entity, bool extra)
-        {
-            float hours = 0;
-            String currentEntity = "";
-
-            foreach (Task task in report)
-            {
-                currentEntity = GetEntityName(task, entity);
-
-                if ((extra == task.ExtraHours) && (entityName == currentEntity))
-                {
-                    hours += task.Hours;
-                }
-            }
-
-            return hours;
         }
 
         /// <summary>
@@ -660,7 +551,7 @@ namespace Webapp.WebForms
                 tempHeader.Cells.Add(tempHeaderCell);
             }
 
-            tempHeaderCell = MakeMeATableHeaderCell("results","Horas",2);
+            tempHeaderCell = MakeMeATableHeaderCell("results", "Horas", 2);
             tempHeader.Cells.Add(tempHeaderCell);
 
             tempHeaderCell = MakeMeATableHeaderCell("results", "Total", 0);
@@ -744,5 +635,6 @@ namespace Webapp.WebForms
 
             return tempCell;
         }
+
     }
 }
