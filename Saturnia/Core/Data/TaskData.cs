@@ -330,6 +330,10 @@ namespace Core.Data
             sqlCommand = new SqlCommand(sqlStoredProcedure, connection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
 
+            //Parametro que indica si se debe filtrar por usuario o no.
+            parameter = new SqlParameter("@_UserTaskOnly", task.Id);
+            sqlCommand.Parameters.Add(parameter);
+
             //Parametro que contendra el filtro por proyecto.
             parameter = new SqlParameter("@_Project", task.Project.Id);
             sqlCommand.Parameters.Add(parameter);
@@ -379,13 +383,15 @@ namespace Core.Data
             else
             {
                 //Si no hay resultados, agregamos un proyecto con id -1 y nombre que indique que no hubo resultados.
-                tempTask = new Task();
-                tempTask.Hours = 0;
-                tempTask.ExtraHours = false;
-                tempTask.Project.Name = "Sin resultados, esto sucede por no proporcionar un filtro o rango de fechas";
-                tempTask.Collaborator.FirstName = "Sin resultados, esto sucede por no proporcionar un filtro o rango de fechas";
-                tempTask.Collaborator.LastName = "Sin resultados, esto sucede por no proporcionar un filtro o rango de fechas";
-                tempTask.Category.Name = "Sin resultados, esto sucede por no proporcionar un filtro o rango de fechas";
+                tempTask = new Task
+                {
+                    Hours = 0,
+                    ExtraHours = false
+                };
+                tempTask.Project.Name = "No hay proyectos trabajados en este rango.";
+                tempTask.Collaborator.FirstName = "Nadie que laborara";
+                tempTask.Collaborator.LastName = "en esta ocasión.";
+                tempTask.Category.Name = "Ninguna tarea fue reportada a ninguna categoría.";
                 tasks.Add(tempTask);
             }
 
