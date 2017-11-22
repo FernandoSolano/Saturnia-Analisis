@@ -13,49 +13,40 @@ namespace Webapp.WebForms {
     public partial class ActualizarTarea {
         
         /// <summary>
-        /// Control Label1.
+        /// Control UpdatePanel1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// Control Label3.
+        /// Control CdDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Calendar CdDate;
         
         /// <summary>
-        /// Control tbDescription.
+        /// Control rblList.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDescription;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblList;
         
         /// <summary>
-        /// Control Label7.
+        /// Control UpTime.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-        
-        /// <summary>
-        /// Control lbTipoDeHora.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTipoDeHora;
+        protected global::System.Web.UI.UpdatePanel UpTime;
         
         /// <summary>
         /// Control tbHours.
@@ -67,15 +58,6 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.TextBox tbHours;
         
         /// <summary>
-        /// Control lbHours.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbHours;
-        
-        /// <summary>
         /// Control ddlMinutes.
         /// </summary>
         /// <remarks>
@@ -85,22 +67,22 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.DropDownList ddlMinutes;
         
         /// <summary>
-        /// Control Label6.
+        /// Control lbHours.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label lbHours;
         
         /// <summary>
-        /// Control CdDate.
+        /// Control tbDescription.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CdDate;
+        protected global::System.Web.UI.WebControls.TextBox tbDescription;
         
         /// <summary>
         /// Control DefaultMenu.
@@ -164,5 +146,14 @@ namespace Webapp.WebForms {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbMessage;
+        
+        /// <summary>
+        /// Control UpdatePanel4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel4;
     }
 }
