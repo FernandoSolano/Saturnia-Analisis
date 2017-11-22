@@ -82,16 +82,16 @@ namespace Webapp.WebForms
             lbMessage.Visible = false;
             if (Int32.Parse(tbHours.Text) >= 9 && rblList.SelectedValue == "0")
             {
-                lbHours.Text = "Las horas regulares tienen un maximo de 8 horas.";
+                lbHours.Text = "Las horas regulares tienen un máximo de 8 horas.";
                 lbHours.Visible = true;
             }
             else if (Int32.Parse(tbHours.Text) >= 17 && rblList.SelectedValue == "1")
             {
-                lbHours.Text = "Las horas extra tienen un maximo de 16 horas.";
+                lbHours.Text = "Las horas extra tienen un máximo de 16 horas.";
                 lbHours.Visible = true;
             }
             else if (Int32.Parse(tbHours.Text) <0) {
-                lbHours.Text = "Ingrese un campo valido";
+                lbHours.Text = "Ingrese un campo válido";
                 lbHours.Visible = true;
             }
             else {
