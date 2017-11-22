@@ -45,11 +45,11 @@ namespace Core.Business
         }
 
 
-        public List<Task> GetTaskByCollaborator(Task task)
-        {
-            return taskData.GetTaskByCollaborator(task);
+        //public List<Task> GetTaskByCollaborator(Task task)
+        //{
+        //    //return taskData.GetTaskByCollaborator(task);
 
-        }
+        //}
 
         public List<Task> Search(Task task)
         {
