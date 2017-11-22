@@ -34,7 +34,7 @@ namespace Webapp.WebForms
 
         protected void BTCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuscarTareaColaborador.aspx");
+            Response.Redirect("BuscarTarea.aspx");
         }
 
         protected void BTAceptar_Click(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace Webapp.WebForms
                 task.Id = Int32.Parse(Request.QueryString["id"]);
                 task = taskBusiness.ShowTask(task);
                 taskBusiness.DeleteTask(task);
-                Response.Redirect("BuscarTareaColaborador.aspx");
+                Response.Redirect("BuscarTarea.aspx");
             }//try
             catch
             {
