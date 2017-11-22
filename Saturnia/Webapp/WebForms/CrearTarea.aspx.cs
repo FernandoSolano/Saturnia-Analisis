@@ -71,7 +71,7 @@ namespace Webapp.WebForms
                 DdlMonth.Items.Add(new ListItem(date.GetMonthName(i), i.ToString()));
                 DdlMonthSoT.Items.Add(new ListItem(date.GetMonthName(i), i.ToString()));
             }
-            DdlMonthSoT.Items.FindByValue(DateTime.Now.Month.ToString()).Selected = true;
+            DdlMonth.Items.FindByValue(DateTime.Now.Month.ToString()).Selected = true;
             DdlMonthSoT.Items.FindByValue(DateTime.Now.Month.ToString()).Selected = true;
         }
 
@@ -246,7 +246,7 @@ namespace Webapp.WebForms
                                     task.ExtraHours = true;
                                 }
                                 float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
-                                float hoursInTheForm = float.Parse(DdlHours.Text + "," + DdlMinutes.Text);
+                                float hoursInTheForm = float.Parse(DdlHours.Text + "," + DdlMinutes.SelectedValue);
 
                                 if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
                                 {
@@ -358,7 +358,7 @@ namespace Webapp.WebForms
 
 
                                     float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
-                                    float hoursInTheForm = float.Parse(DdlHoursSoT.Text + "," + DdlMinutesSoT.Text);
+                                    float hoursInTheForm = float.Parse(DdlHoursSoT.Text + "," + DdlMinutesSoT.SelectedValue);
 
                                     if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
                                     {
