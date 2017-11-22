@@ -40,10 +40,10 @@
                 </td>
                 <td>
                     <label style="margin-left: 20px">Minutos:</label>
-                                <asp:DropDownList ID="ddlMinutes" runat="server" Style="margin-left: 30px" Width="60px">
-                                    <asp:ListItem>00</asp:ListItem>
-                                    <asp:ListItem>30</asp:ListItem>
-                                </asp:DropDownList>
+                    <asp:DropDownList ID="ddlMinutes" runat="server" Style="margin-left: 30px" Width="60px">
+                        <asp:ListItem>00</asp:ListItem>
+                        <asp:ListItem>30</asp:ListItem>
+                    </asp:DropDownList>
                 </td>
 
             </tr>
