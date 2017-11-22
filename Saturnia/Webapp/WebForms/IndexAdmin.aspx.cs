@@ -11,11 +11,10 @@ namespace Webapp.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["userName"] == null)
-                Response.Redirect("~/WebForms/IniciarSesion.aspx");
-            else
+            if (Session["userId"] != null)
+            {
                 Label1.Text = Session["userName"].ToString();
-            
+            }
         }
     }
 }

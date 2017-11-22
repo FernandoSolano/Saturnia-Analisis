@@ -14,6 +14,21 @@ namespace Webapp.WebForms
       
         private TaskBusiness taskBusiness;
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["userRole"] != null)
+            {
+                if ((int)Session["userRole"] == 1)
+                {
+                    this.MasterPageFile = "~/Site.master";
+                }
+                else if ((int)Session["userRole"] == 2)
+                {
+                    this.MasterPageFile = "~/SiteCollaborator.master";
+                }
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -92,7 +107,7 @@ namespace Webapp.WebForms
             task.Id = Int32.Parse(Request.QueryString["id"]);
             task.Description = tbDescription.Text;
    
-            task.Hours = float.Parse(tbHours.Text + "." + ddlMinutes.SelectedValue.ToString()) ;
+            task.Hours = float.Parse(tbHours.Text + "," + ddlMinutes.SelectedValue.ToString()) ;
             task.Date = DateTime.Parse(CdDate.SelectedDate.ToString());
             if (lbTipoDeHora.Text.Equals("Horas regulares"))
             {
