@@ -76,8 +76,8 @@
                                                         </asp:DropDownList>
                                                         <label style="margin-left: 20px">Minutos</label>
                                                         <asp:DropDownList ID="DdlMinutes" runat="server" class="btn btn-secundary dropdown-toggle" Style="background-color:  #e6e6e6; margin-left: 20px" Width="70px">
-                                                            <asp:ListItem>00</asp:ListItem>
-                                                            <asp:ListItem>30</asp:ListItem>
+                                                            <asp:ListItem Value="0">00</asp:ListItem>
+                                                            <asp:ListItem Value="5">30</asp:ListItem>
                                                         </asp:DropDownList>
                                                     </fieldset>
                                                 </ContentTemplate>
@@ -189,8 +189,8 @@
                                                         </asp:DropDownList>
                                                         <label style="margin-left: 20px">Minutos</label>
                                                         <asp:DropDownList ID="DdlMinutesSoT" runat="server" class="btn btn-secundary dropdown-toggle" Style="background-color:  #e6e6e6; margin-left: 20px" Width="70px">
-                                                            <asp:ListItem>00</asp:ListItem>
-                                                            <asp:ListItem>30</asp:ListItem>
+                                                            <asp:ListItem Value="0">00</asp:ListItem>
+                                                            <asp:ListItem Value="5">30</asp:ListItem>
                                                         </asp:DropDownList>
                                                     </fieldset>
                                                 </ContentTemplate>
