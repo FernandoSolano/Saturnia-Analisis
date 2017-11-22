@@ -13,6 +13,8 @@ namespace Webapp.WebForms
     {
       
         private TaskBusiness taskBusiness;
+        private CategoryBusiness categoryBusiness;
+        private ProjectBusiness projectBusiness;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -48,6 +50,7 @@ namespace Webapp.WebForms
             Task task = new Task();
             task.Id= Int32.Parse(Request.QueryString["id"]);
             taskBusiness = new TaskBusiness();
+
             task = taskBusiness.ShowTask(task);
 
             tbDescription.Text = task.Description;
@@ -55,9 +58,9 @@ namespace Webapp.WebForms
             int horas= (int)Math.Floor(task.Hours);
             tbHours.Text = horas.ToString();
             if (task.ExtraHours==false) {
-                lbTipoDeHora.Text = "Horas regulares";
+                rblList.SelectedValue = "0";
             } else {
-                lbTipoDeHora.Text = "Horas extra";
+                rblList.SelectedValue = "1";
             }
             if (horas - task.Hours == 0)
             {
@@ -66,39 +69,63 @@ namespace Webapp.WebForms
             else {
                 ddlMinutes.Items.FindByValue("30").Selected = true;
             }
+      
             CdDate.SelectedDate = DateTime.Parse(task.Date.ToString());
             CdDate.VisibleDate = DateTime.Parse(task.Date.ToString());
+
+ 
         }
 
+       
         protected void btnUpdateTask_Click(object sender, EventArgs e)
         {
             lbMessage.Visible = false;
-            if (Int32.Parse(tbHours.Text) >= 9)
+            if (Int32.Parse(tbHours.Text) >= 9 && rblList.SelectedValue == "0")
             {
-                lbHours.Text = "Las horas regulares tienen un maximo de 8 horas.";
+                lbHours.Text = "Las horas regulares tienen un máximo de 8 horas.";
                 lbHours.Visible = true;
             }
-            else if (Int32.Parse(tbHours.Text) >= 17)
+            else if (Int32.Parse(tbHours.Text) >= 17 && rblList.SelectedValue == "1")
             {
-                lbHours.Text = "Las horas regulares tienen un maximo de 16 horas.";
+                lbHours.Text = "Las horas extra tienen un máximo de 16 horas.";
                 lbHours.Visible = true;
             }
             else if (Int32.Parse(tbHours.Text) <0) {
-                lbHours.Text = "Ingrese un campo valido";
+                lbHours.Text = "Ingrese un campo válido";
                 lbHours.Visible = true;
             }
             else {
                 DefaultMenu.Visible = false;
                 ConfirmationMenu.Visible = true;
                 lbHours.Visible = false;
+                BlockEditOptions();
             }
             
+        }
+
+        private void BlockEditOptions()
+        {
+            CdDate.Enabled = false;
+            ddlMinutes.Enabled = false;
+            tbDescription.Enabled = false;
+            tbHours.Enabled = false;
+            rblList.Enabled = false;
+        }
+
+        private void UnlockEditOptions()
+        {
+            CdDate.Enabled = true;
+            ddlMinutes.Enabled = true;
+            tbDescription.Enabled = true;
+            tbHours.Enabled = true;
+            rblList.Enabled = true;
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/WebForms/BuscarTareaColaborador.aspx");
         }
+
 
         protected void btnUpdateTaskConfirmation_Click(object sender, EventArgs e)
         {
@@ -107,9 +134,9 @@ namespace Webapp.WebForms
             task.Id = Int32.Parse(Request.QueryString["id"]);
             task.Description = tbDescription.Text;
    
-            task.Hours = float.Parse(tbHours.Text + "," + ddlMinutes.SelectedValue.ToString()) ;
+            task.Hours = float.Parse(tbHours.Text + "." + ddlMinutes.SelectedValue.ToString()) ;
             task.Date = DateTime.Parse(CdDate.SelectedDate.ToString());
-            if (lbTipoDeHora.Text.Equals("Horas regulares"))
+            if (rblList.SelectedValue=="0")
             {
                 task.ExtraHours = false;
             }
@@ -124,6 +151,7 @@ namespace Webapp.WebForms
             DefaultMenu.Visible = true;
             ConfirmationMenu.Visible = false;
             lbMessage.Visible = true;
+            UnlockEditOptions();
 
         }
 

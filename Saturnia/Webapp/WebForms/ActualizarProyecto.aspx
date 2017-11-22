@@ -9,35 +9,37 @@
             </h2>
 
             <tr>
-                <td>
+                <td style="width: 272px">
                     <asp:Label ID="Label5" runat="server" Text="Nombre:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="tbName" runat="server" Width="180px"></asp:TextBox>
+                    <asp:TextBox ID="tbName" runat="server" Width="215px"></asp:TextBox>
+                    <br />
                 </td>
 
             </tr>
 
             <tr>
-                <td>
+                <td style="width: 272px">
                     <asp:Label ID="Label4" runat="server" Text="Descripcion:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="tbDescription" runat="server" Height="49px" TextMode="MultiLine" Width="182px"></asp:TextBox>
+                    <asp:TextBox ID="tbDescription" runat="server" Height="56px" TextMode="MultiLine" Width="215px"></asp:TextBox>
+                    <br />
                 </td>
             </tr>
            
             <tr>
-                <td>
+                <td style="width: 272px">
                        <asp:Label ID="Label2" runat="server" Text="Horas estimadas:"></asp:Label> 
                 </td>
                 <td>
-                    <asp:TextBox ID="tbEstimatedHours" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="tbEstimatedHours" runat="server" TextMode="Number" Width="52px"></asp:TextBox>
                 </td>
             </tr>
 
             <tr>
-                <td>
+                <td style="width: 272px">
                     <asp:Label ID="Label3" runat="server" Text="Fecha de inicio:"></asp:Label> 
                 
                 </td>
@@ -59,7 +61,7 @@
             </tr>
 
             <tr>
-                 <td>
+                 <td style="width: 272px">
                     <asp:Label ID="Label6" runat="server" Text="Fecha de finalización:"></asp:Label> 
                 </td>
 
@@ -82,7 +84,7 @@
             </tr>
 
              <tr>
-                <td>
+                <td style="width: 272px">
                     <asp:Button ID="BtnUpdate" runat="server" class="btn btn-success" OnClick="btnUpdateProject_Click" Text="Actualizar" Style="margin-left: 10px" Height="30px" Width="120px" />
                     <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="btnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />              
   
