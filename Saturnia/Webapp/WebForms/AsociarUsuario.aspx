@@ -14,7 +14,7 @@
                 <asp:TextBox ID="txtProjectName" runat="server"></asp:TextBox>
             </td>
             <td>
-                <asp:Button ID="btnSearchProject" runat="server" Text="Buscar" OnClick="btnSearchProject_Click" />
+                <asp:Button ID="btnSearchProject" class="btn btn-danger" runat="server" Text="Buscar" OnClick="btnSearchProject_Click" Width="90px" />
             </td>
         </tr>
         <tr>
@@ -25,7 +25,7 @@
                 <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
             </td>
             <td>
-                <asp:Button ID="btnSearchUser" runat="server" Text="Buscar" OnClick="btnSearchUser_Click" />
+                <asp:Button ID="btnSearchUser" class="btn btn-danger" runat="server" Text="Buscar" OnClick="btnSearchUser_Click" Width="90px" />
             </td>
         </tr>
         <tr>
@@ -38,10 +38,10 @@
         <tr>
             <td></td>
             <td>
-                <asp:Button ID="btnAsign" runat="server" Text="Asignar" OnClick="btnAsign_Click" />
+                <asp:Button ID="btnAsign" runat="server" class="btn btn-danger" Text="Asignar" OnClick="btnAsign_Click" Width="90px" Style="margin-left: 10px; margin-top:20px"/>
             </td>
             <td>
-                <asp:Button ID="btnCancel" runat="server" Text="Cancelar" OnClick="btnCancel_Click" />
+                <asp:Button ID="btnCancel" runat="server" class="btn btn-danger" Text="Cancelar" OnClick="btnCancel_Click" Width="90px" Style="margin-top: 20px"/>
             </td>
         </tr>
         <tr>
