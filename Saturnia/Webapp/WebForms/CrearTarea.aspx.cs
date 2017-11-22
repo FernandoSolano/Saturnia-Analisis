@@ -113,7 +113,7 @@ namespace Webapp.WebForms
             user.Id = (int)Session["userId"];
             user.FirstName = ""; //El data es utilizado también cuando el colaborador busca entre sus proyectos uno
                                  //con un nombre o descripción en específico, por eso ponemos texto vacio en el atributo FirstName,
-                                //así traerá proyectos sin importar el nombre.
+                                 //así traerá proyectos sin importar el nombre.
             List<Project> collaboratorProjects = projectBusiness.GetProjectsByCollaborator(user);
 
             DdlProject.DataSource = collaboratorProjects;
@@ -178,7 +178,7 @@ namespace Webapp.WebForms
             int month = Int32.Parse(DdlMonth.SelectedValue);
             Calendar1.TodaysDate = new DateTime(year, month, 1);
         }
-       
+
         public void SetCalendarSoT(object sender, EventArgs e)
         {
             int year = Int32.Parse(DdlYearSoT.SelectedValue);
@@ -371,7 +371,7 @@ namespace Webapp.WebForms
                                         task = taskBusiness.AddTask(task);
                                         if (task.Id > 0)
                                         {
-                                            ResetData();
+
                                             LblWarningSoT.Text = "Se ha ingresado la nueva tarea con éxito";
 
                                         }
@@ -387,6 +387,7 @@ namespace Webapp.WebForms
                     }
 
                 }
+                //ResetData();
             }
             else
             {
