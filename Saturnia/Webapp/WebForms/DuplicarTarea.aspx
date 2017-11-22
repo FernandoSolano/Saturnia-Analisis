@@ -17,6 +17,7 @@
         <asp:ListItem Value="0">Horas regulares</asp:ListItem>
         <asp:ListItem Value="1">Horas extra</asp:ListItem>
     </asp:RadioButtonList>
+    <asp:Label ID="lbl_warning_hours_type" runat="server" ForeColor="#FF6600" Text="Por favor seleccione el tipo de horas" Visible="False"></asp:Label>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <fieldset>
@@ -49,6 +50,8 @@
         <TitleStyle BackColor="#252525" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
         <TodayDayStyle BackColor="#CCCC99" />
     </asp:Calendar>
+    <asp:Label ID="lbl_warning_reselect" runat="server" ForeColor="#FF6600" Text="Por favor ingrese nuevamente la cantidad de horas" Visible="False"></asp:Label>
+    <br />
     <br />
     <asp:Button ID="btn_cancel" runat="server" Text="Cancelar" OnClick="btn_cancel_Click" />
     <asp:Button ID="btn_save" runat="server" Text="Guardar" OnClick="btn_save_Click" UseSubmitBehavior="False" />

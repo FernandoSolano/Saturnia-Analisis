@@ -155,52 +155,6 @@ namespace Core.Data
             }
         }
 
-        public List<Task> GetTaskByCollaborator(Task task)
-        {
-            List<Task> tasks = new List<Task>();
-            Task temporalTask;
-
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand sqlCommand = new SqlCommand("SP_TASK_BY_COLLABORATOR_SEARCH", connection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@Id", task.Collaborator.Id);
-
-            SqlDataReader reader;
-            try
-            {
-                sqlCommand.Connection.Open();
-                reader = sqlCommand.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    temporalTask = new Task();
-                    temporalTask.Id = Int32.Parse(reader["id"].ToString());
-                    temporalTask.Hours = float.Parse(reader["hours"].ToString());
-                    temporalTask.ExtraHours = Boolean.Parse(reader["extra_hours"].ToString());
-                    temporalTask.Date = DateTime.Parse(reader["date"].ToString());
-                    temporalTask.Description = reader["description"].ToString();
-                    temporalTask.Project.Name = reader["project_name"].ToString();
-                    temporalTask.Category.Name = reader["category_name"].ToString();
-                    temporalTask.Project.Id = Int32.Parse(reader["project_id"].ToString());
-                    temporalTask.Category.Id = Int32.Parse(reader["category_id"].ToString());
-                    temporalTask.Collaborator.Id = Int32.Parse(reader["collaborator_id"].ToString());
-                    tasks.Add(temporalTask);
-                }
-
-
-
-                sqlCommand.Connection.Close();
-                return tasks;
-            }
-            catch (SqlException sqlException)
-            {
-                throw sqlException;
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
         /// <summary>
         /// Método que busca una tárea en base a filtrado.
         /// </summary>
