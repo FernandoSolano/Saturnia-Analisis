@@ -100,9 +100,9 @@
                                 </Triggers>
                             </asp:UpdatePanel>
                             <div style="text-align: center">
-                                <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
-                                <asp:Button ID="BtnAdd" runat="server" class="btn btn-success" OnClick="BtnAdd_Click" Text="Ingresar" Style="margin-left: 10px" Height="30px" Width="120px" />
-                                <asp:Button ID="BtnSetData" runat="server" class="btn btn-danger" OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Button ID="BtnCancel" runat="server" class="btn btn-danger" OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 5px" Height="30px" Width="115px" />
+                                <asp:Button ID="BtnAdd" runat="server" class="btn btn-success" OnClick="BtnAdd_Click" Text="Ingresar" Style="margin-left: 5px" Height="30px" Width="115px" />
+                                <asp:Button ID="BtnSetData" runat="server" class="btn btn-danger" OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 5px" Height="30px" Width="115px" />
                                 <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
                                         <fieldset>
@@ -176,7 +176,7 @@
                                             <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="RadioButtonList2_SelectedIndexChanged" Style="margin: 20px 0px 20px 80px; list-style: none" AutoPostBack="True">
                                                 <asp:ListItem Value="0" style="margin-right: 20px;" Selected="True">Horas regulares</asp:ListItem>
                                                 <asp:ListItem Value="1">Horas extra</asp:ListItem>
-                                            </asp:RadioButtonList>#
+                                            </asp:RadioButtonList>
                                         </div>
                                         <div>
                                             <label>Tiempo dedicado:</label>
@@ -213,9 +213,9 @@
                                 </Triggers>
                             </asp:UpdatePanel>
                             <div style="text-align: center">
-                                <asp:Button ID="BtnCancelSoT" runat="server" class="btn btn-danger" OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 10px" Height="30px" Width="120px" />
-                                <asp:Button ID="BtnAddSoT" runat="server" class="btn btn-success" OnClick="BtnAddSoT_Click" Text="Ingresar" Style="margin-left: 10px" Height="30px" Width="120px" />
-                                <asp:Button ID="BtnSetDataSoT" runat="server" class="btn btn-danger" OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 10px" Height="30px" Width="120px" />
+                                <asp:Button ID="BtnCancelSoT" runat="server" class="btn btn-danger" OnClick="BtnCancel_Click" Text="Cancelar" Style="margin-left: 5px" Height="30px" Width="115px" />
+                                <asp:Button ID="BtnAddSoT" runat="server" class="btn btn-success" OnClick="BtnAddSoT_Click" Text="Ingresar" Style="margin-left: 5px" Height="30px" Width="115px" />
+                                <asp:Button ID="BtnSetDataSoT" runat="server" class="btn btn-danger" OnClick="BtnSetData_Click" Text="Limpiar campos" Style="margin-left: 5px" Height="30px" Width="115px" />
                                 <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
                                         <fieldset>
