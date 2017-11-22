@@ -76,6 +76,15 @@ namespace Webapp.WebForms {
         protected global::System.Web.UI.WebControls.RadioButtonList rbl_hours_type;
         
         /// <summary>
+        /// lbl_warning_hours_type control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_warning_hours_type;
+        
+        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,15 @@ namespace Webapp.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Calendar cld_selected_date;
+        
+        /// <summary>
+        /// lbl_warning_reselect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_warning_reselect;
         
         /// <summary>
         /// btn_cancel control.
