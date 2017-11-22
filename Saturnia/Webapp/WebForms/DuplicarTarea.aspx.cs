@@ -84,35 +84,43 @@ namespace Webapp.WebForms
 
         protected void btn_save_Click(object sender, EventArgs e)
         {
-            if (ddl_hours.SelectedValue != "0" || ddl_minutes.SelectedValue != "0")
+            if (rbl_hours_type.SelectedValue == "0" || rbl_hours_type.SelectedValue == "1")
             {
-                taskBusiness = new TaskBusiness();
-                task = new Task();
-                task.Project.Id = Int32.Parse(ddl_projects.SelectedValue);
-                task.Category.Id = Int32.Parse(ddl_categories.SelectedValue);
-                task.Collaborator.Id = (int)Session["userId"];
-                task.ExtraHours = (rbl_hours_type.SelectedValue == "0") ? (false) : (true);
-                task.Description = tb_description.Text;
-                task.Date = cld_selected_date.SelectedDate;
-                float selectedHours = 0;
-                selectedHours = Int32.Parse(ddl_hours.SelectedValue);
-                if (ddl_minutes.SelectedValue == "1")
+                if (ddl_hours.SelectedValue != "0" || ddl_minutes.SelectedValue != "0")
                 {
-                    selectedHours += (float)0.5;
+                    taskBusiness = new TaskBusiness();
+                    task = new Task();
+                    task.Project.Id = Int32.Parse(ddl_projects.SelectedValue);
+                    task.Category.Id = Int32.Parse(ddl_categories.SelectedValue);
+                    task.Collaborator.Id = (int)Session["userId"];
+                    task.ExtraHours = (rbl_hours_type.SelectedValue == "0") ? (false) : (true);
+                    task.Description = tb_description.Text;
+                    task.Date = cld_selected_date.SelectedDate;
+                    float selectedHours = 0;
+                    selectedHours = Int32.Parse(ddl_hours.SelectedValue);
+                    if (ddl_minutes.SelectedValue == "1")
+                    {
+                        selectedHours += (float)0.5;
+                    }
+                    task.Hours = selectedHours;
+                    taskBusiness.AddTask(task);
+                    Response.Redirect("~/WebForms/BuscarTareaColaborador");
                 }
-                task.Hours = selectedHours;
-                taskBusiness.AddTask(task);
-                Response.Redirect("~/WebForms/BuscarTareaColaborador");
+                else
+                {
+                    lbl_error_hours.Visible = true;
+                }
             }
             else
             {
-                lbl_error_hours.Visible = true;
+                lbl_warning_hours_type.Visible = true;
             }
         }
 
         //TODO... Se ejecuta cuando se cambia del índice señalado en el PageLoad a otro, pero no al revés
         protected void rbl_hours_type_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lbl_warning_hours_type.Visible = false;
             GetRegisteredHours();
             GetAllowedHours();
             LoadHoursDropDownList();
@@ -121,11 +129,19 @@ namespace Webapp.WebForms
 
         protected void cld_selected_date_SelectionChanged(object sender, EventArgs e)
         {
-            GetRegisteredHours();
-            //ddl_hours_PreValue = Int32.Parse(ddl_hours.SelectedValue);
-            GetAllowedHours();
-            LoadHoursDropDownList();
-            LoadMinutesDropDownList();
+            if (rbl_hours_type.SelectedValue == "0" || rbl_hours_type.SelectedValue == "1")
+            {
+                GetRegisteredHours();
+                //ddl_hours_PreValue = Int32.Parse(ddl_hours.SelectedValue);
+                GetAllowedHours();
+                LoadHoursDropDownList();
+                LoadMinutesDropDownList();
+                lbl_warning_reselect.Visible = true;
+            }
+            else
+            {
+                lbl_warning_hours_type.Visible = true;
+            }
         }
 
         private void GetRegisteredHours()
@@ -192,6 +208,7 @@ namespace Webapp.WebForms
             //LoadHoursDropDownList();
             //ddl_hours.SelectedValue = ddl_hours_PreValue + "";
             LoadMinutesDropDownList();
+            lbl_warning_reselect.Visible = false;
         }
 
         protected void btn_cancel_Click(object sender, EventArgs e)
