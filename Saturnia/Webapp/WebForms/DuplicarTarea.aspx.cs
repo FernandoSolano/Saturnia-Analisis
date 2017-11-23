@@ -76,10 +76,39 @@ namespace Webapp.WebForms
                     LoadHoursDropDownList();
                     ddl_hours.SelectedValue = ddl_hours_PreValue + "";
                     LoadMinutesDropDownList();
+                    //Cargar los dropdown para el año y el mes del calendario
+                    SetYearDropdownList();
+                    SetMonthDropDownList();
                 }
                 if (Page.IsPostBack)
                     ddl_hours_PreValue = Int32.Parse(ddl_hours.SelectedValue);
             }
+        }
+
+        public void SetYearDropdownList()
+        {
+            for (int year = DateTime.Now.Year - 20; year <= DateTime.Now.Year; year++)
+            {
+                DdlYear.Items.Add(year.ToString());
+            }
+            DdlYear.Items.FindByValue(DateTime.Now.Year.ToString()).Selected = true;
+        }
+
+        public void SetMonthDropDownList()
+        {
+            var date = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat;
+            for (int i = 1; i <= 12; i++)
+            {
+                DdlMonth.Items.Add(new ListItem(date.GetMonthName(i), i.ToString()));
+            }
+            DdlMonth.Items.FindByValue(DateTime.Now.Month.ToString()).Selected = true;
+        }
+
+        public void SetCalendar(object sender, EventArgs e)
+        {
+            int year = Int32.Parse(DdlYear.SelectedValue);
+            int month = Int32.Parse(DdlMonth.SelectedValue);
+            cld_selected_date.TodaysDate = new DateTime(year, month, 1);
         }
 
         protected void btn_save_Click(object sender, EventArgs e)

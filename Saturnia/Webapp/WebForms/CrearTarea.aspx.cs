@@ -71,7 +71,7 @@ namespace Webapp.WebForms
                 DdlMonth.Items.Add(new ListItem(date.GetMonthName(i), i.ToString()));
                 DdlMonthSoT.Items.Add(new ListItem(date.GetMonthName(i), i.ToString()));
             }
-            DdlMonthSoT.Items.FindByValue(DateTime.Now.Month.ToString()).Selected = true;
+            DdlMonth.Items.FindByValue(DateTime.Now.Month.ToString()).Selected = true;
             DdlMonthSoT.Items.FindByValue(DateTime.Now.Month.ToString()).Selected = true;
         }
 
@@ -113,7 +113,7 @@ namespace Webapp.WebForms
             user.Id = (int)Session["userId"];
             user.FirstName = ""; //El data es utilizado también cuando el colaborador busca entre sus proyectos uno
                                  //con un nombre o descripción en específico, por eso ponemos texto vacio en el atributo FirstName,
-                                //así traerá proyectos sin importar el nombre.
+                                 //así traerá proyectos sin importar el nombre.
             List<Project> collaboratorProjects = projectBusiness.GetProjectsByCollaborator(user);
 
             DdlProject.DataSource = collaboratorProjects;
@@ -178,7 +178,7 @@ namespace Webapp.WebForms
             int month = Int32.Parse(DdlMonth.SelectedValue);
             Calendar1.TodaysDate = new DateTime(year, month, 1);
         }
-       
+
         public void SetCalendarSoT(object sender, EventArgs e)
         {
             int year = Int32.Parse(DdlYearSoT.SelectedValue);
@@ -246,7 +246,7 @@ namespace Webapp.WebForms
                                     task.ExtraHours = true;
                                 }
                                 float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
-                                float hoursInTheForm = float.Parse(DdlHours.Text + "," + DdlMinutes.Text);
+                                float hoursInTheForm = float.Parse(DdlHours.Text + "," + DdlMinutes.SelectedValue);
 
                                 if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
                                 {
@@ -358,7 +358,7 @@ namespace Webapp.WebForms
 
 
                                     float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
-                                    float hoursInTheForm = float.Parse(DdlHoursSoT.Text + "," + DdlMinutesSoT.Text);
+                                    float hoursInTheForm = float.Parse(DdlHoursSoT.Text + "," + DdlMinutesSoT.SelectedValue);
 
                                     if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
                                     {
@@ -371,7 +371,7 @@ namespace Webapp.WebForms
                                         task = taskBusiness.AddTask(task);
                                         if (task.Id > 0)
                                         {
-                                            ResetData();
+
                                             LblWarningSoT.Text = "Se ha ingresado la nueva tarea con éxito";
 
                                         }
@@ -387,6 +387,7 @@ namespace Webapp.WebForms
                     }
 
                 }
+                //ResetData();
             }
             else
             {

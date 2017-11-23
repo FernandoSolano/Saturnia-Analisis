@@ -18,6 +18,10 @@ $(document).ready(function () {
     });
 });
 
+$("#btnExcel").click(function (e) {
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#reportTableDiv').html()));  
+    e.preventDefault();
+});   
 /**
  * Método que hace visible un elemento por id, de forma lenta y gradual.
  * @param {String} element es el id del elemento a mostrar.

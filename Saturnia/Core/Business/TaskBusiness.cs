@@ -44,13 +44,6 @@ namespace Core.Business
             this.taskData.UpdateTask(task);
         }
 
-
-        public List<Task> GetTaskByCollaborator(Task task)
-        {
-            return taskData.GetTaskByCollaborator(task);
-
-        }
-
         public List<Task> Search(Task task)
         {
             return this.taskData.Search(task);

@@ -43,7 +43,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px" OnDayRender="DisableDays">
+                                                        <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px" OnDayRender="DisableDays" Style="margin-left:-10px">
                                                             <DayHeaderStyle BackColor="#990000" Font-Bold="True" Font-Size="7pt" ForeColor="Silver" Height="10pt" />
                                                             <DayStyle Width="14%" />
                                                             <NextPrevStyle Font-Size="8pt" ForeColor="White" />
@@ -76,8 +76,8 @@
                                                         </asp:DropDownList>
                                                         <label style="margin-left: 20px">Minutos</label>
                                                         <asp:DropDownList ID="DdlMinutes" runat="server" class="btn btn-secundary dropdown-toggle" Style="background-color:  #e6e6e6; margin-left: 20px" Width="70px">
-                                                            <asp:ListItem>00</asp:ListItem>
-                                                            <asp:ListItem>30</asp:ListItem>
+                                                            <asp:ListItem Value="0">00</asp:ListItem>
+                                                            <asp:ListItem Value="5">30</asp:ListItem>
                                                         </asp:DropDownList>
                                                     </fieldset>
                                                 </ContentTemplate>
@@ -123,7 +123,7 @@
                                         <h1>Nuevo ingreso por lote</h1>
 
                                         <div>
-                                            <label>Ingrese las fechas deseadas</label>
+                                            <label>Seleccione las fechas deseadas en el calendario</label>
                                             <table>
                                                 <tr>
                                                     <td>
@@ -133,7 +133,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px" OnDayRender="DisableDays">
+                                                        <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="AddDateToList" BackColor="White" BorderColor="Maroon" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" TitleFormat="Month" Width="400px" OnDayRender="DisableDays" Style="margin-left:-10px">
                                                             <DayHeaderStyle BackColor="#990000" Font-Bold="True" Font-Size="7pt" ForeColor="Silver" Height="10pt" />
                                                             <DayStyle Width="14%" />
                                                             <NextPrevStyle Font-Size="8pt" ForeColor="White" />
@@ -151,6 +151,7 @@
                                             <asp:UpdatePanel ID="UpDates" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
                                                     <fieldset>
+                                                        <label>Feachas seleccionadas: </label>
                                                         <asp:ListBox ID="Lbdates" runat="server" Width="230px" Height="100px" Style="margin-left: 60px; margin-top: 10px; margin-bottom: 10px"></asp:ListBox>
                                                         <asp:Button ID="Btnremove" runat="server" Text="Remover" OnClick="BtnRemove_Click" class="btn btn-warning" Style="margin-left: 10px; margin-top: 10px; margin-bottom: 90px" />
                                                     </fieldset>
@@ -189,8 +190,8 @@
                                                         </asp:DropDownList>
                                                         <label style="margin-left: 20px">Minutos</label>
                                                         <asp:DropDownList ID="DdlMinutesSoT" runat="server" class="btn btn-secundary dropdown-toggle" Style="background-color:  #e6e6e6; margin-left: 20px" Width="70px">
-                                                            <asp:ListItem>00</asp:ListItem>
-                                                            <asp:ListItem>30</asp:ListItem>
+                                                            <asp:ListItem Value="0">00</asp:ListItem>
+                                                            <asp:ListItem Value="5">30</asp:ListItem>
                                                         </asp:DropDownList>
                                                     </fieldset>
                                                 </ContentTemplate>
