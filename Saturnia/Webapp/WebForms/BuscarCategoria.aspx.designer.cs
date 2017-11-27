@@ -13,6 +13,15 @@ namespace Webapp.WebForms {
     public partial class BuscarCategoria {
         
         /// <summary>
+        /// Control lkCategory.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lkCategory;
+        
+        /// <summary>
         /// Control txtName.
         /// </summary>
         /// <remarks>
@@ -29,15 +38,6 @@ namespace Webapp.WebForms {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
-        
-        /// <summary>
-        /// Control lkCategory.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lkCategory;
         
         /// <summary>
         /// Control resultTable.

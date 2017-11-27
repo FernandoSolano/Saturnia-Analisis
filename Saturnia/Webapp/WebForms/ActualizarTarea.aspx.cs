@@ -13,8 +13,6 @@ namespace Webapp.WebForms
     {
       
         private TaskBusiness taskBusiness;
-        private CategoryBusiness categoryBusiness;
-        private ProjectBusiness projectBusiness;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {

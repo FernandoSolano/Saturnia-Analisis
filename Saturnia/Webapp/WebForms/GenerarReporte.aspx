@@ -5,7 +5,7 @@
 
         <!--Div para generar reporte-->
         <div class="fixDate">
-            <h2 class="fixDate">Filtrar por:</h2>
+            <h2 class="fixDate">Ordenar por</h2>
             <input type="checkbox" class="results" id="cbUser"> <Label for="cbUser" ID="lblUserCB" class="fixDate" data-toggle="tooltip" title="Ordenar reporte por colaborador." ><span></span>Colaborador</Label>&nbsp;&nbsp;
             <input type="checkbox" class="results" id="cbCategory"> <Label for="cbCategory" ID="lblCategoryCB" class="fixDate" data-toggle="tooltip" title="Ordenar reporte por categoría." ><span></span>Categor&iacute;a</Label>&nbsp;&nbsp;
             <input type="checkbox" class="results" id="cbProject"> <Label for="cbProject" ID="lblProjectCB" class="fixDate" data-toggle="tooltip" title="Ordenar reporte por proyecto." ><span></span>Proyecto</Label>

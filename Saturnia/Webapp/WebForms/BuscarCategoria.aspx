@@ -3,8 +3,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h1>
-        <label>Buscar Categoría</label>
+        <label>Gestión de categoría</label>
     </h1>
+
+    <h2>
+        Crear categoría
+    </h2>
+    <asp:LinkButton ID="lkCategory" CssClass="btn btn-danger" PostBackUrl="./CrearCategoria.aspx" runat="server">Ir a crear</asp:LinkButton>
+
+    <h2>
+        Buscar Categoría
+    </h2>
 
     <table>
         <tr>
@@ -16,13 +25,6 @@
             </td>
             <td>
                 <asp:Button ID="btnSearch" runat="server" Text="Buscar categoría" class="btn btn-danger" OnClick="btnSearch_Click" />
-            </td>
-        </tr>
-        <tr>
-            <td>¿O desea crear una categoría?
-            </td>
-            <td>
-                <asp:HyperLink ID="lkCategory" NavigateUrl="./CrearCategoria.aspx" runat="server">Crear</asp:HyperLink>
             </td>
         </tr>
     </table>
