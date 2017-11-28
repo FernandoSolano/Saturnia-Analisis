@@ -342,10 +342,10 @@ namespace Core.Data
                     Hours = 0,
                     ExtraHours = false
                 };
-                tempTask.Project.Name = "No hay proyectos trabajados en este rango.";
-                tempTask.Collaborator.FirstName = "Nadie que laborara";
-                tempTask.Collaborator.LastName = "en esta ocasión.";
-                tempTask.Category.Name = "Ninguna tarea fue reportada a ninguna categoría.";
+                tempTask.Project.Name = "No hay proyectos trabajados en este rango de fechas.";
+                tempTask.Collaborator.FirstName = "Nadie reportó labores";
+                tempTask.Collaborator.LastName = "en este rango de fechas.";
+                tempTask.Category.Name = "Ninguna tarea asocaida a alguna categoría en este rango de fechas.";
                 tasks.Add(tempTask);
             }
 

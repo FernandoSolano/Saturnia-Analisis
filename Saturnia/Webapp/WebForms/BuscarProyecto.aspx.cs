@@ -25,7 +25,7 @@ namespace Webapp.WebForms
                 }
                 else if ((int)Session["userRole"] == 2)
                 {
-                    this.MasterPageFile = "~/SiteCollaborator.master";
+                    Response.Redirect("./IndexColaborador.aspx");
                 }
             }
         }

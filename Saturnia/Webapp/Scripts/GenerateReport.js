@@ -13,15 +13,17 @@ $(document).ready(function () {
     //Permitimos los calendarios
     $('#MainContent_txtFrom').datepicker({ dateFormat: 'dd-mm-yy' });
     $('#MainContent_txtTo').datepicker({ dateFormat: 'dd-mm-yy' });
+    //Función exportar a PDF.
     $('#btnPdf').click(function () {
         $('#reportPlace').printThis();
     });
+    //Función a exportar excel
+    $("#btnExcel").click(function (e) {
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#reportTableDiv').html()));
+        e.preventDefault();
+    });
 });
 
-$("#btnExcel").click(function (e) {
-    window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#reportTableDiv').html()));  
-    e.preventDefault();
-});   
 /**
  * Método que hace visible un elemento por id, de forma lenta y gradual.
  * @param {String} element es el id del elemento a mostrar.

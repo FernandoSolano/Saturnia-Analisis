@@ -2,15 +2,19 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Gestión de tareas</h1>
-    <h2>Crear tarea</h2>
-    ¿Desea <asp:HyperLink ID="HLCreateTask" runat="server">crear</asp:HyperLink> una tarea?
-
-    <h2>Buscar tareas</h2>
-    Para editar, duplicar o eliminar una tarea, primero debe buscarla.
-    La b&uacute;squeda puede ser filtrada seg&uacute;n lo necesite.<br />
-
+    <div align="center">
+        <h2>
+            <label>Crear tarea</label>
+        </h2>
+        <asp:LinkButton ID="HLCreateTask" runat="server" CssClass="btn btn-danger">Ir a crear</asp:LinkButton>   
+    </div>
+    <br />
     <!--Div para buscar tareas-->
     <div class="fixDate">
+        <h1 class="fixDate"><label>Buscar tarea</label></h1>
+        <input type="checkbox" class="results" id="cbUser" onchange="FadeForm(this,'User')" > <Label for="cbUser" ID="lblUserCB" class="fixDate" data-toggle="tooltip" title="Limitar los resultados a un colaborador"  ><span></span>Colaborador</Label>&nbsp;&nbsp;
+        <input type="checkbox" class="results" id="cbCategory" onchange="FadeForm(this,'Category')" > <Label for="cbCategory" ID="lblCategoryCB" class="fixDate" data-toggle="tooltip" title="Limitar los resultados a una categoría" ><span></span>Categor&iacute;a</Label>&nbsp;&nbsp;
+        <input type="checkbox" class="results" id="cbProject" onchange="FadeForm(this,'Project')" > <Label for="cbProject" ID="lblProjectCB" class="fixDate" data-toggle="tooltip" title="Limitar los resultados a un proyecto" ><span></span>Proyecto</Label>
         <h2 class="fixDate">Rango de fechas</h2>
         &nbsp;<label class="fixDate">De:</label>&nbsp;<asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
         &nbsp;<label class="fixDate">A:</label>&nbsp;<asp:TextBox ID="txtTo" runat="server"></asp:TextBox>&nbsp;<br /><br />
@@ -18,19 +22,13 @@
         &nbsp;
     </div>
     <!--Fin de Div para buscar tareas-->
-
-    <div id="filters">
-        <h2>Filtrar por:</h2>
-        <input type="checkbox" class="custom" id="cbUser" onchange="FadeForm(this,'User')" > <Label for="cbUser" ID="lblUserCB" ><span></span>Colaborador</Label>&nbsp;&nbsp;
-        <input type="checkbox" class="custom" id="cbCategory" onchange="FadeForm(this,'Category')" > <Label for="cbCategory" ID="lblCategoryCB" ><span></span>Categor&iacute;a</Label>&nbsp;&nbsp;
-        <input type="checkbox" class="custom" id="cbProject" onchange="FadeForm(this,'Project')" > <Label for="cbProject" ID="lblProjectCB" ><span></span>Proyecto</Label>
-    </div>
     
     <div id="areaUser"><!--User area-->
         <div id="beforeUser"><br /><br /></div>
         <h1>
             Colaborador
         </h1>
+        <p>Ingrese un nombre o apellido de un colaborador, puede ser tan solo parte del nombre o apellido, si no ingresa texto se mostrarán <b>todos</b> los colaboradores.</p>
         <!--Inicio de table-->
         <table>
             <tr>
@@ -85,6 +83,7 @@
         <h1>
             Categor&iacute;a
         </h1>
+        <p>Ingrese un nombre de una categoría, si lo desea puede ser solo parte del nombre, si no ingresa texto se mostrarán <b>todas</b> las categorías.</p>
         <table>
             <tr>
                 <td>
@@ -135,6 +134,7 @@
         <h1>
             Proyecto
         </h1>
+        <p>Ingrese un nombre de un proyecto, si lo desea puede ser solo parte del nombre, si no ingresa texto se mostrarán <b>todos</b> los proyectos.</p>
         <table>
             <tr>
                 <td>
@@ -181,7 +181,9 @@
         <button type="button" id="changeProject" class="btn btn-danger" onclick="reselectFilter('Project')">Deseo cambiar el proyecto filtrado</button>
     </div><!--Fin de reselect project-->
     <br />
+    <div id="filters"><br /><br /></div>
     <div id="resultsPlace"> <!--Results place-->
+        
         <!--Inicio de update panel para resultados de tarea-->
         <asp:UpdatePanel ID="UPTaskResults" runat="server">
             <ContentTemplate>
@@ -210,6 +212,9 @@
                             </asp:TableHeaderRow>
                         </asp:Table>
                     <!--Fin de tabla de resultados de tarea-->
+                    <!--Inicio de mensaje de fechas-->
+                            <asp:Label ID="lblDateMessage" runat="server" ForeColor="#D9534F" Text="Por favor, seleccione un rango de fechas válido." Visible="false"></asp:Label>
+                        <!--Fin de mensaje de fechas-->
                 </fieldset>
             </ContentTemplate>
             <Triggers>

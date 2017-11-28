@@ -55,7 +55,7 @@ div.fixDate {
     text-align: center;
 }
 
-h2.fixDate, label.fixDate {
+h1.fixDate, h2.fixDate, label.fixDate {
     color: wheat;
 }
 

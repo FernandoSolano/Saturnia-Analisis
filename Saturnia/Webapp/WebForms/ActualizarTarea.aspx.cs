@@ -13,8 +13,6 @@ namespace Webapp.WebForms
     {
       
         private TaskBusiness taskBusiness;
-        private CategoryBusiness categoryBusiness;
-        private ProjectBusiness projectBusiness;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -64,10 +62,10 @@ namespace Webapp.WebForms
             }
             if (horas - task.Hours == 0)
             {
-                ddlMinutes.Items.FindByValue("00").Selected = true;
+                ddlMinutes.Items.FindByValue("0").Selected = true;
             }
             else {
-                ddlMinutes.Items.FindByValue("30").Selected = true;
+                ddlMinutes.Items.FindByValue("5").Selected = true;
             }
       
             CdDate.SelectedDate = DateTime.Parse(task.Date.ToString());
@@ -134,7 +132,7 @@ namespace Webapp.WebForms
             task.Id = Int32.Parse(Request.QueryString["id"]);
             task.Description = tbDescription.Text;
    
-            task.Hours = float.Parse(tbHours.Text + "." + ddlMinutes.SelectedValue.ToString()) ;
+            task.Hours = float.Parse(tbHours.Text + "," + ddlMinutes.SelectedValue.ToString()) ;
             task.Date = DateTime.Parse(CdDate.SelectedDate.ToString());
             if (rblList.SelectedValue=="0")
             {
