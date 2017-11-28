@@ -3,16 +3,23 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h1>Gestión de tareas</h1>
-    <h2>Crear tarea</h2>
-    ¿Desea <asp:HyperLink ID="HLCreateTask" runat="server">crear</asp:HyperLink> una tarea?
-    
-    <h2>Buscar entre mis tareas</h2>
-    Para editar, duplicar o eliminar una de sus tareas, primero debe buscarla.
-    La b&uacute;squeda puede ser filtrada seg&uacute;n lo necesite.
-    <br /><br />
-
+    <div align="center">
+        <h2>
+            <label>Crear tarea</label>
+        </h2>
+        <asp:LinkButton ID="HLCreateTask" runat="server" CssClass="btn btn-danger">Ir a crear</asp:LinkButton>   
+    </div>
+    <br />
     <!--Div para buscar tareas-->
     <div class="fixDate">
+        <h2 class="fixDate"><label>Buscar entre mis tareas</label></h2>
+        <p>
+            <label class="fixDate">
+                Para editar, duplicar o eliminar una de sus tareas, primero debe buscarla.
+            </label>
+        </p>
+        <input type="checkbox" class="results" id="cbCategory" onchange="FadeForm(this,'Category')" > <Label for="cbCategory" class="fixDate" ID="lblCategoryCB" data-toggle="tooltip" title="Limitar los resultados a una categoría" ><span></span>Categor&iacute;a</Label>&nbsp;&nbsp;
+        <input type="checkbox" class="results" id="cbProject" onchange="FadeForm(this,'Project')" > <Label for="cbProject" class="fixDate" ID="lblProjectCB" data-toggle="tooltip" title="Limitar los resultados a uno de mis proyectos" ><span></span>Mis proyectos</Label> <br />
         <h2 class="fixDate">Rango de fechas</h2>
         &nbsp;<label class="fixDate">De:</label>&nbsp;<asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
         &nbsp;<label class="fixDate">A:</label>&nbsp;<asp:TextBox ID="txtTo" runat="server"></asp:TextBox>&nbsp;<br /><br />
@@ -20,17 +27,12 @@
         &nbsp;
     </div>
     <!--Fin de Div para buscar tareas-->
-
-    <div id="filters">
-        <h2>Filtrar b&uacute;squeda por:</h2>
-        <input type="checkbox" class="custom" id="cbCategory" onchange="FadeForm(this,'Category')" > <Label for="cbCategory" ID="lblCategoryCB" ><span></span>Categor&iacute;a</Label>&nbsp;&nbsp;
-        <input type="checkbox" class="custom" id="cbProject" onchange="FadeForm(this,'Project')" > <Label for="cbProject" ID="lblProjectCB" ><span></span>Mis proyectos</Label>
-    </div>
     <div id="areaCategory"><!--Area category-->
         <div id="beforeCategory"><br /><br /></div>
         <h1>
             Categor&iacute;a
         </h1>
+        <p>Ingrese un nombre de una categoría, si lo desea puede ser solo parte del nombre, si no ingresa texto se mostrarán <b>todas</b> las categorías.</p>
         <table>
             <tr>
                 <td>
@@ -82,6 +84,7 @@
         <h1>
             Proyecto
         </h1>
+        <p>Ingrese un nombre de un proyecto, si lo desea puede ser solo parte del nombre, si no ingresa texto se mostrarán <b>todos</b> los proyectos en los que <b>usted</b> está laborando.</p>
         <table>
             <tr>
                 <td>
@@ -127,6 +130,7 @@
         <label>Est&aacute; filtrando por el proyecto:</label> <label style="color:#D9534F" id="labelReselectProject"></label><br />
         <button type="button" id="changeProject" class="btn btn-danger" onclick="reselectFilter('Project')">Deseo cambiar el proyecto filtrado</button>
     </div><!--Fin de reselect project-->
+    <div id="filters"><br /><br /></div>
     <div id="resultsPlace"> <!--Results place-->
         <!--Inicio de update panel para resultados de tarea-->
         <asp:UpdatePanel ID="UPTaskResults" runat="server">

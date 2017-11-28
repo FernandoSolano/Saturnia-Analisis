@@ -6,8 +6,7 @@
         <h2>
             <label>Crear tarea</label>
         </h2>
-        <asp:LinkButton ID="HLCreateTask" runat="server" CssClass="btn btn-danger">Ir a crear</asp:LinkButton>
-        
+        <asp:LinkButton ID="HLCreateTask" runat="server" CssClass="btn btn-danger">Ir a crear</asp:LinkButton>   
     </div>
     <br />
     <!--Div para buscar tareas-->

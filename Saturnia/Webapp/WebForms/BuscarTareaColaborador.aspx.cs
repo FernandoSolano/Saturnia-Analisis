@@ -39,7 +39,7 @@ namespace Webapp.WebForms
             this.projectBusiness = new ProjectBusiness();
             this.categoryBusiness = new CategoryBusiness();
             this.taskBusiness = new TaskBusiness();
-            this.HLCreateTask.NavigateUrl = "./CrearTarea.aspx";
+            this.HLCreateTask.PostBackUrl = "./CrearTarea.aspx";
             this.userId = Int16.Parse(Session["userId"].ToString());
             if (!IsPostBack)
             {
