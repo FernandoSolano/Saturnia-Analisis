@@ -196,6 +196,7 @@ namespace Webapp.WebForms
             Task task = new Task();
             if (DdlProject.SelectedIndex == 0)
             {
+                LblWarning.ForeColor = System.Drawing.Color.Red;
                 LblWarning.Text = "Seleccione un proyecto de la lista";
             }
             else
@@ -203,6 +204,7 @@ namespace Webapp.WebForms
                 task.Project.Id = Int32.Parse(DdlProject.SelectedItem.Value);
                 if (DdlCategory.SelectedIndex == 0)
                 {
+                    LblWarning.ForeColor = System.Drawing.Color.Red;
                     LblWarning.Text = "Selecciona una categoría de la lista";
                 }
                 else
@@ -214,64 +216,76 @@ namespace Webapp.WebForms
                     task.Collaborator.Id = (int)Session["userId"];
                     if (Calendar1.SelectedDate.Year.ToString() == "0001")
                     {
+                        LblWarning.ForeColor = System.Drawing.Color.Red;
                         LblWarning.Text = "Debe ingresar una fecha válida";
                     }
                     else
                     {
-                        task.Date = Calendar1.SelectedDate;
-
-                        if (TbDescription.Text == "")
+                        try
                         {
-                            LblWarning.Text = "Debe agregar una descripción de la tarea realizada";
+                            task.Date = Calendar1.SelectedDate;
 
-                        }
-                        else
-                        {
-                            task.Description = TbDescription.Text;
-                            if ((DdlHours.SelectedIndex == 0 && DdlMinutes.SelectedIndex == 0) ||
-                                (RadioButtonList1.SelectedIndex == 0 && DdlHours.SelectedIndex == 8 && DdlMinutes.SelectedIndex == 1) ||
-                                (RadioButtonList1.SelectedIndex == 1 && DdlHours.SelectedIndex == 16 && DdlMinutes.SelectedIndex == 1))
+                            if (TbDescription.Text == "")
                             {
-                                LblWarning.Text = "No puede ingresar horas fuera del límite permitido, el límite diario de horas regulares es de 8 y de horas extra 16";
+                                LblWarning.ForeColor = System.Drawing.Color.Red;
+                                LblWarning.Text = "Debe agregar una descripción de la tarea realizada";
+
                             }
                             else
                             {
-
-                                if (RadioButtonList1.SelectedIndex == 0)
+                                task.Description = TbDescription.Text;
+                                if ((DdlHours.SelectedIndex == 0 && DdlMinutes.SelectedIndex == 0) ||
+                                    (RadioButtonList1.SelectedIndex == 0 && DdlHours.SelectedIndex == 8 && DdlMinutes.SelectedIndex == 1) ||
+                                    (RadioButtonList1.SelectedIndex == 1 && DdlHours.SelectedIndex == 16 && DdlMinutes.SelectedIndex == 1))
                                 {
-                                    task.ExtraHours = false;
-                                }
-                                else if (RadioButtonList1.SelectedIndex == 1)
-                                {
-                                    task.ExtraHours = true;
-                                }
-                                float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
-                                float hoursInTheForm = float.Parse(DdlHours.Text + "," + DdlMinutes.SelectedValue);
-
-                                if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
-                                {
-                                    LblWarning.Text = "Usted ya ha ingresado " + registeredHours + " horas anteriormente, no se puede pasar del límite de horas diario.";
-
+                                    LblWarning.ForeColor = System.Drawing.Color.Red;
+                                    LblWarning.Text = "No puede ingresar horas fuera del límite permitido, el límite diario de horas regulares es de 8 y de horas extra 16";
                                 }
                                 else
                                 {
-                                    task.Hours = hoursInTheForm;
-                                    task = taskBusiness.AddTask(task);
-                                    if (task.Id > 0)
-                                    {
 
-                                        ResetData();
-                                        LblWarning.Text = "Se ha ingresado la nueva tarea con éxito";
+                                    if (RadioButtonList1.SelectedIndex == 0)
+                                    {
+                                        task.ExtraHours = false;
+                                    }
+                                    else if (RadioButtonList1.SelectedIndex == 1)
+                                    {
+                                        task.ExtraHours = true;
+                                    }
+                                    float registeredHours = taskBusiness.GetHoursByDateAndCollaborator(task).Hours;
+                                    float hoursInTheForm = float.Parse(DdlHours.Text + "," + DdlMinutes.SelectedValue);
+
+                                    if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
+                                    {
+                                        LblWarning.ForeColor = System.Drawing.Color.Red;
+                                        LblWarning.Text = "Usted ya ha ingresado " + registeredHours + " horas anteriormente, no se puede pasar del límite de horas diario.";
+
                                     }
                                     else
                                     {
-                                        LblWarning.Text = "Ha ocurrido un error, envíe el formulario nuevamente";
+                                        task.Hours = hoursInTheForm;
+                                        task = taskBusiness.AddTask(task);
+                                        if (task.Id > 0)
+                                        {
+
+                                            ResetData();
+                                            LblWarning.ForeColor = System.Drawing.Color.Blue;
+                                            LblWarning.Text = "Se ha ingresado la nueva tarea con éxito";
+                                        }
+                                        else
+                                        {
+                                            LblWarning.ForeColor = System.Drawing.Color.Red;
+                                            LblWarning.Text = "Ha ocurrido un error, envíe el formulario nuevamente";
+                                        }
                                     }
+
                                 }
-
                             }
+                        } catch
+                        {
+                            LblWarning.ForeColor = System.Drawing.Color.Red;
+                            LblWarning.Text = "Debe seleccionar una fecha válida";
                         }
-
                     }
                 }
             }
@@ -302,6 +316,7 @@ namespace Webapp.WebForms
 
                     if ((testTask.ExtraHours && registeredHours + hoursInTheForm > 16) || (!testTask.ExtraHours && registeredHours + hoursInTheForm > 8))
                     {
+                        LblWarningSoT.ForeColor = System.Drawing.Color.Red;
                         LblWarningSoT.Text = "Usted ya ha ingresado " + registeredHours + " horas  anteriormente para el día " + testTask.Date.ToShortDateString() + ", no se puede pasar del límite de horas diario.";
                         break;
                     }
@@ -315,6 +330,7 @@ namespace Webapp.WebForms
                     Task task = new Task();
                     if (DdlProjectSoT.SelectedIndex == 0)
                     {
+                        LblWarningSoT.ForeColor = System.Drawing.Color.Red;
                         LblWarningSoT.Text = "Seleccione un proyecto de la lista";
                     }
                     else
@@ -322,6 +338,7 @@ namespace Webapp.WebForms
                         task.Project.Id = Int32.Parse(DdlProjectSoT.SelectedItem.Value);
                         if (DdlCategorySoT.SelectedIndex == 0)
                         {
+                            LblWarningSoT.ForeColor = System.Drawing.Color.Red;
                             LblWarningSoT.Text = "Seleccione una categoría de la lista";
                         }
                         else
@@ -332,8 +349,8 @@ namespace Webapp.WebForms
                             task.Date = DateTime.Parse(date.Text);
                             if (TbDescription2.Text == "")
                             {
+                                LblWarningSoT.ForeColor = System.Drawing.Color.Red;
                                 LblWarningSoT.Text = "Debe agregar una descripción de la tarea realizada";
-
                             }
                             else
                             {
@@ -342,6 +359,7 @@ namespace Webapp.WebForms
                                     (RadioButtonList2.SelectedIndex == 0 && DdlHoursSoT.SelectedIndex == 8 && DdlMinutesSoT.SelectedIndex == 1) ||
                                     (RadioButtonList2.SelectedIndex == 1 && DdlHoursSoT.SelectedIndex == 16 && DdlMinutesSoT.SelectedIndex == 1))
                                 {
+                                    LblWarningSoT.ForeColor = System.Drawing.Color.Red;
                                     LblWarningSoT.Text = "No puede ingresar horas fuera del límite permitido, el límite diario de horas regulares es de 8 y de horas extra 16";
                                 }
                                 else
@@ -362,6 +380,7 @@ namespace Webapp.WebForms
 
                                     if ((task.ExtraHours && registeredHours + hoursInTheForm > 16) || (!task.ExtraHours && registeredHours + hoursInTheForm > 8))
                                     {
+                                        LblWarningSoT.ForeColor = System.Drawing.Color.Red;
                                         LblWarningSoT.Text = "Usted ya ha ingresado " + registeredHours + " horas  anteriormente para el día " + task.Date.ToShortDateString() + ", no se puede pasar del límite de horas diario.";
                                         break;
                                     }
@@ -371,12 +390,13 @@ namespace Webapp.WebForms
                                         task = taskBusiness.AddTask(task);
                                         if (task.Id > 0)
                                         {
-
+                                            LblWarningSoT.ForeColor = System.Drawing.Color.Blue;
                                             LblWarningSoT.Text = "Se ha ingresado la nueva tarea con éxito";
 
                                         }
                                         else
                                         {
+                                            LblWarningSoT.ForeColor = System.Drawing.Color.Red;
                                             LblWarningSoT.Text = "Ha ocurrido un error, envíe el formulario nuevamente";
                                         }
                                     }
@@ -391,6 +411,7 @@ namespace Webapp.WebForms
             }
             else
             {
+                LblWarningSoT.ForeColor = System.Drawing.Color.Red;
                 LblWarningSoT.Text = "Debe seleccionar al menos dos fechas para realizar el ingreso por lote";
             }
         }
@@ -412,6 +433,7 @@ namespace Webapp.WebForms
         {
             if (Lbdates.Items.Contains(new ListItem(Calendar2.SelectedDate.ToShortDateString())))
             {
+                LblWarningSoT.ForeColor = System.Drawing.Color.Red;
                 LblWarningSoT.Text = "La fecha ya ha sido seleccionada anteriormente";
             }
             else

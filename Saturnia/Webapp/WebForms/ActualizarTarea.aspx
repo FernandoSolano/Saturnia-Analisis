@@ -55,8 +55,8 @@
                                                         <asp:TextBox ID="tbHours" runat="server" TextMode="Number" Height="20px" Width="59px"></asp:TextBox>
                                                         <label style="margin-left: 20px">Minutos</label>
                                                         <asp:DropDownList ID="ddlMinutes" runat="server" Height="20px" Width="59px" >
-                                                            <asp:ListItem>00</asp:ListItem>
-                                                            <asp:ListItem>30</asp:ListItem>
+                                                            <asp:ListItem Value="0">00</asp:ListItem>
+                                                            <asp:ListItem Value="5">30</asp:ListItem>
                                                         </asp:DropDownList>
                                                     </fieldset>
                                                 </ContentTemplate>
