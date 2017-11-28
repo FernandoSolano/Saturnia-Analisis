@@ -25,6 +25,7 @@
             </td>
         </tr>
     </table>
+    <br />
     <div align="center">
             <asp:Table ID="resultTable" runat="server" Visible="false" CssClass="results">
                 <asp:TableHeaderRow>
