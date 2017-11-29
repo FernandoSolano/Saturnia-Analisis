@@ -151,7 +151,7 @@
                                             <asp:UpdatePanel ID="UpDates" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
                                                     <fieldset>
-                                                        <label>Feachas seleccionadas: </label>
+                                                        <label>Fechas seleccionadas: </label>
                                                         <asp:ListBox ID="Lbdates" runat="server" Width="230px" Height="100px" Style="margin-left: 60px; margin-top: 10px; margin-bottom: 10px"></asp:ListBox>
                                                         <asp:Button ID="Btnremove" runat="server" Text="Remover" OnClick="BtnRemove_Click" class="btn btn-warning" Style="margin-left: 10px; margin-top: 10px; margin-bottom: 90px" />
                                                     </fieldset>
